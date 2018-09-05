@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/shareeverydaylist_item_layout"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/space_90"
+    android:paddingLeft="@dimen/space_20"
+    android:paddingRight="@dimen/space_20"
+    android:paddingTop="@dimen/space_10">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/shareeverydaylist_item_logo"
+            android:layout_width="@dimen/space_60"
+            android:layout_height="@dimen/space_60" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space_10"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/shareeverydaylist_item_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="德兴贵文员"
+                android:textColor="@color/color_3a3a3a_black" />
+
+            <TextView
+                android:id="@+id/shareeverydaylist_item_shortinfo"
+                android:layout_width="@dimen/space_150"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_5"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="@color/color_878787_gray"
+                android:textSize="@dimen/font_size_12" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_5">
+
+                <TextView
+                    android:id="@+id/shareeverydaylist_item_hot"
+                    android:layout_width="@dimen/space_30"
+                    android:layout_height="@dimen/space_15"
+                    android:visibility="gone"
+                    android:background="@drawable/new_hotarticle" />
+
+                <TextView
+                    android:id="@+id/shareeverydaylist_item_best"
+                    android:layout_width="@dimen/space_30"
+                    android:layout_height="@dimen/space_15"
+                    android:layout_marginLeft="@dimen/space_5"
+                    android:visibility="gone"
+                    android:background="@drawable/new_bestselect" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/shareeverydaylist_item_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:textColor="@color/color_878787_gray"
+        android:textSize="@dimen/font_size_12" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_0.5"
+        android:layout_alignParentBottom="true"
+        android:background="@color/color_eeeeee_gray" />
+</RelativeLayout>

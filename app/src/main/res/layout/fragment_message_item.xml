@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_message_item"
+    style="@style/layoutset_20_10_20_10_mw">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+              android:layout_marginLeft="@dimen/x60"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/fragment_message_item_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="就业邦客服"
+                android:textColor="@color/black_20252E" />
+
+            <TextView
+                android:id="@+id/fragment_message_item_content"
+                android:layout_width="@dimen/space_150"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_5"
+                android:singleLine="true"
+                android:text="就业邦客服"
+                android:textColor="@color/color_868686_gray"
+                android:textSize="@dimen/font_size_12" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/y5"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/fragment_message_item_date"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="3"
+                android:gravity="right"
+                android:text="2018/04/04 10:00"
+                android:textSize="@dimen/font_size_12" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginRight="@dimen/x30"
+                android:layout_weight="2"
+                android:gravity="right">
+
+                <ImageView
+                    android:id="@+id/point"
+                    android:layout_width="@dimen/x8"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/point" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

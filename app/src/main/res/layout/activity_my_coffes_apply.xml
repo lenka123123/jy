@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/newcampany"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/incluce_common_title" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y15"
+        android:textColor="#F7F7F7" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/y30"
+        android:layout_marginLeft="@dimen/x40"
+        android:layout_marginTop="@dimen/y30"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="支付宝账号:"
+            android:textColor="#333"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/ed_apply_number"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:background="@null"
+            android:hint="请输入正确的支付宝账号"
+            android:textColor="#B3B3B3"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_0.5"
+        android:layout_marginLeft="@dimen/x40"
+        android:layout_marginRight="@dimen/x40"
+        android:background="#DDDDDD" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/y30"
+        android:layout_marginLeft="@dimen/x40"
+        android:layout_marginTop="@dimen/y30"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="真实姓名:"
+            android:textColor="#333"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/ed_apply_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:background="@null"
+            android:hint="请输入支付宝账号绑定的用户姓名"
+            android:textColor="#B3B3B3"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y17"
+        android:background="#F7F7F7" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x40"
+        android:layout_marginTop="@dimen/y30"
+        android:text="提现金额"
+        android:textColor="#333"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y100"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/x40"
+        android:layout_marginTop="@dimen/y50"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/x40"
+            android:layout_height="@dimen/y50"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/x16"
+            android:src="@drawable/money_flag" />
+
+        <EditText
+            android:id="@+id/my_coffers_money"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:inputType="number"
+            android:textColor="#000"
+            android:textSize="39sp" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_0.5"
+        android:layout_marginLeft="@dimen/x40"
+        android:layout_marginRight="@dimen/x40"
+        android:layout_marginTop="@dimen/y30"
+        android:background="#DDDDDD" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/y40"
+        android:layout_marginLeft="@dimen/y40"
+        android:layout_marginTop="@dimen/y40"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/money_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="金库总余额"
+            android:textColor="#999"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/apply_all"
+            android:layout_width="@dimen/x200"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x10"
+            android:text="全部提现"
+            android:textColor="#FF5131"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/apply_money"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y90"
+        android:layout_alignParentBottom="true"
+
+        android:layout_marginLeft="@dimen/x43"
+        android:layout_marginRight="@dimen/x44"
+        android:background="@drawable/textview_round2"
+        android:gravity="center"
+        android:text="申请提现"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+
+</LinearLayout>

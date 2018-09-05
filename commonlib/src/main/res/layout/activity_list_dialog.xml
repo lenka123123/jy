@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y60"
+        android:layout_gravity="center"
+        android:background="@color/color_eeeeee_gray"
+        android:gravity="center"
+        android:text="取消"
+        android:textSize="12sp" />
+
+    <com.mcxtzhang.swipemenulib.customview.listdialog.MaxListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+    </com.mcxtzhang.swipemenulib.customview.listdialog.MaxListView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y20"
+        android:background="@color/color_eeeeee_gray" />
+
+    <TextView
+        android:id="@+id/cancel"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y80"
+        android:layout_gravity="center"
+        android:background="@color/color_eeeeee_gray"
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="#0033CC"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+</LinearLayout>

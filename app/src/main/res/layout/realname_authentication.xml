@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/incluce_common_title" />
+
+    <com.mcxtzhang.swipemenulib.customview.MyScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space_70"
+        android:layout_marginTop="@dimen/space_51"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/realname_name"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginRight="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_20"
+                android:background="@drawable/new_input_line"
+                android:hint="@string/input_realname"
+                android:paddingLeft="@dimen/space_20"
+                android:singleLine="true"
+                android:textColorHint="@color/color_afafaf_gray"
+                android:textSize="@dimen/font_size_14" />
+
+            <EditText
+                android:id="@+id/realname_idcardnum"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginRight="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_20"
+                android:background="@drawable/new_input_line"
+                android:digits="1234567890xX"
+                android:hint="@string/input_idnum"
+                android:maxLength="18"
+                android:paddingLeft="@dimen/space_20"
+                android:singleLine="true"
+                android:textColorHint="@color/color_afafaf_gray"
+                android:textSize="@dimen/font_size_14" />
+
+            <ImageView
+                android:id="@+id/realname_on"
+                android:layout_width="@dimen/space_270"
+                android:layout_height="@dimen/space_200"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/space_20"
+                android:background="@drawable/new_input_idcard_on"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/realname_off"
+                android:layout_width="@dimen/space_270"
+                android:layout_height="@dimen/space_200"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/space_20"
+                android:background="@drawable/new_input_idcard_off"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/realname_onhand"
+                android:layout_width="@dimen/space_270"
+                android:layout_height="@dimen/space_180"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/space_20"
+                android:background="@drawable/new_input_idcard_onhand"
+                android:scaleType="fitXY" />
+
+            <TextView
+                android:id="@+id/realname_confirm"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_50"
+                android:layout_marginLeft="@dimen/space_30"
+                android:layout_marginRight="@dimen/space_30"
+                android:layout_marginTop="@dimen/space_20"
+                android:background="@drawable/btn_selector"
+                android:gravity="center"
+                android:text="@string/confirm"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_18" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_60"></LinearLayout>
+        </LinearLayout>
+
+    </com.mcxtzhang.swipemenulib.customview.MyScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_70"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/new_realname_title_bg"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/space_20"
+        android:paddingRight="@dimen/space_20"
+        android:paddingTop="@dimen/space_10">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/realname_introduction1"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_12" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/realname_introduction2"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_12" />
+    </LinearLayout>
+</RelativeLayout>

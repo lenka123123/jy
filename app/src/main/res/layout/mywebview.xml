@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mywebview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/new_realname_title_bg"
+        android:layout_height="@dimen/space_51">
+        <LinearLayout
+            android:id="@+id/mywebview_back"
+            android:layout_width="@dimen/space_50"
+            android:layout_height="@dimen/space_50"
+            android:gravity="center">
+            <ImageView
+
+                android:layout_width="@dimen/space_10"
+                android:layout_height="@dimen/space_20"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/space_10"
+                android:background="@drawable/new_back"/>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/mywebview_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="@dimen/space_18"
+            android:textColor="@color/white"
+            android:text="@string/myrelease"/>
+
+        <TextView
+            android:id="@+id/mywebview_share"
+            android:layout_width="@dimen/space_60"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/space_20"
+            android:text="分享"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/line_color" />
+
+    <com.example.framwork.widget.CustomWebView
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+
+</LinearLayout>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/space_10"
+    android:background="@color/white"
+    android:paddingBottom="@dimen/space_40"
+    android:paddingLeft="@dimen/space_20"
+    android:paddingRight="@dimen/space_20"
+    android:paddingTop="@dimen/space_20">
+
+    <TextView
+        android:id="@+id/sharemeun_qqfriend"
+        android:layout_width="@dimen/space_0"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:drawablePadding="@dimen/space_5"
+        android:drawableTop="@drawable/new_share_qq_img"
+        android:gravity="center"
+        android:text="QQ好友"
+        android:textSize="@dimen/font_size_12" />
+
+    <TextView
+        android:id="@+id/sharemeun_qqzone"
+        android:layout_width="@dimen/space_0"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:drawablePadding="@dimen/space_5"
+        android:drawableTop="@drawable/new_share_qqzone_img"
+        android:gravity="center"
+        android:text="QQ空间"
+        android:textSize="@dimen/font_size_12" />
+
+    <TextView
+        android:id="@+id/sharemeun_wechatfriend"
+        android:layout_width="@dimen/space_0"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:drawablePadding="@dimen/space_5"
+        android:drawableTop="@drawable/new_share_wechat_img"
+        android:gravity="center"
+        android:text="微信好友"
+        android:textSize="@dimen/font_size_12" />
+
+    <TextView
+        android:id="@+id/sharemeun_moment"
+        android:layout_width="@dimen/space_0"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:drawablePadding="@dimen/space_5"
+        android:drawableTop="@drawable/new_share_moment_img"
+        android:gravity="center"
+        android:text="朋友圈"
+        android:textSize="@dimen/font_size_12" />
+
+</LinearLayout>

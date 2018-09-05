@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipe_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.example.framwork.widget.scrolllayout.ScrollableLayout
+        android:id="@+id/scrollable_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <include layout="@layout/include_scroll_adverti" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_49"
+            android:orientation="vertical">
+
+            <com.flyco.tablayout.SlidingTabLayout
+                android:id="@+id/job_slide_tab"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/custom_item_height"
+                android:background="@color/white"
+                app:tl_indicator_color="@color/theme_color"
+                app:tl_indicator_height="1dp"
+                app:tl_indicator_width_equal_title="true"
+                app:tl_tab_padding="@dimen/space_0"
+                app:tl_tab_space_equal="true"
+                app:tl_textSelectColor="@color/theme_color"
+                app:tl_textUnselectColor="@color/gray_c"
+                app:tl_textsize="15sp" />
+
+            <include layout="@layout/include_line_gray" />
+        </LinearLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_home_job"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <!-- fragment_home_helpeachother_item -->
+    </com.example.framwork.widget.scrolllayout.ScrollableLayout>
+</android.support.v4.widget.SwipeRefreshLayout>

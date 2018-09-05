@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/incluce_common_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/setting_newguide"
+                style="@style/LinearLayout_Mine">
+
+                <TextView
+                    style="@style/TextView_Mine_Left"
+                    android:drawableLeft="@drawable/new_newbieguide"
+                    android:text="@string/newbieguide" />
+
+                <TextView style="@style/TextView_Mine_right" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/setting_aboutus"
+                style="@style/LinearLayout_Mine">
+
+                <TextView
+                    style="@style/TextView_Mine_Left"
+                    android:drawableLeft="@drawable/new_aboutjobbang"
+                    android:text="@string/aboutjiuyebang" />
+
+                <TextView style="@style/TextView_Mine_right" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/setting_changepd"
+                style="@style/LinearLayout_Mine">
+
+                <TextView
+                    style="@style/TextView_Mine_Left"
+                    android:drawableLeft="@drawable/new_changepwd"
+                    android:text="@string/changepassword" />
+
+                <TextView style="@style/TextView_Mine_right" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/setting_cleancache"
+                android:visibility="gone"
+                style="@style/LinearLayout_Mine">
+
+                <TextView
+                    style="@style/TextView_Mine_Left"
+                    android:drawableLeft="@drawable/new_cleancache"
+                    android:text="@string/cleancache" />
+
+                <TextView style="@style/TextView_Mine_right" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/setting_complaintsandsuggestions"
+                android:visibility="gone"
+                style="@style/LinearLayout_Mine">
+
+                <TextView
+                    style="@style/TextView_Mine_Left"
+                    android:drawableLeft="@drawable/new_complaintsandsuggestions"
+                    android:text="@string/complaintsandsuggestions" />
+
+                <TextView style="@style/TextView_Mine_right" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/setting_linkus"
+                style="@style/LinearLayout_Mine">
+
+                <TextView
+                    style="@style/TextView_Mine_Left"
+                    android:drawableLeft="@drawable/new_linkus"
+                    android:text="@string/linkus" />
+
+                <TextView style="@style/TextView_Mine_right" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/setting_sharaus"
+                android:visibility="gone"
+                style="@style/LinearLayout_Mine">
+
+                <TextView
+                    style="@style/TextView_Mine_Left"
+                    android:drawableLeft="@drawable/new_sharaus"
+                    android:text="@string/sharaus" />
+
+                <TextView style="@style/TextView_Mine_right" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/setting_checkupdata"
+                style="@style/LinearLayout_Mine">
+
+                <TextView
+                    style="@style/TextView_Mine_Left"
+                    android:drawableLeft="@drawable/new_checkupdata"
+                    android:text="@string/checkupdata" />
+
+                <TextView style="@style/TextView_Mine_right" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/setting_logout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_50"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/space_10"
+                android:layout_marginTop="@dimen/space_30"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginRight="@dimen/space_20"
+                android:background="@drawable/textview_round2"
+                android:gravity="center"
+                android:text="@string/logout"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_18" />
+
+            <TextView
+                android:id="@+id/version"
+                android:layout_width="match_parent"
+                android:text="Jilyebang"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:textColor="#939993"
+                android:layout_height="@dimen/space_30" />
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

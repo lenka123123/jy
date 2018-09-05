@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/newcampany"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_0"
+        android:layout_below="@+id/line1"
+        android:layout_weight="1">
+        <!--加载条-->
+        <com.example.framwork.widget.ProgressActivity
+            android:id="@+id/progressActivity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:emptyBackgroundColor="@color/line_color"
+            app:errorButtonBackgroundColor="@drawable/dialog_ok_btn_enabled"
+            app:errorButtonTextColor="@color/font2">
+
+            <com.example.framwork.widget.superrecyclerview.recycleview.SuperRecyclerView
+                android:id="@+id/rv_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/line_color" />
+            <!--fragment_mine_collection_item-->
+            <!--fragment_mine_collection_item_2-->
+        </com.example.framwork.widget.ProgressActivity>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <com.mcxtzhang.swipemenulib.customview.BackEditText
+        android:id="@+id/newcampany_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入内容..."
+        android:layout_marginBottom="@dimen/space_10"
+        android:imeOptions="actionSend"
+        android:inputType="text"
+        android:singleLine="true"
+        android:visibility="gone" />
+
+</LinearLayout>

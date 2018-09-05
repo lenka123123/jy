@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/shaixuanitem"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/space_30"
+    android:layout_margin="@dimen/space_5"
+    android:textColor="@drawable/radiobuttontextcolor"
+    android:background="@drawable/keyworldbg_round"
+    android:textSize="@dimen/font_size_12">
+
+</TextView>

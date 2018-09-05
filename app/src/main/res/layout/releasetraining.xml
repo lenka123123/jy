@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f5f5f5"
+    android:orientation="vertical">
+
+    <include layout="@layout/incluce_common_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="培训标题"
+                    android:textSize="@dimen/font_size_12" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/space_20">
+
+                    <EditText
+                        android:id="@+id/releasetraining_title_edittext"
+                        android:layout_width="@dimen/space_200"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/space_10"
+                        android:background="@color/white"
+                        android:ellipsize="start"
+                        android:fadeScrollbars="true"
+                        android:gravity="center|right"
+                        android:hint="请填写"
+                        android:singleLine="true"
+                        android:textSize="@dimen/space_12" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/new_more" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/space_20"
+                android:text="请完善副标题/培训城市"
+                android:textSize="@dimen/font_size_12" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="副标题"
+                    android:textSize="@dimen/font_size_12" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/space_20">
+
+                    <EditText
+                        android:id="@+id/releasetraining_cotitle_edittext"
+                        android:layout_width="@dimen/space_200"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/space_10"
+                        android:background="@color/white"
+                        android:ellipsize="start"
+                        android:gravity="center|right"
+                        android:hint="请填写"
+                        android:singleLine="true"
+                        android:textSize="@dimen/space_12" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/new_more" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <include layout="@layout/include_line_gray" />
+
+            <RelativeLayout
+                android:id="@+id/releasetraining_city_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="培训城市"
+                    android:textSize="@dimen/font_size_12" />
+
+                <TextView
+                    android:id="@+id/releasetraining_city_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:drawablePadding="@dimen/space_10"
+                    android:drawableRight="@drawable/new_more"
+                    android:gravity="center_vertical"
+                    android:hint="请选择"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text=""
+                    android:textSize="@dimen/font_size_12" />
+            </RelativeLayout>
+
+            <include layout="@layout/include_line_gray" />
+
+            <EditText
+                android:id="@+id/releasetraining_adressdetail_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:hint="详细地址"
+                android:minHeight="@dimen/space_40"
+                android:paddingLeft="@dimen/space_20"
+                android:paddingRight="@dimen/space_20"
+                android:textSize="@dimen/font_size_12" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/space_20"
+                android:text="请完善所属行业/所属级别/所属周期"
+                android:textSize="@dimen/font_size_12" />
+
+            <RelativeLayout
+                android:id="@+id/releasetraining_belongindutry_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="所属行业"
+                    android:textSize="@dimen/font_size_12" />
+
+                <TextView
+                    android:id="@+id/releasetraining_belongindutry_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:drawablePadding="@dimen/space_10"
+                    android:drawableRight="@drawable/new_more"
+                    android:gravity="center_vertical"
+                    android:hint="请选择"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text=""
+                    android:textSize="@dimen/font_size_12" />
+            </RelativeLayout>
+
+            <include layout="@layout/include_line_gray" />
+
+            <RelativeLayout
+                android:id="@+id/releasetraining_belonglevel_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="所属级别"
+                    android:textSize="@dimen/font_size_12" />
+
+                <TextView
+                    android:id="@+id/releasetraining_belonglevel_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:drawablePadding="@dimen/space_10"
+                    android:drawableRight="@drawable/new_more"
+                    android:gravity="center_vertical"
+                    android:hint="请选择"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text=""
+                    android:textSize="@dimen/font_size_12" />
+            </RelativeLayout>
+
+            <include layout="@layout/include_line_gray" />
+
+            <RelativeLayout
+                android:id="@+id/releasetraining_belongcycle_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="所属周期"
+                    android:textSize="@dimen/font_size_12" />
+
+                <TextView
+                    android:id="@+id/releasetraining_belongcycle_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:drawablePadding="@dimen/space_10"
+                    android:drawableRight="@drawable/new_more"
+                    android:gravity="center_vertical"
+                    android:hint="请选择"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text=""
+                    android:textSize="@dimen/font_size_12" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/space_20"
+                android:text="请完善课时数/课时长/课程价格/上课时间"
+                android:textSize="@dimen/font_size_12" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="课时数"
+                    android:textSize="@dimen/font_size_12" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/space_20">
+
+                    <EditText
+                        android:id="@+id/releasetraining_classtimenum_edittext"
+                        android:layout_width="@dimen/space_200"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/space_10"
+                        android:background="@color/white"
+                        android:gravity="center|right"
+                        android:hint="请填写"
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:textSize="@dimen/space_12" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/new_more" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <include layout="@layout/include_line_gray" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="课时长"
+                    android:textSize="@dimen/font_size_12" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/space_20">
+
+                    <EditText
+                        android:id="@+id/releasetraining_classtimelong_edittext"
+                        android:layout_width="@dimen/space_200"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/space_10"
+                        android:background="@color/white"
+                        android:gravity="center|right"
+                        android:hint="请填写"
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:textSize="@dimen/space_12" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/new_more" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <include layout="@layout/include_line_gray" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="课程价格"
+                    android:textSize="@dimen/font_size_12" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/space_20">
+
+                    <EditText
+                        android:id="@+id/releasetraining_classprice_edittext"
+                        android:layout_width="@dimen/space_200"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/space_10"
+                        android:background="@color/white"
+                        android:gravity="center|right"
+                        android:hint="请填写"
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:textSize="@dimen/space_12" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/new_more" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <include layout="@layout/include_line_gray" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="上课时间"
+                    android:textSize="@dimen/font_size_12" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:paddingRight="@dimen/space_20">
+
+                    <TextView
+                        android:id="@+id/releasetraining_classtimemin_textview"
+                        android:layout_width="@dimen/space_80"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:gravity="center|right"
+                        android:hint="请选择"
+                        android:textSize="@dimen/space_12" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/space_5"
+                        android:layout_marginRight="@dimen/space_5"
+                        android:text="至"
+                        android:textSize="@dimen/space_12" />
+
+                    <TextView
+                        android:id="@+id/releasetraining_classtimemax_textview"
+                        android:layout_width="@dimen/space_80"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/space_5"
+                        android:background="@color/white"
+                        android:gravity="center|left"
+                        android:hint="请选择"
+                        android:textSize="@dimen/space_12" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/new_more" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/releasetraining_isusecertificate_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:layout_marginTop="@dimen/space_20"
+                android:background="@color/white"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="是否可用优惠券"
+                    android:textSize="@dimen/font_size_12" />
+
+                <TextView
+                    android:id="@+id/releasetraining_isusecertificate_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:drawablePadding="@dimen/space_10"
+                    android:drawableRight="@drawable/new_more"
+                    android:gravity="center_vertical"
+                    android:hint="请选择"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text=""
+                    android:textSize="@dimen/font_size_12" />
+            </RelativeLayout>
+
+            <include layout="@layout/include_line_gray" />
+
+            <RelativeLayout
+                android:id="@+id/releasetraining_upcover_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="上传封面图"
+                    android:textSize="@dimen/font_size_12" />
+
+                <TextView
+                    android:id="@+id/releasetraining_upcover_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:drawablePadding="@dimen/space_10"
+                    android:drawableRight="@drawable/new_more"
+                    android:gravity="center_vertical"
+                    android:hint="请选择"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text=""
+                    android:textSize="@dimen/font_size_12" />
+            </RelativeLayout>
+
+            <include layout="@layout/include_line_gray" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:layout_marginTop="@dimen/space_20"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="联系电话"
+                    android:textSize="@dimen/font_size_12" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/space_20">
+
+                    <EditText
+                        android:id="@+id/releasetraining_linktel_edittext"
+                        android:layout_width="@dimen/space_150"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/space_10"
+                        android:background="@color/white"
+                        android:gravity="center_vertical|right"
+                        android:hint="请填写"
+                        android:inputType="number"
+                        android:singleLine="true"
+                        android:textSize="@dimen/space_12" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/new_more" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/releasetraining_classintroduce_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_20"
+                android:background="@color/white"
+                android:gravity="left|top"
+                android:hint="请填写详细的课程介绍"
+                android:minHeight="@dimen/space_150"
+                android:paddingLeft="@dimen/space_20"
+                android:paddingRight="@dimen/space_20"
+                android:paddingTop="@dimen/space_20"
+                android:textSize="@dimen/font_size_12" />
+
+            <TextView
+                android:id="@+id/releasetraining_releasetraining_textview"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_50"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginRight="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_20"
+                android:background="@drawable/btn_selector"
+                android:gravity="center"
+                android:text="发布并审核"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_18" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/space_60" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

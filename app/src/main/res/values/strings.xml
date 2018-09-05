@@ -1,0 +1,243 @@
+<resources>
+    <string name="app_name">就业邦</string>
+
+    <!--极光-->
+
+    <string name="tag_hint">Tag can be number, alphabet, underscore, Chinese. Use , to split many tags.</string>
+    <string name="alias_hint">Alias can be number, alphabet, underscore, Chinese.</string>
+    <string name="mobilenumber_hint">The phone number can only start with a "+" or a number,other can only contain "-" and Numbers</string>
+    <string name="style_hint">style should be number</string>
+    <string name="error_style_empty">style cannot be empty</string>
+    <string name="error_alias_empty">alias cannot be empty</string>
+    <string name="error_tag_empty">tag cannot be empty</string>
+    <string name="error_tag_gs_empty">Invalid format</string>
+    <string name="mobilenumber_empty_guide">will clear last set phone number</string>
+    <string name="error_network">Failed to init due to network exception.</string>
+    <string name="logining">Running in background. Please see log.</string>
+    <string name="setting_su">Succeed to set</string>
+
+    <!--system-->
+    <string name="notifyTitle">提示</string>
+    <string name="notifyMsg">当前应用缺少必要权限。\n\n请点击\"设置\"-\"权限\"-打开所需权限。</string>
+    <string name="setting">设置</string>
+    <string name="cancel">取消</string>
+
+
+    <string name="main_tab_home">首页</string>
+    <string name="main_tab_find">发现</string>
+    <string name="main_tab_campus">校园</string>
+    <string name="main_tab_mine">我的</string>
+    <string name="home_tab_recommended">推荐</string>
+    <string name="home_tab_training">培训</string>
+    <string name="home_tab_parttime">兼职 </string>
+    <string name="home_tab_headhunters">猎头</string>
+    <string name="home_tab_helpeachother">互动</string>
+    <string name="pleaseinput">请输入...</string>
+    <string name="caninput">还能输入</string>
+    <string name="words">个字</string>
+    <string name="jobinfo">职位信息</string>
+    <string name="classinfo">课程信息</string>
+    <string name="companydetail">企业信息</string>
+    <string name="message">留言</string>
+    <string name="dialog_confirm">确认</string>
+    <string name="mark">我要报名</string>
+
+    <!-- 我的s -->
+    <string name="mine_username">用户名</string>
+    <string name="mine_initsign">输入个性签名</string>
+
+    <string name="mine_task">任务</string>
+    <string name="mine_task_title">我的任务</string>
+    <string name="newtask">新任务</string>
+    <string name="alreadygettask">已领取任务</string>
+
+    <string name="mine_mycentre">个人中心</string>
+    <string name="mine_message">消息</string>
+    <string name="mine_mytask">我的任务</string>
+    <string name="mine_point">点</string>
+    <string name="mine_marktoday">签到</string>
+    <string name="mine_parttime">兼职</string>
+    <string name="mine_traing">培训</string>
+    <string name="mine_helpeachother">互助</string>
+    <string name="mine_invitation">邀请</string>
+    <string name="mine_untruename">未实名认证</string>
+    <string name="mine_growthnametitle">我的成长值</string>
+    <string name="mine_baseinfo">基本资料</string>
+    <string name="mine_mysend">我的投递</string>
+    <string name="mine_truename">实名认证</string>
+    <string name="mine_wantjob">意向求职</string>
+    <string name="mine_want_job">求职意向</string>
+    <string name="mine_myyouhuoquan">我的优惠券</string>
+    <string name="mine_mycollection">我的收藏</string>
+    <string name="mine_myrelease">我的发布</string>
+    <string name="mine_mybuy">我的购买</string>
+    <string name="mine_setting">设置</string>
+    <string name="siftUrNeed">筛选你的需求</string>
+
+    <!-- 登录 -->
+    <string name="input_phone_num">请输入手机号码</string>
+    <string name="input_pwd">请输入密码</string>
+    <string name="login">登录</string>
+    <string name="register_new_user">快速注册</string>
+    <string name="forget_pwd">忘记密码</string>
+    <string name="mine_third_login">使用第三方登录</string>
+    <string name="weixin_login">微信登录</string>
+    <string name="qq_login">QQ登录</string>
+    <string name="updataloginpwd">修改登录密码</string>
+
+    <!-- 注册 -->
+    <string name="register">注　册</string>
+    <string name="register_phone_num">手机号码</string>
+    <string name="input_pwd_6_12">请输入6-12位数字字母登录组合</string>
+    <string name="input_pwd_again">请再次输入6-12位数字字母组合</string>
+    <string name="personage">个人</string>
+    <string name="company">企业</string>
+    <string name="company_joinin">企业入驻</string>
+    <string name="register_click_default">已阅读并同意</string>
+    <string name="register_user_agreement">《用户使用协议》</string>
+    <string name="text_verification_code">请输入验证码</string>
+    <string name="text_get_code">获取验证码</string>
+
+    <!--忘记密码-->
+    <string name="findloginpassword">找回登陆密码</string>
+    <string name="next">下一步</string>
+    <string name="unget_verification_code">无法获取验证码？</string>
+    <string name="submit">提　交</string>
+    <string name="ungetauthcode_title">无法获取验证码</string>
+    <string name="ungetauthcode_title_2">你可以尝试下列方式解决</string>
+    <string name="ungetauthcode_content_1">1.短信有可能有2-10分钟延迟，可以稍等一下。</string>
+    <string name="ungetauthcode_content_2">2.查看是否误设短信拦截。</string>
+    <string name="ungetauthcode_content_3">3.确认手机已缴费并且服务正常。</string>
+    <string name="ungetauthcode_content_4">4.联系手机号运营商解除黑名单。</string>
+    <string name="ungetauthcode_unfixproblem">如上述方法无法解决</string>
+    <string name="ungetauthcode_contact_me">请拨打 025-51511515 获取帮助</string>
+
+    <!--预览简历-->
+    <string name="submit_resume">预览简历</string>
+    <string name="myresume">我的简历</string>
+    <string name="myreumeselfassessment">自我评价</string>
+    <string name="myreumeinputhealthcertificatenum">请输入健康证号</string>
+    <string name="myreumeinputstudentnum">请输入学生证号码</string>
+    <string name="myreumeinputschoolname">请输入学校名称</string>
+    <string name="myreumeinputprofessional">请输入你的专业</string>
+    <string name="myreumeinputschoolexperience">请输入你的学历</string>
+    <string name="myreumeeducationexp">教育经历</string>
+
+    <!-- 实名认证 -->
+    <string name="input_realname">请输入真实姓名</string>
+    <string name="input_idnum">请输入身份证号</string>
+    <string name="confirm">确 认</string>
+    <string name="realname">实名认证</string>
+    <string name="realname_introduction1">拍摄您的二代身份证原件，确保图片清晰，四角完整</string>
+    <string name="realname_introduction2">由于正规企业财务要求，您的身份证号可能会被开放给雇主，用于支付薪资的凭证。</string>
+
+    <!--添加工作经历-->
+    <string name="addjobexperience">添加工作经历</string>
+    <string name="jobexperience">工作经历</string>
+    <string name="addjobexperience_choicejobtype">选择岗位类型</string>
+    <string name="addjobexperience_inputjobtype">请输入您的岗位</string>
+    <string name="addjobexperience_worktime">工作时间</string>
+    <string name="addjobexperience_jobdescribe">职位介绍</string>
+    <!--编辑简历 我的资本资料-->
+    <string name="myresume_editbaseinfo_name">请输入姓名</string>
+    <string name="myresume_editbaseinfo_gender">请输入性别</string>
+    <string name="myresume_editbaseinfo_brithday">请输入出生日期</string>
+    <string name="myresume_editbaseinfo_tel">请输入电话号码</string>
+    <string name="myresume_editbaseinfo_adress">所在地区</string>
+    <string name="myresume_editbaseinfo_adressdetail">请输入详细地址</string>
+    <string name="myresume_editbaseinfo_persenttype">人员类别</string>
+
+    <!--发布互助-->
+    <string name="releasehelpeachother_title">发布互助</string>
+    <string name="releasehelpeachother_choicetype">选择类型</string>
+    <string name="releasehelpeachother_helppeoplenum">求助人数</string>
+    <string name="releasehelpeachother_ispay">付费要求</string>
+    <string name="releasehelpeachother_gender">性别要求</string>
+    <string name="releasehelpeachother_inputmoney">输入金额</string>
+    <string name="releasehelpeachother_inputtitle">输入标题</string>
+    <string name="releasehelpeachother_addcontant">添加内容...</string>
+    <string name="releasehelpeachother_confirm">确认发布</string>
+    <string name="applyperson">申请列表</string>
+    <string name="messagedetail">消息详情</string>
+
+
+    <!--用户中心，基本资料-->
+    <string name="ucentre_changeimg">点击修改头像</string>
+    <string name="ucentre_nickname">昵称</string>
+    <string name="ucentre_inputslogan">请输入15字以内签名</string>
+    <string name="ucentre_choicegender">请选择性别</string>
+    <string name="ucentre_inputemail">请输入电子邮箱</string>
+    <string name="ucentre_confirm">确认修改</string>
+    <string name="ucentre_baseinfo">基本资料</string>
+    <!--教育经历-->
+    <string name="choicschool">选择学校</string>
+    <string name="choicmajor">选择专业</string>
+
+    <!--学生证-->
+    <string name="studentcard">学生证</string>
+    <!--健康证-->
+    <string name="healthcard">健康证</string>
+    <!--优惠券-->
+    <string name="mycoupons">我的优惠券</string>
+    <!--设置-->
+    <string name="newbieguide">新手指南</string>
+    <string name="aboutjiuyebang">关于就业邦</string>
+    <string name="changepassword">修改密码</string>
+    <string name="cleancache">清除缓存</string>
+    <string name="complaintsandsuggestions">投诉与建议</string>
+    <string name="linkus">联系客服</string>
+    <string name="sharaus">分享就业邦</string>
+    <string name="checkupdata">检查更新</string>
+    <string name="logout">退出登录</string>
+    <string name="strategy">攻略干货</string>
+    <string name="test">考研试卷</string>
+    <string name="secret">职场秘籍</string>
+    <string name="helpdetail">互助信息</string>
+    <string name="boundphone">绑定手机号</string>
+
+    <!--联系我们-->
+    <string name="linkue_tel">400-1234-1234</string>
+    <string name="linkue_hottel">客服服务热线</string>
+    <string name="linkue_call">拨打</string>
+    <string name="linkue">联系我们</string>
+    <string name="userrule">用户协议</string>
+    <string name="newuserguide">新手指南</string>
+    <string name="completeinfo">完善个人资料</string>
+
+    <!--我的发布-->
+    <string name="myrelease">我的发布</string>
+    <string name="myrelease_release">发布</string>
+    <string name="myrelease_interesting">发布趣事</string>
+    <string name="myrelease_inputtitle">输入标题</string>
+
+    <!--我的收藏-->
+    <string name="mycollection">我的收藏</string>
+
+    <!--我的成长-->
+    <string name="mygroeth">我的成长</string>
+    <string name="singledaily">每日签到</string>
+    <string name="doparttime">做兼职</string>
+    <string name="jointraing">参加培训</string>
+    <string name="invitefriends">邀请好友</string>
+    <string name="schoolhelp">校园互助</string>
+
+    <string name="signgrowthrecord">签到记录</string>
+    <string name="parttimegrowthrecord">兼职记录</string>
+    <string name="trainggrowthrecord">培训记录</string>
+    <string name="invitationgrowthrecord">邀请记录</string>
+    <string name="helpeachothergrowthrecord">互助记录</string>
+
+    <!--发现-->
+    <string name="searchreasult">搜索结果</string>
+    <string name="shareeveryday">每日分享</string>
+    <string name="jobbangclass">就业邦学堂</string>
+    <string name="jobbangclassdetail">就业邦学堂详情</string>
+    <string name="fundetail">校园趣事</string>
+    <string name="raleasejob">发布职位</string>
+    <string name="belingindutry">所属行业</string>
+    <string name="releasetraining">发布培训</string>
+
+    <!--企业版个人中心，我发布的兼职-->
+    <string name="companyUCenterparttime">我发布的兼职</string>
+    <string name="companyUCenteralltime">我发布的全职</string>
+</resources>

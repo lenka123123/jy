@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/space_10"
+    android:paddingLeft="@dimen/space_20"
+    android:paddingRight="@dimen/space_20"
+    android:paddingTop="@dimen/space_10">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="姓名："
+            android:textColor="@color/color_878787_gray" />
+
+        <TextView
+            android:id="@+id/myresume_baseinfo_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我的名字"
+            android:textColor="@color/color_878787_gray" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="性别："
+            android:textColor="@color/color_878787_gray" />
+
+        <TextView
+            android:id="@+id/myresume_baseinfo_gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="男"
+            android:textColor="@color/color_878787_gray" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="职业："
+            android:textColor="@color/color_878787_gray" />
+
+        <TextView
+            android:id="@+id/myresume_baseinfo_job"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="学生"
+            android:textColor="@color/color_878787_gray" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="电话："
+            android:textColor="@color/color_878787_gray" />
+
+        <TextView
+            android:id="@+id/myresume_baseinfo_telnum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="025-88888888"
+            android:textColor="@color/color_878787_gray" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="出生日期："
+            android:textColor="@color/color_878787_gray" />
+
+        <TextView
+            android:id="@+id/myresume_baseinfo_brithday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1990/06/06"
+            android:textColor="@color/color_878787_gray" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="地址："
+            android:textColor="@color/color_878787_gray" />
+
+        <TextView
+            android:id="@+id/myresume_baseinfo_adress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="南京市珠江路百脑汇1100号808室"
+            android:textColor="@color/color_878787_gray" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/shareeverydaydetail_out"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space_60"
+        android:layout_marginTop="@dimen/space_51">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/shareeverydaydetail_title"
+                android:layout_width="@dimen/space_220"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/space_10"
+                android:gravity="center"
+                android:text="关于考研复习的三大误区"
+                android:textColor="@color/color_3a3a3a_black"
+                android:textSize="@dimen/font_size_16" />
+
+            <TextView
+                android:id="@+id/shareeverydaydetail_companyanddate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginRight="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_5"
+                android:gravity="center"
+                android:text="就业邦 发布于2018年4月10日 10:00"
+                android:textColor="@color/color_C5C5C5_gray"
+                android:textSize="@dimen/font_size_12" />
+
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.mcxtzhang.swipemenulib.customview.ZZoomImageView
+        android:id="@+id/img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@mipmap/ic_launcher" />
+    <WebView
+
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>
+
+
+
+            <LinearLayout
+                android:id="@+id/pay_linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y90"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/y30"
+                android:visibility="gone">
+
+                <View
+                    android:layout_width="@dimen/x72"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/y4"
+
+                    android:layout_weight="1"
+                    android:background="#C9C9C9" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:nextFocusRight="@dimen/x20"
+                    android:text="点击购买，即可查看" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/y4"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_weight="1"
+                    android:background="#C9C9C9" />
+
+                <View
+                    android:layout_width="@dimen/x72"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/goto_pay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x255"
+                android:layout_marginTop="@dimen/y30"
+                android:background="@drawable/pay_button"
+                android:visibility="gone" />
+
+            <View
+                android:id="@+id/pay_view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y48"
+                android:visibility="gone" />
+
+
+            <TextView
+                android:id="@+id/shareeverydaydetail_caontent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginRight="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_20"
+                android:visibility="gone" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

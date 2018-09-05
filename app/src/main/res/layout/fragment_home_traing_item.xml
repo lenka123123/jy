@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_home_traing_item"
+    style="@style/layoutset_20_10_20_10_mw"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/fragment_home_traing_item_img"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_180"
+        android:scaleType="fitXY" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_5">
+
+        <TextView
+            android:id="@+id/fragment_home_traing_item_company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="就业邦培训"
+            android:textColor="@color/color_3a3a3a_black" />
+
+        <TextView
+            android:id="@+id/fragment_home_traing_item_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="￥ 28888.00"
+            android:textColor="@color/red_ff5000" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/fragment_home_traing_item_adressanddate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="南京市 鼓楼区 2018/04/04"
+        android:textColor="@color/word_cccccc"
+        android:textSize="@dimen/font_size_12" />
+</LinearLayout>

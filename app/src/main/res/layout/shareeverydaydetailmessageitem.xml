@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/layoutset_20_10_20_10_mw">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/shareeverydaydetailmessageitem_img"
+            android:layout_width="@dimen/space_60"
+            android:layout_height="@dimen/space_60" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space_10"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/shareeverydaydetailmessageitem_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="夏丽丽"
+                android:textColor="@color/color_3a3a3a_black" />
+
+            <TextView
+                android:id="@+id/shareeverydaydetailmessageitem_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/space_60"
+                android:layout_marginTop="@dimen/space_5"
+                android:text="怎么跟你联系"
+                android:textColor="@color/color_878787_gray"
+                android:textSize="@dimen/font_size_12" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/shareeverydaydetailmessageitem_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:text="1分钟前"
+        android:textColor="@color/color_878787_gray"
+        android:textSize="@dimen/font_size_12" />
+
+</RelativeLayout>

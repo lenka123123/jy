@@ -1,0 +1,874 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f5f5f5"
+    android:orientation="vertical">
+
+    <include layout="@layout/incluce_common_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/releasejob_jobchoice_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="职位选择"
+                    android:textSize="@dimen/font_size_12" />
+
+                <TextView
+                    android:id="@+id/releasejob_jobchoice_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:drawablePadding="@dimen/space_10"
+                    android:drawableRight="@drawable/new_more"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="全职"
+                    android:textSize="@dimen/font_size_12" />
+            </RelativeLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/space_20"
+                android:text="请完善招聘名称/工作地址"
+                android:textSize="@dimen/font_size_12" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="招聘名称"
+                    android:textSize="@dimen/font_size_12" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/space_20">
+
+                    <EditText
+                        android:id="@+id/releasejob_companyname_edittext"
+                        android:layout_width="@dimen/space_200"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/space_10"
+                        android:background="@color/white"
+                        android:gravity="center|right"
+                        android:ellipsize="none"
+                        android:hint="请填写"
+                        android:textSize="@dimen/space_12" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/new_more" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <include layout="@layout/include_line_gray" />
+
+            <RelativeLayout
+                android:id="@+id/releasejob_workadress_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="工作地址"
+                    android:textSize="@dimen/font_size_12" />
+
+                <TextView
+                    android:id="@+id/releasejob_workadress_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:drawablePadding="@dimen/space_10"
+                    android:drawableRight="@drawable/new_more"
+                    android:gravity="center_vertical"
+                    android:hint="请选择"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text=""
+                    android:textSize="@dimen/font_size_12" />
+            </RelativeLayout>
+
+            <include layout="@layout/include_line_gray" />
+
+            <EditText
+                android:id="@+id/releasejob_workadressdetail_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:hint="详细地址"
+                android:minHeight="@dimen/space_40"
+                android:paddingLeft="@dimen/space_20"
+                android:paddingRight="@dimen/space_20"
+                android:textSize="@dimen/font_size_12" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/space_20"
+                android:text="请完善招聘人数/学历要求/经验要求/薪资类型/薪资待遇"
+                android:textSize="@dimen/font_size_12" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="招聘人数"
+                    android:textSize="@dimen/font_size_12" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:paddingRight="@dimen/space_20">
+
+                    <EditText
+                        android:id="@+id/releasejob_needpeoplemin_textview"
+                        android:layout_width="@dimen/space_50"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:maxLength="3"
+                        android:hint="请填写"
+                        android:textSize="@dimen/space_12" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/space_5"
+                        android:layout_marginRight="@dimen/space_5"
+                        android:text="至"
+                        android:textSize="@dimen/space_12" />
+
+                    <EditText
+                        android:id="@+id/releasejob_needpeoplemax_textview"
+                        android:layout_width="@dimen/space_50"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/space_5"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:maxLength="3"
+                        android:hint="请填写"
+                        android:textSize="@dimen/space_12" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/new_more" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <include layout="@layout/include_line_gray" />
+
+            <RelativeLayout
+                android:id="@+id/releasejob_education_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="学历要求"
+                    android:textSize="@dimen/font_size_12" />
+
+                <TextView
+                    android:id="@+id/releasejob_education_TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:drawablePadding="@dimen/space_10"
+                    android:drawableRight="@drawable/new_more"
+                    android:gravity="center_vertical"
+                    android:hint="请选择"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text=""
+                    android:textSize="@dimen/font_size_12" />
+            </RelativeLayout>
+
+            <include layout="@layout/include_line_gray" />
+
+            <RelativeLayout
+                android:id="@+id/releasejob_exp_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="经验要求"
+                    android:textSize="@dimen/font_size_12" />
+
+                <TextView
+                    android:id="@+id/releasejob_exp_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:drawablePadding="@dimen/space_10"
+                    android:drawableRight="@drawable/new_more"
+                    android:gravity="center_vertical"
+                    android:hint="请选择"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text=""
+                    android:textSize="@dimen/font_size_12" />
+            </RelativeLayout>
+
+            <include layout="@layout/include_line_gray" />
+
+            <RelativeLayout
+                android:id="@+id/releasejob_salarytype_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="薪资类型"
+                    android:textSize="@dimen/font_size_12" />
+
+                <TextView
+                    android:id="@+id/releasejob_salarytype_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:drawablePadding="@dimen/space_10"
+                    android:drawableRight="@drawable/new_more"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:hint="请选择"
+                    android:textSize="@dimen/font_size_12" />
+            </RelativeLayout>
+
+            <include layout="@layout/include_line_gray" />
+
+            <RelativeLayout
+                android:id="@+id/releasejob_salary_layout_parttime"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:layout_height="@dimen/space_40"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="薪资待遇"
+                    android:textSize="@dimen/font_size_12" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/space_20">
+
+                    <EditText
+                        android:id="@+id/releasejob_salary_edittext_parttime"
+                        android:layout_width="@dimen/space_200"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/space_10"
+                        android:background="@color/white"
+                        android:gravity="center|right"
+                        android:hint="请填写"
+                        android:textSize="@dimen/space_12" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/new_more" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/releasejob_salarymin_layout_alltime"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="薪资待遇"
+                    android:textSize="@dimen/font_size_12" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:paddingRight="@dimen/space_20">
+
+                    <EditText
+                        android:id="@+id/releasejob_salarymin_edittext_alltime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:hint="请填写"
+                        android:textSize="@dimen/space_12" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/space_5"
+                        android:layout_marginRight="@dimen/space_5"
+                        android:text="至"
+                        android:textSize="@dimen/space_12" />
+
+                    <EditText
+                        android:id="@+id/releasejob_salarymax_edittext_alltime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/space_5"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:hint="请填写"
+                        android:textSize="@dimen/space_12" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/new_more" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/space_20"
+                android:text="请完善所属行业/语言要求/职位标签"
+                android:textSize="@dimen/font_size_12" />
+
+            <RelativeLayout
+                android:id="@+id/releasejob_jobtype_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="岗位类型"
+                    android:textSize="@dimen/font_size_12" />
+
+                <TextView
+                    android:id="@+id/releasejob_jobtype_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:drawablePadding="@dimen/space_10"
+                    android:drawableRight="@drawable/new_more"
+                    android:gravity="center_vertical"
+                    android:hint="请选择"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text=""
+                    android:textSize="@dimen/font_size_12" />
+            </RelativeLayout>
+
+            <include layout="@layout/include_line_gray" />
+
+            <RelativeLayout
+                android:id="@+id/releasejob_belongindutry_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="所属行业"
+                    android:textSize="@dimen/font_size_12" />
+
+                <TextView
+                    android:id="@+id/releasejob_belongindutry_textview"
+                    android:layout_width="@dimen/space_150"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:ellipsize="start"
+                    android:singleLine="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:drawablePadding="@dimen/space_10"
+                    android:drawableRight="@drawable/new_more"
+                    android:gravity="center|right"
+                    android:hint="可多选"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text=""
+                    android:textSize="@dimen/font_size_12" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/include_line_gray" />
+
+                <RelativeLayout
+                    android:id="@+id/releasejob_gender_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_40"
+                    android:visibility="gone"
+                    android:background="@color/white">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/space_40"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="@dimen/space_5"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/space_20"
+                        android:paddingRight="@dimen/space_20"
+                        android:text="性别要求"
+                        android:textSize="@dimen/font_size_12" />
+
+                    <TextView
+                        android:id="@+id/releasejob_gender_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/space_40"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="@dimen/space_5"
+                        android:drawablePadding="@dimen/space_10"
+                        android:drawableRight="@drawable/new_more"
+                        android:gravity="center_vertical"
+                        android:hint="请选择"
+                        android:paddingLeft="@dimen/space_20"
+                        android:paddingRight="@dimen/space_20"
+                        android:text=""
+                        android:textSize="@dimen/font_size_12" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <include layout="@layout/include_line_gray" />
+
+            <RelativeLayout
+                android:id="@+id/releasejob_language_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="语言要求"
+                    android:textSize="@dimen/font_size_12" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/space_20">
+
+                    <EditText
+                        android:id="@+id/releasejob_language_edittext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/space_10"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:hint="请填写"
+                        android:textSize="@dimen/space_12" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/new_more" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <include layout="@layout/include_line_gray" />
+
+            <RelativeLayout
+                android:id="@+id/releasejob_jobtag_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="职位标签"
+                    android:textSize="@dimen/font_size_12" />
+
+                <TextView
+                    android:id="@+id/releasejob_jobtag_textview"
+                    android:layout_width="@dimen/space_150"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:drawablePadding="@dimen/space_10"
+                    android:drawableRight="@drawable/new_more"
+                    android:gravity="center|right"
+                    android:singleLine="true"
+                    android:hint="请选择"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text=""
+                    android:textSize="@dimen/font_size_12" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/releasejob_workdate_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/space_20"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="上班日期"
+                    android:textSize="@dimen/font_size_12" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:paddingRight="@dimen/space_20">
+
+                    <TextView
+                        android:id="@+id/releasejob_workdatemin_textview"
+                        android:layout_width="@dimen/space_80"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:gravity="center|right"
+                        android:hint="请选择"
+                        android:textSize="@dimen/space_12" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/space_5"
+                        android:layout_marginRight="@dimen/space_5"
+                        android:text="至"
+                        android:textSize="@dimen/space_12" />
+
+                    <TextView
+                        android:id="@+id/releasejob_workdatemax_textview"
+                        android:layout_width="@dimen/space_80"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/space_5"
+                        android:background="@color/white"
+                        android:gravity="center|left"
+                        android:hint="请选择"
+                        android:textSize="@dimen/space_12" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/new_more" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:orientation="vertical">
+
+                <include layout="@layout/include_line_gray" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_40"
+                    android:background="@color/white">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/space_40"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="@dimen/space_5"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/space_20"
+                        android:paddingRight="@dimen/space_20"
+                        android:text="上班时间"
+                        android:textSize="@dimen/font_size_12" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:paddingRight="@dimen/space_20">
+
+                        <TextView
+                            android:id="@+id/releasejob_worktimemin_textview"
+                            android:layout_width="@dimen/space_80"
+                            android:layout_height="match_parent"
+                            android:background="@color/white"
+                            android:gravity="center|right"
+                            android:hint="请选择"
+                            android:textSize="@dimen/space_12" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_5"
+                            android:layout_marginRight="@dimen/space_5"
+                            android:text="至"
+                            android:textSize="@dimen/space_12" />
+
+                        <TextView
+                            android:id="@+id/releasejob_worktimemax_textview"
+                            android:layout_width="@dimen/space_80"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="@dimen/space_5"
+                            android:background="@color/white"
+                            android:gravity="center|left"
+                            android:hint="请选择"
+                            android:textSize="@dimen/space_12" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/new_more" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <include layout="@layout/include_line_gray" />
+
+            <RelativeLayout
+                android:id="@+id/releasejob_linker_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="联系人"
+                    android:textSize="@dimen/font_size_12" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/space_20">
+
+                    <EditText
+                        android:id="@+id/releasejob_linker_edittext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/space_10"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:hint="请填写"
+                        android:textSize="@dimen/space_12" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/new_more" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <include layout="@layout/include_line_gray" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="联系电话"
+                    android:textSize="@dimen/font_size_12" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/space_20">
+
+                    <EditText
+                        android:id="@+id/releasejob_linktel_edittext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/space_10"
+                        android:background="@color/white"
+                        android:inputType="number"
+                        android:gravity="center_vertical"
+                        android:hint="请填写"
+                        android:textSize="@dimen/space_12" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/new_more" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/releasejob_contant_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_20"
+                android:background="@color/white"
+                android:gravity="left|top"
+                android:hint="请填写想写职位描述"
+                android:minHeight="@dimen/space_150"
+                android:paddingLeft="@dimen/space_20"
+                android:paddingRight="@dimen/space_20"
+                android:paddingTop="@dimen/space_20"
+                android:textSize="@dimen/font_size_12" />
+            <TextView
+                android:id="@+id/releasejob_release_textview"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_50"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginRight="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_20"
+                android:background="@drawable/btn_selector"
+                android:gravity="center"
+                android:text="保存"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_18" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/space_60" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

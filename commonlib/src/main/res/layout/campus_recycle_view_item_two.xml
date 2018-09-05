@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/x226"
+    android:visibility="gone"
+    android:layout_height="@dimen/y217"
+    android:id="@+id/image_LinearLayout"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="@dimen/x226"
+        android:layout_height="@dimen/y217"
+        android:layout_marginLeft="@dimen/x20"
+        android:layout_marginRight="@dimen/x20"
+        android:layout_margin="@dimen/x5"
+        android:paddingBottom="@dimen/y5"
+        android:paddingTop="@dimen/y5"
+        />
+</LinearLayout>

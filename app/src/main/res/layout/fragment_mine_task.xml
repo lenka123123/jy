@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/incluce_common_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_20"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/space_20"
+        android:paddingRight="@dimen/space_20">
+
+        <RelativeLayout
+            android:layout_width="@dimen/space_0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/space_20"
+            android:background="@drawable/new_task_bg">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:padding="@dimen/space_10"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/space_30"
+                    android:layout_height="@dimen/space_30"
+                    android:layout_marginTop="@dimen/space_20"
+                    android:background="@drawable/new_task_sign" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:text="每日签到"
+                    android:textColor="@color/color_3a3a3a_black" />
+
+                <TextView
+                    android:id="@+id/fragment_mine_sigedays"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:singleLine="true"
+                    android:text="累计签到100天"
+                    android:textColor="@color/color_A8A8A8_gray"
+                    android:textSize="@dimen/font_size_12" />
+
+                <TextView
+                    android:id="@+id/fragment_mine_sigerule"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:text="查看签到规则"
+                    android:textColor="@color/color_E7684E_red"
+                    android:textSize="@dimen/font_size_12" />
+
+                <TextView
+                    android:id="@+id/fragment_mine_sign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_22"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:background="@drawable/textview_round"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="点击签到"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_10" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/fragment_mine_gettask"
+            android:layout_width="@dimen/space_0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/space_20"
+            android:background="@drawable/new_task_bg">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:padding="@dimen/space_10"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/space_30"
+                    android:layout_height="@dimen/space_30"
+                    android:layout_marginTop="@dimen/space_20"
+                    android:background="@drawable/new_task_canget" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:text="可领取任务"
+                    android:textColor="@color/color_3a3a3a_black" />
+
+                <TextView
+                    android:id="@+id/fragment_mine_cangettasknum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:singleLine="true"
+                    android:text="本月已领取12个任务"
+                    android:textColor="@color/color_A8A8A8_gray"
+                    android:textSize="@dimen/font_size_12" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:text="查看签到规则"
+                    android:textColor="@color/color_E7684E_red"
+                    android:textSize="@dimen/font_size_12"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_22"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:background="@drawable/textview_round"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="点击查看"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_10" />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_20"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/space_20"
+        android:paddingRight="@dimen/space_20">
+
+        <RelativeLayout
+            android:id="@+id/fragment_mine_audittask"
+            android:layout_width="@dimen/space_0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/space_20"
+            android:background="@drawable/new_task_bg">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:padding="@dimen/space_10"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/space_30"
+                    android:layout_height="@dimen/space_30"
+                    android:layout_marginTop="@dimen/space_20"
+                    android:background="@drawable/new_task_audit" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:text="审核中的任务"
+                    android:textColor="@color/color_3a3a3a_black" />
+
+                <TextView
+                    android:id="@+id/fragment_mine_campleteanduncompletenum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:singleLine="true"
+                    android:text="已完成12件，未完成12件"
+                    android:textColor="@color/color_A8A8A8_gray"
+                    android:textSize="@dimen/font_size_12" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_22"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:background="@drawable/textview_round"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="点击查看"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_10" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="@dimen/space_0"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/new_myreume_selfassessment"
+            android:visibility="invisible">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/new_task_sign" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:text="每日签到"
+                    android:textColor="@color/color_3a3a3a_black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:text="本月签到20天"
+                    android:textColor="@color/color_A8A8A8_gray"
+                    android:textSize="@dimen/font_size_12" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:text="查看签到规则"
+                    android:textColor="@color/color_E7684E_red"
+                    android:textSize="@dimen/font_size_12" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_25"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:background="@drawable/textview_round"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/space_10"
+                    android:paddingRight="@dimen/space_10"
+                    android:text="点击签到"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_12" />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

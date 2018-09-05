@@ -1,0 +1,77 @@
+apply plugin: 'com.android.application'
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "sinia.com.baihangeducation"
+        minSdkVersion 17
+        targetSdkVersion 26
+        versionCode 425
+        versionName "4.2.5"
+//        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+
+        ndk {
+            //设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86","arm64-v8a","x86_64"
+        }
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : applicationId,
+                JPUSH_APPKEY : "11dd2beba30978b536b11606", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+        ]
+        vectorDrawables.useSupportLibrary = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+    signingConfigs {
+        debug {
+          storeFile file('D:/jyb.jks')
+          //  storeFile file('F:/mycode/jobbang/jyb.jks')
+
+            storePassword 'jyb520'
+            keyAlias 'jyb'
+            keyPassword 'jyb520'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(include: '*.jar', dir: '../libs')
+    compile project(':lib:framwork')
+    compile project(':commonlib')
+    compile(name: 'ninegridview-release', ext: 'aar')
+    compile(name: 'pickerview-release', ext: 'aar')
+    implementation files('libs/pinyin4j-2.5.0.jar')
+    implementation files('libs/AMap2DMap_5.2.0_AMapSearch_5.7.0_AMapLocation_3.7.0_20171229.jar')
+    implementation project(':imageselector')
+    implementation files('libs/alipaySdk-20180601.jar')
+    implementation files('libs/libammsdk.jar')
+}
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}

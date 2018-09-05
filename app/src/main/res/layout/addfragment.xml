@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_60"
+        android:layout_gravity="center"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_20" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_50"
+            android:layout_gravity="top"
+            android:gravity="center_horizontal"
+            android:text="发布"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_16" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:background="#DDD"
+        android:layout_height="0.5dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_80"
+        android:layout_marginTop="@dimen/space_40">
+
+        <TextView
+            android:id="@+id/addfragment_getpeople"
+            android:layout_width="@dimen/space_0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/new_add_needpeople"
+            android:gravity="center"
+            android:text="企业招人才" />
+
+        <TextView
+            android:id="@+id/addfragment_findalltime"
+            android:layout_width="@dimen/space_0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/new_add_alltime"
+            android:gravity="center"
+            android:text="我要找全职" />
+
+        <TextView
+            android:id="@+id/addfragment_findparttime"
+            android:layout_width="@dimen/space_0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/new_add_parttime"
+            android:gravity="center"
+            android:text="我要找兼职" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_80"
+        android:layout_marginTop="@dimen/space_20">
+
+        <TextView
+            android:id="@+id/addfragment_schoolfun"
+            android:layout_width="@dimen/space_0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/new_add_campusint"
+            android:gravity="center"
+            android:text="校内圈" />
+
+        <TextView
+            android:id="@+id/addfragment_schoolhelp"
+            android:layout_width="@dimen/space_0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/new_add_campushelp"
+            android:gravity="center"
+            android:text="校园互助" />
+
+        <TextView
+            android:id="@+id/addfragment_resumefindjob"
+            android:layout_width="@dimen/space_0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/new_resumefindjob"
+            android:gravity="center"
+            android:text="简历找工作" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_80"
+        android:layout_marginTop="@dimen/space_20">
+
+        <TextView
+            android:id="@+id/addfragment_releasetraining"
+            android:layout_width="@dimen/space_0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/new_education_training"
+            android:gravity="center"
+            android:text="我要发布培训" />
+
+        <TextView
+            android:layout_width="@dimen/space_0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/new_add_campushelp"
+            android:gravity="center"
+            android:text="我要发布培训"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="@dimen/space_0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/new_resumefindjob"
+            android:gravity="center"
+            android:text="简历找工作"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+</LinearLayout>

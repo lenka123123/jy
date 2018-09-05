@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipe_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--加载条-->
+    <com.example.framwork.widget.ProgressActivity
+        android:id="@+id/progressActivity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:errorButtonBackgroundColor="@drawable/dialog_ok_btn_enabled"
+        app:errorButtonTextColor="@color/f1">
+
+        <com.example.framwork.widget.superrecyclerview.recycleview.SuperRecyclerView
+            android:id="@+id/rv_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </com.example.framwork.widget.ProgressActivity>
+</android.support.v4.widget.SwipeRefreshLayout>

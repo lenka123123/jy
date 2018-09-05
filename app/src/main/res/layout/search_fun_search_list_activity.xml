@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/background"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y63"
+            android:layout_marginLeft="@dimen/x40"
+            android:layout_marginRight="@dimen/x100"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="搜索话题"
+            android:paddingLeft="@dimen/x50"
+            android:src="@drawable/new_keyworld_bg"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="@dimen/x28"
+            android:layout_height="@dimen/y28"
+            android:layout_marginLeft="@dimen/x55"
+            android:layout_marginTop="@dimen/y17"
+            android:background="@drawable/new_search"
+            android:gravity="center_vertical" />
+
+        <TextView
+            android:layout_width="@dimen/x100"
+            android:layout_height="@dimen/x63"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
+            android:text="取消"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/y10"
+        android:layout_marginLeft="@dimen/x39"
+        android:layout_marginTop="@dimen/y10"
+        android:text="热门话题"
+        android:textColor="#333"
+        android:textSize="14sp"
+        android:visibility="gone" />
+
+
+    <include layout="@layout/activity_recyclerview_refresh" />
+
+
+</LinearLayout>

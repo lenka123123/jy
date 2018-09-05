@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout style="@style/layoutset_20_10_20_10_mw">
+
+        <LinearLayout
+            android:layout_width="@dimen/space_220"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/fragment_mine_company_myreleaseparttime_item_title"
+                android:layout_width="@dimen/space_220"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="南京江宁国土局/南京药监局/江苏情报局/哈哈哈哈"
+                android:textColor="@color/color_3a3a3a_black" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_5">
+
+                <TextView
+                    android:id="@+id/fragment_mine_company_myreleaseparttime_item_looknum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="浏览 260 次"
+                    android:textSize="@dimen/space_10" />
+
+                <TextView
+                    android:id="@+id/fragment_mine_company_myreleaseparttime_item_alppynum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/space_20"
+                    android:text="申请 260 人"
+                    android:textSize="@dimen/space_10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_5">
+
+                <TextView
+                    android:id="@+id/fragment_mine_company_myreleaseparttime_item_adress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="南京市 鼓楼区"
+                    android:textSize="@dimen/space_10" />
+
+                <TextView
+                    android:id="@+id/fragment_mine_company_myreleaseparttime_item_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/space_20"
+                    android:text="2018/03/04"
+                    android:textSize="@dimen/space_10" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/fragment_mine_company_myreleaseparttime_item_statue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="已通过" />
+
+            <LinearLayout
+                android:id="@+id/fragment_mine_company_myreleaseparttime_item_action"
+                android:layout_width="@dimen/space_40"
+                android:layout_height="@dimen/space_40"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="@dimen/space_20"
+                    android:layout_height="@dimen/space_10"
+                    android:src="@drawable/new_morepoint" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <include layout="@layout/include_line_gray" />
+</LinearLayout>

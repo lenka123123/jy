@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/incluce_common_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+            <LinearLayout
+                style="@style/layoutset_20_10_20_10_mw"
+                android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/fragment_home_commpanyjoinin_headlayout"
+                style="@style/layoutset_20_10_20_10_mw"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/fragment_home_commpanyjoinin_img"
+                    android:layout_width="@dimen/space_60"
+                    android:background="@drawable/new_errorlogo_sp"
+                    android:layout_height="@dimen/space_60" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/space_10"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="企业LOGO"
+                        android:textColor="@color/red_ff5000" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="请上传企业LOGO"
+                        android:textColor="@color/color_878787_gray"
+                        android:textSize="@dimen/font_size_12" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/fragment_home_commpanyjoinin_legalname"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginRight="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_20"
+                android:background="@drawable/new_input_line"
+                android:gravity="center|left"
+                android:hint="请输入法人姓名"
+                android:paddingLeft="@dimen/space_20"
+                android:singleLine="true"
+                android:textColor="@color/color_535353_black"
+                android:textColorHint="@color/color_afafaf_gray"
+                android:textSize="@dimen/font_size_14" />
+
+            <EditText
+                android:id="@+id/fragment_home_commpanyjoinin_licensename"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginRight="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_10"
+                android:background="@drawable/new_input_line"
+                android:gravity="center|left"
+                android:hint="请填写营业执照上企业全称"
+                android:paddingLeft="@dimen/space_20"
+                android:singleLine="true"
+                android:textColor="@color/color_535353_black"
+                android:textColorHint="@color/color_afafaf_gray"
+                android:textSize="@dimen/font_size_14" />
+
+                <TextView
+                    android:id="@+id/fragment_home_commpanyjoinin_istraing"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_marginLeft="@dimen/space_20"
+                    android:layout_marginRight="@dimen/space_20"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:background="@drawable/new_input_line"
+                    android:ellipsize="end"
+                    android:gravity="center|left"
+                    android:hint="是否为培训机构"
+                    android:paddingLeft="@dimen/space_20"
+                    android:singleLine="true"
+                    android:textColor="@color/color_535353_black"
+                    android:textColorHint="@color/color_afafaf_gray"
+                    android:textSize="@dimen/font_size_14" />
+
+            <TextView
+                android:id="@+id/fragment_home_commpanyjoinin_adress"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginRight="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_10"
+                android:background="@drawable/new_input_line"
+                android:ellipsize="end"
+                android:gravity="center|left"
+                android:hint="企业地址选择"
+                android:paddingLeft="@dimen/space_20"
+                android:singleLine="true"
+                android:textColor="@color/color_535353_black"
+                android:textColorHint="@color/color_afafaf_gray"
+                android:textSize="@dimen/font_size_14" />
+
+
+            <EditText
+                android:id="@+id/fragment_home_commpanyjoinin_adressdetail"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginRight="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_10"
+                android:background="@drawable/new_input_line"
+                android:ellipsize="end"
+                android:gravity="center|left"
+                android:hint="@string/myresume_editbaseinfo_adressdetail"
+                android:paddingLeft="@dimen/space_20"
+                android:singleLine="true"
+                android:textColor="@color/color_535353_black"
+                android:textColorHint="@color/color_afafaf_gray"
+                android:textSize="@dimen/font_size_14" />
+
+            <EditText
+                android:id="@+id/fragment_home_commpanyjoinin_companytel"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginRight="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_10"
+                android:background="@drawable/new_input_line"
+                android:ellipsize="end"
+                android:inputType="number"
+                android:gravity="center|left"
+                android:hint="企业电话"
+                android:paddingLeft="@dimen/space_20"
+                android:singleLine="true"
+                android:textColor="@color/color_535353_black"
+                android:textColorHint="@color/color_afafaf_gray"
+                android:textSize="@dimen/font_size_14" />
+
+            <EditText
+                android:id="@+id/fragment_home_commpanyjoinin_headname"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginRight="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_10"
+                android:background="@drawable/new_input_line"
+                android:ellipsize="end"
+                android:gravity="center|left"
+                android:hint="负责人姓名"
+                android:paddingLeft="@dimen/space_20"
+                android:singleLine="true"
+                android:textColor="@color/color_535353_black"
+                android:textColorHint="@color/color_afafaf_gray"
+                android:textSize="@dimen/font_size_14" />
+
+            <EditText
+                android:id="@+id/fragment_home_commpanyjoinin_headtel"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginRight="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_10"
+                android:background="@drawable/new_input_line"
+                android:ellipsize="end"
+                android:inputType="number"
+                android:gravity="center|left"
+                android:hint="负责人电话"
+                android:paddingLeft="@dimen/space_20"
+                android:singleLine="true"
+                android:textColor="@color/color_535353_black"
+                android:textColorHint="@color/color_afafaf_gray"
+                android:textSize="@dimen/font_size_14" />
+
+            <RelativeLayout
+                android:id="@+id/fragment_home_commpanyjoinin_outimglayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_200"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginRight="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_20"
+                android:background="@drawable/new_myreume_selfassessment">
+
+                <ImageView
+                    android:id="@+id/fragment_home_commpanyjoinin_intimg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/new_uplicense" />
+
+                <ImageView
+                    android:id="@+id/fragment_home_commpanyjoinin_outimg"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:gravity="center" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/fragment_home_commpanyjoinin_submit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_50"
+                android:layout_marginBottom="@dimen/space_50"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginRight="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_20"
+                android:background="@drawable/textview_round2"
+                android:gravity="center"
+                android:text="@string/submit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_18" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sifturneed"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:id="@+id/sent_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/y15"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginTop="@dimen/y15"
+                    android:text="发布时间"
+                    android:textColor="@color/position_select"
+                    android:textSize="14sp" />
+
+                <RadioGroup
+                         android:layout_width="wrap_content"
+                    android:layout_height="@dimen/y58"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/sent_time_none"
+                        android:layout_width="@dimen/x126"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/x20"
+                        android:background="@drawable/bg_select_button_on"
+                        android:button="@null"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:text="不限"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:id="@+id/sent_time_three_day"
+                        android:layout_width="@dimen/x126"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/x10"
+                        android:background="@drawable/bg_select_button_on"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="三天内"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:id="@+id/sent_time_one_week"
+                        android:layout_width="@dimen/x126"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/x10"
+                        android:background="@drawable/bg_select_button_on"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="一周内"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:id="@+id/sent_time_one_week_out"
+                        android:layout_width="@dimen/x126"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/x10"
+                        android:background="@drawable/bg_select_button_on"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="一周以上"
+                        android:textSize="14sp" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <!-- 性别要求-->
+            <LinearLayout
+                android:id="@+id/sex_need"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/y15"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginTop="@dimen/y15"
+                    android:text="性别要求"
+                    android:textColor="@color/position_select"
+                    android:textSize="14sp" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y58"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/sex_need_none"
+                        android:layout_width="@dimen/x126"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/x20"
+                        android:background="@drawable/bg_select_button_on"
+                        android:button="@null"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:text="不限"
+                        android:textSize="@dimen/font_size_14" />
+
+
+                    <RadioButton
+                        android:id="@+id/sex_need_man"
+                        android:layout_width="@dimen/x126"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/x10"
+                        android:background="@drawable/bg_select_button_on"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="男"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:id="@+id/sex_need_woman"
+                        android:layout_width="@dimen/x126"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/x10"
+                        android:background="@drawable/bg_select_button_on"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="女"
+                        android:textSize="14sp" />
+                </RadioGroup>
+            </LinearLayout>
+
+
+            <!-- 距离范围-->
+            <LinearLayout
+                android:id="@+id/range_need"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/y15"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginTop="@dimen/y15"
+                    android:text="距离范围"
+                    android:textColor="@color/position_select"
+                    android:textSize="14sp" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y58"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/range_need_none"
+                        android:layout_width="@dimen/x126"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/x20"
+                        android:background="@drawable/bg_select_button_on"
+                        android:button="@null"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:text="不限"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:id="@+id/range_need_one"
+                        android:layout_width="@dimen/x126"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/x10"
+                        android:background="@drawable/bg_select_button_on"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="1公里内"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:id="@+id/range_need_five"
+                        android:layout_width="@dimen/x126"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/x10"
+                        android:background="@drawable/bg_select_button_on"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="5公里内"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:id="@+id/range_need_five_out"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/x10"
+                        android:background="@drawable/bg_select_button_on"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="5公里以上"
+                        android:textSize="14sp" />
+                </RadioGroup>
+            </LinearLayout>
+
+
+            <!-- 上班时间-->
+            <LinearLayout
+                android:id="@+id/work_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/y15"
+                    android:layout_marginLeft="@dimen/x10"
+                    android:layout_marginTop="@dimen/y15"
+                    android:text="上班时间"
+                    android:textColor="@color/position_select"
+                    android:textSize="14sp" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y58"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/work_time_none"
+                        android:layout_width="@dimen/x126"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/x20"
+                        android:background="@drawable/bg_select_button_on"
+                        android:button="@null"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:text="不限"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:id="@+id/work_time_weekday"
+                        android:layout_width="@dimen/x126"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/x20"
+                        android:background="@drawable/bg_select_button_on"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="工作日"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:id="@+id/work_time_weekends"
+                        android:layout_width="@dimen/x126"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/x10"
+                        android:background="@drawable/bg_select_button_on"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="周末"
+                        android:textSize="14sp" />
+                </RadioGroup>
+            </LinearLayout>
+
+
+            <!-- 结账类型-->
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/y15"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginTop="@dimen/y15"
+                    android:text="结账类型"
+                    android:textColor="@color/position_select"
+                    android:textSize="14sp" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y58"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/account_none"
+                        android:layout_width="@dimen/x126"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/x20"
+                        android:background="@drawable/bg_select_button_on"
+                        android:button="@null"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:text="不限"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:id="@+id/account_by_day"
+                        android:layout_width="@dimen/x126"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/x10"
+                        android:background="@drawable/bg_select_button_on"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="日结"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:id="@+id/account_by_morrow"
+                        android:layout_width="@dimen/x126"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/x10"
+                        android:background="@drawable/bg_select_button_on"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="次日结"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:id="@+id/account_by_week"
+                        android:layout_width="@dimen/x126"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/x10"
+                        android:layout_marginRight="@dimen/x12"
+                        android:background="@drawable/bg_select_button_on"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="周结"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:id="@+id/account_by_month"
+                        android:layout_width="@dimen/x126"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/x10"
+                        android:layout_marginRight="@dimen/x12"
+                        android:background="@drawable/bg_select_button_on"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="月结"
+                        android:textSize="14sp" />
+
+
+                </RadioGroup>
+
+                <RadioButton
+                  android:visibility="gone"
+                    android:layout_width="@dimen/x126"
+                    android:layout_height="@dimen/y88"
+                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginTop="@dimen/y15"
+                    android:background="@drawable/bg_select_button_on"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="月结"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <View
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y40" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_0.5"
+                android:background="#DDDDDD" />
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y98"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/cancel"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="取消" />
+
+                <TextView
+                    android:id="@+id/ok_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@color/red_fa3e3e"
+                    android:gravity="center"
+                    android:text="确定" />
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_0.5"
+                android:background="#DDDDDD" />
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

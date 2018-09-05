@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/include_scroll_adverti" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/y10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_40"
+            android:layout_marginTop="@dimen/space_10"
+            android:gravity="center">
+
+            <LinearLayout
+                android:id="@+id/fragment_home_adress"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/fragment_home_adressName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="南京"
+                    android:textColor="@color/white" />
+
+                <ImageView
+                    android:id="@+id/fragment_home_arrow"
+                    android:layout_width="@dimen/space_10"
+                    android:layout_height="@dimen/space_10"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="@dimen/space_10"
+                    android:src="@drawable/arrow_down" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_recommended"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/home_tab_recommended"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/tv_training"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/home_tab_training"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/tv_parttime"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/home_tab_parttime"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/tv_headhunters"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/home_tab_headhunters"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/tv_helpeachother"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/home_tab_helpeachother"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/fragment_home_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/space_20"
+            android:layout_marginRight="@dimen/space_20"
+            android:layout_marginTop="@dimen/space_5"
+            android:background="@drawable/new_search_tranf"
+            android:drawableLeft="@drawable/new_search"
+            android:drawablePadding="@dimen/space_20"
+            android:gravity="center|left"
+            android:hint="搜索关键字"
+            android:paddingLeft="@dimen/space_10" />
+    </LinearLayout>
+
+
+</RelativeLayout>

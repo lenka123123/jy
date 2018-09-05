@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/newcampany"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/incluce_common_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/x158"
+            android:layout_height="@dimen/y172"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/y150"
+            android:src="@drawable/money_bag" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/y42"
+            android:gravity="center"
+            android:text="金库收入"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/y36"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/x40"
+                android:layout_height="@dimen/y50"
+                android:layout_marginRight="@dimen/x16"
+                android:src="@drawable/money_flag" />
+
+            <TextView
+                android:id="@+id/my_coffers_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="1233"
+                android:textColor="#000"
+                android:textSize="39sp" />
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:id="@+id/apply_money"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y90"
+            android:layout_marginLeft="@dimen/x43"
+            android:layout_marginRight="@dimen/x44"
+
+            android:layout_marginTop="@dimen/y60"
+            android:background="@drawable/textview_round2"
+            android:gravity="center"
+            android:text="申请提现"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/freeze_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/y30"
+            android:gravity="center"
+            android:text="123"
+            android:textColor="#333"
+            android:textSize="15sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/call_me"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/y75"
+                android:gravity="center"
+                android:text="联系我们"
+                android:textColor="#000"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

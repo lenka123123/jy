@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/helpeachotherfragment_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingBottom="@dimen/space_10"
+    android:paddingLeft="@dimen/space_20"
+    android:paddingRight="@dimen/space_20"
+    android:paddingTop="@dimen/space_10">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/helpeachotherfragment_item_title"
+                android:layout_width="@dimen/space_150"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:text="校园英语角即将开课"
+                android:layout_centerVertical="true"
+                android:textColor="@color/color_3a3a3a_black"
+                android:textSize="@dimen/font_size_16" />
+
+            <Button
+                android:id="@+id/helpeachotherfragment_item_iscomplete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="#00ffffff"
+                android:text="确认完成"
+                android:textColor="@color/color_E14222" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_5">
+
+            <TextView
+                android:id="@+id/helpeachotherfragment_item_seenum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="浏览260次"
+                android:textColor="@color/color_878787_gray"
+                android:textSize="@dimen/font_size_12" />
+
+            <TextView
+                android:id="@+id/helpeachotherfragment_item_saynum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_10"
+                android:text="留言10条"
+                android:textColor="@color/color_878787_gray"
+                android:textSize="@dimen/font_size_12" />
+
+            <TextView
+                android:id="@+id/helpeachotherfragment_item_applynum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_10"
+                android:text="申请20人"
+                android:textColor="@color/color_878787_gray"
+                android:textSize="@dimen/font_size_12" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/helpeachotherfragment_item_adressanddate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_5"
+            android:text="南京市 鼓楼区 2018/04/04"
+            android:textColor="@color/color_878787_gray"
+            android:textSize="@dimen/font_size_12" />
+    </LinearLayout>
+
+</RelativeLayout>

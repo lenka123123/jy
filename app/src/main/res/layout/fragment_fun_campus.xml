@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/newcampany"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <include layout="@layout/activity_recyclerview_refresh" />
+
+    <com.mcxtzhang.swipemenulib.customview.BackEditText
+        android:id="@+id/newcampany_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space_10"
+        android:hint="请输入内容..."
+        android:imeOptions="actionSend"
+        android:inputType="text"
+        android:singleLine="true"
+      />
+
+</LinearLayout>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/sifturneed"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/incluce_common_title" />
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y10"
+                    android:background="#eee" />
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y120"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/space_20"
+                        android:layout_marginRight="@dimen/space_20"
+                        android:layout_weight="2"
+                        android:enabled="false"
+                        android:gravity="center|left"
+                        android:hint="选择行业"
+                        android:singleLine="true"
+                        android:textColor="@color/color_535353_black"
+                        android:textColorHint="@color/color_afafaf_gray"
+                        android:textSize="@dimen/font_size_14" />
+
+                    <TextView
+                        android:id="@+id/select_industry"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/x20"
+                        android:layout_weight="2"
+                        android:drawableRight="@drawable/new_arrow_choicemore"
+                        android:gravity="right|center_vertical"
+                        android:text="请选择    " />
+
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <include layout="@layout/include_line_half_gray" />
+
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y120"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/space_20"
+                    android:layout_marginRight="@dimen/space_20"
+                    android:layout_weight="2"
+                    android:gravity="center|left"
+                    android:hint="选择地区"
+                    android:singleLine="true"
+                    android:textColor="@color/color_535353_black"
+                    android:textColorHint="@color/color_afafaf_gray"
+                    android:textSize="@dimen/font_size_14" />
+
+                <TextView
+                    android:id="@+id/select_area"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/x20"
+                    android:layout_weight="2"
+                    android:drawableRight="@drawable/new_arrow_choicemore"
+                    android:gravity="right|center_vertical"
+                    android:text="请选择    " />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y10"
+                android:background="#eee" />
+
+
+            <include layout="@layout/item_part_job" />
+
+
+            <Button
+                android:id="@+id/sifturneed_next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginRight="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_5"
+                android:background="@drawable/new_buttonbg_off"
+                android:gravity="center"
+                android:text="跳过此步骤"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/sifturneed_complete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginRight="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_20"
+                android:background="@drawable/new_buttonbg_on"
+                android:gravity="center"
+                android:text="选择完成"
+                android:textColor="@color/white" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/space_50" />
+
+        </LinearLayout>
+
+
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/new_login_bg"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/y20"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y80">
+
+        <ImageView
+            android:src="@drawable/back"
+            android:id="@+id/back"
+            android:layout_gravity="left"
+            android:padding="@dimen/x22"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:text="注册"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_height="match_parent"
+            android:layout_weight="3" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+
+    </LinearLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_50"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/new_logo" />
+
+            <LinearLayout
+                style="@style/layoutset_20_10_20_10_mw"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/space_5"
+                    android:layout_marginTop="@dimen/space_50">
+
+                    <EditText
+                        android:id="@+id/edt_register_phone"
+                        style="@style/Edit_register_login"
+                        android:layout_centerVertical="true"
+                        android:hint="@string/input_phone_num"
+                        android:inputType="number"
+                        android:maxLength="11" />
+
+                    <Button
+                        android:id="@+id/edt_register_phone_delete"
+                        android:layout_width="@dimen/space_20"
+                        android:layout_height="@dimen/space_20"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/space_50"
+                        android:background="@drawable/new_login_delete" />
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/space_5"
+                    android:layout_marginTop="@dimen/space_20">
+
+                    <EditText
+                        android:id="@+id/edt_register_password1"
+                        style="@style/Edit_register_login"
+                        android:layout_centerVertical="true"
+                        android:hint="@string/input_pwd"
+                        android:inputType="textPassword"
+                        android:maxLength="12" />
+
+
+                    <ToggleButton
+                        android:id="@+id/edt_register_password1_isshow"
+                        android:layout_width="@dimen/space_20"
+                        android:layout_height="@dimen/space_15"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/space_50"
+                        android:background="@drawable/pswseclector"
+                        android:padding="10dp"
+                        android:textOff=""
+                        android:textOn="" />
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/space_5"
+                    android:layout_marginTop="@dimen/space_20">
+
+                    <EditText
+                        android:id="@+id/edt_register_password2"
+                        style="@style/Edit_register_login"
+                        android:layout_centerVertical="true"
+                        android:hint="@string/input_pwd"
+                        android:inputType="textPassword"
+                        android:maxLength="12" />
+
+                    <ToggleButton
+                        android:id="@+id/edt_register_password2_isshow"
+                        android:layout_width="@dimen/space_20"
+                        android:layout_height="@dimen/space_15"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/space_50"
+                        android:background="@drawable/pswseclector"
+                        android:padding="10dp"
+                        android:textOff=""
+                        android:textOn="" />
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/space_5"
+                    android:layout_marginTop="@dimen/space_20">
+
+                    <EditText
+                        android:id="@+id/edt_register_verification_code"
+                        style="@style/Edit_register_login"
+                        android:layout_centerVertical="true"
+                        android:hint="@string/text_verification_code"
+                        android:inputType="number"
+                        android:maxLength="6" />
+
+                    <com.example.framwork.widget.TimeButton
+                        android:id="@+id/tb_get_verification_code"
+                        android:layout_width="@dimen/space_80"
+                        android:layout_height="@dimen/space_25"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/space_50"
+                        android:background="@drawable/roundtextview"
+                        android:text="@string/text_get_code"
+                        android:textColor="@color/white" />
+                </RelativeLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_register_register"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_50"
+                    android:layout_marginLeft="@dimen/space_30"
+                    android:layout_marginRight="@dimen/space_30"
+                    android:layout_marginTop="@dimen/space_20"
+                    android:background="@drawable/btn_selector"
+                    android:gravity="center"
+                    android:text="@string/register"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_18" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y80"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <CheckBox
+                        android:id="@+id/cb_isagree"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@drawable/checkboxselector"
+                        android:checked="true"
+                        android:text="@string/register_click_default"
+                        android:textColor="@color/color_b1b1b1"
+                        android:textSize="@dimen/font_size_12" />
+
+                    <TextView
+                        android:id="@+id/tv_register_protocol"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/register_user_agreement"
+                        android:textColor="@color/color_E14222"
+                        android:textSize="@dimen/font_size_12" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y100"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

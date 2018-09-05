@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <include
+
+        layout="@layout/incluce_common_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="@dimen/space_80"
+            android:layout_height="@dimen/space_80"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/space_20"
+            android:background="@drawable/new_ucentre_img_bg"
+            android:gravity="center"
+            android:padding="@dimen/space_4">
+
+            <ImageView
+                android:id="@+id/ucentre_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/space_5"
+            android:text="@string/ucentre_changeimg"
+            android:textColor="@color/color_3a3a3a_black" />
+
+        <EditText
+            android:id="@+id/ucentre_nickname"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_40"
+            android:layout_marginLeft="@dimen/space_20"
+            android:layout_marginRight="@dimen/space_20"
+            android:layout_marginTop="@dimen/space_20"
+            android:background="@drawable/new_input_line"
+            android:hint="@string/ucentre_nickname"
+            android:paddingLeft="@dimen/space_20"
+            android:singleLine="true"
+            android:textColorHint="@color/color_afafaf_gray"
+            android:textSize="@dimen/font_size_14" />
+
+        <EditText
+            android:id="@+id/ucentre_slogn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_40"
+            android:layout_marginLeft="@dimen/space_20"
+            android:layout_marginRight="@dimen/space_20"
+            android:layout_marginTop="@dimen/space_10"
+            android:background="@drawable/new_input_line"
+            android:hint="@string/ucentre_inputslogan"
+            android:maxLength="15"
+            android:paddingLeft="@dimen/space_20"
+            android:singleLine="true"
+            android:textSize="@dimen/font_size_14" />
+
+        <TextView
+            android:id="@+id/ucentre_gender"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_40"
+            android:layout_marginLeft="@dimen/space_20"
+            android:layout_marginRight="@dimen/space_20"
+            android:layout_marginTop="@dimen/space_10"
+            android:background="@drawable/new_input_line"
+            android:gravity="center|left"
+            android:hint="@string/ucentre_choicegender"
+            android:paddingLeft="@dimen/space_20"
+            android:singleLine="true"
+            android:textSize="@dimen/font_size_14" />
+
+        <EditText
+            android:id="@+id/ucentre_email"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_40"
+            android:layout_marginLeft="@dimen/space_20"
+            android:layout_marginRight="@dimen/space_20"
+            android:layout_marginTop="@dimen/space_10"
+            android:background="@drawable/new_input_line"
+            android:hint="@string/ucentre_inputemail"
+            android:paddingLeft="@dimen/space_20"
+            android:singleLine="true"
+            android:textSize="@dimen/font_size_14" />
+
+        <TextView
+            android:id="@+id/ucentre_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_50"
+            android:layout_marginLeft="@dimen/space_20"
+            android:layout_marginRight="@dimen/space_20"
+            android:layout_marginTop="@dimen/space_20"
+            android:background="@drawable/textview_round2"
+            android:gravity="center"
+            android:text="@string/ucentre_confirm"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_18" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.example.framwork.widget.customtoolbar.CommonTitle
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_50"
+        app:center_txt_color="@color/font2"
+        app:left_res="@drawable/back"
+        app:right_txt_color="@color/font2" />
+
+    <include
+        layout="@layout/include_line_e3e3e3" />
+</LinearLayout>

@@ -1,0 +1,21 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:banner="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.example.framwork.banner.SimpleGuideResBanner
+        android:id="@+id/sgb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        banner:bb_barPaddingLeft="8dp"
+        banner:bb_indicatorCornerRadius="3dp"
+        banner:bb_indicatorGap="12dp"
+        banner:bb_indicatorHeight="6dp"
+        banner:bb_indicatorSelectColor="@color/theme_color"
+        banner:bb_indicatorUnselectColor="@color/gray_98"
+        banner:bb_indicatorWidth="6dp"
+        banner:bb_isLoopEnable="false"
+        banner:gp_btn_text="点击跳过"
+        banner:gp_btn_text_bg="@drawable/btn_selector"
+        banner:gp_btn_text_color="@color/white" />
+</RelativeLayout>

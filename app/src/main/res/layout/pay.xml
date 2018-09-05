@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/incluce_common_title" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y326"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="@dimen/x170"
+            android:layout_height="@dimen/y326"
+            android:layout_marginTop="@dimen/y49">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y124"
+                android:src="@drawable/pay_logo" />
+        </LinearLayout>
+
+        <!-- 详情 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y326"
+            android:layout_marginTop="@dimen/x36"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="考研"
+                android:textColor="#3A3A3A"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y30"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="类别： "
+                    android:textColor="#999"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/type"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="干货攻略"
+                    android:textColor="#333"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y30"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="内容： "
+                    android:textColor="#999"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:lines="1"
+                    android:singleLine="true"
+                    android:text="内容"
+                    android:textColor="#333"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/y30"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="价格： "
+                    android:textColor="#999"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:lines="1"
+                    android:singleLine="true"
+                    android:text="10.00"
+                    android:textColor="#F63F1A"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x40"
+        android:text="支付方式"
+        android:textColor="#3A3A3A"
+        android:textSize="14sp" />
+
+
+    <LinearLayout
+        android:id="@+id/wxpay_linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y100"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/y30"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/x42"
+            android:layout_height="@dimen/y42"
+            android:layout_marginLeft="@dimen/x40"
+            android:src="@drawable/wxpay_logo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x30"
+
+            android:layout_weight="1"
+            android:text="微信支付"
+            android:textColor="#3A3A3A"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/wxpay_checked"
+            android:layout_width="@dimen/x25"
+            android:layout_height="@dimen/y25"
+            android:layout_marginRight="@dimen/x40"
+            android:src="@drawable/pay_cancel" />
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_0.5"
+        android:background="@color/interval_line" />
+
+    <LinearLayout
+        android:id="@+id/alipay_linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y100"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/x42"
+            android:layout_height="@dimen/y42"
+            android:layout_marginLeft="@dimen/x40"
+
+            android:src="@drawable/alipay_logo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x30"
+
+            android:layout_weight="1"
+            android:text="支付宝支付"
+            android:textColor="#3A3A3A"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/alipay_checked"
+            android:layout_width="@dimen/x25"
+            android:layout_height="@dimen/y25"
+            android:layout_marginRight="@dimen/x40"
+            android:src="@drawable/pay_cancel" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_0.5"
+        android:layout_marginLeft="@dimen/x40"
+        android:layout_marginRight="@dimen/x40"
+        android:background="@color/interval_line" />
+
+
+    <Button
+        android:id="@+id/goto_pay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x40"
+        android:layout_marginRight="@dimen/x40"
+        android:layout_marginTop="@dimen/y50"
+        android:background="@drawable/pay_goto" />
+
+
+    <Button
+        android:id="@+id/play"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y66"
+        android:text="支付"
+        android:visibility="gone" />
+
+
+</LinearLayout>

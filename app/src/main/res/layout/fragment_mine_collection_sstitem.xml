@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_mine_collection_sstitem"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/space_60"
+    android:paddingLeft="@dimen/space_20"
+    android:paddingRight="@dimen/space_20"
+    android:paddingTop="@dimen/space_10">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/space_5"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/fragment_mine_collection_sstitem_title"
+            android:layout_width="@dimen/space_150"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="持普通布托葡萄皮"
+            android:textColor="@color/color_3a3a3a_black" />
+
+
+        <TextView
+            android:id="@+id/fragment_mine_collection_sstitem_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_5"
+            android:text="2018/04/05"
+            android:textSize="@dimen/font_size_12" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fragment_mine_collection_sstitem_detel"
+        android:layout_width="@dimen/space_40"
+        android:layout_height="@dimen/space_40"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="@dimen/space_15"
+            android:layout_height="@dimen/space_20"
+            android:background="@drawable/new_detel_trash" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/fragment_mine_collection_sstitem_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_1"
+        android:layout_alignParentBottom="true"
+        android:background="@color/color_e5e5e5" />
+</RelativeLayout>

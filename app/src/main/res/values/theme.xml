@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 首页导航栏 -->
+    <style name="MTabStyle">
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:drawablePadding">1dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:textColor">@drawable/maintab_home_textselector</item>
+    </style>
+
+    <!-- 我的页面模块标题 -->
+    <style name="TextView_Mine_Title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black_34393F</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <!-- 我的页面我的成长值数字 -->
+    <style name="TextView_Mine_GrowthNum">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/red_fa3e3e</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    <!-- 我的页面我的成长值=>文字点 -->
+    <style name="TextView_Mine_point">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black_34383F</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    <!-- 我的页面我的成长值 名字 -->
+    <style name="TextView_Mine_GrowthName">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black_34383F</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="LinearLayout_Mine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/space_50</item>
+        <item name="android:paddingLeft">@dimen/space_20</item>
+        <item name="android:paddingTop">@dimen/space_5</item>
+        <item name="android:paddingBottom">@dimen/space_5</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- 我的列表左边 -->
+    <style name="TextView_Mine_Left">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawablePadding">@dimen/space_10</item>
+        <item name="android:textColor">#494949</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/space_5</item>
+    </style>
+
+    <!-- 我的列表右边 -->
+    <style name="TextView_Mine_right">
+        <item name="android:textColor">#B0B0B0</item>
+        <item name="android:layout_width">@dimen/space_0</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:padding">@dimen/space_5</item>
+        <item name="android:drawablePadding">@dimen/space_10</item>
+        <item name="android:drawableRight">@drawable/new_more_arrow</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:gravity">right</item>
+    </style>
+
+    <!-- 登录注册输入框 -->
+    <style name="Edit_register_login">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/space_50</item>
+        <item name="android:paddingTop">@dimen/space_10</item>
+        <item name="android:paddingBottom">@dimen/space_10</item>
+        <item name="android:paddingLeft">@dimen/space_20</item>
+        <item name="android:drawablePadding">@dimen/space_10</item>
+        <item name="android:textColorHint">@color/edit_textColorHint_6F6F6F</item>
+        <item name="android:textSize">@dimen/font_size_14</item>
+        <item name="android:textColor">@color/color_e3e3e3</item>
+        <item name="android:background">@drawable/new_login_input</item>
+        <item name="android:layout_marginLeft">@dimen/space_30</item>
+        <item name="android:layout_marginRight">@dimen/space_30</item>
+
+    </style>
+
+    <!-- 布局属性，padding左上右下20,10,20,10，宽match，高wrap -->
+    <style name="layoutset_20_10_20_10_mw">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/space_10</item>
+        <item name="android:paddingBottom">@dimen/space_10</item>
+        <item name="android:layout_marginRight">@dimen/space_20</item>
+        <item name="android:layout_marginLeft">@dimen/space_20</item>
+    </style>
+
+    <style name="layoutset_mw">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+</resources>

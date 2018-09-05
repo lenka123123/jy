@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_mine_collection_funandinfoitem"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/space_80"
+    android:paddingLeft="@dimen/space_20"
+    android:paddingRight="@dimen/space_20"
+    android:paddingTop="@dimen/space_10">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/fragment_mine_collection_funandinfoitem_img"
+            android:layout_width="@dimen/space_60"
+            android:layout_height="@dimen/space_60" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/space_10"
+            android:layout_marginLeft="@dimen/space_10"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/fragment_mine_collection_funandinfoitem_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:text="德兴贵文员"
+                android:textColor="@color/color_3a3a3a_black" />
+
+            <TextView
+                android:id="@+id/fragment_mine_collection_funandinfoitem_contant"
+                android:layout_width="@dimen/space_150"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_5"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="任正费卡机的健康分时间段开发阶段"
+                android:textColor="@color/color_878787_gray"
+                android:textSize="@dimen/font_size_12" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_5">
+
+                <TextView
+                    android:id="@+id/fragment_mine_collection_funandinfoitem_hotarticle"
+                    android:layout_width="@dimen/space_30"
+                    android:layout_height="@dimen/space_15"
+                    android:background="@drawable/new_hotarticle" />
+
+                <TextView
+                    android:id="@+id/fragment_mine_collection_funandinfoitem_bestseclet"
+                    android:layout_width="@dimen/space_30"
+                    android:layout_height="@dimen/space_15"
+                    android:layout_marginLeft="@dimen/space_5"
+                    android:background="@drawable/new_bestselect" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fragment_mine_collection_funandinfoitem_detel"
+        android:layout_width="@dimen/space_40"
+        android:layout_height="@dimen/space_40"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="@dimen/space_15"
+            android:layout_height="@dimen/space_20"
+            android:background="@drawable/new_detel_trash" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/fragment_mine_collection_funandinfoitem_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_1"
+        android:layout_alignParentBottom="true"
+        android:background="@color/color_e5e5e5" />
+</RelativeLayout>

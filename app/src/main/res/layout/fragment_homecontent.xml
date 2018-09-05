@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipe_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.example.framwork.widget.scrolllayout.ScrollableLayout
+        android:id="@+id/scrollable_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <include layout="@layout/include_scroll_adverti" />
+
+            <include layout="@layout/include_home_menu" />
+
+            <include
+                layout="@layout/include_line_gray"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/space_10">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/home_company_in" />
+            </LinearLayout>
+
+            <include
+                layout="@layout/include_line_gray"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_3" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_home_bonus"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_130"
+                android:layout_centerVertical="true"
+                android:focusable="false"
+                android:scrollbars="none"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@color/actionsheet_gray">
+
+            <!-- 未写 -->
+        </ListView>
+    </com.example.framwork.widget.scrolllayout.ScrollableLayout>
+</android.support.v4.widget.SwipeRefreshLayout>

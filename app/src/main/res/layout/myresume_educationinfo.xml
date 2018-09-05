@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/space_20"
+    android:paddingRight="@dimen/space_20"
+    android:paddingBottom="@dimen/space_10"
+    android:paddingTop="@dimen/space_10">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="学历："
+            android:textColor="@color/color_878787_gray" />
+
+        <TextView
+            android:id="@+id/myresumen_education_exp_education"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="本科"
+            android:textColor="@color/color_878787_gray" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="专业："
+            android:textColor="@color/color_878787_gray" />
+
+        <TextView
+            android:id="@+id/myresumen_education_exp_major"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="工商管理"
+            android:textColor="@color/color_878787_gray" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="学校/毕业学校："
+            android:textColor="@color/color_878787_gray" />
+
+        <TextView
+            android:id="@+id/myresume_editeducation_exp_schoolname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="南京大学"
+            android:textColor="@color/color_878787_gray" />
+    </LinearLayout>
+
+</LinearLayout>

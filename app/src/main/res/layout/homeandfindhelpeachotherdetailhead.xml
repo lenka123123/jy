@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space_51">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/homeandfindhelpeachotherdetailhead_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_10"
+                android:maxLength="16"
+                android:text="关于考研复习的三大误区"
+                android:textColor="@color/color_3a3a3a_black"
+                android:textSize="@dimen/font_size_16" />
+
+            <LinearLayout
+                style="@style/layoutset_20_10_20_10_mw"
+                android:layout_marginTop="@dimen/space_5">
+
+                <ImageView
+                    android:id="@+id/homeandfindhelpeachotherdetailhead_img"
+                    android:layout_width="@dimen/space_60"
+                    android:layout_height="@dimen/space_60" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/space_10"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/homeandfindhelpeachotherdetailhead_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="露娜"
+                            android:textSize="@dimen/font_size_12" />
+
+                        <TextView
+                            android:id="@+id/homeandfindhelpeachotherdetailhead_issolve"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/space_15"
+                            android:layout_marginLeft="@dimen/space_10"
+                            android:background="@drawable/new_unsolve" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/homeandfindhelpeachotherdetailhead_adressandtimeandesee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_5"
+                        android:text="南京市鼓楼区 3.6km   30分钟前  浏览了388次"
+                        android:textSize="@dimen/font_size_12" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <include layout="@layout/include_line_e3e3e3" />
+
+            <LinearLayout
+                style="@style/layoutset_20_10_20_10_mw"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="类         型：" />
+
+                    <TextView
+                        android:id="@+id/homeandfindhelpeachotherdetailhead_ispay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="付费" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_5">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="人         数：" />
+
+                    <TextView
+                        android:id="@+id/homeandfindhelpeachotherdetailhead_neednum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1人" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_5">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="性         别：" />
+
+                    <TextView
+                        android:id="@+id/homeandfindhelpeachotherdetailhead_sex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="帅哥" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_5">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="状         态：" />
+
+                    <TextView
+                        android:id="@+id/homeandfindhelpeachotherdetailhead_solvestate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="未解决" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <include layout="@layout/include_line_e3e3e3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_10"
+                android:maxLength="16"
+                android:text="互助內容"
+                android:textColor="@color/color_3a3a3a_black"
+                android:textSize="@dimen/font_size_16" />
+
+            <TextView
+                android:id="@+id/homeandfindhelpeachotherdetailhead_content"
+                style="@style/layoutset_20_10_20_10_mw" />
+
+            <include layout="@layout/include_line_e3e3e3" />
+
+            <RelativeLayout style="@style/layoutset_20_10_20_10_mw">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="悬赏"
+                        android:textColor="@color/color_3a3a3a_black"
+                        android:textSize="@dimen/font_size_16" />
+
+                    <TextView
+                        android:id="@+id/homeandfindhelpeachotherdetailhead_pricenum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5元"
+                        android:layout_marginLeft="@dimen/space_5"
+                        android:textColor="@color/color_FF4222_red"
+                        android:textSize="@dimen/font_size_16" />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/homeandfindhelpeachotherdetailhead_apply"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/textview_round"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:text="申请"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_10"
+                android:maxLength="16"
+                android:text="留言区"
+                android:textColor="@color/color_3a3a3a_black"
+                android:textSize="@dimen/font_size_16" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.mcxtzhang.swipemenulib.customview.NoScrollListView
+        android:id="@+id/myresume_jobexp_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+        <!--myresume_jobinfo_item-->
+    </com.mcxtzhang.swipemenulib.customview.NoScrollListView>
+</LinearLayout>

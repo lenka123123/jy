@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/custon_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/font2"
+        android:visibility="visible" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/dialog_edit_gray_bg">
+
+            <com.example.framwork.widget.limitededittext.NoEmojiEditText
+                android:id="@+id/et_theme_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="left|top"
+                android:inputType="text|textMultiLine"
+                android:minLines="5"
+                android:padding="10dp"
+                android:textColor="@color/gray_98"
+                android:textColorHint="@color/gray_98"
+                android:textSize="14sp"
+                app:formatter="剩余%s字"
+                app:limitCount="500"
+                app:warningFontColor="@color/gray_98"
+                app:wordCountTextView="@+id/countTextView"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+
+            <TextView
+                android:id="@+id/countTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/et_theme_content"
+                android:layout_marginBottom="6dp"
+                android:layout_marginRight="15dp"
+                android:padding="5dp"
+                android:textSize="@dimen/font_size_12" />
+        </RelativeLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_10"
+        android:gravity="right"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/custon_cancel"
+            android:layout_width="@dimen/space_45"
+            android:layout_height="@dimen/space_25"
+            android:background="@drawable/dialog_cancel_btn_enabled"
+            android:gravity="center"
+            android:text="取消"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/f1"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/custon_send"
+            android:layout_width="@dimen/space_45"
+            android:layout_height="@dimen/space_25"
+            android:layout_marginLeft="@dimen/space_20"
+            android:background="@drawable/dialog_ok_btn_enabled"
+            android:gravity="center"
+            android:text="确定"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+</LinearLayout>

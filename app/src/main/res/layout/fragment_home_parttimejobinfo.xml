@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/incluce_common_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space_50"
+        android:layout_marginTop="@dimen/space_51"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout style="@style/layoutset_20_10_20_10_mw">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/fragment_home_parttimejobinfo_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="兼职家教"
+                        android:layout_weight="1"
+                        android:layout_marginRight="@dimen/space_20"
+                        android:textColor="@color/color_3a3a3a_black"
+                        android:textSize="@dimen/font_size_16" />
+                        <TextView
+                            android:id="@+id/fragment_home_parttimejobinfo_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="150/天"
+                            android:textColor="@color/color_E14222" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/fragment_home_parttimejobinfo_adressanddate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_5"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="南京市 鼓楼区 2018/04/10 10:00"
+                        android:textColor="@color/color_C5C5C5_gray"
+                        android:textSize="@dimen/font_size_12" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_5"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="发布企业："
+                            android:textColor="@color/color_878787_gray"
+                            android:textSize="@dimen/font_size_12" />
+
+                        <TextView
+                            android:id="@+id/fragment_home_parttimejobinfo_companyname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="     "
+                            android:textColor="@color/color_878787_gray"
+                            android:textSize="@dimen/font_size_12" />
+
+                        <ImageView
+                            android:id="@+id/fragment_home_parttimejobinfo_isrealname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_10"
+                            android:background="@drawable/new_areadyrealname" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_5"
+                        android:drawableLeft="@drawable/new_joninjyb_img"
+                        android:drawablePadding="@dimen/space_5"
+                        android:text="现在入住就业邦高新人才随心招"
+                        android:textColor="@color/color_878787_gray"
+                        android:textSize="@dimen/font_size_12" />
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <include layout="@layout/include_line_e3e3e3" />
+
+            <LinearLayout
+                style="@style/layoutset_20_10_20_10_mw"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:singleLine="true"
+                        android:text="兼职类型："
+                        android:textColor="@color/color_878787_gray" />
+
+                    <TextView
+                        android:id="@+id/fragment_home_parttimejobinfo_jobtype"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_878787_gray" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_5">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="招聘人数："
+                        android:textColor="@color/color_878787_gray" />
+
+                    <TextView
+                        android:id="@+id/fragment_home_parttimejobinfo_neednum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_878787_gray" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_5">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="性别要求："
+                        android:textColor="@color/color_878787_gray" />
+
+                    <TextView
+                        android:id="@+id/fragment_home_parttimejobinfo_sex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_878787_gray" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_5">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="语         言："
+                        android:textColor="@color/color_878787_gray" />
+
+                    <TextView
+                        android:id="@+id/fragment_home_parttimejobinfo_language"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_878787_gray" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_5">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="工作经验："
+                        android:textColor="@color/color_878787_gray" />
+
+                    <TextView
+                        android:id="@+id/fragment_home_parttimejobinfo_workexp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_878787_gray" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <include layout="@layout/include_line_e3e3e3" />
+
+
+            <LinearLayout
+                style="@style/layoutset_20_10_20_10_mw"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_5">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="工作时间："
+                        android:textColor="@color/color_878787_gray" />
+
+                    <TextView
+                        android:id="@+id/fragment_home_parttimejobinfo_workdate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_878787_gray" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_5">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="上班时段："
+                        android:textColor="@color/color_878787_gray" />
+
+                    <TextView
+                        android:id="@+id/fragment_home_parttimejobinfo_worktime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_878787_gray" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <include layout="@layout/include_line_e3e3e3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_10"
+                android:text="工作内容"
+                android:textColor="@color/color_3a3a3a_black"
+                android:textSize="@dimen/font_size_16" />
+
+            <TextView
+                android:id="@+id/fragment_home_parttimejobinfo_workcontent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/space_10"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_10"
+                android:paddingRight="@dimen/space_20"
+                android:text="工作内容"
+                android:textSize="@dimen/font_size_12" />
+
+            <include layout="@layout/include_line_e3e3e3" />
+
+            <LinearLayout
+                style="@style/layoutset_20_10_20_10_mw"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_5">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="详细地址："
+                        android:textColor="@color/color_878787_gray" />
+
+                    <TextView
+                        android:id="@+id/fragment_home_parttimejobinfo_detailadress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_878787_gray" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_5">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="联系电话："
+                        android:textColor="@color/color_878787_gray" />
+
+                    <TextView
+                        android:id="@+id/fragment_home_parttimejobinfo_linktel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_878787_gray" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_5">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="联  系  人："
+                        android:textColor="@color/color_878787_gray" />
+
+                    <TextView
+                        android:id="@+id/fragment_home_parttimejobinfo_linkname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_878787_gray" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_50"
+        android:layout_alignParentBottom="true">
+
+        <include layout="@layout/include_line_gray" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true">
+
+            <LinearLayout
+                android:id="@+id/fragment_home_parttimejobinfo_collectionimglayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_20">
+
+                <ImageView
+                    android:id="@+id/fragment_home_parttimejobinfo_collectionimg"
+                    android:layout_width="@dimen/space_15"
+                    android:layout_height="@dimen/space_15"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/space_10"
+                    android:layout_marginRight="@dimen/space_10"
+                    android:background="@drawable/new_find_uncollection"
+                    android:padding="@dimen/space_5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="收藏"
+                    android:textColor="@color/color_BBBBBB_gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fragment_home_parttimejobinfo_sharelayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_20">
+
+                <ImageView
+                    android:layout_width="@dimen/space_15"
+                    android:layout_height="@dimen/space_15"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/space_10"
+                    android:layout_marginRight="@dimen/space_10"
+                    android:background="@drawable/new_find_unshare"
+                    android:padding="@dimen/space_5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="转发"
+                    android:textColor="@color/color_BBBBBB_gray" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/fragment_home_parttimejobinfo_sendresume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/space_20"
+            android:background="@drawable/textview_round"
+            android:paddingLeft="@dimen/space_20"
+            android:paddingRight="@dimen/space_20"
+            android:text="投递简历"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/mygrowth_head"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_220"
+        android:background="@drawable/new_ucentrebg"
+        android:fitsSystemWindows="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/fragment_mine_baseinfo"
+                android:layout_width="@dimen/space_80"
+                android:layout_height="@dimen/space_80"
+                android:layout_marginTop="@dimen/space_60"
+                android:background="@drawable/new_head_img">
+
+                <ImageView
+                    android:id="@+id/fragment_mine_img"
+                    android:layout_width="@dimen/space_80"
+                    android:layout_height="@dimen/space_80"
+                    android:padding="@dimen/space_1" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_20"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/new_myresum_myjobinfo"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/space_2"
+                    android:paddingLeft="@dimen/space_10"
+                    android:paddingRight="@dimen/space_10"
+                    android:paddingTop="@dimen/space_2"
+                    android:text="成长值：200"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_12" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/space_20"
+                    android:background="@drawable/new_myresum_myjobinfo"
+                    android:gravity="center"
+                    android:paddingBottom="@dimen/space_2"
+                    android:paddingLeft="@dimen/space_10"
+                    android:paddingRight="@dimen/space_10"
+                    android:paddingTop="@dimen/space_2"
+                    android:text="积分值：100"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_12" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/mygrowth_getgrowthrecordlayput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mygrowth_head"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/mygrowth_getgrowthrecord"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_40"
+            android:drawableRight="@drawable/new_more_arrow"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/space_20"
+            android:paddingRight="@dimen/space_20"
+            android:text="获取成长值记录"
+            android:textColor="@color/color_3C3C3C_black"
+            android:textSize="@dimen/font_size_18" />
+
+        <include layout="@layout/include_line_gray_5" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mygrowth_getgrowthrecordlayput"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout style="@style/layoutset_20_10_20_10_mw">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/singledaily"
+                        android:textColor="@color/color_3a3a3a_black"
+                        android:textSize="@dimen/font_size_16" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="累计获得12点成长值"
+                        android:textColor="@color/color_A8A8A8_gray"
+                        android:textSize="@dimen/font_size_12" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/mygrowth_getgrowthsingledailymore"
+                    android:layout_width="@dimen/space_40"
+                    android:layout_height="@dimen/space_25"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/textview_round"
+                    android:gravity="center"
+                    android:text="查看"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_12" />
+            </RelativeLayout>
+
+            <include layout="@layout/include_line_e3e3e3" />
+
+            <RelativeLayout style="@style/layoutset_20_10_20_10_mw">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/doparttime"
+                        android:textColor="@color/color_3a3a3a_black"
+                        android:textSize="@dimen/font_size_16" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="累计获得12点成长值"
+                        android:textColor="@color/color_A8A8A8_gray"
+                        android:textSize="@dimen/font_size_12" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/mygrowth_getgrowthdoparttimemore"
+                    android:layout_width="@dimen/space_40"
+                    android:layout_height="@dimen/space_25"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/textview_round"
+                    android:gravity="center"
+                    android:text="查看"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_12" />
+            </RelativeLayout>
+
+            <include layout="@layout/include_line_e3e3e3" />
+
+            <RelativeLayout style="@style/layoutset_20_10_20_10_mw">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/jointraing"
+                        android:textColor="@color/color_3a3a3a_black"
+                        android:textSize="@dimen/font_size_16" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="累计获得12点成长值"
+                        android:textColor="@color/color_A8A8A8_gray"
+                        android:textSize="@dimen/font_size_12" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/mygrowth_getgrowthjointraingmore"
+                    android:layout_width="@dimen/space_40"
+                    android:layout_height="@dimen/space_25"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/textview_round"
+                    android:gravity="center"
+                    android:text="查看"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_12" />
+            </RelativeLayout>
+
+            <include layout="@layout/include_line_e3e3e3" />
+
+            <RelativeLayout
+                android:visibility="gone"
+                style="@style/layoutset_20_10_20_10_mw">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/invitefriends"
+                        android:textColor="@color/color_3a3a3a_black"
+                        android:textSize="@dimen/font_size_16" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="累计获得12点成长值"
+                        android:textColor="@color/color_A8A8A8_gray"
+                        android:textSize="@dimen/font_size_12" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/mygrowth_getgrowthinvitefriendmore"
+                    android:layout_width="@dimen/space_40"
+                    android:layout_height="@dimen/space_25"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/textview_round"
+                    android:gravity="center"
+                    android:text="查看"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_12" />
+            </RelativeLayout>
+
+            <include
+                android:visibility="gone"
+                layout="@layout/include_line_e3e3e3" />
+
+            <RelativeLayout style="@style/layoutset_20_10_20_10_mw">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/schoolhelp"
+                        android:textColor="@color/color_3a3a3a_black"
+                        android:textSize="@dimen/font_size_16" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="累计获得12点成长值"
+                        android:textColor="@color/color_A8A8A8_gray"
+                        android:textSize="@dimen/font_size_12" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/mygrowth_getgrowthinschoolhelpmore"
+                    android:layout_width="@dimen/space_40"
+                    android:layout_height="@dimen/space_25"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/textview_round"
+                    android:gravity="center"
+                    android:text="查看"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_12" />
+            </RelativeLayout>
+            <include layout="@layout/include_line_e3e3e3" />
+        </LinearLayout>
+    </ScrollView>
+
+    <include layout="@layout/incluce_common_title" />
+</RelativeLayout>

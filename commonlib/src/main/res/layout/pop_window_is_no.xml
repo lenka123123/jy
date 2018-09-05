@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y140"
+    android:background="@color/white"
+    android:id="@+id/linearLayout"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y40"
+        android:gravity="center"
+        android:text="是否需要面试"
+        android:textSize="12sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_0.5"
+        android:background="@color/color_999999" />
+
+    <TextView
+        android:id="@+id/is"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y60"
+        android:gravity="center"
+        android:text="是"
+        android:textColor="@color/textColor_alert_button_cancel"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_0.5"
+        android:background="@color/color_999999" />
+
+    <TextView
+        android:id="@+id/no"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y60"
+        android:gravity="center"
+        android:text="否"
+        android:textColor="@color/textColor_alert_button_cancel"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y10"
+        android:background="@color/color_999999" />
+
+    <TextView
+        android:id="@+id/cancel"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y60"
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="@color/textColor_alert_button_cancel"
+        android:textSize="16sp" />
+</LinearLayout>

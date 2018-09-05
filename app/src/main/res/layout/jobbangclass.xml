@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical">
+
+    <include layout="@layout/incluce_common_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/include_scroll_adverti" />
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y107"
+                android:layout_marginBottom="@dimen/y40"
+                android:layout_marginLeft="@dimen/x40"
+                android:layout_marginRight="@dimen/x40"
+                android:layout_marginTop="@dimen/y30"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/jobbangclass_strategy_title"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/x15"
+                    android:layout_weight="1"
+                    android:background="@drawable/none_frame"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="攻略干货"
+                        android:textColor="#333"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="最实用的指南"
+                        android:textColor="#ccc"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/jobbangclass_jobsecret_title"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/x8"
+                    android:layout_marginRight="@dimen/x8"
+                    android:layout_weight="1"
+                    android:background="@drawable/none_frame"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="职场秘籍"
+                        android:textColor="#333"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="助你驰骋职场"
+                        android:textColor="#ccc"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/jobbangclass_test_title"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/x15"
+                    android:layout_weight="1"
+                    android:background="@drawable/none_frame"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="真题试卷"
+                        android:textColor="#333"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="历年高考真题"
+                        android:textColor="#ccc"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_50"
+                android:layout_marginLeft="@dimen/x40"
+                android:drawablePadding="@dimen/space_20"
+                android:drawableRight="@drawable/new_more_arrow"
+                android:gravity="center_vertical"
+                android:paddingBottom="@dimen/space_10"
+                android:paddingLeft="@dimen/space_5"
+                android:paddingRight="@dimen/space_20"
+                android:paddingTop="@dimen/space_10"
+                android:text="攻略干货"
+                android:textColor="@color/black_393939"
+                android:textSize="@dimen/font_size_16"
+                android:visibility="gone" />
+
+
+            <include layout="@layout/include_line_gray_5" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_50"
+                android:layout_marginLeft="@dimen/x40"
+                android:background="@color/white"
+                android:drawablePadding="@dimen/space_20"
+
+                android:gravity="center_vertical"
+                android:paddingBottom="@dimen/space_10"
+                android:paddingLeft="@dimen/space_5"
+                android:paddingRight="@dimen/space_20"
+                android:paddingTop="@dimen/space_10"
+                android:text="编辑推荐"
+                android:textColor="@color/black_393939"
+                android:textSize="@dimen/font_size_16" />
+
+            <include layout="@layout/include_line_e3e3e3" />
+
+            <com.mcxtzhang.swipemenulib.customview.NoScrollListView
+                android:id="@+id/jobbangclass_jobsecret_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@color/white"
+                android:scrollbars="none" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/x20" />
+
+            <include layout="@layout/include_line_gray_5" />
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_50"
+                android:layout_marginLeft="@dimen/x40"
+                android:drawablePadding="@dimen/space_20"
+
+                android:gravity="center_vertical"
+                android:paddingBottom="@dimen/space_10"
+                android:paddingLeft="@dimen/space_5"
+                android:paddingRight="@dimen/space_20"
+                android:paddingTop="@dimen/space_10"
+                android:text="真题试卷"
+                android:textColor="@color/black_393939"
+                android:textSize="@dimen/font_size_16" />
+
+            <include layout="@layout/include_line_e3e3e3" />
+
+            <com.mcxtzhang.swipemenulib.customview.NoScrollListView
+                android:id="@+id/jobbangclass_test_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@color/white"
+                android:scrollbars="none"></com.mcxtzhang.swipemenulib.customview.NoScrollListView>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

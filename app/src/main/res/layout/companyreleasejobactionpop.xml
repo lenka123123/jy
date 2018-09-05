@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/space_100"
+    android:layout_height="wrap_content"
+    android:background="#37383b"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/companyreleasejobactionpop_edit_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/companyreleasejobactionpop_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/space_40"
+            android:drawablePadding="@dimen/space_5"
+            android:gravity="center"
+            android:text="编辑"
+            android:textColor="@color/white" />
+
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/gray"
+            android:layout_height="@dimen/space_1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/companyreleasejobactionpop_isdown_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/companyreleasejobactionpop_isdown"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/space_40"
+            android:drawablePadding="@dimen/space_5"
+            android:gravity="center"
+            android:text="下架"
+            android:textColor="@color/white" />
+
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/gray"
+            android:layout_height="@dimen/space_1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/companyreleasejobactionpop_detel_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/companyreleasejobactionpop_detel"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/space_40"
+            android:drawablePadding="@dimen/space_5"
+            android:gravity="center"
+            android:text="删除"
+            android:textColor="@color/white" />
+
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/gray"
+            android:layout_height="@dimen/space_1" />
+    </LinearLayout>
+</LinearLayout>

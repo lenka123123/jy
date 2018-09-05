@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/incluce_common_title" />
+
+
+    <View
+        android:id="@+id/popLayoutid"
+        android:layout_marginLeft="@dimen/x700"
+        android:layout_width="1dp"
+        android:layout_height="@dimen/space_0.5" />
+
+    <LinearLayout
+        android:id="@+id/jobbangclass_strategy_parttime"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:gravity="center_horizontal">
+
+        <RadioGroup
+            android:id="@+id/main_tab_radiogroup"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/fragment_mine_collection_all"
+                style="@style/MTabStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="全部"
+                android:textColor="@drawable/radiobuttontextcolor" />
+
+            <RadioButton
+                android:id="@+id/fragment_mine_collection_hot"
+                style="@style/MTabStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="热门"
+                android:textColor="@drawable/radiobuttontextcolor" />
+
+            <RadioButton
+                android:id="@+id/fragment_mine_collection_best"
+                style="@style/MTabStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="精选"
+                android:textColor="@drawable/radiobuttontextcolor" />
+
+            <RadioButton
+                android:id="@+id/fragment_mine_collection_free"
+                style="@style/MTabStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="免费"
+                android:textColor="@drawable/radiobuttontextcolor" />
+        </RadioGroup>
+
+
+    </LinearLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/line1">
+        <!--加载条-->
+        <com.example.framwork.widget.ProgressActivity
+            android:id="@+id/progressActivity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:emptyBackgroundColor="@color/line_color"
+            app:errorButtonBackgroundColor="@drawable/dialog_ok_btn_enabled"
+            app:errorButtonTextColor="@color/font2">
+
+            <com.example.framwork.widget.superrecyclerview.recycleview.SuperRecyclerView
+                android:id="@+id/rv_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/line_color" />
+        </com.example.framwork.widget.ProgressActivity>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

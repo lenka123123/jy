@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/space_40">
+
+    <TextView
+        android:id="@+id/tv_choiceschoolormajoritem"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_40"
+        android:gravity="center|left"
+        android:paddingLeft="@dimen/space_20"
+        android:text="南京大学" />
+
+</LinearLayout>

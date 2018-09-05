@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/incluce_common_title"/>
+
+    <EditText
+        android:id="@+id/completeinfo_name"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_40"
+        android:layout_marginLeft="@dimen/space_20"
+        android:layout_marginRight="@dimen/space_20"
+        android:layout_marginTop="@dimen/space_20"
+        android:background="@drawable/new_input_line"
+        android:ellipsize="end"
+        android:gravity="center|left"
+        android:hint="@string/myresume_editbaseinfo_name"
+        android:paddingLeft="@dimen/space_20"
+        android:singleLine="true"
+        android:textColor="@color/color_535353_black"
+        android:textColorHint="@color/color_afafaf_gray"
+        android:textSize="@dimen/font_size_14" />
+
+    <TextView
+        android:id="@+id/completeinfo_schoolname"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_40"
+        android:layout_marginLeft="@dimen/space_20"
+        android:layout_marginRight="@dimen/space_20"
+        android:layout_marginTop="@dimen/space_20"
+        android:background="@drawable/new_input_line"
+        android:gravity="center|left"
+        android:hint="请选择学校"
+        android:paddingLeft="@dimen/space_20"
+        android:singleLine="true"
+        android:textColorHint="@color/color_afafaf_gray"
+        android:textSize="@dimen/font_size_14" />
+
+    <TextView
+        android:id="@+id/completeinfo_major"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_40"
+        android:layout_marginLeft="@dimen/space_20"
+        android:layout_marginRight="@dimen/space_20"
+        android:layout_marginTop="@dimen/space_20"
+        android:background="@drawable/new_input_line"
+        android:gravity="center|left"
+        android:hint="请选择专业"
+        android:paddingLeft="@dimen/space_20"
+        android:singleLine="true"
+        android:textColorHint="@color/color_afafaf_gray"
+        android:textSize="@dimen/font_size_14" />
+
+    <TextView
+        android:id="@+id/completeinfo_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_50"
+        android:layout_marginLeft="@dimen/space_20"
+        android:layout_marginRight="@dimen/space_20"
+        android:layout_marginTop="@dimen/space_20"
+        android:background="@drawable/btn_selector"
+        android:gravity="center"
+        android:text="保存"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_size_18" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/font_size_12"
+        android:layout_marginTop="@dimen/space_10"
+        android:paddingRight="@dimen/space_20"
+        android:paddingLeft="@dimen/space_20"
+        android:gravity="center"
+        android:text="为确保投票真实性，请在投票前完善投票资料信息"/>
+
+</LinearLayout>

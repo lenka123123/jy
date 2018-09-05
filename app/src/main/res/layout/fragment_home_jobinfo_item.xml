@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/layoutset_20_10_20_10_mw">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLength="15"
+            android:singleLine="true"
+            android:text="招商银行业务助理"
+            android:textColor="@color/color_878787_gray"
+            android:textSize="@dimen/font_size_16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_5"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="南京市 鼓楼区  2018/04/18  10:00"
+            android:textColor="@color/color_878787_gray"
+            android:textSize="@dimen/font_size_12" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:text="1-1.5K"
+        android:textColor="@color/color_E14222"
+        android:textSize="@dimen/font_size_16" />
+</RelativeLayout>

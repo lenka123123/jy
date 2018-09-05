@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/new_realname_title_bg"
+        android:layout_height="@dimen/space_51">
+        <LinearLayout
+            android:id="@+id/fragment_mine_myrelease_back"
+            android:layout_width="@dimen/space_50"
+            android:layout_height="@dimen/space_50"
+            android:gravity="center">
+        <ImageView
+
+            android:layout_width="@dimen/space_10"
+            android:layout_height="@dimen/space_20"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/space_10"
+            android:background="@drawable/new_back"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="@dimen/space_18"
+            android:textColor="@color/white"
+            android:text="@string/myrelease"/>
+
+        <ImageView
+            android:id="@+id/fragment_mine_myrelease_add"
+            android:layout_width="@dimen/space_20"
+            android:layout_height="@dimen/space_20"
+            android:visibility="gone"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/space_20"
+            android:background="@drawable/new_add"/>
+    </RelativeLayout>
+
+    <RadioGroup
+        android:id="@+id/main_tab_radiogroup"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/fragment_mine_myrelease_help"
+            style="@style/MTabStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="互助"
+            android:textColor="@drawable/radiobuttontextcolor" />
+
+        <RadioButton
+            android:id="@+id/fragment_mine_myrelease_interesting"
+            style="@style/MTabStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="趣事"
+            android:textColor="@drawable/radiobuttontextcolor" />
+    </RadioGroup>
+
+    <include layout="@layout/include_line_gray_5" />
+
+    <FrameLayout
+        android:id="@+id/fragment_mine_myrelease_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:scrollbars="none" />
+
+</LinearLayout>

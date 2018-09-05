@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zhy="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/relativelayout"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/layoutset_20_10_20_10_mw"
+                android:text="排序"
+                android:textColor="@color/color_3a3a3a_black"
+                android:textSize="@dimen/font_size_16" />
+
+            <com.zhy.view.flowlayout.TagFlowLayout
+                android:id="@+id/jobbangclassshaixuanmenu_order"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/space_10"
+                android:paddingLeft="@dimen/space_20"
+                android:paddingRight="@dimen/space_20"
+                android:paddingTop="@dimen/space_10"
+                zhy:max_select="1"></com.zhy.view.flowlayout.TagFlowLayout>
+
+            <include layout="@layout/include_line_gray" />
+
+            <TextView
+                style="@style/layoutset_20_10_20_10_mw"
+                android:text="选择分类"
+                android:textColor="@color/color_3a3a3a_black"
+                android:textSize="@dimen/font_size_16" />
+
+            <com.zhy.view.flowlayout.TagFlowLayout
+                android:id="@+id/jobbangclassshaixuanmenu_cate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/space_10"
+                android:paddingLeft="@dimen/space_20"
+                android:paddingRight="@dimen/space_20"
+                android:paddingTop="@dimen/space_10"
+                zhy:max_select="1"></com.zhy.view.flowlayout.TagFlowLayout>
+
+            <include layout="@layout/include_line_gray" />
+
+            <TextView
+                style="@style/layoutset_20_10_20_10_mw"
+                android:text="价格区间"
+                android:textColor="@color/color_3a3a3a_black"
+                android:textSize="@dimen/font_size_16" />
+
+            <com.zhy.view.flowlayout.TagFlowLayout
+                android:id="@+id/jobbangclassshaixuanmenu_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/space_40"
+                android:paddingBottom="@dimen/space_10"
+                android:paddingLeft="@dimen/space_20"
+                android:paddingRight="@dimen/space_20"
+                android:paddingTop="@dimen/space_10"
+                zhy:max_select="1"></com.zhy.view.flowlayout.TagFlowLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <include layout="@layout/include_line_gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_50"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:id="@+id/jobbangclassshaixuanmenu_rebuilder"
+            android:layout_width="@dimen/space_0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="重置"
+            android:textColor="@color/color_3a3a3a_black"
+            android:textSize="@dimen/font_size_18" />
+
+        <TextView
+            android:id="@+id/jobbangclassshaixuanmenu_confirm"
+            android:layout_width="@dimen/space_0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/color_E14222"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_18" />
+    </LinearLayout>
+</RelativeLayout>

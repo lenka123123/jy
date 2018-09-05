@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/incluce_common_title" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/fragment_mine_mysend_parttime"
+            style="@style/MTabStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="兼职"
+            android:textColor="@drawable/radiobuttontextcolor" />
+
+        <RadioButton
+            android:id="@+id/fragment_mine_mysend_alltime"
+            style="@style/MTabStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="全职"
+            android:textColor="@drawable/radiobuttontextcolor" />
+    </RadioGroup>
+
+    <include layout="@layout/include_line_e3e3e3" />
+
+    <FrameLayout
+        android:id="@+id/fragment_mine_mysend_framlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

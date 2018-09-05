@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_eeeeee_gray"
+    android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/line_color"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_220"
+                android:background="@drawable/new_ucentrebg"
+                android:paddingTop="@dimen/y10"
+                android:fitsSystemWindows="true">
+
+
+                <RelativeLayout
+                    android:id="@+id/fragment_mine_company_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/space_20"
+                    android:layout_marginTop="@dimen/space_10">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="登录/注册"
+                        android:textColor="@color/color_CDD6D5_gray"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:layout_width="@dimen/space_8"
+                        android:layout_height="@dimen/space_8"
+                        android:visibility="gone"
+                        android:background="@drawable/message_unread" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mine_message"
+                        android:textColor="@color/color_CDD6D5_gray"
+                        android:textSize="@dimen/font_size_16" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="@dimen/space_80"
+                        android:layout_height="@dimen/space_80"
+                        android:layout_marginTop="@dimen/space_40"
+                        android:background="@drawable/new_head_img">
+
+                        <ImageView
+                            android:id="@+id/fragment_mine_company_headicon"
+                            android:layout_width="@dimen/space_80"
+                            android:layout_height="@dimen/space_80"
+                            android:padding="@dimen/space_1" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/fragment_mine_company_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_10"
+                        android:text="我的名字"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/fragment_mine_company_compangname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_10"
+                        android:ellipsize="end"
+                        android:visibility="gone"
+                        android:singleLine="true"
+                        android:text="跟着我的左手右手一个慢动作，左手慢动作重播"
+                        android:textColor="@color/color_b1b1b1"
+                        android:textSize="@dimen/font_size_12" />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <include
+                layout="@layout/include_line_gray"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_20" />
+
+            <include layout="@layout/include_line_gray" />
+
+
+            <LinearLayout
+                android:id="@+id/fragment_mine_company_myreleaseparttime"
+                style="@style/LinearLayout_Mine"
+                android:layout_marginTop="@dimen/space_6">
+
+                <TextView
+                    style="@style/TextView_Mine_Left"
+                    android:drawableLeft="@drawable/new_mine_company_parttime"
+                    android:text="我发布的兼职" />
+
+                <TextView
+                    style="@style/TextView_Mine_right" />
+            </LinearLayout>
+
+            <include layout="@layout/include_line_gray" />
+
+            <LinearLayout
+                android:id="@+id/fragment_mine_company_myreleasealltime"
+                style="@style/LinearLayout_Mine">
+
+                <TextView
+                    style="@style/TextView_Mine_Left"
+                    android:drawableLeft="@drawable/new_mine_company_alltime"
+                    android:text="我发布的全职" />
+
+                <TextView style="@style/TextView_Mine_right" />
+            </LinearLayout>
+
+            <include layout="@layout/include_line_gray" />
+
+            <LinearLayout
+                android:id="@+id/fragment_mine_company_myreleasetraining"
+                style="@style/LinearLayout_Mine">
+
+                <TextView
+                    style="@style/TextView_Mine_Left"
+                    android:drawableLeft="@drawable/new_mine_company_training"
+                    android:text="我发布的培训" />
+
+                <TextView style="@style/TextView_Mine_right" />
+            </LinearLayout>
+
+            <include layout="@layout/include_line_gray" />
+
+            <LinearLayout
+                android:id="@+id/fragment_mine_company_mycollection"
+                style="@style/LinearLayout_Mine">
+
+                <TextView
+                    style="@style/TextView_Mine_Left"
+                    android:drawableLeft="@drawable/new_mine_company_collection"
+                    android:text="我的收藏" />
+
+                <TextView style="@style/TextView_Mine_right" />
+            </LinearLayout>
+
+            <include layout="@layout/include_line_gray" />
+
+            <LinearLayout
+                android:id="@+id/fragment_mine_company_mycompanyinfo"
+                style="@style/LinearLayout_Mine">
+
+                <TextView
+                    style="@style/TextView_Mine_Left"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/new_mine_company_companyinfo"
+                    android:text="企业信息" />
+
+                <TextView style="@style/TextView_Mine_right" />
+            </LinearLayout>
+
+            <include layout="@layout/include_line_gray" />
+
+            <LinearLayout
+                android:id="@+id/fragment_mine_company_mysetting"
+                style="@style/LinearLayout_Mine">
+
+                <TextView
+                    style="@style/TextView_Mine_Left"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/new_mine_company_setting"
+                    android:text="我的设置" />
+
+                <TextView style="@style/TextView_Mine_right" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/space_60" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

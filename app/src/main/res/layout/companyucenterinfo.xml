@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/incluce_common_title" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/space_20"
+            android:paddingRight="@dimen/space_20"
+            android:orientation="vertical">
+
+            <RelativeLayout style="@style/layoutset_20_10_20_10_mw">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/companyucenterinfo_icon"
+                        android:layout_width="@dimen/space_80"
+                        android:layout_height="@dimen/space_80" />
+
+                    <TextView
+                        android:id="@+id/companyucenterinfo_companyname"
+                        android:layout_width="@dimen/space_220"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_10"
+                        android:gravity="center"
+                        android:text="江苏德心桂文化培训有限公司"
+                        android:textColor="@color/color_3a3a3a_black"
+                        android:textSize="@dimen/font_size_16" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/space_10">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/edittext_round_nobg_5dp"
+                            android:text="法人"
+                            android:textSize="@dimen/font_size_16" />
+
+                        <View
+                            android:layout_width="@dimen/space_1"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/space_5"
+                            android:layout_marginRight="@dimen/space_5" />
+
+                        <TextView
+                            android:id="@+id/companyucenterinfo_companylegalname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="张三"
+                            android:textColor="@color/color_3a3a3a_black"
+                            android:textSize="@dimen/font_size_16" />
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <include layout="@layout/include_line_gray" />
+
+            <RelativeLayout
+                android:id="@+id/companyucenterinfo_adresslayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:gravity="center_vertical"
+                    android:text="企业地址" />
+
+                <TextView
+                    android:id="@+id/companyucenterinfo_adresscontant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_40"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:singleLine="true"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:drawablePadding="@dimen/space_10"
+                    android:drawableRight="@drawable/new_more"
+                    android:gravity="center_vertical"
+                    android:hint="请选择"
+                    android:text="" />
+            </RelativeLayout>
+
+            <include layout="@layout/include_line_gray" />
+
+            <EditText
+                android:id="@+id/companyucenterinfo_adressdetail"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:layout_marginTop="@dimen/space_5"
+                android:background="@null"
+                android:drawablePadding="@dimen/space_10"
+                android:hint="请输入详细地址"
+                android:text=""
+                android:textSize="@dimen/font_size_14" />
+
+            <include layout="@layout/include_line_gray" />
+
+            <EditText
+                android:id="@+id/companyucenterinfo_compangtel"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:layout_marginTop="@dimen/space_5"
+                android:background="@null"
+                android:drawablePadding="@dimen/space_10"
+                android:hint="请输入企业电话"
+                android:singleLine="true"
+                android:inputType="number"
+                android:text=""
+                android:textSize="@dimen/font_size_14" />
+
+            <include layout="@layout/include_line_gray" />
+
+            <EditText
+                android:id="@+id/companyucenterinfo_linkname"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:layout_marginTop="@dimen/space_5"
+                android:background="@null"
+                android:singleLine="true"
+                android:drawablePadding="@dimen/space_10"
+                android:hint="请输入负责人姓名"
+                android:text=""
+                android:textSize="@dimen/font_size_14" />
+
+            <include layout="@layout/include_line_gray" />
+
+            <EditText
+                android:id="@+id/companyucenterinfo_linktel"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:layout_marginTop="@dimen/space_5"
+                android:background="@null"
+                android:inputType="number"
+                android:singleLine="true"
+                android:drawablePadding="@dimen/space_10"
+                android:hint="请输入负责人电话"
+                android:text=""
+                android:textSize="@dimen/font_size_14" />
+
+            <TextView
+                android:id="@+id/companyucenterinfo_save"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_50"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginRight="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_20"
+                android:background="@drawable/btn_selector"
+                android:gravity="center"
+                android:text="保存"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_18" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/space_60" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

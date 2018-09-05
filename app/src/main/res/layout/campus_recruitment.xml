@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/compus_list_lift_icon"
+            android:drawablePadding="@dimen/space_10"
+            android:paddingBottom="@dimen/space_10"
+            android:paddingLeft="@dimen/space_20"
+            android:paddingTop="@dimen/space_10"
+            android:text="校园招聘"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/fragment_campus_campusrefresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:drawableLeft="@drawable/campus_refresh"
+            android:drawablePadding="@dimen/space_10"
+            android:gravity="center"
+            android:paddingBottom="@dimen/space_10"
+            android:paddingRight="@dimen/space_20"
+            android:paddingTop="@dimen/space_10"
+            android:text="刷新"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+    <include layout="@layout/include_line_gray" />
+
+    <com.mcxtzhang.swipemenulib.customview.NoScrollListView
+        android:id="@+id/fragment_campus_campuslistview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <!-- campus_recruitment_item  -->
+    </com.mcxtzhang.swipemenulib.customview.NoScrollListView>
+
+</LinearLayout>

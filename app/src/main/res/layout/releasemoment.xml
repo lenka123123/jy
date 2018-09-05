@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_51"
+        android:background="@drawable/new_realname_title_bg">
+
+        <LinearLayout
+            android:id="@+id/releasemoment_back"
+            android:layout_width="@dimen/space_50"
+            android:layout_height="@dimen/space_50"
+            android:gravity="center">
+
+            <ImageView
+
+                android:layout_width="@dimen/space_10"
+                android:layout_height="@dimen/space_20"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/space_10"
+                android:background="@drawable/new_back" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="发布趣事"
+            android:textColor="@color/white"
+            android:textSize="@dimen/space_18" />
+
+        <TextView
+            android:id="@+id/releasemoment_release"
+            android:layout_width="@dimen/space_60"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/space_20"
+            android:gravity="center"
+            android:text="发表"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_16" />
+    </RelativeLayout>
+
+
+    <EditText
+        android:id="@+id/releasemoment_contant"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/space_20"
+        android:layout_marginRight="@dimen/space_20"
+        android:layout_marginTop="@dimen/space_20"
+        android:background="@null"
+        android:gravity="left|top"
+        android:hint="说些什么吧..."
+        android:maxLength="200"
+        android:maxLines="200"
+        android:minHeight="@dimen/space_100"
+        android:paddingLeft="@dimen/space_10"
+        android:paddingRight="@dimen/space_10"
+        android:paddingTop="@dimen/space_10"
+        android:textSize="@dimen/font_size_14" />
+
+    <!--展示上传的图片-->
+    <GridView
+        android:id="@+id/releasemoment_gridView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_weight="1"
+        android:columnWidth="@dimen/space_90"
+        android:gravity="center"
+        android:horizontalSpacing="10dp"
+        android:numColumns="3"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="10dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y94"
+        android:background="#EDEDED"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/send_img"
+            android:layout_width="@dimen/x91"
+            android:layout_height="@dimen/y45"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/x40"
+            android:src="@drawable/send_img" />
+
+        <ImageView
+            android:id="@+id/send_topic"
+            android:layout_width="@dimen/x131"
+            android:layout_height="@dimen/y45"
+            android:layout_gravity="center"
+            android:src="@drawable/send_topic" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

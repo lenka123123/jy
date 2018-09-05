@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_51"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/releasemoment_back"
+            android:layout_width="@dimen/space_50"
+            android:layout_height="@dimen/space_50"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="@dimen/space_10"
+                android:layout_height="@dimen/space_20"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/space_10"
+                android:background="@drawable/back_black" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="添加关注"
+            android:textColor="@color/black"
+            android:textSize="@dimen/space_18" />
+
+        <TextView
+            android:id="@+id/releasemoment_release"
+            android:layout_width="@dimen/space_60"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/space_20"
+            android:gravity="center"
+            android:text="发表"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_16" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/background"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y63"
+            android:layout_marginLeft="@dimen/x40"
+            android:layout_marginRight="@dimen/x20"
+            android:background="@drawable/circulor_button"
+            android:gravity="center_vertical"
+            android:hint="搜索"
+            android:paddingLeft="@dimen/x50"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="@dimen/x28"
+            android:layout_height="@dimen/y28"
+            android:layout_marginLeft="@dimen/x55"
+            android:layout_marginTop="@dimen/y17"
+            android:background="@drawable/new_search"
+            android:gravity="center_vertical" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y10"
+        android:background="@color/white" />
+
+
+    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</LinearLayout>

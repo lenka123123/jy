@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/newcampayfunitem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_50"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/search_back"
+            android:layout_width="@dimen/space_10"
+            android:layout_height="@dimen/space_20"
+            android:layout_marginLeft="@dimen/space_20"
+            android:background="@drawable/back_black" />
+
+        <EditText
+            android:id="@+id/search_searchhistory_searched"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/space_10"
+            android:layout_marginLeft="@dimen/space_20"
+            android:layout_marginRight="@dimen/space_40"
+            android:layout_marginTop="@dimen/space_10"
+            android:background="#F2F2F2"
+            android:drawableLeft="@drawable/new_search"
+            android:drawablePadding="@dimen/space_20"
+            android:gravity="center|left"
+            android:hint="搜索用户"
+            android:imeOptions="actionSearch"
+            android:paddingLeft="@dimen/space_10"
+            android:singleLine="true"
+            android:textSize="@dimen/font_size_12" />
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_0.5"
+        android:background="#EEE" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y90"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/y30">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x20"
+            android:background="@color/white"
+            android:text="推荐"
+            android:textColor="#333"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_recommend_more"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginRight="@dimen/x40"
+            android:background="@color/white"
+            android:drawableRight="@drawable/new_arrow_choicemore"
+            android:gravity="right"
+            android:text="更多 "
+            android:textColor="#333"
+            android:textSize="14sp"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_recommend_more"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y17"
+        android:background="#F7F7F7" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y90"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/y30">
+
+        <TextView
+            android:id="@+id/tv_like_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x20"
+            android:background="@color/white"
+            android:text="猜你喜欢"
+            android:textColor="#333"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginRight="@dimen/x40"
+            android:background="@color/white"
+            android:drawableRight="@drawable/new_arrow_choicemore"
+            android:gravity="right"
+            android:text="更多 "
+            android:textColor="#333"
+            android:textSize="14sp"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_like_more"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y17"
+        android:background="#F7F7F7" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y90"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/y30">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x20"
+            android:background="@color/white"
+            android:text="附近的人"
+            android:textColor="#333"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_round_more"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginRight="@dimen/x40"
+            android:background="@color/white"
+            android:drawableRight="@drawable/new_arrow_choicemore"
+            android:gravity="right"
+            android:text="更多 "
+            android:textColor="#333"
+            android:textSize="14sp"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_round_more"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/logo" />
+
+</LinearLayout>

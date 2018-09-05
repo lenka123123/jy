@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.mcxtzhang.swipemenulib.customview.MyScrollView
+        android:id="@+id/myresume_myscrollview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+
+            <RelativeLayout
+                android:id="@+id/my_resume_head"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_270"
+                android:background="@drawable/new_resum_bg"
+                android:fitsSystemWindows="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="@dimen/space_80"
+                        android:layout_height="@dimen/space_80"
+                        android:layout_marginTop="@dimen/space_70"
+                        android:background="@drawable/new_head_img">
+
+                        <ImageView
+                            android:id="@+id/my_resume_img"
+                            android:layout_width="@dimen/space_80"
+                            android:layout_height="@dimen/space_80"
+                            android:padding="@dimen/space_1" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/myresume_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_10"
+                        android:text=""
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/color_000000_60">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="公开简历？"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/font_size_16" />
+
+                        <ToggleButton
+                            android:id="@+id/sw"
+                            style="@style/MySwitch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="#00000000"
+                            android:checked="true"
+                            android:textOff="@null"
+                            android:textOn="@null" />
+                    </LinearLayout>
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/my_resume_head"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="基本资料"
+                        android:textColor="@color/color_3a3a3a_black"
+                        android:textSize="@dimen/font_size_16" />
+
+                    <LinearLayout
+                        android:id="@+id/myresume_editbaseinfo"
+                        android:layout_width="@dimen/space_40"
+                        android:layout_height="@dimen/space_40"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/new_editinfo" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_1"
+                    android:layout_marginLeft="@dimen/space_20"
+                    android:layout_marginRight="@dimen/space_20"
+                    android:background="@color/color_eeeeee_gray" />
+                <!-- myresume_baseinfo -->
+                <include layout="@layout/myresume_baseinfo" />
+
+                <include layout="@layout/include_line_gray_5" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="教育经历"
+                        android:textColor="@color/color_3a3a3a_black"
+                        android:textSize="@dimen/font_size_16" />
+
+                    <LinearLayout
+                        android:id="@+id/myresume_editeducation_exp"
+                        android:layout_width="@dimen/space_40"
+                        android:layout_height="@dimen/space_40"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/new_editinfo" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_1"
+                    android:layout_marginLeft="@dimen/space_20"
+                    android:layout_marginRight="@dimen/space_20"
+                    android:background="@color/color_eeeeee_gray" />
+                <!-- myresume_educationinfo -->
+                <include layout="@layout/myresume_educationinfo" />
+
+                <include layout="@layout/include_line_gray_5" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="工作经历"
+                        android:textColor="@color/color_3a3a3a_black"
+                        android:textSize="@dimen/font_size_16" />
+
+                    <LinearLayout
+                        android:id="@+id/myresume_editjob_exp"
+                        android:layout_width="@dimen/space_40"
+                        android:layout_height="@dimen/space_40"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/new_editinfo" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_1"
+                    android:layout_marginLeft="@dimen/space_20"
+                    android:layout_marginRight="@dimen/space_20"
+                    android:background="@color/color_eeeeee_gray" />
+                <!--myresume_jobinfo-->
+                <include layout="@layout/myresume_jobinfo" />
+
+                <include layout="@layout/include_line_gray_5" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="自我评价"
+                        android:textColor="@color/color_3a3a3a_black"
+                        android:textSize="@dimen/font_size_16" />
+
+                    <LinearLayout
+                        android:id="@+id/myresume_editselfassessment"
+                        android:layout_width="@dimen/space_40"
+                        android:layout_height="@dimen/space_40"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/new_editinfo" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_1"
+                    android:layout_marginLeft="@dimen/space_20"
+                    android:layout_marginRight="@dimen/space_20"
+                    android:background="@color/color_eeeeee_gray" />
+
+                <TextView
+                    android:id="@+id/myresume_evaluation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/space_10"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20"
+                    android:paddingTop="@dimen/space_10"
+                    android:text="积极向上，吃苦耐劳!"
+                    android:textColor="@color/color_878787_gray"
+                    android:textSize="@dimen/font_size_12" />
+
+                <include layout="@layout/include_line_gray_5" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="学生证"
+                        android:textColor="@color/color_3a3a3a_black"
+                        android:textSize="@dimen/font_size_16" />
+
+                    <LinearLayout
+                        android:id="@+id/myresume_upstudentcard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/space_40"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/myresume_idupstudentcard"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/space_20"
+                            android:text="已上传"
+                            android:textColor="@color/color_bababa_gray"
+                            android:textSize="@dimen/font_size_12"
+                            android:visibility="invisible" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/new_editinfo" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <include layout="@layout/include_line_gray_5" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/space_20"
+                    android:paddingRight="@dimen/space_20">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="健康证"
+                        android:textColor="@color/color_3a3a3a_black"
+                        android:textSize="@dimen/font_size_16" />
+
+                    <LinearLayout
+                        android:id="@+id/myresume_uphealthcard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/space_40"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/myresume_isuphealthcard"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/space_20"
+                            android:text="已上传"
+                            android:textColor="@color/color_bababa_gray"
+                            android:textSize="@dimen/font_size_12"
+                            android:visibility="gone" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/new_editinfo" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </com.mcxtzhang.swipemenulib.customview.MyScrollView>
+
+    <include layout="@layout/incluce_common_title" />
+</RelativeLayout>

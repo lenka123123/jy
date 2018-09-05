@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="@dimen/space_80"
+        android:layout_height="match_parent"
+        android:background="@color/color_f8f8f8_gray">
+
+        <RadioGroup
+            android:id="@+id/main_tab_radiogroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/helpeachotherfragment_help"
+                style="@style/MTabStyle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_60"
+                android:background="@drawable/radiobuttontextbgcolor"
+                android:checked="true"
+                android:text="互助"
+                android:textColor="@drawable/radiobuttontextcolor" />
+
+            <RadioButton
+                android:id="@+id/helpeachotherfragment_transfer"
+                style="@style/MTabStyle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_60"
+                android:background="@drawable/radiobuttontextbgcolor"
+                android:text="转让"
+                android:textColor="@drawable/radiobuttontextcolor" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/line1">
+        <!--加载条-->
+        <com.example.framwork.widget.ProgressActivity
+            android:id="@+id/progressActivity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:emptyBackgroundColor="@color/line_color"
+            app:errorButtonBackgroundColor="@drawable/dialog_ok_btn_enabled"
+            app:errorButtonTextColor="@color/font2">
+
+            <com.example.framwork.widget.superrecyclerview.recycleview.SuperRecyclerView
+                android:id="@+id/rv_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/line_color" />
+        </com.example.framwork.widget.ProgressActivity>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</LinearLayout>

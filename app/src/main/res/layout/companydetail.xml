@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout style="@style/layoutset_20_10_20_10_mw">
+
+        <ImageView
+            android:id="@+id/companydetail_logo"
+            android:layout_width="@dimen/space_50"
+            android:layout_height="@dimen/space_50" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="@dimen/space_10"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/companydetail_companyname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="德新贵艺术文化培训有限公司"
+                android:textColor="@color/color_3a3a3a_black"
+                android:textSize="@dimen/space_16" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/companydetail_companyslogan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="就业邦 帮就业"
+                    android:textSize="@dimen/font_size_12" />
+
+                <ImageView
+                    android:id="@+id/companydetail_isrealname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/space_10"
+                    android:background="@drawable/new_areadyrealname" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <include layout="@layout/include_line_gray" />
+
+    <TextView
+        android:id="@+id/companydetail_companyinfo"
+        style="@style/layoutset_20_10_20_10_mw" />
+
+    <include layout="@layout/include_line_gray" />
+
+    <LinearLayout
+        style="@style/layoutset_20_10_20_10_mw"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="公司地址：" />
+
+            <TextView
+                android:id="@+id/companydetail_companyadress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="南京市鼓楼区" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="联系电话：" />
+
+            <TextView
+                android:id="@+id/companydetail_companytel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="400-8888-8888" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <include layout="@layout/include_line_gray" />
+
+    <TextView
+        android:id="@+id/companydetail_companyotherinfo"
+        style="@style/layoutset_20_10_20_10_mw"
+        android:text="TA发布的其他信息（3）"
+        android:textColor="@color/color_3a3a3a_black"
+        android:textSize="@dimen/font_size_16" />
+
+    <include layout="@layout/include_line_gray" />
+</LinearLayout>

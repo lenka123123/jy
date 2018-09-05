@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y74"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y30" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y44"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/x70"
+            android:layout_height="@dimen/y44"
+            android:paddingLeft="@dimen/x40"
+            android:src="@drawable/jing" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y44"
+            android:layout_marginLeft="@dimen/x19"
+            android:text="热门话题"
+            android:textColor="#515151"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+
+</LinearLayout>

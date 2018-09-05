@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/incluce_common_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/myresume_editbaseinfo_name"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginRight="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_20"
+                android:background="@drawable/new_input_line"
+                android:ellipsize="end"
+                android:gravity="center|left"
+                android:hint="@string/myresume_editbaseinfo_name"
+                android:paddingLeft="@dimen/space_20"
+                android:singleLine="true"
+                android:textColor="@color/color_535353_black"
+                android:textColorHint="@color/color_afafaf_gray"
+                android:textSize="@dimen/font_size_14" />
+
+            <TextView
+                android:id="@+id/myresume_editbaseinfo_gender"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginRight="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_10"
+                android:background="@drawable/new_input_line"
+                android:gravity="center|left"
+                android:hint="@string/myresume_editbaseinfo_gender"
+                android:paddingLeft="@dimen/space_20"
+                android:singleLine="true"
+                android:textColor="@color/color_535353_black"
+                android:textColorHint="@color/color_afafaf_gray"
+                android:textSize="@dimen/font_size_14" />
+
+            <TextView
+                android:id="@+id/myresume_editbaseinfo_brithday"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginRight="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_10"
+                android:background="@drawable/new_input_line"
+                android:gravity="center|left"
+                android:hint="@string/myresume_editbaseinfo_brithday"
+                android:paddingLeft="@dimen/space_20"
+                android:singleLine="true"
+                android:textColor="@color/color_535353_black"
+                android:textColorHint="@color/color_afafaf_gray"
+                android:textSize="@dimen/font_size_14" />
+
+            <EditText
+                android:id="@+id/myresume_editbaseinfo_tel"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginRight="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_10"
+                android:background="@drawable/new_input_line"
+                android:ellipsize="end"
+                android:gravity="center|left"
+                android:hint="@string/myresume_editbaseinfo_tel"
+                android:inputType="number"
+                android:paddingLeft="@dimen/space_20"
+                android:singleLine="true"
+                android:textColor="@color/color_535353_black"
+                android:textColorHint="@color/color_afafaf_gray"
+                android:textSize="@dimen/font_size_14" />
+
+            <TextView
+                android:id="@+id/myresume_editbaseinfo_adress"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginRight="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_10"
+                android:background="@drawable/new_input_line"
+                android:ellipsize="end"
+                android:gravity="center|left"
+                android:hint="@string/myresume_editbaseinfo_adress"
+                android:paddingLeft="@dimen/space_20"
+                android:singleLine="true"
+                android:textColor="@color/color_535353_black"
+                android:textColorHint="@color/color_afafaf_gray"
+                android:textSize="@dimen/font_size_14" />
+
+            <EditText
+                android:id="@+id/myresume_editbaseinfo_adressdetail"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginRight="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_10"
+                android:background="@drawable/new_input_line"
+                android:ellipsize="end"
+                android:gravity="center|left"
+                android:hint="@string/myresume_editbaseinfo_adressdetail"
+                android:paddingLeft="@dimen/space_20"
+                android:singleLine="true"
+                android:textColor="@color/color_535353_black"
+                android:textColorHint="@color/color_afafaf_gray"
+                android:textSize="@dimen/font_size_14" />
+
+            <TextView
+                android:id="@+id/myresume_editbaseinfo_persenttype"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_40"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginRight="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_10"
+                android:background="@drawable/new_input_line"
+                android:ellipsize="end"
+                android:gravity="center|left"
+                android:hint="@string/myresume_editbaseinfo_persenttype"
+                android:paddingLeft="@dimen/space_20"
+                android:singleLine="true"
+                android:textColor="@color/color_535353_black"
+                android:textColorHint="@color/color_afafaf_gray"
+                android:textSize="@dimen/font_size_14" />
+
+            <TextView
+                android:id="@+id/myresume_editbaseinfo_confirm"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_50"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginRight="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_20"
+                android:background="@drawable/textview_round2"
+                android:gravity="center"
+                android:text="@string/confirm"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_18" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

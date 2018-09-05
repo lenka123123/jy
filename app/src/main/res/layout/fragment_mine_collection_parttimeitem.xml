@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_mine_collection_parttimeitem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/space_10"
+    android:paddingLeft="@dimen/space_20"
+    android:paddingRight="@dimen/space_20"
+    android:paddingTop="@dimen/space_10">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/fragment_mine_collection_parttimeitem_img"
+            android:layout_width="@dimen/space_80"
+            android:layout_height="@dimen/space_80" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space_5"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/fragment_mine_collection_parttimeitem_job"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="德兴贵文员"
+                android:textColor="@color/color_3a3a3a_black" />
+
+
+            <TextView
+                android:id="@+id/fragment_mine_collection_parttimeitem_adressanddate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_5"
+                android:text="南京市 鼓楼区 2018/04/05"
+                android:textSize="@dimen/font_size_12" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_5">
+
+                <TextView
+                    android:id="@+id/fragment_mine_collection_parttimeitem_daily"
+                    android:layout_width="@dimen/space_30"
+                    android:layout_height="@dimen/space_15"
+                    android:background="@drawable/new_daily" />
+
+                <TextView
+                    android:id="@+id/fragment_mine_collection_parttimeitem_realname"
+                    android:layout_width="@dimen/space_30"
+                    android:layout_height="@dimen/space_15"
+                    android:layout_marginLeft="@dimen/space_5"
+                    android:background="@drawable/new_truename" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fragment_mine_collection_parttimeitem_detel"
+        android:layout_width="@dimen/space_40"
+        android:layout_height="@dimen/space_40"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="@dimen/space_15"
+            android:layout_height="@dimen/space_20"
+            android:background="@drawable/new_detel_trash" />
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zhy="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_70"
+        android:background="@drawable/new_realname_title_bg"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_20" />
+
+        <TextView
+            android:id="@+id/fragment_find_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/space_10"
+            android:layout_marginLeft="@dimen/space_40"
+            android:layout_marginRight="@dimen/space_40"
+            android:layout_marginTop="@dimen/space_10"
+            android:background="@drawable/new_search_bg"
+            android:drawableLeft="@drawable/new_search"
+            android:drawablePadding="@dimen/space_20"
+            android:gravity="center|left"
+            android:hint="搜索关键字"
+            android:paddingLeft="@dimen/space_10" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|left"
+            android:paddingBottom="@dimen/space_10"
+            android:paddingLeft="@dimen/space_20"
+            android:paddingTop="@dimen/space_15">
+
+            <ImageView
+                android:layout_width="@dimen/space_20"
+                android:layout_height="@dimen/space_20"
+                android:src="@drawable/new_hotchat_img" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="@dimen/space_10"
+                android:text="热门话题"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_16" />
+        </LinearLayout>
+
+        <com.zhy.view.flowlayout.TagFlowLayout
+            android:id="@+id/fragment_find_hottalk"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/space_10"
+            android:paddingLeft="@dimen/space_20"
+            android:paddingRight="@dimen/space_20"
+            android:paddingTop="@dimen/space_10"
+            zhy:max_select="5"></com.zhy.view.flowlayout.TagFlowLayout>
+
+        <com.mcxtzhang.swipemenulib.customview.HorizontalListView
+            android:id="@+id/fragment_find_moment"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginBottom="@dimen/space_10"
+            android:layout_marginTop="@dimen/space_10"
+            android:paddingLeft="@dimen/space_20"
+            android:paddingRight="@dimen/space_20">
+            <!-- fragment_home_middle_item -->
+        </com.mcxtzhang.swipemenulib.customview.HorizontalListView>
+    </LinearLayout>
+
+    <include
+        layout="@layout/include_line_gray"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_20" />
+
+    <LinearLayout
+        android:id="@+id/fragment_find_shareeveryday"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_40"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/space_5"
+        android:paddingLeft="@dimen/space_20"
+        android:paddingTop="@dimen/space_5">
+
+        <ImageView
+            android:layout_width="@dimen/space_15"
+            android:layout_height="@dimen/space_15"
+            android:src="@drawable/new_find_share_img" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/space_10"
+            android:text="每日分享"
+            android:textColor="#333333" />
+    </LinearLayout>
+
+    <include layout="@layout/include_line_gray" />
+
+    <LinearLayout
+        android:id="@+id/fragment_find_jobbangclass"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_40"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/space_5"
+        android:paddingLeft="@dimen/space_20"
+        android:paddingTop="@dimen/space_5">
+
+        <ImageView
+            android:layout_width="@dimen/space_15"
+            android:layout_height="@dimen/space_15"
+            android:src="@drawable/find_jobhelp_class" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/space_10"
+            android:text="就业邦学堂"
+            android:textColor="#333333" />
+    </LinearLayout>
+
+    <include layout="@layout/include_line_gray" />
+
+    <LinearLayout
+        android:id="@+id/fragment_find_compushelpeachother"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_40"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/space_5"
+        android:paddingLeft="@dimen/space_20"
+        android:paddingTop="@dimen/space_5">
+
+        <ImageView
+            android:layout_width="@dimen/space_15"
+            android:layout_height="@dimen/space_15"
+            android:src="@drawable/new_find_helpeachpther_bg" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/space_10"
+            android:text="校园互助"
+            android:textColor="#333333" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_40"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/space_5"
+        android:paddingLeft="@dimen/space_20"
+        android:paddingTop="@dimen/space_5"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="@dimen/space_15"
+            android:layout_height="@dimen/space_15"
+            android:src="@drawable/new_find_nearly_bg" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/space_10"
+            android:text="附近的人"
+            android:textColor="#333333" />
+    </LinearLayout>
+
+    <include layout="@layout/include_line_gray" />
+</LinearLayout>

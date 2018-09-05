@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/nanjing"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y88"
+        android:layout_marginRight="@dimen/x40"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/y22">
+
+        <ImageView
+            android:id="@+id/drawable"
+            android:layout_width="@dimen/x120"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:layout_marginBottom="@dimen/y20"
+            android:paddingLeft="@dimen/x40"
+            android:paddingRight="@dimen/x30"
+            android:src="@drawable/drawable" />
+
+        <LinearLayout
+            android:id="@+id/fragment_home_adress"
+            android:layout_width="@dimen/x200"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/x220"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_home_adressName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="南京"
+                android:textColor="@color/black" />
+
+            <ImageView
+                android:id="@+id/fragment_home_arrow"
+                android:layout_width="@dimen/x16"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/y20"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="@dimen/space_10"
+                android:src="@drawable/arrow_down_black" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y35">
+
+            <ImageView
+                android:id="@+id/home_search"
+                android:layout_width="@dimen/x40"
+                android:layout_height="@dimen/y35"
+                android:layout_alignParentRight="true"
+
+                android:src="@drawable/black_search" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <GridView
+        android:id="@+id/MyGridView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/x80"
+        android:layout_marginRight="@dimen/x80"
+        android:layout_marginTop="@dimen/y10"
+        android:background="@color/white"
+        android:numColumns="6"
+        android:stretchMode="columnWidth"
+        android:visibility="gone" />
+
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/line1">
+        <!--加载条-->
+        <com.example.framwork.widget.ProgressActivity
+            android:id="@+id/progressActivity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:emptyBackgroundColor="@color/line_color"
+            app:errorButtonBackgroundColor="@drawable/dialog_ok_btn_enabled"
+            app:errorButtonTextColor="@color/font2">
+
+            <com.example.framwork.widget.superrecyclerview.recycleview.SuperRecyclerView
+                android:id="@+id/rv_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/line_color" />
+            <!--fragment_home_down_item-->
+        </com.example.framwork.widget.ProgressActivity>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</LinearLayout>

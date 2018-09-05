@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ListView
+        android:id="@+id/poplistview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/space_51">
+    </ListView>
+    <include layout="@layout/include_line_gray"/>
+    <Button
+        android:id="@+id/poplistview_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_50"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:text="取消"/>
+
+</RelativeLayout>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.mcxtzhang.swipemenulib.SwipeMenuLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:layout_marginLeft="@dimen/space_20"
+    android:layout_marginRight="@dimen/space_20"
+    android:background="@drawable/round3"
+    app:ios="false"
+    app:leftSwipe="true"
+    app:swipeEnable="true">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round"
+            android:orientation="vertical"
+            android:padding="@dimen/space_20">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="兼职："
+                            android:textColor="@color/color_535353_black" />
+
+                        <TextView
+                            android:id="@+id/jobinfo_item_job"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="家教"
+                            android:textColor="@color/color_535353_black" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="@dimen/space_5">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="职位："
+                            android:textColor="@color/color_535353_black" />
+
+                        <TextView
+                            android:id="@+id/jobinfo_item_jobinfo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="数学老师"
+                            android:textColor="@color/color_535353_black" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/jobinfo_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="2014/12-2018/3"
+                    android:textColor="@color/color_878787_gray" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_10"
+                android:text="描述"
+                android:textColor="@color/color_535353_black" />
+
+            <TextView
+                android:id="@+id/jobinfo_item_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_5"
+                android:text="利用暑假时间，通过就业邦找了个家教兼职，负责辅导两个孩子的数学"
+                android:textSize="@dimen/font_size_12" />
+        </LinearLayout>
+
+
+        <!-- 以下都是侧滑菜单的内容依序排列 -->
+        <LinearLayout
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <Button
+                android:id="@+id/jobinfo_item_detel"
+                android:layout_width="60dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="删除"
+                android:background="@null"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+</com.mcxtzhang.swipemenulib.SwipeMenuLayout>

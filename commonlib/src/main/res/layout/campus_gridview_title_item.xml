@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y60"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/y28">
+
+    <ImageView
+        android:id="@+id/gridview_img"
+        android:layout_width="@dimen/x51"
+        android:layout_height="@dimen/y51"
+        android:layout_marginLeft="@dimen/x40" />
+
+    <TextView
+        android:id="@+id/gridview_tv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/x20"
+        android:textColor="#515151"
+        android:textSize="14sp" />
+
+</LinearLayout>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/incluce_common_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_51"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/message_fatherlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_20"
+                android:text="留言区"
+                android:textColor="@color/black_20252E"
+                android:textSize="@dimen/font_size_16" />
+
+            <RelativeLayout style="@style/layoutset_20_10_20_10_mw">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/message_fatherimg"
+                        android:layout_width="@dimen/space_60"
+                        android:layout_height="@dimen/space_60" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/space_10"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/message_fathername"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLength="7"
+                            android:text="夏丽丽"
+                            android:textColor="@color/black_20252E" />
+
+                        <TextView
+                            android:id="@+id/message_fathercontent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/space_5"
+                            android:text="怎么跟你联系"
+                            android:textSize="@dimen/font_size_12" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/message_fathertime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="1分钟前"
+                    android:textSize="@dimen/font_size_12" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/space_65"
+            android:layout_below="@+id/line1">
+            <!--加载条-->
+            <com.example.framwork.widget.ProgressActivity
+                android:id="@+id/progressActivity"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:emptyBackgroundColor="@color/line_color"
+                app:errorButtonBackgroundColor="@drawable/dialog_ok_btn_enabled"
+                app:errorButtonTextColor="@color/font2">
+
+                <com.example.framwork.widget.superrecyclerview.recycleview.SuperRecyclerView
+                    android:id="@+id/rv_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/line_color" />
+            </com.example.framwork.widget.ProgressActivity>
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:padding="@dimen/space_20">
+
+        <EditText
+            android:id="@+id/message_writemessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_round_nobg"
+            android:drawableRight="@drawable/edittext_drawable"
+            android:hint="写留言..."
+            android:imeOptions="actionSend"
+            android:singleLine="true"
+            android:textSize="@dimen/font_size_12" />
+
+    </RelativeLayout>
+</RelativeLayout>

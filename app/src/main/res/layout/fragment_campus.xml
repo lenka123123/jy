@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_50"
+                android:background="@drawable/new_realname_title_bg"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/fragment_campus_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/space_10"
+                    android:layout_marginLeft="@dimen/space_40"
+                    android:layout_marginRight="@dimen/space_40"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:background="@drawable/new_search_bg"
+                    android:drawableLeft="@drawable/new_search"
+                    android:drawablePadding="@dimen/space_20"
+                    android:gravity="center|left"
+                    android:hint="搜索关键字"
+                    android:paddingLeft="@dimen/space_10" />
+            </LinearLayout>
+
+            <include
+                layout="@layout/include_line_gray"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_5" />
+
+            <include layout="@layout/campus_recruitment" />
+
+            <include
+                layout="@layout/include_line_gray"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_20" />
+
+            <include layout="@layout/campus_funthing" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

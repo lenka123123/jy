@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/incluce_common_title" />
+
+    <include layout="@layout/include_line_gray" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_50"
+        android:gravity="center"
+        android:text="@string/ungetauthcode_title"
+        android:textSize="@dimen/font_size_18"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_10"
+        android:paddingLeft="@dimen/space_20"
+        android:text="@string/ungetauthcode_title_2"
+        android:textSize="@dimen/font_size_12"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_10"
+        android:paddingLeft="@dimen/space_20"
+        android:text="@string/ungetauthcode_content_1"
+        android:textSize="@dimen/font_size_12" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_10"
+        android:paddingLeft="@dimen/space_20"
+        android:text="@string/ungetauthcode_content_2"
+        android:textSize="@dimen/font_size_12" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_10"
+        android:paddingLeft="@dimen/space_20"
+        android:text="@string/ungetauthcode_content_3"
+        android:textSize="@dimen/font_size_12" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_10"
+        android:paddingLeft="@dimen/space_20"
+        android:text="@string/ungetauthcode_content_4"
+        android:textSize="@dimen/font_size_12" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_20"
+        android:paddingLeft="@dimen/space_20"
+        android:text="@string/ungetauthcode_unfixproblem"
+        android:textSize="@dimen/font_size_12" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_5"
+        android:paddingLeft="@dimen/space_20"
+        android:text="@string/ungetauthcode_contact_me"
+        android:textSize="@dimen/font_size_12" />
+</LinearLayout>

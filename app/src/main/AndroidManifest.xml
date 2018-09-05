@@ -1,0 +1,786 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="sinia.com.baihangeducation">
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/logo"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/MyAppTheme"
+        tools:replace="android:icon, android:theme">
+        <activity
+            android:name=".SplashActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyAppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".reconsitution.tabs.pay.PayActivity" />
+
+        <!--<activity android:name="com.donkingliang.imageselector.ImageSelectorActivity"-->
+        <!--android:screenOrientation="portrait"/>-->
+        <!--<activity android:name="com.donkingliang.imageselector.PreviewActivity"-->
+        <!--android:theme="@style/Theme.AppCompat.Light.NoActionBar"-->
+        <!--android:screenOrientation="portrait"-->
+        <!--android:configChanges="orientation|keyboardHidden|screenSize"/>-->
+
+        <!--//图片剪切Activity-->
+        <!--<activity-->
+        <!--android:name="com.donkingliang.imageselector.ClipImageActivity"-->
+        <!--android:screenOrientation="portrait"-->
+        <!--android:theme="@style/Theme.AppCompat.Light.NoActionBar" />-->
+        <!--//图片选择Activity-->
+        <activity
+            android:name="com.donkingliang.imageselector.ImageSelectorActivity"
+            android:screenOrientation="portrait" />
+
+        <!--//图片预览Activity-->
+        <activity
+            android:name="com.donkingliang.imageselector.PreviewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <!--//图片剪切Activity-->
+        <activity
+            android:name="com.donkingliang.imageselector.ClipImageActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+
+        <activity
+            android:name=".supplement.base.GuidePageActivity"
+            android:screenOrientation="portrait" />
+        <!-- 兼职上班时间选择 -->
+        <activity
+            android:name=".release.activity.DataSelectActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 个人中心 基本信息 -->
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <!-- w -->
+        <activity
+            android:name=".supplement.web.ShareWebViewActivity"
+            android:screenOrientation="portrait" />
+        <!-- 下线通知 -->
+        <activity
+            android:name=".supplement.receiver.JPushDialogActivity"
+            android:screenOrientation="portrait" />
+        <!-- webview -->
+        <activity
+            android:name="com.example.framwork.WebViewActivity"
+            android:hardwareAccelerated="true"
+            android:screenOrientation="portrait" />
+        <!-- 个人中心 基本信息 -->
+        <activity
+            android:name=".mine.activity.UCentreBaseInfoActivity"
+            android:screenOrientation="portrait" />
+
+
+        <!-- 趣事主页 -->
+        <activity
+            android:name=".newcampus.activity.HomePageActivity"
+            android:screenOrientation="portrait" />
+        <!-- 个人中心 任务 -->
+        <activity
+            android:name=".mine.activity.TaskActivity"
+            android:screenOrientation="portrait" />
+        <!-- 个人中心 任务 可领取的任务 -->
+        <activity
+            android:name=".mine.activity.NewTaskActivity"
+            android:screenOrientation="portrait" />
+        <!-- 个人中心 任务 已领取的任务 -->
+        <activity
+            android:name=".mine.activity.AlreadyGetTaskActivity"
+            android:screenOrientation="portrait" />
+        <!-- 个人中心 我的优惠券 -->
+        <activity
+            android:name=".mine.activity.MyCouponsActivity"
+            android:screenOrientation="portrait" />
+        <!-- 新的发布趣事 -->
+        <activity
+            android:name=".release.campus.ReleaseFunActivity"
+            android:screenOrientation="portrait" />
+        <!-- 查看大图 -->
+        <activity
+            android:name=".mine.activity.PlusImageActivity"
+            android:screenOrientation="portrait" />
+        <!-- 个人中心 消息 -->
+        <activity
+            android:name=".mine.activity.FragmentMessageActivity"
+            android:screenOrientation="portrait" />
+        <!-- 个人中心 消息详情 -->
+        <activity
+            android:name=".mine.activity.FragmentMessageDetailActivity"
+            android:screenOrientation="portrait" />
+        <!-- 个人中心 设置 -->
+        <activity
+            android:name=".mine.activity.MySettingActivity"
+            android:screenOrientation="portrait" />
+        <!-- 设置  新手指南 -->
+        <activity
+            android:name=".mine.activity.NewUserGuideActivity"
+            android:screenOrientation="portrait" />
+        <!-- 个人中心 我的收藏 -->
+        <activity
+            android:name=".mine.activity.MyCollectionActivity"
+            android:screenOrientation="portrait" />
+        <!-- 个人中心 求职意向 -->
+        <activity
+            android:name=".mine.activity.WantJobActivity"
+            android:screenOrientation="portrait" />
+        <!-- 个人中心 设置 联系我们-->
+        <activity
+            android:name=".mine.activity.LinkUsActivity"
+            android:screenOrientation="portrait" />
+        <!-- 个人中心 我的发布-->
+        <activity
+            android:name=".mine.activity.MyReleaseActivity"
+            android:screenOrientation="portrait" />
+        <!-- 个人中心 我的投递-->
+        <activity
+            android:name=".mine.activity.MySendActivity"
+            android:screenOrientation="portrait" />
+        <!-- 个人中心 我的成长 签到-->
+        <activity
+            android:name=".mine.activity.SingleActivity"
+            android:screenOrientation="portrait" />
+        <!-- 个人中心 我的成长 做兼职-->
+        <activity
+            android:name=".mine.activity.PartTimeActivity"
+            android:screenOrientation="portrait" />
+        <!-- 个人中心 我的成长 参加培训-->
+        <activity
+            android:name=".mine.activity.TraingActivity"
+            android:screenOrientation="portrait" />
+        <!-- 个人中心 我的成长 邀请好友-->
+        <activity
+            android:name=".mine.activity.InvitationActivity"
+            android:screenOrientation="portrait" />
+        <!-- 个人中心 我的成长 校园互助-->
+        <activity
+            android:name=".mine.activity.HelpEachOtherActivity"
+            android:screenOrientation="portrait" />
+        <!-- 个人中心 我的成长-->
+        <activity
+            android:name=".mine.activity.MyGrowthActivity"
+            android:screenOrientation="portrait" />
+        <!-- 关于就业邦 -->
+        <activity
+            android:name=".mine.activity.AboutJobBangActivity"
+            android:screenOrientation="portrait" />
+        <!-- 个人中心 我的发布 发布选择-->
+        <activity
+            android:name=".mine.activity.MyRelease_ReleaseActivity"
+            android:screenOrientation="portrait" />
+        <!-- 个人中心 我的发布 申请列表-->
+        <activity
+            android:name=".mine.activity.MyApplyListActivity"
+            android:screenOrientation="portrait" />
+        <!-- 个人中心 我的发布 发布选择 发布趣事-->
+        <activity
+            android:name=".mine.activity.ReleaseInterestingActiviyy"
+            android:screenOrientation="portrait" />
+        <!-- 个人中心 我的发布 发布选择 发布趣事-->
+        <!-- 查看大图-->
+        <!-- 我的简历 编辑基本资料 -->
+        <activity
+            android:name=".mine.activity.MyResumeEditBaseInfoActivity"
+            android:screenOrientation="portrait" />
+        <!-- 我的简历 编辑教育经历 -->
+        <activity
+            android:name=".mine.activity.MyResumeEditEducationExpActivity"
+            android:screenOrientation="portrait" />
+        <!-- 我的简历 编辑教育经历 选择专业第一个页面 -->
+        <activity
+            android:name=".mine.activity.MyResumeEditEducationExpChoiceMajor_1Acitvity"
+            android:screenOrientation="portrait" />
+        <!-- 我的简历 编辑教育经历 选择专业第二个页面 -->
+        <activity
+            android:name=".mine.activity.MyResumeEditEducationExpChoiceMajor_2Acitvity"
+            android:screenOrientation="portrait" />
+        <!-- 我的简历 编辑教育经历选择学校或专业页面 -->
+        <activity
+            android:name=".mine.activity.MyResumeEditEducationExpChoiceSchoolAcitvity"
+            android:screenOrientation="portrait" />
+        <!--趣事详情页面-->
+        <activity
+            android:name=".find.campus.activity.CampusInterestingDetailActivity"
+            android:screenOrientation="portrait" />
+        <!-- 编辑简历 -->
+        <activity
+            android:name=".mine.activity.MyResumeActivity"
+            android:screenOrientation="portrait" />
+        <!-- 编辑简历 上传学生证 -->
+        <activity
+            android:name=".mine.activity.MyResumeStudentCardActivity"
+            android:screenOrientation="portrait" />
+        <!-- 编辑简历 上传健康证 -->
+        <activity
+            android:name=".mine.activity.MyResumeHealthCardActivity"
+            android:screenOrientation="portrait" />
+        <!-- 编辑简历 工作简历 -->
+        <activity
+            android:name=".mine.activity.MyResumeJobInfoActivity"
+            android:screenOrientation="portrait" />
+        <!-- 添加互助 -->
+        <activity
+            android:name=".mine.activity.ReleaseHelpEachOtherActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 添加工作经历 -->
+        <activity
+            android:name=".mine.activity.AddJobExperienceActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- 实名认证成功 -->
+        <activity
+            android:name=".mine.activity.RealNameSuccessActivity"
+            android:screenOrientation="portrait" />
+        <!--用户协议-->
+        <activity
+            android:name=".mine.activity.UserRuleActivity"
+            android:screenOrientation="portrait" />
+        <!--发现  搜索结果-->
+        <activity
+            android:name=".find.activity.SearchReasultActivity"
+            android:screenOrientation="portrait" />
+        <!--发现  搜索-->
+        <activity
+            android:name=".find.activity.SearchActivity"
+            android:screenOrientation="portrait" />
+        <!--发现  每日分享tab-->
+        <activity
+            android:name=".find.activity.ShareEveryDayActivity"
+            android:screenOrientation="portrait" />
+        <!--发现  每日分享详情-->
+        <activity
+            android:name=".find.activity.ShareEveryDayDetailActivity"
+            android:screenOrientation="portrait" />
+        <!--发现  就业邦学堂-->
+        <activity
+            android:name=".find.activity.JobBangClassActivity"
+            android:screenOrientation="portrait" />
+        <!--发现  就业邦学堂 攻略干货-->
+        <activity
+            android:name=".find.activity.JobBangClassStrategyActivity"
+            android:screenOrientation="portrait" />
+        <!--发现  就业邦学堂 职场秘籍-->
+        <activity
+            android:name=".find.activity.JobBangClassSecretActivity"
+            android:screenOrientation="portrait" />
+        <!--发现  就业邦学堂 考研试卷-->
+        <activity
+            android:name=".find.activity.JobBangClassTestActivity"
+            android:screenOrientation="portrait"></activity>
+        <!--发现  就业邦学堂详情-->
+        <activity
+            android:name=".find.activity.JobBangDetailActivity"
+            android:screenOrientation="portrait" />
+        <!--校园趣事页面-->
+        <activity
+            android:name=".release.activity.SchoolFunActivity"
+            android:screenOrientation="portrait" />
+        <!--筛选需求-->
+        <activity
+            android:name=".release.activity.SiftUrNeedActivity"
+            android:screenOrientation="portrait" />
+        <!--企业发布职位-->
+        <activity
+            android:name=".release.activity.ReleaseJobInfoActivity"
+            android:screenOrientation="portrait" />
+        <!--所属行业标签页面-->
+        <activity
+            android:name=".release.activity.BelongIndutryActivity"
+            android:screenOrientation="portrait" />
+        <!--职位标签页面-->
+        <activity
+            android:name=".release.activity.TagActivity"
+            android:screenOrientation="portrait" />
+        <!--发布培训页面-->
+        <activity
+            android:name=".release.activity.ReleaseTrainingAcgtivity"
+            android:screenOrientation="portrait" />
+        <!-- 实名认证 -->
+        <activity
+            android:name=".mine.activity.RealNameActivity"
+            android:screenOrientation="portrait" />
+        <!-- 首页或发现的校园互助 -->
+        <activity
+            android:name=".home.activity.HomeAndFindHelpEachOtherActivity"
+            android:screenOrientation="portrait" />
+        <!--我要报名页面-->
+        <activity
+            android:name=".home.activity.TraingJoinInActivity"
+            android:screenOrientation="portrait" />
+        <!-- 首页 推荐 -->
+        <activity
+            android:name=".home.activity.ReCommendedActivity"
+            android:screenOrientation="portrait" />
+        <!-- 首页 培训 -->
+        <activity
+            android:name=".home.activity.HomeTraingActivity"
+            android:screenOrientation="portrait" />
+        <!-- 首页 兼职 -->
+        <activity
+            android:name=".home.activity.HomePartTimeActivity"
+            android:screenOrientation="portrait" />
+        <!-- 首页 猎头 -->
+        <activity
+            android:name=".home.activity.HomeHunterActivity"
+            android:screenOrientation="portrait" />
+        <!-- 首页 完善资料页面 -->
+        <activity
+            android:name=".home.activity.CompleteInfoActivity"
+            android:screenOrientation="portrait" />
+        <!-- 首页 完善资料学校页面 -->
+        <activity
+            android:name=".home.activity.CompleteSchoolActivity"
+            android:screenOrientation="portrait" />
+        <!-- 首页 完善资料专业一页面 -->
+        <activity
+            android:name=".home.activity.CompleteMajorStageActivity"
+            android:screenOrientation="portrait" />
+        <!-- 首页 完善资料专业二页面 -->
+        <activity
+            android:name=".home.activity.CompleteMajorStageThreeActivity"
+            android:screenOrientation="portrait" />
+        <!-- 首页 企业入住 -->
+        <activity
+            android:name=".home.activity.CompanyJoinInActivity"
+            android:screenOrientation="portrait" />
+        <!-- 兼职详情 -->
+        <activity
+            android:name=".home.activity.PartTimeJobDetailActivity"
+            android:screenOrientation="portrait" />
+        <!-- 培训详情 -->
+        <activity
+            android:name=".home.activity.TraingDetailActivity"
+            android:screenOrientation="portrait" />
+        <!-- 全职详情 -->
+        <activity
+            android:name=".home.activity.AllJobDetailActivity"
+            android:screenOrientation="portrait" />
+        <!-- 公司详情 -->
+        <activity
+            android:name=".home.activity.CompanyDetailActivity"
+            android:screenOrientation="portrait" />
+        <!-- 互助详情 -->
+        <activity
+            android:name=".home.activity.HomeAndFindHelpEachOtherDetailActivity"
+            android:screenOrientation="portrait" />
+        <!-- 留言 -->
+        <activity
+            android:name=".home.activity.MessageActivity"
+            android:screenOrientation="portrait" />
+        <!--&lt;!&ndash; 登录 &ndash;&gt;-->
+        <!--<activity android:name=".mine.activity.LoginActivity" />-->
+        <!-- User defined.  For test only  用户自定义的广播接收器-->
+        <!--登录-->
+        <activity
+            android:name=".mine.activity.LoginActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/TranslucentTheme">
+            <intent-filter>
+                <action android:name="sinia.com.baihangeducation.login.action" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <!--自我评价-->
+        <activity
+            android:name=".mine.activity.MyReumeSelfAssessmentActivity"
+            android:screenOrientation="portrait" />
+        <!--注册-->
+        <activity
+            android:name=".mine.activity.RegisterActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TranslucentTheme" />
+        <!--忘记密码-->
+        <activity
+            android:name=".mine.activity.ForgetPasswordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TranslucentTheme" />
+        <!--忘记密码 第二页-->
+        <activity
+            android:name=".mine.activity.ForgetPassword2Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TranslucentTheme" />
+        <!--修改密码-->
+        <activity
+            android:name=".mine.activity.UpdataPwdActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/TranslucentTheme" />
+        <!--忘记密码 无法获取验证码-->
+        <activity
+            android:name=".mine.activity.UnGetAuthCodeActivity"
+            android:screenOrientation="portrait" />
+        <!--绑定手机-->
+        <activity
+            android:name=".mine.activity.BindingPhoneActivity"
+            android:screenOrientation="portrait" />
+        <!--企业版个人中心  发布的兼职-->
+        <activity
+            android:name=".minecompany.avtivity.CompanyUCenterReleasePartTimeActivity"
+            android:screenOrientation="portrait" />
+        <!--企业版个人中心  发布的全职-->
+        <activity
+            android:name=".minecompany.avtivity.CompanyUCenterReleaseAllTimeActivity"
+            android:screenOrientation="portrait" />
+        <!--企业版个人中心  发布的培训-->
+        <activity
+            android:name=".minecompany.avtivity.CompanyUCenterReleaseTrainingActivity"
+            android:screenOrientation="portrait" />
+        <!--企业版个人中心  编辑职位-->
+        <activity
+            android:name=".minecompany.avtivity.CompanyEditJobActivity"
+            android:screenOrientation="portrait" />
+        <!--企业版个人中心  编辑职位-->
+        <activity
+            android:name=".minecompany.avtivity.CompanyUCenterEditTrainingActivity"
+            android:screenOrientation="portrait" />
+        <!--企业版个人中心  编辑企业信息-->
+        <activity
+            android:name=".minecompany.avtivity.CompanyUCenterInfoActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".release.campus.tabs.heatfunlist.view.SearchFunListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".release.campus.tabs.heatfunsearchlist.view.SearchFunSearchListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".newcampus.tabs.addfriend.view.AddFriendListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".newcampus.tabs.searchfriend.view.SearchFriendListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".release.activity.FullTimeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".release.campus.tabs.heatfundetal.HotCommentPageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".newcampus.tabs.addfriend.view.GetFriendListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".newcampus.tabs.fans.view.FansListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".newcampus.tabs.fans.view.FollowListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.activity.MoreDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".reconsitution.tabs.coffers.MyCoffers"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".reconsitution.tabs.coffers.coffersdetail.MyCoffersDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".reconsitution.tabs.coffers.coffersapply.MyCoffersApplyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".reconsitution.tabs.selectcity.SelectCityActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".reconsitution.tabs.pay.tab.PaiedListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".newcampus.activity.CommentPageActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".find.activity.JobBangPayDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <!--微信-->
+
+        <!--<activity android:name="com.zzti.fengyongge.imagepicker.PhotoSelectorActivity" />-->
+        <!--<activity android:name="com.zzti.fengyongge.imagepicker.PhotoPreviewActivity" />-->
+
+        <!--&lt;!&ndash;新浪微博&ndash;&gt;-->
+        <!--<activity-->
+        <!--android:name=".WBShareActivity"-->
+        <!--android:configChanges="keyboardHidden|orientation"-->
+        <!--android:screenOrientation="portrait">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY"/>-->
+        <!--<category android:name="android.intent.category.DEFAULT"/>-->
+        <!--</intent-filter>-->
+        <!--</activity>-->
+        <!--qq精简版-->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!--这里的scheme是qq分享要用的，100424468为自己申请的appid，真实项目中需要替换-->
+                <data android:scheme="tencent1105546121" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!--分享编辑页-->
+        <activity
+            android:name="com.umeng.socialize.editorpage.ShareActivity"
+            android:excludeFromRecents="true"
+            android:theme="@style/Theme.UMDefault" />
+
+        <!--  友盟设置key -->
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="b59cce2fdaa28aa9344e35bfa3a8de9d" />
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="c2a44d16d2958c1f574c9d28132cb7a2" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="JobBang" />
+
+
+        <!-- 您从百度网站获取的APP KEY，根据实际您的APP申请的APP_KEY进行修改 -->
+        <meta-data
+            android:name="BaiduMobAd_STAT_ID"
+            android:value="0Goi4cTdCVFD4YztIsF6cEiWIOTe4sNF" />
+
+        <!-- 渠道商编号 -->
+        <meta-data
+            android:name="BaiduMobAd_CHANNEL"
+            android:value="Baidu Market" />
+
+        <!-- 是否开启错误日志统计，默认为false -->
+        <meta-data
+            android:name="BaiduMobAd_EXCEPTION_LOG"
+            android:value="true" />
+
+        <!-- 日志仅在wifi网络下发送，默认为false -->
+        <meta-data
+            android:name="BaiduMobAd_ONLY_WIFI"
+            android:value="false" />
+
+        <!-- 是否获取基站位置信息 ,默认为true -->
+        <meta-data
+            android:name="BaiduMobAd_CELL_LOCATION"
+            android:value="true" />
+
+        <!-- 是否获取GPS位置信息，默认为true -->
+        <meta-data
+            android:name="BaiduMobAd_GPS_LOCATION"
+            android:value="true" />
+
+        <!-- 是否获取WIFI位置信息，默认为true -->
+        <meta-data
+            android:name="BaiduMobAd_WIFI_LOCATION"
+            android:value="true" />
+
+
+        <!-- 定位需要的服务 -->
+        <service android:name="com.amap.api.location.APSService"></service>
+
+
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+
+        <activity
+            android:name="com.alipay.sdk.app.H5AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+
+        <activity
+            android:name="sinia.com.baihangeducation.wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"></activity>
+
+        <!--极光-->
+        <!-- Required SDK核心功能-->
+        <activity
+            android:name="cn.jpush.android.ui.PushActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:theme="@android:style/Theme.NoTitleBar">
+            <intent-filter>
+                <action android:name="cn.jpush.android.ui.PushActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="sinia.com.baihangeducation" />
+            </intent-filter>
+        </activity>
+
+        <!-- Required SDK 核心功能-->
+        <!-- 可配置android:process参数将PushService放在其他进程中 -->
+        <service
+            android:name="cn.jpush.android.service.PushService"
+            android:exported="false"
+            android:process=":mult">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTER" />
+                <action android:name="cn.jpush.android.intent.REPORT" />
+                <action android:name="cn.jpush.android.intent.PushService" />
+                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
+            </intent-filter>
+        </service>
+
+        <!-- Required SDK核心功能-->
+        <receiver
+            android:name="cn.jpush.android.service.PushReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter android:priority="1000">
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />   <!--Required  显示通知栏 -->
+                <category android:name="sinia.com.baihangeducation" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <!-- Optional -->
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Rich push 核心功能 since 2.0.6-->
+        <activity
+            android:name="cn.jpush.android.ui.PopWinActivity"
+            android:exported="false"
+            android:theme="@style/MyDialogStyle" />
+        <!--<activity android:name=".home.activity.CompleteMajorStageActivity" />-->
+
+        <!-- Required SDK核心功能-->
+        <receiver
+            android:name="cn.jpush.android.service.AlarmReceiver"
+            android:exported="false" />
+
+        <!-- Required  . Enable it you can get statistics data with channel -->
+        <meta-data
+            android:name="JPUSH_CHANNEL"
+            android:value="developer-default" />
+        <meta-data
+            android:name="JPUSH_APPKEY"
+            android:value="11dd2beba30978b536b11606" /> <!--  </>值来自开发者平台取得的AppKey-->
+
+        <receiver
+            android:name=".supplement.receiver.JPushReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" /> <!--Required  用户注册SDK的intent-->
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" /> <!--Required  用户接收SDK消息的intent-->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" /> <!--Required  用户接收SDK通知栏信息的intent-->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> <!--Required  用户打开自定义通知栏的intent-->
+                <action android:name="cn.jpush.android.intent.CONNECTION" /><!-- 接收网络变化 连接/断开 since 1.6.3 -->
+                <category android:name="sinia.com.baihangeducation" />
+            </intent-filter>
+
+        </receiver>
+        <!-- since 3.0.9 Required SDK 核心功能-->
+        <provider
+            android:name="cn.jpush.android.service.DataProvider"
+            android:authorities="sinia.com.baihangeducation.DataProvider"
+            android:exported="false" />
+        <!-- since 1.8.0 option 可选项。用于同一设备中不同应用的JPush服务相互拉起的功能。 -->
+        <!-- 若不启用该功能可删除该组件，将不拉起其他应用也不能被其他应用拉起 -->
+        <service
+            android:name="cn.jpush.android.service.DaemonService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.DaemonService" />
+                <category android:name="sinia.com.baihangeducation" />
+            </intent-filter>
+
+        </service>
+
+
+    </application>
+
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 用于提高GPS定位速度 -->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+
+    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission
+        android:name="android.permission.CHANGE_CONFIGURATION"
+        tools:ignore="ProtectedPermissions" />
+
+    <!-- 不是SDK需要的权限，是示例中的后台唤醒定位需要的权限 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- 需要运行时注册的权限 -->
+    <!-- 更改设置 -->
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+
+    <!-- 3.2.0版本增加 -->
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <!-- 3.2.0版本增加 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+
+    <!--极光-->
+    <!-- Required -->
+    <permission
+        android:name="sinia.com.baihangeducation.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <!-- Required  一些系统要求的权限，如访问网络等-->
+    <uses-permission android:name="sinia.com.baihangeducation.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
+
+
+    <!-- Optional for location -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限 -->
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+
+</manifest>

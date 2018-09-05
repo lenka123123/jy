@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/findandhome_helpeachother_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/space_10"
+    android:paddingLeft="@dimen/space_20"
+    android:paddingRight="@dimen/space_20"
+    android:paddingTop="@dimen/space_10">
+    <TextView
+        android:id="@+id/findandhome_helpeachother_item_nodata"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:text="暂无数据。。。"/>
+
+    <LinearLayout
+        android:id="@+id/findandhome_helpeachother_item_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/findandhome_helpeachother_item_img"
+            android:layout_width="@dimen/space_60"
+            android:layout_height="@dimen/space_60" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space_10"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/findandhome_helpeachother_item_title"
+                    android:layout_width="@dimen/space_180"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:singleLine="true"
+                    android:text="求帅哥帮忙拿快递，谢谢！"
+                    android:textColor="@color/color_3a3a3a_black" />
+
+                <ImageView
+                    android:id="@+id/findandhome_helpeachother_item_reward"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/new_reward" />
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/findandhome_helpeachother_item_issolve"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_5"
+                android:background="@drawable/new_unsolve" />
+
+            <TextView
+                android:id="@+id/findandhome_helpeachother_item_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_5"
+                android:text="测试内容"
+                android:textSize="@dimen/font_size_12" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/space_5">
+
+                <TextView
+                    android:id="@+id/findandhome_helpeachother_item_adressanddistance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="南京市 鼓楼区 3km"
+                    android:textSize="@dimen/font_size_10" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true">
+
+                    <TextView
+                        android:id="@+id/findandhome_helpeachother_item_time"
+                        android:layout_width="@dimen/space_60"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="28分钟前"
+                        android:textSize="@dimen/font_size_10" />
+
+                    <TextView
+                        android:id="@+id/findandhome_helpeachother_item_seenum"
+                        android:layout_width="@dimen/space_60"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/space_20"
+                        android:text="浏览208次"
+                        android:textSize="@dimen/font_size_10" />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

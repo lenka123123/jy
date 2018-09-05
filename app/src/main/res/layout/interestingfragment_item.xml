@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/interestingfragment_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/space_10"
+    android:paddingLeft="@dimen/space_20"
+    android:paddingRight="@dimen/space_20"
+    android:paddingTop="@dimen/space_10">
+
+    <TextView
+        android:id="@+id/interestingfragment_item_title"
+        android:layout_width="@dimen/space_200"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="大吉大利，今晚吃鸡"
+        android:textColor="@color/color_3C3C3C_black"
+        android:textSize="@dimen/font_size_18" />
+
+    <TextView
+        android:id="@+id/interestingfragment_item_adressanddate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_5"
+        android:text="南京 鼓楼区 2018/04/06"
+        android:textSize="@dimen/font_size_12" />
+
+</LinearLayout>

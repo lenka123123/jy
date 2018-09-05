@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zhy="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/incluce_common_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/space_50"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_20"
+                android:paddingLeft="@dimen/space_20"
+                android:text="兼职类型（可多选）"
+                android:textColor="@color/color_3a3a3a_black"
+                android:textSize="@dimen/font_size_18" />
+
+            <com.zhy.view.flowlayout.TagFlowLayout
+                android:id="@+id/fragment_mine_wantjob_wantjob"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp" />
+
+            <include layout="@layout/include_line_e3e3e3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_20"
+                android:paddingLeft="@dimen/space_20"
+                android:text="工作区域（可多选）"
+                android:textColor="@color/color_3a3a3a_black"
+                android:textSize="@dimen/font_size_18" />
+
+            <com.zhy.view.flowlayout.TagFlowLayout
+                android:id="@+id/fragment_mine_wantjob_wantarea"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp" />
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_50" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

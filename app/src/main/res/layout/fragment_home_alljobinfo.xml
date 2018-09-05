@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zhy="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--全职招聘详情-->
+    <include layout="@layout/incluce_common_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space_50"
+        android:layout_marginTop="@dimen/space_51"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/space_10"
+                android:paddingLeft="@dimen/space_20"
+                android:paddingRight="@dimen/space_20">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/fragment_home_alljobinfo_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="招商银行业务助理"
+                            android:textColor="@color/color_3a3a3a_black"
+                            android:textSize="@dimen/font_size_16" />
+                        <TextView
+                            android:id="@+id/fragment_home_alljobinfo_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1-1.5k"
+                            android:textColor="@color/color_E14222"
+                            android:textSize="@dimen/font_size_18" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/fragment_home_alljobinfo_adressanddate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_5"
+                        android:text="南京市 鼓楼区 2018/04/10 10:00"
+                        android:textColor="@color/color_C5C5C5_gray"
+                        android:textSize="@dimen/font_size_12" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_5"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="发布企业："
+                            android:textColor="@color/color_878787_gray"
+                            android:textSize="@dimen/font_size_12" />
+
+                        <TextView
+                            android:id="@+id/fragment_home_alljobinfo_company"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="就业邦"
+                            android:textColor="@color/color_878787_gray"
+                            android:textSize="@dimen/font_size_12" />
+
+                        <ImageView
+                            android:id="@+id/fragment_home_alljobinfo_isreallname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/space_10"
+                            android:background="@drawable/new_areadyrealname" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_5"
+                        android:drawableLeft="@drawable/new_joninjyb_img"
+                        android:drawablePadding="@dimen/space_5"
+                        android:text="现在入住就业邦高新人才随心招"
+                        android:textColor="@color/color_878787_gray"
+                        android:textSize="@dimen/font_size_12" />
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <include layout="@layout/include_line_e3e3e3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_10"
+                android:text="企业信息"
+                android:textColor="@color/color_3a3a3a_black"
+                android:textSize="@dimen/font_size_16" />
+
+            <LinearLayout
+                android:id="@+id/fragment_home_alljobinfo_companyinfolayoout"
+                style="@style/layoutset_20_10_20_10_mw">
+
+                <ImageView
+                    android:id="@+id/fragment_home_alljobinfo_companylogo"
+                    android:layout_width="@dimen/space_60"
+                    android:layout_height="@dimen/space_60" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/space_10"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/fragment_home_alljobinfo_companyname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLength="15"
+                        android:text="德心桂文化培训有限公司"
+                        android:textColor="@color/color_3a3a3a_black" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_5">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="公司地址："
+                            android:textSize="@dimen/font_size_12" />
+
+                        <TextView
+                            android:id="@+id/fragment_home_alljobinfo_companyadress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="南京市鼓楼区嘉林江路88号"
+                            android:textSize="@dimen/font_size_12" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_5">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="联系电话："
+                            android:textSize="@dimen/font_size_12" />
+
+                        <TextView
+                            android:id="@+id/fragment_home_alljobinfo_companytel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="400-8888-8888"
+                            android:textSize="@dimen/font_size_12" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <com.zhy.view.flowlayout.TagFlowLayout
+                android:id="@+id/fragment_home_alljobinfo_companywelfare"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/space_10"
+                android:paddingLeft="@dimen/space_20"
+                android:paddingRight="@dimen/space_20"
+                android:paddingTop="@dimen/space_10"
+                zhy:max_select="0"></com.zhy.view.flowlayout.TagFlowLayout>
+
+            <include layout="@layout/include_line_e3e3e3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_10"
+                android:text="工作内容"
+                android:textColor="@color/color_3a3a3a_black"
+                android:textSize="@dimen/font_size_16" />
+
+            <WebView
+                android:id="@+id/webview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/space_10"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_10"
+                android:paddingRight="@dimen/space_20">
+
+            </WebView>
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/fragment_home_alljobinfo_jobinfo"
+                android:layout_width="wrap_content"
+                android:layout_height="12dp"
+                android:layout_marginBottom="@dimen/space_10"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_10"
+                android:paddingRight="@dimen/space_20"
+                android:text="工作内容"
+                android:textSize="@dimen/font_size_12" />
+
+            <include layout="@layout/include_line_e3e3e3" />
+
+            <LinearLayout
+                style="@style/layoutset_20_10_20_10_mw"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="详细地址："
+                        android:textSize="@dimen/font_size_12" />
+
+                    <TextView
+                        android:id="@+id/fragment_home_alljobinfo_linkadress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="南京市鼓楼区嘉林江路88号"
+                        android:textSize="@dimen/font_size_12" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_5">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="联系电话："
+                        android:textSize="@dimen/font_size_12" />
+
+                    <TextView
+                        android:id="@+id/fragment_home_alljobinfo_linktel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="400-8888-8888"
+                        android:textSize="@dimen/font_size_12" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_5">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="联   系  人："
+                        android:textSize="@dimen/font_size_12" />
+
+                    <TextView
+                        android:id="@+id/fragment_home_alljobinfo_linename"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="张老师"
+                        android:textSize="@dimen/font_size_12" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <include layout="@layout/include_line_e3e3e3" />
+
+            <TextView
+                android:id="@+id/fragment_home_alljobinfo_likejob"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_20"
+                android:layout_marginTop="@dimen/space_10"
+                android:text="相关职位"
+                android:textColor="@color/color_3a3a3a_black"
+                android:textSize="@dimen/font_size_16" />
+
+            <com.mcxtzhang.swipemenulib.customview.NoScrollListView
+                android:id="@+id/fragment_home_alljobinfo_likelistview"
+                style="@style/layoutset_20_10_20_10_mw"
+                android:scrollbars="none">
+
+            </com.mcxtzhang.swipemenulib.customview.NoScrollListView>
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_50"
+        android:layout_alignParentBottom="true">
+
+        <include layout="@layout/include_line_gray" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true">
+
+            <LinearLayout
+                android:id="@+id/fragment_home_alljobinfo_collectionlayout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/space_20">
+
+                <ImageView
+                    android:id="@+id/fragment_home_alljobinfo_collection"
+                    android:layout_width="@dimen/space_15"
+                    android:layout_height="@dimen/space_15"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/space_10"
+                    android:layout_marginRight="@dimen/space_10"
+                    android:background="@drawable/new_find_uncollection"
+                    android:padding="@dimen/space_5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="收藏"
+                    android:textColor="@color/color_BBBBBB_gray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fragment_home_alljobinfo_sharelayout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/space_20">
+
+                <ImageView
+                    android:layout_width="@dimen/space_15"
+                    android:layout_height="@dimen/space_15"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/space_10"
+                    android:layout_marginRight="@dimen/space_10"
+                    android:background="@drawable/new_find_unshare"
+                    android:padding="@dimen/space_5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="转发"
+                    android:textColor="@color/color_BBBBBB_gray" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/fragment_home_alljobinfo_sendresume"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/space_20"
+            android:background="@drawable/textview_round"
+            android:paddingLeft="@dimen/space_20"
+            android:paddingRight="@dimen/space_20"
+            android:text="投递简历"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+</RelativeLayout>

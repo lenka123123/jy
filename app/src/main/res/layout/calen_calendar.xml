@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header_height"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/prevMonth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:src="@drawable/new_sign_rightarrow"
+            android:padding="@dimen/space_10"/>
+
+        <TextView
+            android:id="@+id/currentMonth"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="2014.6."
+            android:textColor="@color/gray"
+            android:textSize="18dp" />
+
+        <ImageView
+            android:id="@+id/nextMonth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:src="@drawable/new_sign_liftarrow"
+            android:padding="@dimen/space_10"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="#ffffffff"
+        android:layout_marginLeft="@dimen/space_15"
+        android:layout_marginRight="@dimen/space_15">
+
+        <TextView
+            style="@style/weekName"
+            android:text="日" />
+
+        <TextView
+            style="@style/weekName"
+            android:text="一" />
+
+        <TextView
+            style="@style/weekName"
+            android:text="二" />
+
+        <TextView
+            style="@style/weekName"
+            android:text="三" />
+
+        <TextView
+            style="@style/weekName"
+            android:text="四" />
+
+        <TextView
+            style="@style/weekName"
+            android:text="五" />
+
+        <TextView
+            style="@style/weekName"
+            android:text="六" />
+    </LinearLayout>
+
+    <ViewFlipper
+        android:id="@+id/flipper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_15"
+        android:layout_weight="1"/>
+</LinearLayout>

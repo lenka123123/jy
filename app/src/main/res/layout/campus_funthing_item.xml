@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/campus_funthing_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_200"
+        android:padding="@dimen/space_10">
+
+        <ImageView
+            android:id="@+id/campus_funthing_item_img"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_200"
+            android:scaleType="center"/>
+
+        <TextView
+            android:id="@+id/campus_funthing_item_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="hhah"
+            android:ellipsize="end"
+            android:background="#80ffffff"
+            android:gravity="center"
+            android:textColor="#333333" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/space_20"
+        android:paddingRight="@dimen/space_20">
+
+        <TextView
+            android:id="@+id/campus_funthing_item_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:textColor="#cccccc"
+            android:textSize="@dimen/font_size_12" />
+
+        <TextView
+            android:id="@+id/campus_funthing_item_looknum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="5dp"
+            android:textColor="#cccccc"
+            android:textSize="@dimen/font_size_12" />
+    </RelativeLayout>
+</LinearLayout>

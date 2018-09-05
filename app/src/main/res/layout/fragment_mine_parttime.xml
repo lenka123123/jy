@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/incluce_common_title" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_50">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/space_20"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="累计："
+                android:textColor="@color/color_3a3a3a_black" />
+
+            <TextView
+                android:id="@+id/parttime_item_times"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="50"
+                android:textColor="@color/color_E14222" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/line1">
+        <!--加载条-->
+        <com.example.framwork.widget.ProgressActivity
+            android:id="@+id/progressActivity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:emptyBackgroundColor="@color/line_color"
+            app:errorButtonBackgroundColor="@drawable/dialog_ok_btn_enabled"
+            app:errorButtonTextColor="@color/font2">
+
+            <com.example.framwork.widget.superrecyclerview.recycleview.SuperRecyclerView
+                android:id="@+id/rv_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/line_color" />
+            <!--fragment_parttime_item-->
+        </com.example.framwork.widget.ProgressActivity>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/homeandfindhelpeachotherdetailheaditem"
+    style="@style/layoutset_20_10_20_10_mw">
+    <TextView
+        android:id="@+id/homeandfindhelpeachotherdetailheaditem_nodata"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="@dimen/font_size_12"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        android:text="暂无留言信息，赶紧发一条稳坐沙发吧。"/>
+
+    <LinearLayout
+        android:id="@+id/homeandfindhelpeachotherdetailheaditem_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/homeandfindhelpeachotherdetailheaditem_img"
+            android:layout_width="@dimen/space_60"
+            android:layout_height="@dimen/space_60" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space_10"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/homeandfindhelpeachotherdetailheaditem_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="夏丽丽" />
+
+            <TextView
+                android:id="@+id/homeandfindhelpeachotherdetailheaditem_message"
+                android:layout_width="@dimen/space_150"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_5"
+                android:text="怎么跟你联系"
+                android:textSize="@dimen/font_size_12" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/homeandfindhelpeachotherdetailheaditem_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1分钟钱"
+            android:textSize="@dimen/font_size_12" />
+
+        <TextView
+            android:id="@+id/homeandfindhelpeachotherdetailheaditem_messagenum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/space_5"
+            android:background="@drawable/huifu_round"
+            android:paddingLeft="@dimen/space_10"
+            android:paddingRight="@dimen/space_10"
+            android:text="3条回复"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_12" />
+    </LinearLayout>
+</RelativeLayout>

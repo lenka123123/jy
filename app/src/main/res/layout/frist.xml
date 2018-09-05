@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/hah"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_A8A8A8_gray"
+        android:gravity="center"
+        android:text="预留引导页，点击屏幕进入主页"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_size_18" />
+
+</LinearLayout>

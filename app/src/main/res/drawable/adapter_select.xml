@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--<item android:drawable="@color/red_fa3e3e" android:state_checked="true">-->
+        <!--<shape>-->
+            <!--<corners android:radius="28dp" />-->
+        <!--</shape>-->
+    <!--</item>-->
+    <!--&lt;!&ndash;选中时效果&ndash;&gt;-->
+
+    <!--<item android:drawable="@color/white" android:state_checked="false">-->
+        <!--<shape>-->
+            <!--<corners android:radius="28dp" />-->
+        <!--</shape>-->
+    <!--</item>&lt;!&ndash;未选中时效果&ndash;&gt;-->
+    <!--&lt;!&ndash; 修改成你自己的图片就可以了 &ndash;&gt;-->
+
+
+
+
+    <!-- 点击时 -->
+    <item android:state_checked="true">
+        <shape>
+            <solid android:color="@color/red_fa3e3e" />
+
+            <corners android:radius="5dp" />
+
+            <stroke android:width="10dp" android:color="@color/red_fa3e3e" />
+        </shape>
+    </item>
+    <!-- 获得焦点时 -->
+    <!--<item android:state_checked="true">-->
+        <!--<shape>-->
+            <!--<solid android:color="@color/red_fa3e3e" />-->
+
+            <!--<corners android:radius="5dp" />-->
+
+            <!--<stroke android:width="10dp" android:color="#afafaf" />-->
+        <!--</shape>-->
+    <!--</item>-->
+    <!-- 默认状态 -->
+    <item>
+        <shape>
+            <solid android:color="@color/white" />
+
+            <corners android:radius="5dp" />
+
+            <stroke android:width="10dp" android:color="@color/white" />
+        </shape>
+    </item>
+
+
+
+
+
+
+</selector>

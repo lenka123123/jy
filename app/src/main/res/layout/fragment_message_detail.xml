@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/incluce_common_title" />
+
+    <RelativeLayout style="@style/layoutset_20_10_20_10_mw">
+
+        <TextView
+            android:id="@+id/fragment_message_detail_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="就业邦客服"
+            android:textColor="@color/black_20252E" />
+
+        <TextView
+            android:id="@+id/fragment_message_detail_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="2018/04/04 10:00"
+            android:textSize="@dimen/font_size_12" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/fragment_message_detail_content"
+        style="@style/layoutset_20_10_20_10_mw" />
+
+</LinearLayout>
