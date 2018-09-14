@@ -1,6 +1,14 @@
 package sinia.com.baihangeducation.mine.activity;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.os.Build;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -11,6 +19,9 @@ import android.widget.TextView;
 
 import com.example.framwork.utils.CommonUtil;
 import com.example.framwork.utils.SpCommonUtils;
+import com.example.framwork.utils.Toast;
+import com.githang.statusbar.StatusBarCompat;
+import com.mcxtzhang.swipemenulib.utils.TimeUtils;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -39,7 +50,7 @@ import sinia.com.baihangeducation.supplement.base.Goto;
  * 登录页面 sinia.com.baihangeducation.mine.activity.LoginActivity
  */
 
-public class LoginActivity extends BaseActivity implements ILoginView, IThirdLoginView {
+public class LoginActivity extends AppCompatActivity implements ILoginView, IThirdLoginView, View.OnClickListener {
     private LoginPresenter mLoginPresenter;
     private UMShareAPI umShareAPI = null;
 
@@ -64,19 +75,21 @@ public class LoginActivity extends BaseActivity implements ILoginView, IThirdLog
     //极光推送，绑定用户时候的参数.
     private String userType;
     private Set<String> set;
+    private Activity context;
+    private TextView mUserAgreement;
 
     @Override
-    public int initLayoutResID() {
-        return R.layout.activity_login;
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_login);
+        context = this;
+        initView();
+        initData();
     }
 
-    /**
-     * 初始化数据
-     */
-    @Override
+
     protected void initData() {
-//        if (decorViewGroup != null && statusBarView != null)
-//            decorViewGroup.removeView(statusBarView);
 
         String name = (String) SpCommonUtils.get(context, AppConfig.USERPHOTO, "");
         String pwd = (String) SpCommonUtils.get(context, AppConfig.USERPWD, "");
@@ -90,19 +103,14 @@ public class LoginActivity extends BaseActivity implements ILoginView, IThirdLog
 //            mPassword.setText(pwd);
             //   mLoginPresenter.login(this);
         }
-
-
     }
 
 
     /**
      * 初始化控件
      */
-    @Override
+
     protected void initView() {
-
-        findViewById(R.id.back).setOnClickListener(this);
-
         mPhoneNum = (EditText) findViewById(R.id.edt_phone_num);
         mPassword = (EditText) findViewById(R.id.edt_password);
         mLogin = (TextView) findViewById(R.id.tv_login);
@@ -110,9 +118,15 @@ public class LoginActivity extends BaseActivity implements ILoginView, IThirdLog
         mForgetPassword = (TextView) findViewById(R.id.tv_forget_password);
         mLogin4WeChat = (TextView) findViewById(R.id.tv_login_weixin);
         mLogin4QQ = (TextView) findViewById(R.id.tv_login_qq);
-        mDeletePhoneName = $(R.id.bt_login_delete);
-        mIsShowPassword = $(R.id.bt_login_isshowpwd);
+        mDeletePhoneName = findViewById(R.id.bt_login_delete);
+        mIsShowPassword = findViewById(R.id.bt_login_isshowpwd);
 
+        mUserAgreement = findViewById(R.id.tv_register_protocol);
+
+
+        mUserAgreement.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
+
+        findViewById(R.id.back).setOnClickListener(this);
         mPhoneNum.setOnClickListener(this);
         mPassword.setOnClickListener(this);
         mLogin.setOnClickListener(this);
@@ -122,17 +136,22 @@ public class LoginActivity extends BaseActivity implements ILoginView, IThirdLog
         mLogin4QQ.setOnClickListener(this);
         mDeletePhoneName.setOnClickListener(this);
         mIsShowPassword.setOnClickListener(this);
+        mUserAgreement.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        super.onClick(v);
         switch (v.getId()) {
             case R.id.back:
                 LoginActivity.this.finish();
                 break;
             case R.id.tv_login:
-                mLoginPresenter.login(this);
+                if (TimeUtils.isLetterDigit(getPassword())) {
+                    mLoginPresenter.login(this);
+                } else {
+                    Toast.getInstance().showErrorToast(context, "请输入6-12位数字或字母");
+                }
+
                 break;
             case R.id.tv_login_weixin:
                 QQorWeChatLogin(SHARE_MEDIA.WEIXIN);
@@ -157,6 +176,10 @@ public class LoginActivity extends BaseActivity implements ILoginView, IThirdLog
                 else
                     mIsShowPwdFlag = true;
                 showPwdOrNot();
+                break;
+            case R.id.tv_register_protocol:
+                //用户协议
+                Goto.toUserRuleActivity(context);
                 break;
         }
     }
@@ -246,8 +269,7 @@ public class LoginActivity extends BaseActivity implements ILoginView, IThirdLog
      */
     @Override
     public void showLoginSuccress() {
-//        initJPushTag();
-//        mLoginPresenter.getCompleteInfo();
+        initJPushTag();
         finish();
 
     }
@@ -311,12 +333,12 @@ public class LoginActivity extends BaseActivity implements ILoginView, IThirdLog
 
     @Override
     public String getLocationLng() {
-        return getLng();
+        return "";
     }
 
     @Override
     public String getLocationLat() {
-        return getLat();
+        return "";
     }
 
     @Override
@@ -330,12 +352,12 @@ public class LoginActivity extends BaseActivity implements ILoginView, IThirdLog
 
     @Override
     public void showLoading() {
-        showProgress();
+//        showProgress();
     }
 
     @Override
     public void hideLoading() {
-        hideProgress();
+//        hideProgress();
     }
 
     @Override
@@ -398,7 +420,9 @@ public class LoginActivity extends BaseActivity implements ILoginView, IThirdLog
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        hideProgress();
+//        hideProgress();
         Log.i("生命周期", "onDestroy");
     }
+
+
 }

@@ -42,22 +42,22 @@
                 android:textSize="@dimen/font_size_12" />
 
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <com.mcxtzhang.swipemenulib.customview.ZZoomImageView
-        android:id="@+id/img"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@mipmap/ic_launcher" />
-    <WebView
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        android:id="@+id/webview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+                <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+                    android:id="@+id/img"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
 
-</RelativeLayout>
+                <WebView
+                    android:id="@+id/webview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
+            </RelativeLayout>
 
 
             <LinearLayout

@@ -7,6 +7,7 @@ import com.example.framwork.base.BasePresenter;
 import com.example.framwork.noHttp.Bean.BaseResponseBean;
 import com.example.framwork.noHttp.OnRequestListener;
 import com.example.framwork.utils.Toast;
+import com.mcxtzhang.swipemenulib.customview.BitmapUtil;
 import com.yanzhenjie.nohttp.FileBinary;
 import com.yanzhenjie.nohttp.rest.Request;
 
@@ -89,7 +90,7 @@ public class ReleaseFunPresenter extends BasePresenter {
     public void releaseFun() {
         HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "pushDynamic", "publish", true);
         info.put("user_id", AppConfig.USERID);
-        info.put("token ", AppConfig.TOKEN);
+        info.put("token", AppConfig.TOKEN);
         info.put("content", view.getReleaseFunContent());
         info.put("lng", view.getReleaseFunLng());
         info.put("lat", view.getReleaseFunLat());
@@ -102,7 +103,8 @@ public class ReleaseFunPresenter extends BasePresenter {
         if (view.getReleaseFunImgs() != null && view.getReleaseFunImgs().size() > 0) {
             Log.i("获取选择图片size", view.getReleaseFunImgs().size() + "请求中List大小");
             for (int i = 0; i < view.getReleaseFunImgs().size(); i++) {
-                request.add("imgs[" + i + "]", new FileBinary(new File(view.getReleaseFunImgs().get(i))));
+
+                request.add("imgs[" + i + "]", new FileBinary(new File(BitmapUtil.compressImageUpload(view.getReleaseFunImgs().get(i)))));
             }
         }
         view.showLoading();

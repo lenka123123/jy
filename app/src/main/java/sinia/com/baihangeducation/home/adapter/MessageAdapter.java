@@ -8,6 +8,7 @@ import com.example.framwork.adapter.SuperBaseAdapter;
 import java.util.List;
 
 import sinia.com.baihangeducation.R;
+
 import com.mcxtzhang.swipemenulib.info.bean.CommentInfo;
 
 /**
@@ -15,21 +16,33 @@ import com.mcxtzhang.swipemenulib.info.bean.CommentInfo;
  */
 
 public class MessageAdapter extends SuperBaseAdapter<CommentInfo> {
+
+    private List<CommentInfo> data;
+
     public MessageAdapter(Context context, List<CommentInfo> data) {
         super(context, data);
+        this.data = data;
     }
+
+    public void setData(List<CommentInfo> mMydata) {
+        if (mMydata == null || mMydata.size() < 1) return;
+        data.clear();
+        data.addAll(mMydata);
+        notifyDataSetChanged();
+    }
+
 
     @Override
     protected void convert(BaseViewHolder holder, CommentInfo item, int position) {
-        if (item.comment_add_date==null){
-            holder.setVisible(R.id.homeandfindhelpeachotherdetailheaditem_layout,false);
-            holder.setVisible(R.id.homeandfindhelpeachotherdetailheaditem_time,false);
-            holder.setVisible(R.id.homeandfindhelpeachotherdetailheaditem_nodata,true);
+        if (item.comment_add_date == null) {
+            holder.setVisible(R.id.homeandfindhelpeachotherdetailheaditem_layout, false);
+            holder.setVisible(R.id.homeandfindhelpeachotherdetailheaditem_time, false);
+            holder.setVisible(R.id.homeandfindhelpeachotherdetailheaditem_nodata, true);
 
-        }else {
-            holder.setVisible(R.id.homeandfindhelpeachotherdetailheaditem_layout,true);
-            holder.setVisible(R.id.homeandfindhelpeachotherdetailheaditem_time,true);
-            holder.setVisible(R.id.homeandfindhelpeachotherdetailheaditem_nodata,false);
+        } else {
+            holder.setVisible(R.id.homeandfindhelpeachotherdetailheaditem_layout, true);
+            holder.setVisible(R.id.homeandfindhelpeachotherdetailheaditem_time, true);
+            holder.setVisible(R.id.homeandfindhelpeachotherdetailheaditem_nodata, false);
             holder.setRoundImageUrl(R.id.homeandfindhelpeachotherdetailheaditem_img, item.comment_user_avatar, R.drawable.new_eorrlogo);
             holder.setText(R.id.homeandfindhelpeachotherdetailheaditem_name, item.comment_user_nickname);
             holder.setText(R.id.homeandfindhelpeachotherdetailheaditem_message, item.comment_content);

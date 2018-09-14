@@ -12,6 +12,8 @@ import java.util.HashMap;
 
 import com.mcxtzhang.swipemenulib.info.JobBangClassSecondListInfo;
 import com.mcxtzhang.swipemenulib.info.JobBangClassSecondRadioListInfo;
+
+import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.find.view.JobBangClassInfoView;
 import sinia.com.baihangeducation.supplement.tool.BaseRequestInfo;
 
@@ -32,6 +34,9 @@ public class JobBangClassInfoPresenter extends BasePresenter {
     public void getJobBangClassInfo() {
         HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "getRaidersList", "find", false);
         info.put("type", view.getType());
+
+        info.put("token", AppConfig.TOKEN);
+        info.put("user_id", AppConfig.USERID);
         info.put("cate_id", view.getCadeId());
         info.put("money_id", view.getMoneyId());
         info.put("order_id", view.getOrderId());

@@ -36,6 +36,8 @@ import com.imnjh.imagepicker.activity.PhotoPickerActivity;
 import com.yanzhenjie.nohttp.Logger;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -73,7 +75,7 @@ public class UCentreBaseInfoActivity extends BaseActivity implements OnItemClick
     private TextView mUCentreConfirm;
 
     private UCentreBaseInfoPresenter presenter;
-    private String img;
+    private String img = "";
     private MyApplication application;
 
     private String avatar;
@@ -83,6 +85,7 @@ public class UCentreBaseInfoActivity extends BaseActivity implements OnItemClick
     private String email;
     private String[] genderes = {"男", "女"};
     private Context activity;
+    private File file;
 
     @Override
     public int initLayoutResID() {
@@ -107,7 +110,7 @@ public class UCentreBaseInfoActivity extends BaseActivity implements OnItemClick
     }
 
 
-    public void setPhoto(String avatar){
+    public void setPhoto(String avatar) {
         Glide.with(context).load(avatar).asBitmap().error(R.drawable.new_eorrlogo).centerCrop().into(new BitmapImageViewTarget(mUCentreImage) {
             @Override
             protected void setResource(Bitmap resource) {
@@ -193,9 +196,38 @@ public class UCentreBaseInfoActivity extends BaseActivity implements OnItemClick
                 showSoftInput(mUCentreEmail);
                 break;
             case R.id.ucentre_confirm:
+
                 presenter.updataUCentreBaseInfo();
+
+
                 break;
         }
+    }
+
+    public void saveBitmap(Bitmap bitmap) {
+        // 首先保存图片
+        File appDir = new File(Environment.getExternalStorageDirectory(), "zxing_image");
+        if (!appDir.exists()) {
+            appDir.mkdir();
+        }
+        String fileName = "zxing_image" + ".png";
+        file = new File(appDir, fileName);
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            fos.flush();
+            fos.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // 把文件插入到系统图库
+        try {
+            MediaStore.Images.Media.insertImage(this.getContentResolver(), file.getAbsolutePath(), fileName, null);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        // 通知图库更新
+        sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + "/sdcard/namecard/")));
     }
 
     private boolean istakePhoto = false;
@@ -218,10 +250,19 @@ public class UCentreBaseInfoActivity extends BaseActivity implements OnItemClick
         if (resultCode == Activity.RESULT_OK && requestCode == COMPANY_LOGO) {
             ArrayList<String> pathList = data.getStringArrayListExtra(PhotoPickerActivity.EXTRA_RESULT_SELECTION);
             if (pathList != null && pathList.size() != 0) {
-                Logger.d(FileUtil.getInstance().getFileSize(context, pathList.get(0)));
                 img = pathList.get(0);
                 Log.i("图片地址", pathList.get(0));
-                setPhoto( pathList.get(0));
+                setPhoto(pathList.get(0));
+                File appDir = new File(img);
+                try {
+                    MediaStore.Images.Media.insertImage(UCentreBaseInfoActivity.this.getContentResolver(), appDir.getAbsolutePath().toString(), appDir.getName(), "");
+                    sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + "/sdcard/namecard/")));
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+                ///storage/emulated/0/DCIM/Camera/IMG_20180903_074033.jpg
+                ///storage/emulated/0/Pictures/2018_09_06_18_45_19.jpg
+
 //                ImageLoaderUtils.display(context, mUCentreImage, pathList.get(0), R.drawable.logo, true);
             }
         }
@@ -234,8 +275,6 @@ public class UCentreBaseInfoActivity extends BaseActivity implements OnItemClick
 //            }
 //        }
     }
-
-
 
 
     @Override
@@ -366,10 +405,10 @@ public class UCentreBaseInfoActivity extends BaseActivity implements OnItemClick
             imagePath = uri.getPath();
         }
 
-      setPhoto(imagePath);
+
+        Log.i("图片地址个人中心22", imagePath);
 //        displayImage(imagePath); // 根据图片路径显示图片
     }
-
 
 
     private String getImagePath(Uri uri, String selection) {
@@ -384,8 +423,6 @@ public class UCentreBaseInfoActivity extends BaseActivity implements OnItemClick
         }
         return path;
     }
-
-
 
 
     @Override

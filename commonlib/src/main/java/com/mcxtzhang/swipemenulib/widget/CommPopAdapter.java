@@ -52,14 +52,14 @@ public class CommPopAdapter extends BaseAdapter {
         ViewHolder viewHolder = null;
         if (convertView == null) {
             viewHolder = new ViewHolder();
-            convertView = mInflater.inflate(
-                    R.layout.common_popup_list_item, null);
+            convertView = mInflater.inflate(   R.layout.common_popup_list_item, null);
             viewHolder.mTitleTv = (TextView) convertView.findViewById(R.id.tv_common_listpop_title);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         viewHolder.mTitleTv.setText(mDatas.get(i).name);
+        convertView.setBackgroundResource(R.color.white);
         return convertView;
     }
 

@@ -10,12 +10,12 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y326"
+        android:layout_height="@dimen/y280"
         android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="@dimen/x170"
-            android:layout_height="@dimen/y326"
+            android:layout_height="@dimen/y280"
             android:layout_marginTop="@dimen/y49">
 
             <ImageView
@@ -27,7 +27,7 @@
         <!-- 详情 -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y326"
+            android:layout_height="@dimen/y280"
             android:layout_marginTop="@dimen/x36"
             android:orientation="vertical">
 
@@ -113,14 +113,107 @@
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_0.5"
+        android:background="@color/interval_line" />
+
+    <!--优惠券-->
+
+    <LinearLayout
+        android:id="@+id/discound_linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y100"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x30"
+
+            android:layout_weight="1"
+            android:text="优惠券"
+            android:textColor="#3A3A3A"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/discount_use_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="无可用优惠券"
+            android:textColor="#4D4D4D"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="@dimen/x25"
+            android:layout_height="@dimen/y25"
+            android:layout_marginRight="@dimen/x40"
+            android:src="@drawable/next" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_0.5"
+        android:layout_marginLeft="@dimen/x40"
+        android:layout_marginRight="@dimen/x40"
+        android:background="@color/interval_line" />
+
+    <!--合计支付-->
+
+    <LinearLayout
+        android:id="@+id/count_pay_linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y100"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x30"
+            android:layout_weight="1"
+            android:text="合计支付"
+            android:textColor="#3A3A3A"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/count_pay"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/x40"
+            android:gravity="center_vertical"
+            android:text="￥15.00"
+            android:textColor="@color/red_fa3e3e" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_0.5"
+        android:layout_marginLeft="@dimen/x40"
+        android:layout_marginRight="@dimen/x40"
+        android:background="@color/interval_line" />
+
+
+    <!-- 支付方式 -->
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/x40"
+        android:layout_marginLeft="@dimen/x30"
+        android:layout_marginTop="@dimen/y100"
         android:text="支付方式"
         android:textColor="#3A3A3A"
         android:textSize="14sp" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_0.5"
+        android:background="@color/interval_line" />
 
     <LinearLayout
         android:id="@+id/wxpay_linearlayout"
@@ -159,6 +252,8 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/space_0.5"
+        android:layout_marginLeft="@dimen/x40"
+        android:layout_marginRight="@dimen/x40"
         android:background="@color/interval_line" />
 
     <LinearLayout

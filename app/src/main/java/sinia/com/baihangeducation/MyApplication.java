@@ -15,6 +15,7 @@ import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.baidu.mobstat.StatService;
 import com.example.framwork.BaseApplictaion;
+import com.example.framwork.baseapp.BaseAppConfig;
 import com.example.framwork.utils.CommonInfoSaveUtil;
 import com.example.framwork.utils.ObjectSaveUtil;
 import com.example.framwork.utils.SpCommonUtils;
@@ -74,6 +75,7 @@ public class MyApplication extends BaseApplictaion {
         super.onCreate();
         sContext = getApplicationContext();
         AppConfig.init(this);
+        BaseAppConfig.init(this,"dong");
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
@@ -82,7 +84,9 @@ public class MyApplication extends BaseApplictaion {
 
         JPushInterface.setDebugMode(false);    // 设置开启日志,发布时请关闭日志
         JPushInterface.init(sContext);            // 初始化 JPush
+        String jPushId = JPushInterface.getRegistrationID(this);
 
+        System.out.println("getRegistrationID" + jPushId);
         mCache = ACache.get(this);
 
         CrashHandler crashHandler = CrashHandler.getInstance();
@@ -106,7 +110,7 @@ public class MyApplication extends BaseApplictaion {
         initImagePicker();
         initUM();
         initShare();
-        StatService.autoTrace(this,true,false);//开启自动埋点    https://mtj.baidu.com/static/userguide/book/android/adconfig/circle/circle.html
+        StatService.autoTrace(this, true, false);//开启自动埋点    https://mtj.baidu.com/static/userguide/book/android/adconfig/circle/circle.html
     }
 
     private void initImagePicker() {
@@ -169,8 +173,6 @@ public class MyApplication extends BaseApplictaion {
     }
 
 
-
-
     /**
      * 取出用户信息
      *
@@ -189,6 +191,7 @@ public class MyApplication extends BaseApplictaion {
 
     /**
      * 取出用户信息拷贝
+     *
      * @return
      */
     public MyResumInfo getUserResumeInfoCopy() {

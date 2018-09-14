@@ -50,9 +50,8 @@ public class HomeListAdapter extends SuperBaseAdapter<HomeJobInfo> {
             holder.setLoadalImageUrl(R.id.fragment_home_down_item_img, getDrawable(item.job_industry_id), R.drawable.new_eorrlogo);
 
 
-
             holder.setText(R.id.fragment_home_down_item_title, item.job_title);
-  holder.setText(R.id.fragment_home_down_item_adressandtime, item.job_city_name +" "+item.job_distance+" "+item.job_money_name);//+ " " + item.job_add_date
+            holder.setText(R.id.fragment_home_down_item_adressandtime, item.job_city_name + " " + item.job_distance + " " + item.job_money_name);//+ " " + item.job_add_date
             holder.setText(R.id.lock_person_number, "浏览" + item.job_look_num + "人");//+ " " + item.job_add_date
             holder.setText(R.id.apply_person_number, "申请" + item.job_apply_num + "人");//+ " " + item.job_add_date
             holder.setText(R.id.ago, item.job_time_shaft);

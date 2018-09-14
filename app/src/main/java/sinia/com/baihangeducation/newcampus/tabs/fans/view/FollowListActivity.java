@@ -52,6 +52,9 @@ public class FollowListActivity extends BaseActivity implements FansContract.Vie
     @Override
     protected void initView() {
 
+        TextView textView = findViewById(R.id.title);
+        textView.setText("TA的关注");
+
         findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -20,6 +20,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 
+import static android.content.Context.TELEPHONY_SERVICE;
+
 /**
  * Created by ${wjw} on 2016/5/5.
  */
@@ -215,8 +217,20 @@ public class CommonUtil {
         }
     }
 
+    public static  String getImei(Context context){
+        TelephonyManager TelephonyMgr = (TelephonyManager)context.getSystemService(TELEPHONY_SERVICE);
+        String szImei = TelephonyMgr.getDeviceId();
+        return szImei;
+    }
+
+    public static  String getWlanId(Context context){
+        WifiManager wm = (WifiManager)context.  getSystemService(context.getApplicationContext().WIFI_SERVICE);
+        String m_szWLANMAC = wm.getConnectionInfo().getMacAddress();
+        return m_szWLANMAC;
+    }
+
     public static String getAndroidId(Context context) {
-        TelephonyManager TelephonyMgr = (TelephonyManager) context.getSystemService(context.TELEPHONY_SERVICE);
+        TelephonyManager TelephonyMgr = (TelephonyManager) context.getSystemService(TELEPHONY_SERVICE);
         String m_szImei = TelephonyMgr.getDeviceId();
         String m_szDevIDShort = "35" + //we make this look like a valid IMEI
 
@@ -268,6 +282,7 @@ public class CommonUtil {
         m_szUniqueID = m_szUniqueID.toUpperCase();
         return m_szUniqueID;
     }
+
 
 
 }

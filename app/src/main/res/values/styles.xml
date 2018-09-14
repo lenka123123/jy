@@ -93,4 +93,11 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
+
+    <!-- 图片全屏-->
+    <style name="Theme.imgFullScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--在Android 4.4之前的版本上运行，直接跟随系统主题-->
+        <!--全透明效果-->
+    </style>
+
 </resources>

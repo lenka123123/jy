@@ -54,7 +54,8 @@ public class MyCollectionPartTimeAdapter extends SuperBaseAdapter<MyCollectionLi
         holder.setOnClickListener(R.id.fragment_mine_collection_parttimeitem, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Goto.toPartTimeJobDetailActivity(context, item.job_id);
+                Goto.toAllJobDetailActivity(context, item.job_id);
+//                Goto.toPartTimeJobDetailActivity(context, item.job_id);
             }
         });
         //删除功能未写

@@ -2,16 +2,16 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:banner="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/y375">
+    android:layout_height="wrap_content">
 
     <com.example.framwork.banner.SimpleImageBanner
         android:id="@+id/sib_top_ad"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        banner:bb_barPaddingBottom="5dp"
+        android:layout_height="wrap_content"
+
         banner:bb_barPaddingLeft="10dp"
         banner:bb_barPaddingRight="10dp"
-        banner:bb_barPaddingTop="5dp"
+
         banner:bb_delay="2"
         banner:bb_indicatorCornerRadius="3dp"
         banner:bb_indicatorGap="8dp"

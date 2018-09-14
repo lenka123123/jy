@@ -82,6 +82,7 @@ public class JobBangClassStrategyActivity extends BaseActivity implements JobBan
     private RadioGroup radioGroup;
 
     private View popView;
+    private TextView textView;
 
     @Override
     public int initLayoutResID() {
@@ -90,6 +91,7 @@ public class JobBangClassStrategyActivity extends BaseActivity implements JobBan
 
     @Override
     protected void initData() {
+        textView = new TextView(this);
         mList = new ArrayList<>();
         cateList = new ArrayList<>();
         moneyList = new ArrayList<>();
@@ -383,12 +385,16 @@ public class JobBangClassStrategyActivity extends BaseActivity implements JobBan
             countpage++;
             if (maxpage == 1 || countpage > maxpage) {
                 rvContainer.setLoadMoreEnabled(false);
+                rvContainer.completeLoadMore();
+                Toast.makeText(context, "没有更多数据", Toast.LENGTH_SHORT).show();
             } else {
                 rvContainer.setLoadMoreEnabled(true);
             }
             if (!isLoadMore) {
                 mList.clear();
             }
+
+
             mList.addAll(mJobBangClassSecondListInfo.list);
             mJobBangClassSecondAdapter.notifyDataSetChanged();
         }
@@ -417,6 +423,7 @@ public class JobBangClassStrategyActivity extends BaseActivity implements JobBan
     @Override
     public void onLoadMore() {
         isLoadMore = true;
+
         getServerData();
     }
 
@@ -424,9 +431,14 @@ public class JobBangClassStrategyActivity extends BaseActivity implements JobBan
      * 获取数据
      */
     private void getServerData() {
-        countpage = 1;
-        mList.clear();
-        mJobBangClassSecondAdapter.notifyDataSetChanged();
+        if (isLoadMore) {
+
+        } else {
+            countpage = 1;
+            mList.clear();
+            mJobBangClassSecondAdapter.notifyDataSetChanged();
+        }
+
         mJobBangClassInfoPresenter.getJobBangClassInfo();
     }
 

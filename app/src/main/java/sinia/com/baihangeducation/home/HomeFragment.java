@@ -97,8 +97,8 @@ public class HomeFragment extends BaseFragment implements HomeView, SuperRecycle
 //    private VerticalRollingTextView mRollingTextView;               //跑马灯广告
 
     private String adcode = "320106";
-    private String lng = "32.089858";
-    private String lat = "118.755877";
+    private String lat = "32.089858";
+    private String lng = "118.755877";
     public static String cityCode;                                  //城市编码
     public static String cityID;                                    //城市id
     private int countpage = 1;                                      //页码
@@ -314,7 +314,7 @@ public class HomeFragment extends BaseFragment implements HomeView, SuperRecycle
         super.onDestroyView();
         rvContainer.removeAllViews();
         rvContainer = null;
-        header=null;
+        header = null;
         sibTopAd.pauseScroll();
         getActivity().finish();
     }
@@ -323,7 +323,7 @@ public class HomeFragment extends BaseFragment implements HomeView, SuperRecycle
     public void onDestroy() {
         super.onDestroy();
         getActivity().finish();
-        header=null;
+        header = null;
         if (rvContainer != null)
             rvContainer.removeAllViews();
         rvContainer = null;
@@ -448,6 +448,15 @@ public class HomeFragment extends BaseFragment implements HomeView, SuperRecycle
                 Goto.toShareEveryDayActivity(context);
                 break;
             case R.id.intention_setting:
+                if (!AppConfig.ISlOGINED) {
+                    new AlertDialog.Builder(getActivity()).setTitle("提示！").setMessage("您尚未登录，请先登录。").setPositiveButton("登录", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Goto.toLogin(getActivity());
+                        }
+                    }).setNegativeButton("取消", null).show();
+                    return;
+                }
                 Goto.toWantJobActivity(context);
                 break;
         }

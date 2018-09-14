@@ -1,105 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/new_login_bg"
-    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/y343"
+        android:background="@drawable/new_login_bg"
         android:orientation="vertical">
 
-        <include layout="@layout/incluce_common_title" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        style="@style/layoutset_20_10_20_10_mw"
-        android:layout_centerInParent="true"
-        android:orientation="vertical">
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/space_5"
-            android:layout_marginTop="@dimen/space_50">
+            android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/bindthired_phone"
-                style="@style/Edit_register_login"
-                android:layout_centerVertical="true"
-                android:hint="@string/input_phone_num"
-                android:inputType="number"
-                android:maxLength="11" />
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="@dimen/x90"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/x60"
+                android:paddingTop="@dimen/y60"
+                android:src="@drawable/back_img" />
 
-            <Button
-                android:id="@+id/bindthired_deletephone"
-                android:layout_width="@dimen/space_20"
-                android:layout_height="@dimen/space_20"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/space_50"
-                android:background="@drawable/new_login_delete" />
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/space_5"
-            android:layout_marginTop="@dimen/space_20">
-
-            <EditText
-                android:id="@+id/bindthired_code"
-                style="@style/Edit_register_login"
-                android:layout_centerVertical="true"
-                android:hint="@string/text_verification_code"
-                android:inputType="number"
-                android:maxLength="6" />
-
-            <com.example.framwork.widget.TimeButton
-                android:id="@+id/bindthired_phone_get_verification_code"
-                android:layout_width="@dimen/space_80"
-                android:layout_height="@dimen/space_25"
-                android:layout_marginRight="@dimen/space_50"
-                android:background="@drawable/roundtextview"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:textColor="@color/white"
-                android:text="@string/text_get_code" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/space_5"
-            android:layout_marginTop="@dimen/space_20">
-
-            <TextView
-                android:id="@+id/bindthired_submit"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/space_50"
-                android:layout_marginLeft="@dimen/space_30"
-                android:layout_marginRight="@dimen/space_30"
-                android:layout_marginTop="@dimen/space_20"
-                android:background="@drawable/btn_selector"
-                android:gravity="center"
-                android:text="@string/submit"
-                android:textColor="@color/white"
-                android:textSize="@dimen/font_size_18" />
+                android:layout_height="match_parent"
+                android:gravity="right"
+                android:paddingRight="@dimen/x30"
+                android:paddingTop="@dimen/y60">
 
-            <TextView
-                android:id="@+id/bindthired_unget_verification_code"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/space_20"
-                android:layout_alignParentRight="true"
-                android:layout_below="@id/bindthired_submit"
-                android:text="@string/unget_verification_code"
-                android:visibility="gone"
-                android:textColor="@color/word_cccccc"
-                android:textSize="@dimen/font_size_12" />
-        </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="注册"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:visibility="invisible" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y50"
+            android:gravity="center_horizontal"
+            android:text="就业邦"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
     </LinearLayout>
-</RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y90" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y96">
+
+        <ImageView
+            android:layout_width="@dimen/x24"
+            android:layout_height="@dimen/y40"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="@dimen/y33"
+            android:layout_marginLeft="@dimen/x86"
+            android:layout_marginTop="@dimen/y33"
+            android:src="@drawable/phone" />
+
+        <EditText
+            android:id="@+id/bindthired_phone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x66"
+            android:layout_marginRight="@dimen/x50"
+            android:background="@null"
+            android:drawablePadding="0dp"
+            android:hint="@string/input_phone_num"
+            android:inputType="number"
+            android:maxLength="11"
+            android:paddingLeft="@dimen/x70"
+            android:paddingTop="0dp"
+            android:textColorHint="@color/edit_textColorHint_6F6F6F"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/bt_login_delete"
+            android:layout_width="@dimen/space_20"
+            android:layout_height="@dimen/space_20"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/space_50"
+            android:background="@drawable/new_login_delete"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_0.5"
+        android:layout_marginLeft="@dimen/x66"
+        android:layout_marginRight="@dimen/x50"
+        android:background="#DDDDDD" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y96">
+
+        <ImageView
+            android:layout_width="@dimen/x24"
+            android:layout_height="@dimen/y40"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="@dimen/y33"
+            android:layout_marginLeft="@dimen/x86"
+            android:layout_marginTop="@dimen/y33"
+            android:src="@drawable/auth_code" />
+
+        <EditText
+            android:id="@+id/bindthired_code"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/x66"
+            android:layout_marginRight="@dimen/x50"
+            android:background="@null"
+            android:drawablePadding="0dp"
+            android:hint="请输入验证码"
+            android:inputType="number"
+            android:maxLength="11"
+            android:paddingLeft="@dimen/x70"
+            android:paddingTop="0dp"
+            android:textColorHint="@color/edit_textColorHint_6F6F6F"
+            android:textSize="14sp" />
+
+        <com.example.framwork.widget.TimeButton
+            android:id="@+id/bindthired_phone_get_verification_code"
+            android:layout_width="@dimen/space_80"
+            android:layout_height="@dimen/space_25"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x50"
+            android:background="@drawable/roundtextview"
+            android:text="@string/text_get_code"
+            android:textColor="@color/red_fa3e3e" />
+
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_0.5"
+        android:layout_marginLeft="@dimen/x66"
+        android:layout_marginRight="@dimen/x50"
+        android:background="#DDDDDD" />
+
+
+    <TextView
+        android:id="@+id/bindthired_submit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_50"
+        android:layout_marginLeft="@dimen/space_30"
+        android:layout_marginRight="@dimen/space_30"
+        android:layout_marginTop="@dimen/space_20"
+        android:background="@drawable/btn_commit"
+        android:gravity="center"
+        android:textSize="@dimen/font_size_18" />
+
+
+</LinearLayout>

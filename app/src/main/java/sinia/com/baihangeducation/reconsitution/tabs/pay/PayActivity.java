@@ -10,6 +10,9 @@ import android.widget.Toast;
 
 import com.alipay.sdk.app.PayTask;
 import com.example.framwork.baseapp.BaseAppConfig;
+import com.google.gson.JsonObject;
+import com.mcxtzhang.swipemenulib.customview.listcustomlist.CustomDialogPicker;
+import com.mcxtzhang.swipemenulib.customview.listcustomlist.DiscountDetail;
 import com.mcxtzhang.swipemenulib.customview.listdialog.CenterDialog;
 import com.mcxtzhang.swipemenulib.customview.listdialog.ChangeISNOPicker;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
@@ -22,27 +25,36 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Map;
 
 import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.R;
 import sinia.com.baihangeducation.supplement.base.BaseActivity;
-import sinia.com.baihangeducation.wxapi.WXPayEntryActivity;
 
 public class PayActivity extends BaseActivity implements IWXAPIEventHandler {
 
-    private String orderInfo = "";   // 订单信息
+    private JSONObject orderInfo;   // 订单信息
     private String aliPayorderInfo = "";   // 订单信息
     private String type;
     private String title;
     private String price;
     private LinearLayout wxpay_linearlayout;
     private LinearLayout alipay_linearlayout;
+    private LinearLayout discound_linearlayout;
+    private TextView count_pay;
+    private TextView discount_use_tv;
     private ImageView alipay_checked;
     private ImageView wxpay_checked;
     private String raiders_id;
     private IWXAPI api;
     private PayPresenter payPresenter;
+    private String use_type = "2";  //使用范围 考卷
+    private CustomDialogPicker changeISNOPicker;
+    private String coupon_id = "";
+    private CenterDialog centerDialog;
+    private int nextTimePosition = 0;
 
     public int initLayoutResID() {
         return R.layout.pay;
@@ -50,12 +62,15 @@ public class PayActivity extends BaseActivity implements IWXAPIEventHandler {
 
     @Override
     protected void initView() {
+        nextTimePosition = 0;
         AppConfig.PAYSUCCESS = false;
         Intent intent = getIntent();
         type = intent.getStringExtra("type");
         title = intent.getStringExtra("title");
         price = intent.getStringExtra("price");
         raiders_id = intent.getStringExtra("raiders_id");
+
+        if (price.endsWith("元")) price = price.split("元")[0];
 
         api = WXAPIFactory.createWXAPI(this, BaseAppConfig.WX_APP_ID);
         api.handleIntent(getIntent(), this);
@@ -67,6 +82,9 @@ public class PayActivity extends BaseActivity implements IWXAPIEventHandler {
         wxpay_checked = findViewById(R.id.wxpay_checked);
         wxpay_linearlayout = findViewById(R.id.wxpay_linearlayout);
         alipay_linearlayout = findViewById(R.id.alipay_linearlayout);
+        discound_linearlayout = findViewById(R.id.discound_linearlayout);
+        count_pay = findViewById(R.id.count_pay);
+        discount_use_tv = findViewById(R.id.discount_use_tv);
 
 
         titleTextView.setText(title);
@@ -78,12 +96,23 @@ public class PayActivity extends BaseActivity implements IWXAPIEventHandler {
         mCommonTitle.getRightTxt().setTextSize(16);
         mCommonTitle.getRightTxt().setTextColor(Color.BLACK);
         alipay_linearlayout.setOnClickListener(this);
+        discound_linearlayout.setOnClickListener(this);
 
         wxpay_linearlayout.setOnClickListener(this);
         findViewById(R.id.goto_pay).setOnClickListener(this);
 
         payPresenter = new PayPresenter(this, this);
-        System.out.println("raiders_id===========" + raiders_id);
+        centerDialog = new CenterDialog(PayActivity.this);
+
+        centerDialog.setAlertOnClickListener(new ChangeISNOPicker.AlertOnClickListener() {
+            @Override
+            public void alertClick(String age) {
+                if (age.startsWith("支付成功")) {
+                    PayActivity.this.finish();
+                }
+
+            }
+        });
 
     }
 
@@ -103,6 +132,33 @@ public class PayActivity extends BaseActivity implements IWXAPIEventHandler {
     public void onClick(View v) {
         super.onClick(v);
         switch (v.getId()) {
+
+            case R.id.discound_linearlayout:
+                if (mInfo != null && mInfo.list != null && mInfo.list.size() > 0) {
+                    changeISNOPicker.showAlertDialog(mInfo.list, "选择优惠券", nextTimePosition);
+                    changeISNOPicker.setAlertOnClickListener(new CustomDialogPicker.AlertOnClickListener() {
+                        @Override
+                        public void alertClick(int position) {
+                            nextTimePosition = position;
+                            discount_use_tv.setText("-￥" + mInfo.list.get(position).coupon_price);
+                            coupon_id = mInfo.list.get(position).coupon_id;
+                            if (Double.valueOf(price) >= Double.valueOf(mInfo.list.get(position).coupon_price)) {
+                                Double mm = (Double.valueOf(price) - Double.valueOf(mInfo.list.get(position).coupon_price));
+                                BigDecimal bd = new BigDecimal(mm);
+                                bd = bd.setScale(2, RoundingMode.HALF_UP);
+                                count_pay.setText("￥" + bd.toString());
+                            } else {
+                                count_pay.setText("￥" + price);
+                            }
+
+                            changeISNOPicker.closeAlertDialog();
+
+                        }
+                    });
+                }
+
+
+                break;
             case R.id.alipay_linearlayout:
                 aliPay = true;
                 wxPay = false;
@@ -122,11 +178,11 @@ public class PayActivity extends BaseActivity implements IWXAPIEventHandler {
                     return;
                 }
                 if (aliPay) {
-                    payPresenter.getAliPayInfo("2", raiders_id, "ali");
+                    payPresenter.getAliPayInfo("2", raiders_id, "ali", coupon_id);
                 }
 
                 if (wxPay) {
-                    payPresenter.updateCompanyInfo("2", raiders_id, "wx");
+                    payPresenter.updateCompanyInfo("2", raiders_id, "wx", coupon_id);
                 }
 
                 break;
@@ -135,16 +191,16 @@ public class PayActivity extends BaseActivity implements IWXAPIEventHandler {
 
     private void wXPay() {
         try {
-            JSONObject jsonObject = new JSONObject(orderInfo);
+//            JSONObject jsonObject = new JSONObject(orderInfo);
             PayReq req = new PayReq();
-            req.appId = (String) jsonObject.get("appid");
-            req.partnerId = (String) jsonObject.get("partnerid");
+            req.appId = (String) orderInfo.get("appid");
+            req.partnerId = (String) orderInfo.get("partnerid");
             //预支付订单
-            req.prepayId = (String) jsonObject.get("prepayid");
-            req.nonceStr = (String) jsonObject.get("noncestr");
-            req.timeStamp = (String) jsonObject.get("timestamp");
-            req.packageValue = (String) jsonObject.get("package");
-            req.sign = (String) jsonObject.get("sign");
+            req.prepayId = (String) orderInfo.get("prepayid");
+            req.nonceStr = (String) orderInfo.get("noncestr");
+            req.timeStamp = (String) orderInfo.get("timestamp");
+            req.packageValue = (String) orderInfo.get("package");
+            req.sign = (String) orderInfo.get("sign");
             // 在支付之前，如果应用没有注册到微信，应该先调用IWXMsg.registerApp将应用注册到微信
             //3.调用微信支付sdk支付方法
 //            Toast.makeText(PayActivity.this, "正常调起支付" + req.sign, Toast.LENGTH_SHORT).show();
@@ -160,15 +216,10 @@ public class PayActivity extends BaseActivity implements IWXAPIEventHandler {
     private void aliPay() {
 
         Runnable payRunnable = new Runnable() {
-
             @Override
             public void run() {
                 PayTask alipay = new PayTask(PayActivity.this);
                 Map<String, String> result = alipay.payV2(aliPayorderInfo, true);
-                for (String s : result.keySet()) {
-                    System.out.println("alipaykey:==========" + s);
-                    System.out.println("alipayvalues:=======" + result.get(s));
-                }
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -182,56 +233,7 @@ public class PayActivity extends BaseActivity implements IWXAPIEventHandler {
         payThread.start();
     }
 
-    /**
-     * alipaykey:==========resultStatus
-     * alipayvalues:=======6001
-     * alipaykey:==========result
-     * alipayvalues:=======
-     * alipaykey:==========memo
-     * alipayvalues:=======操作已经取消。
-     * <p>
-     * 4000            支付失败
-     * <p>
-     * alipaykey:==========resultStatus
-     * alipayvalues:=======9000
-     * alipaykey:==========result
-     * alipayvalues:======={"alipay_trade_app_pay_response":
-     * {"code":"10000","msg":"Success","app_id":"2017050807168060",
-     * "auth_app_id":"2017050807168060","charset":"UTF-8",
-     * "timestamp":"2018-08-30 14:26:20","total_amount":"0.10",
-     * "trade_no":"2018083021001004840515214055","seller_id":"2088421458159441",
-     * "out_trade_no":"08301422562287"},
-     * "sign":"cUjJkU1SLdgpcjmAUJ5tN0Xls7KASHXPAuan/gXQcicSFOj2nbnA9JRF04SPgZA1yb/AtAM8NR6xKZcctctIcg42oOVejYU6McxIrYlxLAdZ8BbBwsVYmjEK4T/qTrkfE09zdTpdlvoMj1lNQJSO6kDb4waHNx6hQ7106OxB/LEYL1FgTQoL2/PsHQe9udbgDLYfmm1Lsdri5kCh0tEUraKXRsh1+EigkXvw/C9NMOx2gJ/IHpIjMpSFz5gvCij1KaIYCMblp4Sm7RpNLisjutIl/i7wX7+w/f+F6DhCOBEeWTTyOCgL0Fi4Lqf6WNFxBAViQIX3VXbIbu5keNQOQw==","sign_type":"RSA2"}
-     * alipaykey:==========memo
-     * alipayvalues:=======
-     * {
-     * "code": "10000",
-     * "msg": "Success",
-     * "app_id": "2017050807168060",
-     * "auth_app_id": "2017050807168060",
-     * "charset": "UTF-8",
-     * "timestamp": "2018-08-30 14:26:20",
-     * "total_amount": "0.10",
-     * "trade_no": "2018083021001004840515214055",
-     * "seller_id": "2088421458159441",
-     * "out_trade_no": "08301422562287"
-     * },
-     * "sign": "cUjJkU1SLdgpcjmAUJ5tN0Xls7KASHXPAuan/gXQcicSFOj2nbnA9JRF04SPgZA1yb/AtAM8NR6xKZcctctIcg42oOVejYU6McxIrYlxLAdZ8BbBwsVYmjEK4T/qTrkfE09zdTpdlvoMj1lNQJSO6kDb4waHNx6hQ7106OxB/LEYL1FgTQoL2/PsHQe9udbgDLYfmm1Lsdri5kCh0tEUraKXRsh1+EigkXvw/C9NMOx2gJ/IHpIjMpSFz5gvCij1KaIYCMblp4Sm7RpNLisjutIl/i7wX7+w/f+F6DhCOBEeWTTyOCgL0Fi4Lqf6WNFxBAViQIX3VXbIbu5keNQOQw==", "sign_type": "RSA2"
-     * }
-     */
-
-
     private void alipayManage(Map<String, String> result) {
-        CenterDialog centerDialog = new CenterDialog(PayActivity.this);
-        centerDialog.setAlertOnClickListener(new ChangeISNOPicker.AlertOnClickListener() {
-            @Override
-            public void alertClick(String age) {
-                if (age.startsWith("支付成功")) {
-                    PayActivity.this.finish();
-                }
-
-            }
-        });
         if (result.containsKey("resultStatus")) {
             if (result.get("resultStatus").equals("9000")) {
                 centerDialog.showDialog("支付成功！", R.drawable.payes_success);
@@ -249,23 +251,61 @@ public class PayActivity extends BaseActivity implements IWXAPIEventHandler {
 
     }
 
+
     @Override
     protected void initData() {
+        // 类型    ( 1：已用；2：未用；3过期 )  type
+        // 使用范围    ( 非必传；1：培训；2：考卷；不传默认全部 )  use_type
+
+
+        payPresenter.getDiscountInfo("2", use_type, price);
+        changeISNOPicker = new CustomDialogPicker(PayActivity.this);
 
     }
 
+    private DiscountDetail mInfo = null;
 
-    public void setAliPaySuccessInfo(String link) {
-        aliPayorderInfo = link;
-        aliPay();
+    public void setDiscountSuccess(DiscountDetail mInfo) {
+        this.mInfo = mInfo;
+
+        count_pay.setText("￥" + price);
+        if (mInfo != null && mInfo.list != null && mInfo.list.size() > 0) {
+            discount_use_tv.setText("-￥" + mInfo.list.get(0).coupon_price);
+            coupon_id = mInfo.list.get(0).coupon_id;
+            Double dd = (Double.valueOf(price));
+            Double cc = Double.valueOf(mInfo.list.get(0).coupon_price);
+            Double mm = dd - cc;
+            BigDecimal bd = new BigDecimal(mm);
+            bd = bd.setScale(2, RoundingMode.HALF_UP);
+            count_pay.setText("￥" + bd.toString() );
+        }
     }
 
 
-    public void setSuccessInfo(String link) {
-        orderInfo = link;
-        wXPay();
+    public void setAliPaySuccessInfo(JSONObject jsonObject, String jump_sdk) {
+
+        if (jump_sdk.equals("N")) {
+            centerDialog.showDialog("支付成功！", R.drawable.payes_success);
+        } else {
+            try {
+                String link = (String) jsonObject.get("link");
+                aliPayorderInfo = link;
+                aliPay();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
+
+    public void setSuccessInfo(JSONObject link, String jump_sdk) {
+        if (jump_sdk.equals("N")) {
+            centerDialog.showDialog("支付成功！", R.drawable.payes_success);
+        } else {
+            orderInfo = link;
+            wXPay();
+        }
+    }
 
     @Override
     public void onReq(BaseReq baseReq) {

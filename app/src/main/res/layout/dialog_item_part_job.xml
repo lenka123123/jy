@@ -33,7 +33,7 @@
                     android:textSize="14sp" />
 
                 <RadioGroup
-                         android:layout_width="wrap_content"
+                    android:layout_width="wrap_content"
                     android:layout_height="@dimen/y58"
                     android:orientation="horizontal">
 
@@ -323,8 +323,20 @@
                         android:textSize="14sp" />
 
                     <RadioButton
+                        android:id="@+id/account_by_time"
+                        android:layout_width="@dimen/x100"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/x10"
+                        android:background="@drawable/bg_select_button_on"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="时结"
+                        android:textSize="14sp" />
+
+                    <RadioButton
                         android:id="@+id/account_by_day"
-                        android:layout_width="@dimen/x126"
+                        android:layout_width="@dimen/x100"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_marginLeft="@dimen/x10"
@@ -336,7 +348,7 @@
 
                     <RadioButton
                         android:id="@+id/account_by_morrow"
-                        android:layout_width="@dimen/x126"
+                        android:layout_width="@dimen/x100"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_marginLeft="@dimen/x10"
@@ -348,7 +360,7 @@
 
                     <RadioButton
                         android:id="@+id/account_by_week"
-                        android:layout_width="@dimen/x126"
+                        android:layout_width="@dimen/x100"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_marginLeft="@dimen/x10"
@@ -361,7 +373,7 @@
 
                     <RadioButton
                         android:id="@+id/account_by_month"
-                        android:layout_width="@dimen/x126"
+                        android:layout_width="@dimen/x100"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_marginLeft="@dimen/x10"
@@ -376,7 +388,6 @@
                 </RadioGroup>
 
                 <RadioButton
-                  android:visibility="gone"
                     android:layout_width="@dimen/x126"
                     android:layout_height="@dimen/y88"
                     android:layout_marginLeft="@dimen/x20"
@@ -385,7 +396,8 @@
                     android:button="@null"
                     android:gravity="center"
                     android:text="月结"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <View
@@ -424,6 +436,7 @@
                     android:text="确定" />
 
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/space_0.5"

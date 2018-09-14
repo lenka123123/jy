@@ -70,5 +70,9 @@ dependencies {
     api 'com.baidu.mobstat:mtj-sdk-circle:latest.integration'
     api 'com.daimajia.swipelayout:library:1.2.0@aar'
 
+    // 加载大图库
+    api 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
+
+
 
 }

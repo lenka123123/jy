@@ -523,29 +523,38 @@ public class JobBangPayDetailActivity extends BaseActivity implements ShareEvery
         settings.setJavaScriptEnabled(true);
         webview.setDrawingCacheEnabled(true);
         webview.buildDrawingCache();
-        webview.setWebViewClient(new WebViewClient() {
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-                return true;
-            }
 
+        mTitle.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                super.onPageStarted(view, url, favicon);
-
-            }
-
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
+            public void onClick(View view) {
                 Toast.makeText(JobBangPayDetailActivity.this, "onPageFinished", Toast.LENGTH_LONG).show();
                 saveBitmap(convertWebViewToBitmap());
-//                webView.setVisibility(View.GONE);
-//                imageView.setVisibility(View.INVISIBLE);
-////                imageView.setImageBitmap(convertWebViewToBitmap());
-//                imageView.setBackgroundResource(R.mipmap.ic_launcher);
             }
         });
+
+//        webview.setWebViewClient(new WebViewClient() {
+//            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//                view.loadUrl(url);
+//                return true;
+//            }
+//
+//            @Override
+//            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+//                super.onPageStarted(view, url, favicon);
+//
+//            }
+//
+//            @Override
+//            public void onPageFinished(WebView view, String url) {
+//
+//                super.onPageFinished(view, url);
+//
+////                webView.setVisibility(View.GONE);
+////                imageView.setVisibility(View.INVISIBLE);
+//////                imageView.setImageBitmap(convertWebViewToBitmap());
+////                imageView.setBackgroundResource(R.mipmap.ic_launcher);
+//            }
+//        });
 
 
         //判断是否收藏

@@ -40,7 +40,7 @@ import sinia.com.baihangeducation.find.presenter.JobBangClassInfoPresenter;
 import sinia.com.baihangeducation.find.view.JobBangClassInfoView;
 
 /**
- * 就业邦学堂 攻略干货
+ * 就业邦学堂   真题试卷
  */
 
 public class JobBangClassTestActivity extends BaseActivity implements JobBangClassInfoView, SuperRecyclerView.LoadingListener, SwipeRefreshLayout.OnRefreshListener, RadioGroup.OnCheckedChangeListener {
@@ -197,6 +197,7 @@ public class JobBangClassTestActivity extends BaseActivity implements JobBangCla
             darkenBackground(0.5f);
         }
     }
+
     /**
      * 改变背景颜色
      */
@@ -208,6 +209,7 @@ public class JobBangClassTestActivity extends BaseActivity implements JobBangCla
         getWindow().setAttributes(lp);
 
     }
+
     /**
      * 获取选中ID
      */
@@ -337,6 +339,7 @@ public class JobBangClassTestActivity extends BaseActivity implements JobBangCla
             countpage++;
             if (maxpage == 1 || countpage > maxpage) {
                 rvContainer.setLoadMoreEnabled(false);
+                android.widget.Toast.makeText(context, "没有更多数据", android.widget.Toast.LENGTH_SHORT).show();
             } else {
                 rvContainer.setLoadMoreEnabled(true);
             }
@@ -379,9 +382,13 @@ public class JobBangClassTestActivity extends BaseActivity implements JobBangCla
      * 获取数据
      */
     private void getServerData() {
-        countpage = 1;
-        mList.clear();
-        mJobBangClassSecondAdapter.notifyDataSetChanged();
+        if (isLoadMore) {
+        } else {
+            countpage = 1;
+            mList.clear();
+            mJobBangClassSecondAdapter.notifyDataSetChanged();
+        }
+
         mJobBangClassInfoPresenter.getJobBangClassInfo();
     }
 

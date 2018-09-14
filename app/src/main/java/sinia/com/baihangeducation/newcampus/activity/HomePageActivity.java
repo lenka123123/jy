@@ -140,7 +140,9 @@ public class HomePageActivity extends BaseActivity implements IGetFunView, IIsSh
             case R.id.linearLayout_fans:
                 Intent myIntent = new Intent(context, FansListActivity.class);
                 AppConfig.OTHERID = user_id;
+
                 myIntent.putExtra("user_id", user_id);
+
                 startActivity(myIntent);
                 break;
         }

@@ -1,4 +1,4 @@
-package sinia.com.baihangeducation.supplement.receiver;
+package sinia.com.baihangeducation.receiver;
 
 import android.app.Notification;
 import android.app.NotificationManager;

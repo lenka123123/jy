@@ -22,6 +22,7 @@ import com.example.framwork.utils.SpCommonUtils;
 import com.example.framwork.utils.Toast;
 import com.example.framwork.utils.UserInfo;
 
+import cn.jpush.android.api.JPushInterface;
 import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.MyApplication;
 import sinia.com.baihangeducation.mine.activity.LoginActivity;
@@ -61,7 +62,7 @@ public class LoginPresenter extends BasePresenter {
     private GetLocation getLocation;
     private final GetBaseInfoPresenter getBaseInfoPresenter;
 
-    public LoginPresenter(Activity activity, ILoginView view) {
+    public LoginPresenter(Activity activity, LoginActivity view) {
         super(activity);
         this.activity = activity;
         this.view = view;
@@ -84,6 +85,12 @@ public class LoginPresenter extends BasePresenter {
         info.put("lng", view.getLocationLng());
         info.put("lat", view.getLocationLat());
         info.put("device_id", CommonUtil.getAndroidId(activity));
+
+
+        System.out.println("device_id" + CommonUtil.getAndroidId(activity));
+        String jPushId = JPushInterface.getRegistrationID(activity);
+
+        System.out.println("getRegistrationID" + jPushId);
         view.showLoading();
         post(info, new OnRequestListener() {
             @Override
@@ -146,6 +153,88 @@ public class LoginPresenter extends BasePresenter {
         });
     }
 
+
+
+
+
+
+    public void loginRegister(final LoginActivity loginActivity) {
+        if (!AccountManger.checkupLogin(activity, view.getPhoneNum(), view.getPassword())) {
+            return;
+        }
+        HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "login", "default", false);
+        info.put("mobile", view.getPhoneNum());
+        info.put("password", view.getPassword());
+        info.put("lng", view.getLocationLng());
+        info.put("lat", view.getLocationLat());
+        info.put("device_id", CommonUtil.getAndroidId(activity));
+
+
+        System.out.println("device_id" + CommonUtil.getAndroidId(activity));
+        String jPushId = JPushInterface.getRegistrationID(activity);
+
+        System.out.println("getRegistrationID" + jPushId);
+        view.showLoading();
+        post(info, new OnRequestListener() {
+            @Override
+            public void requestSuccess(BaseResponseBean bean) {
+                view.showLoginSuccress();
+                UserInfo userInfo = bean.parseObject(UserInfo.class);
+                AppConfig.ISlOGINED = true;
+                AppConfig.TOKEN = userInfo.token;
+                AppConfig.USERID = userInfo.user_id;
+                AppConfig.USERIDTYPE = userInfo.type;
+                System.out.println("userInfouserInfouserIns试试fo.type" + userInfo.type);
+                getBaseInfoPresenter.getBaseInfoLoginAfter(AppConfig.TOKEN, AppConfig.USERID);
+
+                SpCommonUtils.put(activity, AppConfig.USERTOKEN, userInfo.token);
+                SpCommonUtils.put(activity, AppConfig.FINALUSERID, userInfo.user_id);
+                SpCommonUtils.put(activity, AppConfig.USERPHOTO, view.getPhoneNum());
+                SpCommonUtils.put(activity, AppConfig.USERPWD, view.getPassword());
+
+
+                SpCommonUtils.put(activity, AppConfig.FINALUAVATAR, userInfo.avatar);
+                SpCommonUtils.put(activity, AppConfig.FINALNICKNAME, userInfo.nickname);
+                SpCommonUtils.put(activity, AppConfig.FINALSLOGAN, userInfo.slogan);
+                SpCommonUtils.put(activity, AppConfig.FINALGENDEREEE, userInfo.gender + "");
+                SpCommonUtils.put(activity, AppConfig.FINALEMEMAIL, userInfo.email);
+
+
+                SpCommonUtils.put(activity, AppConfig.FINAL_NO_READ_NUM, userInfo.no_read_num);
+                SpCommonUtils.put(activity, AppConfig.FINAL_NUM_TRAIN_NUM, userInfo.my_num.train_num);
+                SpCommonUtils.put(activity, AppConfig.FINAL_NUM_FULL_JOB_NUM, userInfo.my_num.full_job_num);
+                SpCommonUtils.put(activity, AppConfig.FINAL_NUM_FULL_PARK_NUM, userInfo.my_num.part_job_num);
+                SpCommonUtils.put(activity, AppConfig.FINAL_NUM_FULL_HULP_NUM, userInfo.my_num.help_num);
+                SpCommonUtils.put(activity, AppConfig.FINAL_NUM_FULL_HULP_NICKNAME, userInfo.nickname);
+                SpCommonUtils.put(activity, AppConfig.FINAL_NUM_FULL_TYPE, userInfo.type);
+                SpCommonUtils.put(activity, AppConfig.IS_LOGIN_APP, true);
+
+                SpCommonUtils.put(activity, AppConfig.FINAL_NUM_FULL_AUTH_STATUS, userInfo.auth_status);
+
+
+//                ObjectSaveUtil.saveObject(activity, bean.parseObject(UserInfo.class));
+                SPUtils.getInstance().saveObject(activity, Constants.USER_INFO, bean.parseObject(UserInfo.class));
+                SPUtils.getInstance().saveObject(activity, Constants.USER_ACCOUNT, view.getPhoneNum());
+                AccountManger.getUserInfo(activity);
+                EventBus.getDefault().post(Constants.EB_LOGIN_SUCCESS);
+
+                MyAsyncTask myAsyncTask = new MyAsyncTask();
+                myAsyncTask.execute(userInfo.avatar);
+                loginActivity.finish();
+            }
+
+            @Override
+            public void requestFailed(String error) {
+                Log.i("登录", error.toString());
+                Toast.getInstance().showErrorToast(activity, error);
+            }
+
+            @Override
+            public void requestFinish() {
+                view.hideLoading();
+            }
+        });
+    }
 
     private class MyAsyncTask extends AsyncTask<String, Void, Bitmap> {
 

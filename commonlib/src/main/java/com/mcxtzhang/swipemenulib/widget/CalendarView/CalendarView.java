@@ -30,7 +30,6 @@ import java.util.Date;
 import java.util.List;
 
 
-
 public class CalendarView extends LinearLayout implements OnClickListener {
 
     private final String TAG = CalendarView.class.getSimpleName();
@@ -201,13 +200,15 @@ public class CalendarView extends LinearLayout implements OnClickListener {
 
         gridView = new GridView(mContext);
         gridView.setNumColumns(7);
+        gridView.setBackgroundResource(R.drawable.logo);
+
         gridView.setColumnWidth(40);
         // gridView.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
         if (Width == 720 && Height == 1280) {
             gridView.setColumnWidth(40);
         }
         gridView.setGravity(Gravity.CENTER_VERTICAL);
-        gridView.setSelector(new ColorDrawable(Color.TRANSPARENT));
+        gridView.setSelector(new ColorDrawable(Color.RED));
         // 去除gridView边框
         gridView.setVerticalSpacing(0);
         gridView.setHorizontalSpacing(0);
@@ -225,7 +226,6 @@ public class CalendarView extends LinearLayout implements OnClickListener {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1,
                                     int position, long arg3) {
-                // TODO Auto-generated method stub
                 // 点击任何一个item，得到这个item的日期(排除点击的是周日到周六(点击不响应))
                 int startPosition = calV.getStartPositon();
                 int endPosition = calV.getEndPosition();
@@ -238,8 +238,7 @@ public class CalendarView extends LinearLayout implements OnClickListener {
                     ((CalendarAdapter) arg0.getAdapter())
                             .setColorDataPosition(position);
                     if (clickDataListener != null) {
-                        clickDataListener.clickData(scheduleYear,
-                                scheduleMonth, scheduleDay);
+                        clickDataListener.clickData(scheduleYear, scheduleMonth, scheduleDay);
                     }
                 }
             }
@@ -256,9 +255,7 @@ public class CalendarView extends LinearLayout implements OnClickListener {
 
         } else if (i == R.id.prevMonth) {
             enterPrevMonth(gvFlag);
-
         }
-
     }
 
     class MyGestureListener extends SimpleOnGestureListener {
@@ -267,12 +264,10 @@ public class CalendarView extends LinearLayout implements OnClickListener {
                                float velocityY) {
             int gvFlag = 0; // 每次添加gridview到viewflipper中时给的标记
             if (e1.getX() - e2.getX() > 20) {
-                // 像左滑动
-                enterNextMonth(gvFlag);
+                // 像左滑动   enterNextMonth(gvFlag);
                 return true;
             } else if (e1.getX() - e2.getX() < -20) {
-                // 向右滑动
-                enterPrevMonth(gvFlag);
+                // 向右滑动    enterPrevMonth(gvFlag);
                 return true;
             }
             return false;

@@ -67,14 +67,18 @@ public class CommonFilterPop extends PopupWindow {
         } else {
             popupView = mInflater.inflate(R.layout.common_popup_list_dialog, null);
         }
-        LinearLayout linearLayout = popupView.findViewById(R.id.linearLayout);
-//        linearLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
+
 
         //设置View
         this.setContentView(popupView);
         //设置弹出窗体的宽高
         this.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
-        this.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+        if (mDatas.size() > 8) {
+            this.setHeight(800);
+        } else {
+            this.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+        }
+
         //初始化控件
         initPopView();
         this.setFocusable(true);

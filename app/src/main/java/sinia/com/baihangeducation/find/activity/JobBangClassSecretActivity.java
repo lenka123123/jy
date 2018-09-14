@@ -13,6 +13,7 @@ import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.framwork.utils.ProgressActivityUtils;
 import com.example.framwork.widget.ProgressActivity;
@@ -108,7 +109,7 @@ public class JobBangClassSecretActivity extends BaseActivity implements JobBangC
         mJobBangClassInfoPresenter.getJobBangClassInfo();
         mJobBangClassInfoPresenter.gerRadioInfo();
 
-        mJobBangClassSecondAdapter = new JobBangClassSecondAdapter(context, mList,"职场秘籍");
+        mJobBangClassSecondAdapter = new JobBangClassSecondAdapter(context, mList, "职场秘籍");
         initSwipeLayout(swipeContainer, this);
         showSwipeRefreshLayout(swipeContainer);
         progressActivityUtils = new ProgressActivityUtils(context, progressActivity);
@@ -146,6 +147,7 @@ public class JobBangClassSecretActivity extends BaseActivity implements JobBangC
                 break;
         }
     }
+
     private void addPop() {
 
         WindowManager wm1 = this.getWindowManager();
@@ -154,8 +156,8 @@ public class JobBangClassSecretActivity extends BaseActivity implements JobBangC
         View view = LayoutInflater.from(this).inflate(R.layout.jobbangclassshaixuanmenu, null);
         final PopupWindow pop = new PopupWindow(view, width1 * 6 / 10, height1 * 8 / 10, true);
         pop.setBackgroundDrawable(getResources().getDrawable(android.R.color.transparent));
-        pop.setOnDismissListener(new PopupWindow.OnDismissListener() {
 
+        pop.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
                 darkenBackground(1f);
@@ -178,6 +180,7 @@ public class JobBangClassSecretActivity extends BaseActivity implements JobBangC
                 cadeId = null;
                 moneyId = null;
                 order = null;
+
                 mCateAdapter.setSelectedList();
                 mMoneyAdapter.setSelectedList();
                 mOrderAdapter.setSelectedList();
@@ -195,7 +198,10 @@ public class JobBangClassSecretActivity extends BaseActivity implements JobBangC
             pop.showAsDropDown(popView, 60, 0, Gravity.RIGHT);
             darkenBackground(0.5f);
         }
+
+
     }
+
     /**
      * 改变背景颜色
      */
@@ -207,6 +213,7 @@ public class JobBangClassSecretActivity extends BaseActivity implements JobBangC
         getWindow().setAttributes(lp);
 
     }
+
     /**
      * 获取选中ID
      */
@@ -262,6 +269,8 @@ public class JobBangClassSecretActivity extends BaseActivity implements JobBangC
                 return textView;
             }
         });
+
+
     }
 
     @Override
@@ -335,11 +344,12 @@ public class JobBangClassSecretActivity extends BaseActivity implements JobBangC
             countpage++;
             if (maxpage == 1 || countpage > maxpage) {
                 rvContainer.setLoadMoreEnabled(false);
+                Toast.makeText(context, "没有更多数据", Toast.LENGTH_SHORT).show();
             } else {
                 rvContainer.setLoadMoreEnabled(true);
             }
             if (!isLoadMore) {
-                mList.clear();
+//                mList.clear();
             }
             mList.addAll(mJobBangClassSecondListInfo.list);
             mJobBangClassSecondAdapter.notifyDataSetChanged();
@@ -376,9 +386,14 @@ public class JobBangClassSecretActivity extends BaseActivity implements JobBangC
      * 获取数据
      */
     private void getServerData() {
-        countpage = 1;
-        mList.clear();
-        mJobBangClassSecondAdapter.notifyDataSetChanged();
+        if (isLoadMore) {
+
+        } else {
+            countpage = 1;
+            mList.clear();
+            mJobBangClassSecondAdapter.notifyDataSetChanged();
+        }
+
         mJobBangClassInfoPresenter.getJobBangClassInfo();
     }
 

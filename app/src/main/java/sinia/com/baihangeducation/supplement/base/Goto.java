@@ -16,7 +16,7 @@ import sinia.com.baihangeducation.reconsitution.tabs.coffers.MyCoffers;
 import sinia.com.baihangeducation.reconsitution.tabs.pay.tab.PaiedListActivity;
 import sinia.com.baihangeducation.reconsitution.tabs.selectcity.SelectCityActivity;
 import sinia.com.baihangeducation.release.activity.FullTimeActivity;
-import sinia.com.baihangeducation.supplement.receiver.JPushDialogActivity;
+import sinia.com.baihangeducation.receiver.JPushDialogActivity;
 import sinia.com.baihangeducation.supplement.web.ShareWebViewActivity;
 import sinia.com.baihangeducation.release.activity.BelongIndutryActivity;
 import sinia.com.baihangeducation.release.activity.ReleaseJobInfoActivity;

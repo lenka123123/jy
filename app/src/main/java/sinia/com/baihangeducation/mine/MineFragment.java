@@ -269,7 +269,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
                 break;
             case R.id.fragment_mine_myinfowantjob:
                 //意向求职
-                Goto.toWantJobActivity(context);
+
                 break;
             case R.id.fragment_mine_task:
                 //任务

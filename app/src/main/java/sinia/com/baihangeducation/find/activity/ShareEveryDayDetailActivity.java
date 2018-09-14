@@ -102,10 +102,6 @@ public class ShareEveryDayDetailActivity extends BaseActivity implements ShareEv
     private MessageAdapter mMessageAdapter;
     private List<CommentInfo> mList;
 
-    private LinearLayout pay_linearLayout;
-    private Button pay_button;
-    private View pay_view;
-
 
     private boolean isSuccess = true;
     private WebView mWebView;
@@ -155,10 +151,6 @@ public class ShareEveryDayDetailActivity extends BaseActivity implements ShareEv
         mContent = header.findViewById(R.id.shareeverydaydetail_caontent);
         mWebView = header.findViewById(R.id.webview);
 
-
-        pay_linearLayout = header.findViewById(R.id.pay_linearLayout);
-        pay_button = header.findViewById(R.id.goto_pay);
-        pay_view = header.findViewById(R.id.pay_view);
 
         mMessageAdapter.addHeaderView(header);
     }
@@ -401,20 +393,18 @@ public class ShareEveryDayDetailActivity extends BaseActivity implements ShareEv
     public void getMessageSuccess(HomeAndFindHelpEachOtherDetailCommentInfo mInfo, int maxpage) {
         if (mInfo.list.size() == 0) {
             mList.clear();
-            CommentInfo info = new CommentInfo();
-            mList.add(info);
-            mMessageAdapter.notifyDataSetChanged();
+
         } else {
             progressActivityUtils.showContent();
             countpage++;
-//            if (maxpage == 1 || countpage > maxpage) {
-            rvContainer.setLoadMoreEnabled(false);
-//            } else {
-//                rvContainer.setLoadMoreEnabled(true);
-//            }
-
+            if (maxpage == 1 || countpage > maxpage) {
+                rvContainer.setLoadMoreEnabled(false);
+            } else {
+                rvContainer.setLoadMoreEnabled(true);
+            }
+            System.out.println("=========");
             mList.addAll(mInfo.list);
-            mMessageAdapter.notifyDataSetChanged();
+            mMessageAdapter.setData(mInfo.list);
         }
     }
 
@@ -487,27 +477,21 @@ public class ShareEveryDayDetailActivity extends BaseActivity implements ShareEv
     @Override
     public void getJobBangDetailSuccess(JobBangDetailListInfo info, int maxpage) {
         //    public int raiders_is_buy ;
-
-        if (!info.raiders_price.equals("免费")) {// 未购买
-            pay_linearLayout.setVisibility(View.VISIBLE);
-            pay_button.setVisibility(View.VISIBLE);
-            pay_view.setVisibility(View.VISIBLE);
-        } else {
-            pay_linearLayout.setVisibility(View.GONE);
-            pay_button.setVisibility(View.GONE);
-            pay_view.setVisibility(View.GONE);
-        }
-        if (info.raiders_is_buy == 1) {
-            pay_linearLayout.setVisibility(View.GONE);
-            pay_button.setVisibility(View.GONE);
-            pay_view.setVisibility(View.GONE);
-        }
-
-
-
-
-
-
+//
+//        if (!info.raiders_price.equals("免费")) {// 未购买
+//            pay_linearLayout.setVisibility(View.VISIBLE);
+//            pay_button.setVisibility(View.VISIBLE);
+//            pay_view.setVisibility(View.VISIBLE);
+//        } else {
+//            pay_linearLayout.setVisibility(View.GONE);
+//            pay_button.setVisibility(View.GONE);
+//            pay_view.setVisibility(View.GONE);
+//        }
+//        if (info.raiders_is_buy == 1) {
+//            pay_linearLayout.setVisibility(View.GONE);
+//            pay_button.setVisibility(View.GONE);
+//            pay_view.setVisibility(View.GONE);
+//        }
 
 
     }

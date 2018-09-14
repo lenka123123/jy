@@ -91,11 +91,9 @@
         <item name="android:paddingTop">@dimen/space_10</item>
         <item name="android:paddingBottom">@dimen/space_10</item>
         <item name="android:paddingLeft">@dimen/space_20</item>
-        <item name="android:drawablePadding">@dimen/space_10</item>
         <item name="android:textColorHint">@color/edit_textColorHint_6F6F6F</item>
         <item name="android:textSize">@dimen/font_size_14</item>
-        <item name="android:textColor">@color/color_e3e3e3</item>
-        <item name="android:background">@drawable/new_login_input</item>
+
         <item name="android:layout_marginLeft">@dimen/space_30</item>
         <item name="android:layout_marginRight">@dimen/space_30</item>
 

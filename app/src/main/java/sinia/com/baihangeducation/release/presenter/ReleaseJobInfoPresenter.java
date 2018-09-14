@@ -25,23 +25,24 @@ public class ReleaseJobInfoPresenter extends BasePresenter {
         this.view = view;
     }
 
-    public void getJobOptionList(){
-        HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity,"getJobOptionList","publish",false);
-
+    public void getJobOptionList() {
+        HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "getJobOptionList", "publish", false);
+// 1全职 2兼职
+        // TODO: 2018/9/7 0007  type
         info.put("user_id", AppConfig.USERID);
         info.put("token", AppConfig.TOKEN);
 
         post(info, new OnRequestListener() {
             @Override
             public void requestSuccess(BaseResponseBean bean) {
-                Log.i("获取职位选项列表",bean.toString());
+                Log.i("获取职位选项列表", bean.toString());
                 ReleaseJobInfoListInfo info = bean.parseObject(ReleaseJobInfoListInfo.class);
                 view.getReleaseJobInfoSuccess(info);
             }
 
             @Override
             public void requestFailed(String error) {
-                Toast.getInstance().showErrorToast(activity,error);
+                Toast.getInstance().showErrorToast(activity, error);
             }
 
             @Override

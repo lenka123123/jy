@@ -1,6 +1,10 @@
 package sinia.com.baihangeducation.mine.activity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,19 +23,22 @@ import cn.jpush.android.api.JPushInterface;
 import cn.jpush.android.api.TagAliasCallback;
 import sinia.com.baihangeducation.R;
 import sinia.com.baihangeducation.supplement.base.BaseActivity;
+
 import com.mcxtzhang.swipemenulib.info.bean.AuthCodeInfo;
+
 import sinia.com.baihangeducation.mine.presenter.AuthCodePresenter;
 import sinia.com.baihangeducation.mine.presenter.BindingPhonePresenter;
 import sinia.com.baihangeducation.mine.view.IAuthCodeView;
 import sinia.com.baihangeducation.mine.view.IBindingPhoneView;
 import sinia.com.baihangeducation.supplement.base.Goto;
+
 import com.mcxtzhang.swipemenulib.utils.Constants;
 
 /**
  * 绑定手机号码页面
  */
 
-public class BindingPhoneActivity extends BaseActivity implements IBindingPhoneView, IAuthCodeView {
+public class BindingPhoneActivity extends AppCompatActivity implements IBindingPhoneView, IAuthCodeView, View.OnClickListener {
 
     private Intent intent;
     private String uid;
@@ -41,8 +48,8 @@ public class BindingPhoneActivity extends BaseActivity implements IBindingPhoneV
     private EditText mBindeAuthCode;        //验证码
     private TimeButton mTimeButton;         //获取验证啊按钮
     private TextView mBindSubmit;           //提交
-    private TextView mBindUnGetAuthCode;    //无法获取验证码
-    private Button mDeletePhone;            //清空电话号码
+//    private TextView mBindUnGetAuthCode;    //无法获取验证码
+
 
     private AuthCodePresenter mAuthCodePresenter;
     private BindingPhonePresenter mBindingPhonePresenter;
@@ -50,45 +57,40 @@ public class BindingPhoneActivity extends BaseActivity implements IBindingPhoneV
     //极光推送，绑定用户时候的参数.
     private String userType;
     private Set<String> set;
+    private Activity context;
+
 
     @Override
-    public int initLayoutResID() {
-        return R.layout.activity_bindingphone;
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_bindingphone);
+        context = this;
+        initView();
+        initData();
     }
 
-    /**
-     * 初始化数据
-     */
-    @Override
+
     protected void initData() {
         intent = getIntent();
         uid = intent.getStringExtra("UID");
         type = intent.getStringExtra("TYPE");
-        mCommonTitle.setCenterText(R.string.boundphone);
+
         mAuthCodePresenter = new AuthCodePresenter(context, this);
         mBindingPhonePresenter = new BindingPhonePresenter(context, this);
     }
 
-    /**
-     * 初始化控件
-     */
-    @Override
     protected void initView() {
-        mBindePhoneNum = $(R.id.bindthired_phone);
-        mBindeAuthCode = $(R.id.bindthired_code);
-        mTimeButton = $(R.id.bindthired_phone_get_verification_code);
-        mBindSubmit = $(R.id.bindthired_submit);
-        mBindUnGetAuthCode = $(R.id.bindthired_unget_verification_code);
-        mDeletePhone = $(R.id.bindthired_deletephone);
+        mBindePhoneNum = findViewById(R.id.bindthired_phone);
+        mBindeAuthCode = findViewById(R.id.bindthired_code);
+        mTimeButton = findViewById(R.id.bindthired_phone_get_verification_code);
+        mBindSubmit = findViewById(R.id.bindthired_submit);
         mTimeButton.setOnClickListener(this);
         mBindSubmit.setOnClickListener(this);
-        mBindUnGetAuthCode.setOnClickListener(this);
-        mDeletePhone.setOnClickListener(this);
+        findViewById(R.id.back).setOnClickListener(this);
     }
 
-    @Override
     public void onClick(View v) {
-        super.onClick(v);
         switch (v.getId()) {
             case R.id.bindthired_phone_get_verification_code:
                 mAuthCodePresenter.getAuthCode();
@@ -96,12 +98,12 @@ public class BindingPhoneActivity extends BaseActivity implements IBindingPhoneV
             case R.id.bindthired_submit:
                 mBindingPhonePresenter.binding();
                 break;
-            case R.id.bindthired_unget_verification_code:
-                Goto.toUnGetAuthCode(context);
-                break;
-            case R.id.bindthired_deletephone:
-                mBindePhoneNum.setText("");
-                mBindePhoneNum.setHint(R.string.input_phone_num);
+//            case R.id.bindthired_unget_verification_code:
+//                Goto.toUnGetAuthCode(context);
+//                break;
+
+            case R.id.back:
+                BindingPhoneActivity.this.finish();
                 break;
         }
     }
@@ -112,11 +114,12 @@ public class BindingPhoneActivity extends BaseActivity implements IBindingPhoneV
 
     private void initJPushTag() {
         userType = CommonUtil.getAndroidId(this);
-        Log.i("设备ID",userType+"        MainActivity");
+        Log.i("设备ID", userType + "        MainActivity");
         set = new HashSet<>();
         set.add(userType);
         pushTag();
     }
+
     private void pushTag() {
         JPushInterface.setAliasAndTags(this, userType, set,
                 new TagAliasCallback() {
@@ -175,7 +178,7 @@ public class BindingPhoneActivity extends BaseActivity implements IBindingPhoneV
 
     @Override
     public void showGetAuthCodeError(String error) {
-        Toast.getInstance().showErrorToast(context,error);
+        Toast.getInstance().showErrorToast(context, error);
     }
 
     @Override
@@ -185,6 +188,11 @@ public class BindingPhoneActivity extends BaseActivity implements IBindingPhoneV
 
     @Override
     public void hideLoading() {
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
 }

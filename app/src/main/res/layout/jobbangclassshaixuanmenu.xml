@@ -7,11 +7,6 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="none">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,17 +26,19 @@
                 android:paddingLeft="@dimen/space_20"
                 android:paddingRight="@dimen/space_20"
                 android:paddingTop="@dimen/space_10"
-                zhy:max_select="1"></com.zhy.view.flowlayout.TagFlowLayout>
+                zhy:max_select="1"/>
 
-            <include layout="@layout/include_line_gray" />
+
 
             <TextView
+                android:visibility="gone"
                 style="@style/layoutset_20_10_20_10_mw"
                 android:text="选择分类"
                 android:textColor="@color/color_3a3a3a_black"
                 android:textSize="@dimen/font_size_16" />
 
             <com.zhy.view.flowlayout.TagFlowLayout
+                android:visibility="gone"
                 android:id="@+id/jobbangclassshaixuanmenu_cate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -49,7 +46,7 @@
                 android:paddingLeft="@dimen/space_20"
                 android:paddingRight="@dimen/space_20"
                 android:paddingTop="@dimen/space_10"
-                zhy:max_select="1"></com.zhy.view.flowlayout.TagFlowLayout>
+                zhy:max_select="1"/>
 
             <include layout="@layout/include_line_gray" />
 
@@ -68,17 +65,18 @@
                 android:paddingLeft="@dimen/space_20"
                 android:paddingRight="@dimen/space_20"
                 android:paddingTop="@dimen/space_10"
-                zhy:max_select="1"></com.zhy.view.flowlayout.TagFlowLayout>
+                zhy:max_select="1"/>
 
 
         </LinearLayout>
-    </ScrollView>
+
 
     <include layout="@layout/include_line_gray" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/space_50"
+        android:orientation="horizontal"
         android:layout_alignParentBottom="true">
 
         <TextView

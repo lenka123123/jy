@@ -81,24 +81,29 @@ public class BeanJsonResult<T> extends RestRequest<T> {
 
                         bean = BaseResponseBean.parseObj(EncryptUtil.getInstance().decodeValue(response), BaseResponseBean.class);
 //                        System.out.println("===========start============");
-//                       System.out.println(bean.toString());
+//                        System.out.println(bean.toString());
 //                        System.out.println("===========end============");
+
 
                         if (!TextUtils.isEmpty(bean.getCode()) && bean.getCode().equals("300001")) {
 //                            if (loginRestLinstener != null) {
 //                                loginRestLinstener.loginRest(activity);
 //                            }
 //                            gotoLogin(activity);
-                           requestListener.requestFailed("尚未登录，请登录");
+                            requestListener.requestFailed("尚未登录，请登录");
                         } else if (bean.getData() == null || TextUtils.isEmpty(bean.getData())) {
                             requestListener.requestFailed(bean.getMessage());
                         } else if (!bean.isSuccess()) {
                             IsLoginInfo loginInfo = bean.parseObject(IsLoginInfo.class);
                             if (loginInfo != null && loginInfo.is_need_jump_login == 1) {
 
-                                gotoLogin(activity);
-                           requestListener.requestFailed("尚未登录，请登录");
+                                if (bean.getCode().equals("90000")){
+
+                                }else {
+                                    gotoLogin(activity);
+                                    requestListener.requestFailed("尚未登录，请登录");
 //
+                                }
 //                                if (loginRestLinstener != null) {
 //                                    loginRestLinstener.loginRest(activity);
 //                                }

@@ -3,4 +3,13 @@
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
     </style>
+
+    <!-- 图片全屏-->
+    <style name="Theme.imgFullScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:statusBarColor">@color/transparent</item>
+        <!--底部黑色，状态栏透明-->
+    </style>
 </resources>

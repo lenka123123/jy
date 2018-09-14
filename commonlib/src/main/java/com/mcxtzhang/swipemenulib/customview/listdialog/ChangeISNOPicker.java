@@ -20,6 +20,8 @@ public class ChangeISNOPicker {
 
     private Activity activity;
 
+    public AlertOnClickListener alertOnClickListener;
+
     public ChangeISNOPicker(Activity activity) {
         this.activity = activity;
     }
@@ -33,7 +35,7 @@ public class ChangeISNOPicker {
         this.alertOnClickListener = alertOnClickListener;
     }
 
-    public AlertOnClickListener alertOnClickListener;
+
 
     public void showAlertDialog(final List<String> list, String title, final TextView textView) {
         final AlertDialog dlg = new AlertDialog.Builder(activity, R.style.dialog_helf_transparent).create();

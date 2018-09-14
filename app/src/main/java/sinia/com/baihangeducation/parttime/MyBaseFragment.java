@@ -137,8 +137,9 @@ public class MyBaseFragment  extends BaseFragment {
 
         // 设置背景透明度
 //        WindowManager.LayoutParams lp = context.getWindow().getAttributes();
-//        lp.alpha = alpha;
+//        lp.height = alpha;
 //        context.getWindow().setAttributes(lp);
+
         // 显示pop
         mPopupWindow.showAsDropDown(parentView);
 

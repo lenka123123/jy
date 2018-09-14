@@ -19,6 +19,7 @@ import com.example.framwork.utils.SPUtils;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import sinia.com.baihangeducation.mine.activity.LoginActivity;
 import sinia.com.baihangeducation.supplement.base.BaseActivity;
 import sinia.com.baihangeducation.mine.model.AccountManger;
 import sinia.com.baihangeducation.home.present.GetCommonInfoPresenter;

@@ -3,6 +3,7 @@ package sinia.com.baihangeducation.home.adapter;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.example.framwork.adapter.BaseViewHolder;
 import com.example.framwork.adapter.SuperBaseAdapter;
@@ -13,6 +14,7 @@ import java.util.List;
 import sinia.com.baihangeducation.R;
 
 import com.example.framwork.utils.LogUtils;
+import com.mcxtzhang.swipemenulib.customview.GlideLoadUtils;
 import com.mcxtzhang.swipemenulib.info.bean.HomeJobTagInfo;
 import com.mcxtzhang.swipemenulib.info.bean.HomePartTimeInfo;
 
@@ -34,10 +36,15 @@ public class HomePartTimeAdapter extends SuperBaseAdapter<HomePartTimeInfo> {
     protected void convert(BaseViewHolder holder, final HomePartTimeInfo item, int position) {
         //  holder.setRoundImageUrl(R.id.fragment_home_down_item_img, item.job_company_logo, R.drawable.new_eorrlogo);
 
-        holder.setLoadalImageUrl(R.id.fragment_home_down_item_img, getDrawable(item.job_industry_id), R.drawable.new_eorrlogo);
+//        holder.setLoadalImageUrl(R.id.fragment_home_down_item_img, getDrawable(item.job_industry_id), R.drawable.new_eorrlogo);
+        ImageView imageView = holder.getView(R.id.fragment_home_down_item_img);
+        GlideLoadUtils.getInstance().glideLoad(context, item.job_industry_icon, imageView, R.drawable.new_eorrlogo);
+
 
         holder.setText(R.id.fragment_home_down_item_title, item.job_title);
-        holder.setText(R.id.fragment_home_down_item_adressandtime, item.job_city_name);//+ " " + item.job_add_date
+
+        String address = item.job_city_name + "  " + item.job_distance +"  "+ item.job_money_name;
+        holder.setText(R.id.fragment_home_down_item_adressandtime, address);
         holder.setText(R.id.lock_person_number, "浏览" + item.job_look_num + "人");//+ " " + item.job_add_date
         holder.setText(R.id.apply_person_number, "申请" + item.job_apply_num + "人");//+ " " + item.job_add_date
 

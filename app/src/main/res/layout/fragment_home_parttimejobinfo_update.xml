@@ -32,22 +32,21 @@
 
                         <TextView
                             android:id="@+id/fragment_home_parttimejobinfo_title"
-                            android:layout_width="0dp"
+                            android:layout_width="@dimen/x300"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="@dimen/space_20"
                             android:layout_weight="1"
-
                             android:text="兼职家教"
-                            android:textColor="@color/color_3a3a3a_black"
-                            android:textSize="@dimen/font_size_16" />
+                            android:textColor="@color/black"
+                            android:textSize="24sp" />
 
                         <TextView
                             android:id="@+id/fragment_home_parttimejobinfo_price"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginTop="@dimen/y10"
                             android:layout_weight="1"
-                            android:gravity="right"
+                            android:gravity="right|center_vertical"
                             android:text="150/天"
                             android:textColor="@color/color_E14222" />
                     </LinearLayout>
@@ -60,7 +59,7 @@
                         android:ellipsize="end"
                         android:singleLine="true"
                         android:text="南京市 鼓楼区"
-                        android:textColor="#777777"
+                        android:textColor="#4D4D4D"
                         android:textSize="14sp" />
 
                     <LinearLayout
@@ -75,7 +74,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="3"
                             android:text="浏览11人"
-                            android:textColor="@color/position_select"
+                            android:textColor="#B3B3B3"
                             android:textSize="12sp" />
 
                         <TextView
@@ -84,7 +83,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="3"
                             android:text="申请11人"
-                            android:textColor="@color/position_select"
+                            android:textColor="#B3B3B3"
                             android:textSize="12sp" />
 
                         <TextView
@@ -136,7 +135,7 @@
                         android:layout_marginTop="@dimen/space_5"
                         android:drawableLeft="@drawable/new_joninjyb_img"
                         android:drawablePadding="@dimen/space_5"
-                        android:text="现在入住就业邦高新人才随心招"
+                        android:text="现在入驻就业邦高新人才随心招"
                         android:textColor="@color/color_878787_gray"
                         android:textSize="@dimen/font_size_12"
                         android:visibility="gone" />
@@ -147,9 +146,9 @@
 
             <View
                 android:layout_width="match_parent"
+                android:layout_height="@dimen/space_0.5"
                 android:layout_marginLeft="@dimen/x20"
                 android:layout_marginRight="@dimen/x20"
-                android:layout_height="@dimen/space_0.5"
                 android:background="#DDDDDD" />
 
             <LinearLayout

@@ -1,8 +1,21 @@
 <resources>
-<style name="TranslucentTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-    <item name="android:windowTranslucentStatus">false</item>
-    <item name="android:windowTranslucentNavigation">true</item>
-    <!--Android 5.x开始需要把颜色设置透明，否则导航栏会呈现系统默认的浅灰色-->
-    <item name="android:statusBarColor">@android:color/transparent</item>
-</style>
+
+    <style name="TranslucentTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <!--Android 5.x开始需要把颜色设置透明，否则导航栏会呈现系统默认的浅灰色-->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+
+
+
+    <!-- 图片全屏-->
+    <style name="Theme.imgFullScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:statusBarColor">@color/transparent</item>
+        <!--底部黑色，状态栏透明-->
+    </style>
 </resources>

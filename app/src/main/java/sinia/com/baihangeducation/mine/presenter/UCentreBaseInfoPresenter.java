@@ -13,6 +13,7 @@ import com.example.framwork.utils.SPUtils;
 import com.example.framwork.utils.SpCommonUtils;
 import com.example.framwork.utils.Toast;
 import com.example.framwork.utils.UserInfo;
+import com.mcxtzhang.swipemenulib.customview.BitmapUtil;
 import com.yanzhenjie.nohttp.FileBinary;
 import com.yanzhenjie.nohttp.rest.Request;
 
@@ -58,10 +59,14 @@ public class UCentreBaseInfoPresenter extends BasePresenter {
         if (!view.getUCentreSlogan().equals(""))
             info.put("slogan", view.getUCentreSlogan());
 
+        String url = view.getUCentreImage();
+        url = url.trim();
         Request<String> request = postFile(info);
-        if (!TextUtils.isEmpty(view.getUCentreImage())) {
-            request.add("avatar", new FileBinary(new File(view.getUCentreImage())));
-            Log.i("图片地址个人中心", view.getUCentreImage() + "处理1");
+        if (!TextUtils.isEmpty(url)) {
+            url = BitmapUtil.compressImageUpload(url);
+            File file = new File(url);
+//            FileBinary binary = new FileBinary(file, file.getName());
+            request.add("avatar", file);
             view.showLoading();
             model.execute(activity, request, new OnRequestListener() {
                 @Override

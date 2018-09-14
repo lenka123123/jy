@@ -43,6 +43,7 @@ public class BaseApplictaion extends Application {
 //                .setReadTimeout(TIME_OUT)
 //                .setNetworkExecutor(new OkHttpNetworkExecutor())
 //        );
+
         InitializationConfig config = InitializationConfig.newBuilder(this)
                 .connectionTimeout(TIME_OUT)
                 .readTimeout(TIME_OUT)

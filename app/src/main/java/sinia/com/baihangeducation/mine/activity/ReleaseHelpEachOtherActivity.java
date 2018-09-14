@@ -103,13 +103,14 @@ public class ReleaseHelpEachOtherActivity extends BaseActivity implements OnItem
     @Override
     public void onClick(View v) {
         super.onClick(v);
+        //隐藏键盘
+        ((InputMethodManager) context.getSystemService(INPUT_METHOD_SERVICE))
+                .hideSoftInputFromWindow((ReleaseHelpEachOtherActivity.this).getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
         switch (v.getId()) {
             case R.id.releasehelpeachother_type:
                 //选择类型
 
-                //隐藏键盘
-                ((InputMethodManager) context.getSystemService(INPUT_METHOD_SERVICE))
-                        .hideSoftInputFromWindow((ReleaseHelpEachOtherActivity.this).getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
                 mAlertViewContorller = new AlertViewContorller(mChoiceType, "选择类型", null, "取消", null, type,
                         context, AlertViewContorller.Style.ActionSheet, this);

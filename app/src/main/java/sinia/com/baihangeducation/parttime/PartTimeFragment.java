@@ -47,6 +47,9 @@ import sinia.com.baihangeducation.supplement.tool.PartTimeDialog;
 public class PartTimeFragment extends MyBaseFragment implements HomePartTimeView, SuperRecyclerView.LoadingListener, SwipeRefreshLayout.OnRefreshListener {
     private HomePartTimePresenter mHomePartTimePresenter;
 
+    private String lat = "32.089858";
+    private String lng = "118.755877";
+
     private int countpage = 1;
     private int itemnum = 20;
 
@@ -219,14 +222,15 @@ public class PartTimeFragment extends MyBaseFragment implements HomePartTimeView
         return type;
     }
 
+
     @Override
     public String getLocationLat() {
-        return "";
+        return lat;
     }
 
     @Override
     public String getLocationLng() {
-        return "";
+        return lng;
     }
 
     @Override
@@ -288,6 +292,7 @@ public class PartTimeFragment extends MyBaseFragment implements HomePartTimeView
                 mIndustry.setChecked(false);
                 if (partTimeDialog != null) {
                     partTimeDialog.commonPopupWindow.getPopupWindow().dismiss();
+
                 }
                 filterTabToggleT(isChecked, mOrder, mIndustryList, new AdapterView.OnItemClickListener() {
                     @Override
@@ -363,10 +368,12 @@ public class PartTimeFragment extends MyBaseFragment implements HomePartTimeView
                         mOrder.setChecked(false);
                         partTimeDialog.closeWindow();
                         mHomePartTimeAdapter.notifyDataSetChanged();
-                        System.out.println(indutryId + "rter" + areaId + "" + money_id + "rrrrrrrr" + worktime_id + "" + distance_id + "" + sex_id + "" + money_id + "" + pubtime_id + "");
+
+//                       System.out.println(indutryId + "aawwaaa" + areaId + "bb" + money_id + "cc" + worktime_id + "dd" + distance_id + "ee" + sex_id + "ff" + money_id + "gg" + pubtime_id + "");
                         mHomePartTimePresenter.getPartTimeData(indutryId, money_id, areaId, worktime_id, distance_id, sex_id, pubtime_id);
                     }
-                });
+                });         //  0aa0bb3cc0dd0ee0ff3gg0
+                //   0aa0bb1cc0dd0ee0ff1gg0
 //                filterTabToggleT(isChecked, mOrderLayout, mOrderList, new AdapterView.OnItemClickListener() {
 //                    @Override
 //                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

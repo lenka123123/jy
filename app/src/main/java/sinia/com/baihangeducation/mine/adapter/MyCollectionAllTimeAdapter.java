@@ -41,7 +41,8 @@ public class MyCollectionAllTimeAdapter extends SuperBaseAdapter<MyCollectionLis
         holder.setOnClickListener(R.id.fragment_mine_collection_alltimeitem, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Goto.toAllJobDetailActivity(context, item.job_id);
+                Goto.toPartTimeJobDetailActivity(context, item.job_id);
+//                Goto.toAllJobDetailActivity(context, item.job_id);
             }
         });
         holder.setOnClickListener(R.id.fragment_mine_collection_alltimeitem_detel, new View.OnClickListener() {

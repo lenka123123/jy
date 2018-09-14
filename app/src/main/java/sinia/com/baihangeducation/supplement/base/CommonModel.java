@@ -30,7 +30,6 @@ public class CommonModel extends BasePresenter {
         context = activity;
     }
 
-
     public void addFollow(String follow_user_id, final FollowDataListener listener) {
         HashMap info = BaseRequestInfo.getInstance().getRequestInfo(context, "addFollow", "ucenter", false);
         info.put("user_id", AppConfig.USERID);

@@ -276,7 +276,7 @@ public class FullTimeFragment extends MyBaseFragment implements HomePartTimeView
                         hidePopListView();
                         industryId = mIndustryList.get(position).industry_id + "";
 
-                        System.out.println("=====行业类型=====" +industryId);
+                        System.out.println("=====行业类型=====" + industryId);
                         salaryId = null;
                         orderId = null;
                         distId = null;
@@ -364,6 +364,7 @@ public class FullTimeFragment extends MyBaseFragment implements HomePartTimeView
     @Override
     public void onRefresh() {
         isLoadMore = false;
+        mList.clear();
         countpage = 1;
         getServerData();
     }
@@ -378,7 +379,7 @@ public class FullTimeFragment extends MyBaseFragment implements HomePartTimeView
      * 获取数据
      */
     private void getServerData() {
-        mList.clear();
+
         countpage = 1;
         mHomeHunterAdapter.notifyDataSetChanged();
         mHomePartTimePresenter.getPartTimeData();

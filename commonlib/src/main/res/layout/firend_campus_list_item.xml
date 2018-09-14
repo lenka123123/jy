@@ -52,13 +52,13 @@
                 <TextView
                     android:id="@+id/newcampayfunitem_time"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_centerVertical="true"
-                    android:layout_marginTop="@dimen/y5"
+                    android:layout_marginTop="@dimen/y3"
                     android:gravity="right"
                     android:text="28分钟前"
                     android:textColor="#b3b3b3"
-                    android:textSize="12sp" />
+                    android:textSize="10sp" />
             </LinearLayout>
 
             <RelativeLayout
@@ -119,7 +119,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingBottom="@dimen/y23"
+                android:paddingBottom="@dimen/y20"
                 android:paddingTop="@dimen/y22">
 
                 <ImageView
@@ -149,7 +149,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingBottom="@dimen/y23"
+                android:paddingBottom="@dimen/y20"
                 android:paddingTop="@dimen/y22">
 
                 <ImageView
@@ -180,7 +180,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingBottom="@dimen/y23"
+                android:paddingBottom="@dimen/y20"
                 android:paddingTop="@dimen/y22">
 
                 <ImageView

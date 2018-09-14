@@ -73,7 +73,7 @@
             android:screenOrientation="portrait" />
         <!-- 下线通知 -->
         <activity
-            android:name=".supplement.receiver.JPushDialogActivity"
+            android:name=".receiver.JPushDialogActivity"
             android:screenOrientation="portrait" />
         <!-- webview -->
         <activity
@@ -390,7 +390,7 @@
             android:name=".mine.activity.LoginActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@style/TranslucentTheme">
+            android:theme="@style/Theme.imgFullScreen">
             <intent-filter>
                 <action android:name="sinia.com.baihangeducation.login.action" />
 
@@ -405,22 +405,22 @@
         <activity
             android:name=".mine.activity.RegisterActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/TranslucentTheme" />
+            android:theme="@style/Theme.imgFullScreen" />
         <!--忘记密码-->
         <activity
             android:name=".mine.activity.ForgetPasswordActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/TranslucentTheme" />
+            android:theme="@style/Theme.imgFullScreen" />
         <!--忘记密码 第二页-->
         <activity
             android:name=".mine.activity.ForgetPassword2Activity"
             android:screenOrientation="portrait"
-            android:theme="@style/TranslucentTheme" />
+            android:theme="@style/Theme.imgFullScreen" />
         <!--修改密码-->
         <activity
             android:name=".mine.activity.UpdataPwdActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/TranslucentTheme" />
+            android:theme="@style/Theme.imgFullScreen" />
         <!--忘记密码 无法获取验证码-->
         <activity
             android:name=".mine.activity.UnGetAuthCodeActivity"
@@ -428,7 +428,8 @@
         <!--绑定手机-->
         <activity
             android:name=".mine.activity.BindingPhoneActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.imgFullScreen" />
         <!--企业版个人中心  发布的兼职-->
         <activity
             android:name=".minecompany.avtivity.CompanyUCenterReleasePartTimeActivity"
@@ -507,8 +508,15 @@
             android:name=".find.activity.JobBangPayDetailActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
-        <!--微信-->
 
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!--微信-->
         <!--<activity android:name="com.zzti.fengyongge.imagepicker.PhotoSelectorActivity" />-->
         <!--<activity android:name="com.zzti.fengyongge.imagepicker.PhotoPreviewActivity" />-->
 
@@ -635,11 +643,12 @@
         </activity>
 
         <!-- Required SDK 核心功能-->
-        <!-- 可配置android:process参数将PushService放在其他进程中 -->
+        <!-- 可配置android:process参数将PushService放在其他进程中
+            android:process=":mult">
+        -->
         <service
             android:name="cn.jpush.android.service.PushService"
-            android:exported="false"
-            android:process=":mult">
+            android:exported="false">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTER" />
                 <action android:name="cn.jpush.android.intent.REPORT" />
@@ -690,8 +699,16 @@
             android:name="JPUSH_APPKEY"
             android:value="11dd2beba30978b536b11606" /> <!--  </>值来自开发者平台取得的AppKey-->
 
+
+
+        <receiver android:name=".receiver.TokenBroadcastReceiver" >
+            <intent-filter>
+                <action android:name="com.feichang.a91consultant.main.broadcast"/>
+            </intent-filter>
+        </receiver>
+
         <receiver
-            android:name=".supplement.receiver.JPushReceiver"
+            android:name=".receiver.JPushReceiver"
             android:enabled="true"
             android:exported="false">
             <intent-filter>

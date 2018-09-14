@@ -62,6 +62,9 @@ public class FansListActivity extends BaseActivity implements FansContract.View 
             }
         });
 
+        TextView textView = findViewById(R.id.title);
+        textView.setText("我的粉丝");
+
         mSmartRefreshLayout = findViewById(R.id.refreshLayout);
         mErrorImageView = findViewById(R.id.img_state);
         mErrorTextView = findViewById(R.id.tv_state);

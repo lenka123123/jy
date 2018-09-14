@@ -96,7 +96,7 @@
                         android:layout_marginTop="@dimen/space_5"
                         android:drawableLeft="@drawable/new_joninjyb_img"
                         android:drawablePadding="@dimen/space_5"
-                        android:text="现在入住就业邦高新人才随心招"
+                        android:text="现在入驻就业邦高新人才随心招"
                         android:textColor="@color/color_878787_gray"
                         android:textSize="@dimen/font_size_12" />
                 </LinearLayout>

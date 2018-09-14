@@ -6,16 +6,16 @@
     android:fitsSystemWindows="true">
 
     <View
-    android:id="@+id/view"
+        android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="@dimen/y17"
         android:background="#f7f7f7" />
 
     <LinearLayout
-        android:layout_below="@+id/view"
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/y96"
+        android:layout_below="@+id/view"
         android:orientation="horizontal">
 
         <ImageView
@@ -49,11 +49,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginTop="@dimen/y5"
+                android:layout_marginTop="@dimen/y3"
                 android:gravity="right"
                 android:text="28分钟前"
                 android:textColor="#b3b3b3"
-                android:textSize="12sp" />
+                android:textSize="10sp" />
         </LinearLayout>
 
         <RelativeLayout
@@ -79,10 +79,10 @@
 
 
     <TextView
-        android:layout_below="@+id/linearLayout"
         android:id="@+id/newcampayfunitem_caontant"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout"
         android:layout_marginLeft="@dimen/y41"
         android:layout_marginRight="@dimen/y42"
         android:layout_marginTop="@dimen/space_5"
@@ -90,10 +90,10 @@
         android:textSize="14sp" />
 
     <sinia.com.baihangeducation.newcampus.tabs.friend.NineGridView
-        android:layout_below="@+id/newcampayfunitem_caontant"
         android:id="@+id/nine_grid_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/newcampayfunitem_caontant"
         android:layout_marginBottom="4dp"
         android:layout_marginLeft="@dimen/x40"
         android:layout_marginRight="@dimen/x40"
@@ -102,17 +102,17 @@
 
 
     <View
-        android:layout_below="@+id/nine_grid_view"
+        android:id="@+id/ffview"
         android:layout_width="match_parent"
         android:layout_height="@dimen/y20"
-        android:id="@+id/ffview"
+        android:layout_below="@+id/nine_grid_view"
         android:background="#F7F7F7" />
 
     <LinearLayout
-        android:layout_below="@+id/ffview"
         android:id="@+id/linearlayut_line"
         android:layout_width="match_parent"
         android:layout_height="@dimen/y75"
+        android:layout_below="@+id/ffview"
         android:orientation="horizontal">
 
 

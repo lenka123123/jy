@@ -44,6 +44,7 @@ public class PartTimeDialog implements CompoundButton.OnCheckedChangeListener {
     private RadioButton mRadioButtonRangeWorkTimeWeekends;
     private RadioButton mRadioButtonAccountNone;
     private RadioButton mRadioButtonAccountByDay;
+    private RadioButton mRadioButtonAccountByTime;
     private RadioButton mRadioButtonAccountByMorrow;
     private RadioButton mRadioButtonAccountByWeek;
     private RadioButton mRadioButtonAccountByMonth;
@@ -117,6 +118,9 @@ public class PartTimeDialog implements CompoundButton.OnCheckedChangeListener {
             case R.id.account_by_morrow:
                 money_id = "5";
                 break;
+            case R.id.account_by_time:
+                money_id = "6";
+                break;
             case R.id.account_by_week:
                 money_id = "2";
                 break;
@@ -162,6 +166,7 @@ public class PartTimeDialog implements CompoundButton.OnCheckedChangeListener {
                 mRadioButtonRangeWorkTimeWeekends = window.findViewById(R.id.work_time_weekends);
 
                 mRadioButtonAccountNone = window.findViewById(R.id.account_none);
+                mRadioButtonAccountByTime = window.findViewById(R.id.account_by_time);
                 mRadioButtonAccountByDay = window.findViewById(R.id.account_by_day);
                 mRadioButtonAccountByMorrow = window.findViewById(R.id.account_by_morrow);
                 mRadioButtonAccountByWeek = window.findViewById(R.id.account_by_week);
@@ -187,6 +192,7 @@ public class PartTimeDialog implements CompoundButton.OnCheckedChangeListener {
 
                 mRadioButtonAccountNone.setOnCheckedChangeListener(PartTimeDialog.this);
                 mRadioButtonAccountByDay.setOnCheckedChangeListener(PartTimeDialog.this);
+                mRadioButtonAccountByTime.setOnCheckedChangeListener(PartTimeDialog.this);
                 mRadioButtonAccountByMorrow.setOnCheckedChangeListener(PartTimeDialog.this);
                 mRadioButtonAccountByWeek.setOnCheckedChangeListener(PartTimeDialog.this);
                 mRadioButtonAccountByMonth.setOnCheckedChangeListener(PartTimeDialog.this);
@@ -226,7 +232,7 @@ public class PartTimeDialog implements CompoundButton.OnCheckedChangeListener {
         if (commonPopupWindow != null) {
 //         boolean is=   commonPopupWindow.getPopupWindow().isShowing();
 //         if (is)
-             commonPopupWindow.getPopupWindow().dismiss();
+            commonPopupWindow.getPopupWindow().dismiss();
         }
 
     }

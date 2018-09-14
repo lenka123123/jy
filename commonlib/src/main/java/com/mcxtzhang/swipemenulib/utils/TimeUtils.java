@@ -7,6 +7,22 @@ import java.util.Date;
 
 public class TimeUtils {
 
+
+    /**
+     * 包含大小写字母及数字且在6-12位
+     * 是否包含
+     *
+     * @param str
+     * @return
+     */
+    public static boolean isLetterDigit(String str) {
+        String regex = "^[a-zA-Z0-9]{6,12}$";
+        boolean isRight = str.matches(regex);
+
+        return isRight;
+    }
+
+
     /**
      * 时间戳转为时间(年月日，时分秒)
      *
@@ -109,8 +125,6 @@ public class TimeUtils {
     }
 
 
-
-
     private static boolean isThisTime(long time, String pattern) {
         Date date = new Date(time);
         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
@@ -121,11 +135,12 @@ public class TimeUtils {
         }
         return false;
     }
+
     //判断选择的日期是否是今天
     public static boolean isToday(String time) {
 
 
-        return isThisTime(getTimeStamp(time,"yyyy-MM-dd HH:mm:ss"), "yyyy-MM-dd");
+        return isThisTime(getTimeStamp(time, "yyyy-MM-dd HH:mm:ss"), "yyyy-MM-dd");
     }
 }
 
