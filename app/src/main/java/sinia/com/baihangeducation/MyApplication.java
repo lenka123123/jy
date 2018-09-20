@@ -1,6 +1,7 @@
 package sinia.com.baihangeducation;
 
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
@@ -20,6 +21,9 @@ import com.example.framwork.utils.CommonInfoSaveUtil;
 import com.example.framwork.utils.ObjectSaveUtil;
 import com.example.framwork.utils.SpCommonUtils;
 import com.example.framwork.utils.UserInfo;
+import com.fm.openinstall.OpenInstall;
+import com.fm.openinstall.listener.AppInstallAdapter;
+import com.fm.openinstall.model.AppData;
 import com.imnjh.imagepicker.PickerConfig;
 import com.imnjh.imagepicker.SImagePicker;
 import com.lzy.ninegrid.NineGridView;
@@ -73,9 +77,25 @@ public class MyApplication extends BaseApplictaion {
     @Override
     public void onCreate() {
         super.onCreate();
+        if (isMainProcess()) {
+            OpenInstall.init(this);
+        }
+
+        OpenInstall.getInstall(new AppInstallAdapter() {
+            @Override
+            public void onInstall(AppData appData) {
+                //获取渠道数据
+                String channelCode = appData.getChannel();
+                //获取自定义数据
+                String bindData = appData.getData();
+                Log.d("OpenInstall", "getInstall : installData = " + appData.toString());
+            }
+        });
+
+
         sContext = getApplicationContext();
         AppConfig.init(this);
-        BaseAppConfig.init(this,"dong");
+        BaseAppConfig.init(this, "dong");
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
@@ -111,6 +131,9 @@ public class MyApplication extends BaseApplictaion {
         initUM();
         initShare();
         StatService.autoTrace(this, true, false);//开启自动埋点    https://mtj.baidu.com/static/userguide/book/android/adconfig/circle/circle.html
+
+
+
     }
 
     private void initImagePicker() {
@@ -251,4 +274,16 @@ public class MyApplication extends BaseApplictaion {
             }
         }
     };
+
+
+    public boolean isMainProcess() {
+        int pid = android.os.Process.myPid();
+        ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningAppProcessInfo appProcess : activityManager.getRunningAppProcesses()) {
+            if (appProcess.pid == pid) {
+                return getApplicationInfo().packageName.equals(appProcess.processName);
+            }
+        }
+        return false;
+    }
 }

@@ -35,12 +35,12 @@ public class FunItemActionPresenter extends BasePresenter {
         if (AppConfig.ISlOGINED) {
             info = BaseRequestInfo.getInstance().getRequestInfo(activity, "setNewPraise", "home", true);
         } else {
-            new AlertDialog.Builder(activity).setTitle("提示！").setMessage("您尚未登录，请先登录。").setPositiveButton("登录", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Goto.toLogin(activity);
-                }
-            }).setNegativeButton("取消", null).show();
+//            new AlertDialog.Builder(activity).setTitle("提示！").setMessage("您尚未登录，请先登录。").setPositiveButton("登录", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialog, int which) {
+//                    Goto.toLogin(activity);
+//                }
+//            }).setNegativeButton("取消", null).show();
             return;
         }
         info.put("user_id", AppConfig.USERID);
@@ -78,12 +78,12 @@ public class FunItemActionPresenter extends BasePresenter {
         if (AppConfig.ISlOGINED) {
             info = BaseRequestInfo.getInstance().getRequestInfo(activity, "setNewPraise", "home", true);
         } else {
-            new AlertDialog.Builder(activity).setTitle("提示！").setMessage("您尚未登录，请先登录。").setPositiveButton("登录", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Goto.toLogin(activity);
-                }
-            }).setNegativeButton("取消", null).show();
+//            new AlertDialog.Builder(activity).setTitle("提示！").setMessage("您尚未登录，请先登录。").setPositiveButton("登录", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialog, int which) {
+//                    Goto.toLogin(activity);
+//                }
+//            }).setNegativeButton("取消", null).show();
             return;
         }
         info.put("user_id", AppConfig.USERID);

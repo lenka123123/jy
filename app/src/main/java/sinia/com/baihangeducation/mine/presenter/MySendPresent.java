@@ -32,11 +32,14 @@ public class MySendPresent extends BasePresenter {
         this.view = view;
     }
 
-    public void getMySendPartTimeData() {
+    public void getMySendPartTimeData(String complete, boolean iscomplete) {
         HashMap mMySendData = BaseRequestInfo.getInstance().getRequestInfo(activity, "getMyJobApplyList", "ucenter", true);
         mMySendData.put("user_id", AppConfig.USERID);
         mMySendData.put("token", AppConfig.TOKEN);
-        mMySendData.put("type", view.getType());
+        mMySendData.put("type", 2);  //2、兼职
+        if (iscomplete)
+            mMySendData.put("complete", complete);
+
         mMySendData.put("page", view.getPage());
         mMySendData.put("perpage", view.getPerpage());
         view.showLoading();
@@ -61,11 +64,13 @@ public class MySendPresent extends BasePresenter {
         });
     }
 
-    public void getMySendAllTimeData() {
+    public void getMySendAllTimeData(String complete) {
         HashMap mMySendData = BaseRequestInfo.getInstance().getRequestInfo(activity, "getMyJobApplyList", "ucenter", true);
         mMySendData.put("user_id", AppConfig.USERID);
         mMySendData.put("token", AppConfig.TOKEN);
-        mMySendData.put("type", view.getType());
+        mMySendData.put("type", 2);  //2、兼职
+        mMySendData.put("complete", complete);
+
         mMySendData.put("page", view.getPage());
         mMySendData.put("perpage", view.getPerpage());
         view.showLoading();

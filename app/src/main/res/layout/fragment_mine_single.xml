@@ -54,38 +54,35 @@
 
     </RelativeLayout>
 
-    <include layout="@layout/include_line_e3e3e3" />
-
-
-    <include layout="@layout/include_line_gray_5" />
-
     <com.mcxtzhang.swipemenulib.widget.CalendarView.CalendarView
         android:id="@+id/calendarview"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/space_326" />
+        android:layout_height="@dimen/y700" />
 
-    <TextView
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/space_20"
-        android:layout_marginTop="@dimen/space_10"
-        android:text="注：周末双倍积分"
-        android:textColor="@color/color_red"
-        android:textSize="@dimen/font_size_12" />
 
     <TextView
         android:id="@+id/fragment_mine_signin"
         android:layout_width="match_parent"
         android:layout_height="@dimen/space_50"
-        android:layout_marginBottom="@dimen/space_50"
+
         android:layout_marginLeft="@dimen/space_20"
         android:layout_marginRight="@dimen/space_20"
         android:layout_marginTop="@dimen/space_10"
         android:background="@drawable/textview_round2"
         android:gravity="center"
-        android:text="@string/mine_marktoday"
+        android:text="立即签到"
         android:textColor="@color/white"
         android:textSize="@dimen/font_size_18" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/space_20"
+        android:layout_marginTop="@dimen/space_20"
+        android:text="注：周末双倍积分，连续签到5天赠送¥5优惠券，连续签到
+10天赠送¥10优惠券，连续签到20天赠送¥20优惠，满月赠
+送¥50优惠券哦！"
+        android:textColor="#B3B3B3"
+        android:textSize="13sp" />
 
 </LinearLayout>

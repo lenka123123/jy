@@ -17,11 +17,13 @@ import java.util.HashMap;
 
 import com.example.framwork.utils.UserInfo;
 import com.google.gson.Gson;
+import com.mcxtzhang.swipemenulib.base.BaseFragment;
 import com.mcxtzhang.swipemenulib.info.bean.VersionInfo;
 import com.mcxtzhang.swipemenulib.utils.FileUtils;
 
 import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.MainActivity;
+import sinia.com.baihangeducation.mine.MineFragment;
 import sinia.com.baihangeducation.mine.view.IUpdateVersionView;
 import sinia.com.baihangeducation.supplement.base.Goto;
 import sinia.com.baihangeducation.supplement.tool.BaseRequestInfo;
@@ -128,6 +130,42 @@ public class UpdateVersionPresenter extends BasePresenter {
             }
         });
     }
+
+
+    public void getBaseInfo(MineFragment mainActivity) {
+        HashMap mGetBaseInfoData = BaseRequestInfo.getInstance().getRequestInfo(activity, "getMyInfo", "ucenter", true);
+        mGetBaseInfoData.put("token", AppConfig.TOKEN);
+        mGetBaseInfoData.put("user_id", AppConfig.USERID);
+
+        post(mGetBaseInfoData, new OnRequestListener() {
+            @Override
+            public void requestSuccess(BaseResponseBean bean) {
+                Log.i("获取资本信息", bean.toString());
+
+                UserInfo userInfo = bean.parseObject(UserInfo.class);
+
+                String no_read_num = userInfo.no_read_num;
+                int num = Integer.valueOf(no_read_num);
+                if (num < 1) no_read_num = "0";
+
+                SpCommonUtils.put(activity, AppConfig.FINAL_NO_READ_NUM, no_read_num);
+                mainActivity.gsetBaseInfoSuccess(userInfo);
+
+            }
+
+            @Override
+            public void requestFailed(String error) {
+                Toast.getInstance().showErrorToast(activity, error);
+            }
+
+            @Override
+            public void requestFinish() {
+
+            }
+        });
+    }
+
+
 
 
 }

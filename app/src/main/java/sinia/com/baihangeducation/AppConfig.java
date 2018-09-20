@@ -35,7 +35,8 @@ public class AppConfig extends BaseAppConfig {
     public static final String FINAL_NUM_FULL_HULP_NUM = "FINAL_NUM_FULL_HULP_NUM";
     public static final String FINAL_NUM_FULL_HULP_NICKNAME = "FINAL_NUM_FULL_HULP_NICKNAME";
     public static final String FINAL_NUM_FULL_TYPE = "FINAL_NUM_FULL_TYPE";
-    public static final String FINAL_NUM_FULL_AUTH_STATUS = "FINAL_NUM_FULL_auth_status";
+    public static final String FINAL_NUM_FULL_AUTH_STATUS = "FINAL_NUM_FULL_AUTH_STATUS";
+    public static final String FINAL_NUM_FULL_VIP_LEVEL = "FINAL_NUM_FULL_VIP_LEVEL";
     public static final String FINAL_SAVE_PHOTO_PATH = "FINAL_SAVE_PHOTO_PATH";
     public static final String USERPHOTO = "USERPHOTO";
     public static final String USERPWD = "USERPWD";

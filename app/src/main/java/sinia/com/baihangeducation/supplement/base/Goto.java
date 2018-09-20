@@ -6,8 +6,18 @@ import android.content.Intent;
 import com.example.framwork.utils.BaseGoto;
 
 import sinia.com.baihangeducation.MainActivity;
+import sinia.com.baihangeducation.club.applyclublist.ApplyClubListActivity;
+import sinia.com.baihangeducation.club.applyclublist.ClubPersonClubListActivity;
+import sinia.com.baihangeducation.club.clubannouncedetail.ClubAnnounceDetailActivity;
+import sinia.com.baihangeducation.club.clubcomment.CommentActivity;
+import sinia.com.baihangeducation.club.clubdetail.ClubDetailActivity;
+import sinia.com.baihangeducation.club.clubschoollist.ClubSchoolListActivity;
+import sinia.com.baihangeducation.club.clubsendannounce.ClubSendAnnounceActivity;
+import sinia.com.baihangeducation.club.notice.ClubNoticeActivity;
+import sinia.com.baihangeducation.club.searchschool.SearchListActivity;
 import sinia.com.baihangeducation.find.activity.JobBangPayDetailActivity;
 import sinia.com.baihangeducation.home.activity.CompleteMajorStageActivity;
+import sinia.com.baihangeducation.mine.activity.MySendCommentActivity;
 import sinia.com.baihangeducation.newcampus.activity.CommentPageActivity;
 import sinia.com.baihangeducation.newcampus.activity.HomePageActivity;
 import sinia.com.baihangeducation.newcampus.info.FunContantInfo;
@@ -458,6 +468,14 @@ public class Goto extends BaseGoto {
     }
 
     /**
+     * 我的兼职
+     */
+    public static void toMySendCommentActivity(Context context) {
+        Intent intent = new Intent(context, MySendCommentActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
      * 跳转个人中心 我的成长  参加培训
      */
     public static void toTraingActivity(Context context) {
@@ -584,11 +602,12 @@ public class Goto extends BaseGoto {
      * cocllectionType：收藏种类
      * messageId：留言ID
      */
-    public static void toJobBangDetailActivity(Context context, int id, int cocllectionType, int messageId) {
+    public static void toJobBangDetailActivity(Context context, int id, int cocllectionType, int messageId, String typename) {
         Intent intent = new Intent(context, JobBangDetailActivity.class);
         intent.putExtra("RAIDERID", id + "");
         intent.putExtra("collectionID", cocllectionType + "");
         intent.putExtra("messageID", messageId + "");
+        intent.putExtra("typename", typename);
         context.startActivity(intent);
     }
 
@@ -604,7 +623,7 @@ public class Goto extends BaseGoto {
         intent.putExtra("RAIDERID", id + "");
         intent.putExtra("collectionID", cocllectionType + "");
         intent.putExtra("messageID", messageId + "");
-        intent.putExtra("typename", typename );
+        intent.putExtra("typename", typename);
         context.startActivity(intent);
     }
 
@@ -620,9 +639,10 @@ public class Goto extends BaseGoto {
         intent.putExtra("RAIDERID", id + "");
         intent.putExtra("collectionID", cocllectionType + "");
         intent.putExtra("messageID", messageId + "");
-        intent.putExtra("typename", typename );
+        intent.putExtra("typename", typename);
         context.startActivity(intent);
     }
+
     /**
      * 跳转就业邦学堂
      */
@@ -1035,6 +1055,79 @@ public class Goto extends BaseGoto {
     //我的购买
     public static void toMyPayActivity(Context context) {
         Intent intent = new Intent(context, PaiedListActivity.class);
+        context.startActivity(intent);
+    }
+
+    //club 详情
+    public static void toClubDetailActivity(Context context, String club_id) {
+        Intent intent = new Intent(context, ClubDetailActivity.class);
+        intent.putExtra("club_id", club_id);
+        context.startActivity(intent);
+    }
+
+    //club 搜索
+    public static void toClubSearchActivity(Context context) {
+        Intent intent = new Intent(context, SearchListActivity.class);
+        context.startActivity(intent);
+    }
+
+    //club 收入排行
+    public static void toClubSchoolListActivity(Context context) {
+        Intent intent = new Intent(context, ClubSchoolListActivity.class);
+        context.startActivity(intent);
+    }
+
+    //club 申请列表
+    public static void toApplyClubListActivity(Context context, String clubId) {
+        Intent intent = new Intent(context, ApplyClubListActivity.class);
+        intent.putExtra("club_id", clubId);
+        context.startActivity(intent);
+    }
+
+    //club 成员列表
+    public static void toClubPersonClubListActivity(Context context, String clubId) {
+        Intent intent = new Intent(context, ClubPersonClubListActivity.class);
+        intent.putExtra("club_id", clubId);
+        context.startActivity(intent);
+    }
+
+    //club 公告编辑
+    public static void toClubSendAnnounceActivity(Context context, String clubId, String notice_id, String title, String content) {
+        Intent intent = new Intent(context, ClubSendAnnounceActivity.class);
+        intent.putExtra("club_id", clubId);
+        intent.putExtra("notice_id", notice_id);
+
+        intent.putExtra("title", title);
+        intent.putExtra("content", content);
+
+        context.startActivity(intent);
+    }
+
+    //club 公告详情
+    public static void toClubAnnounceDetailActivity(Context context, String clubid, String notice_id, String power) {
+        Intent intent = new Intent(context, ClubAnnounceDetailActivity.class);
+        intent.putExtra("club_id", clubid);
+        intent.putExtra("notice_id", notice_id);
+        intent.putExtra("power", power);
+        context.startActivity(intent);
+    }
+
+    //club 编辑简介
+    public static void toClubNoticeActivity(Context context, String clubid, String introduce) {
+        Intent intent = new Intent(context, ClubNoticeActivity.class);
+        intent.putExtra("club_id", clubid);
+        intent.putExtra("introduce", introduce);
+        context.startActivity(intent);
+    }
+
+    //club 编辑简介
+    public static void toCommentActivity(Context context, String job_title, String job_city_name, String job_money, int job_apply_id,String iscommnent) {
+        Intent intent = new Intent(context, CommentActivity.class);
+        intent.putExtra("job_title", job_title);
+        intent.putExtra("job_city_name", job_city_name);
+        intent.putExtra("job_money", job_money);
+        intent.putExtra("job_apply_id", job_apply_id);
+        intent.putExtra("is_comment", iscommnent);
         context.startActivity(intent);
     }
 }

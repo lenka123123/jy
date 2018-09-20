@@ -35,9 +35,12 @@
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
                 android:text="考研"
                 android:textColor="#3A3A3A"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -211,6 +214,7 @@
         android:textSize="14sp" />
 
     <View
+        android:layout_marginTop="@dimen/y30"
         android:layout_width="match_parent"
         android:layout_height="@dimen/space_0.5"
         android:background="@color/interval_line" />
@@ -220,7 +224,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/y100"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/y30"
+
         android:gravity="center"
         android:orientation="horizontal">
 

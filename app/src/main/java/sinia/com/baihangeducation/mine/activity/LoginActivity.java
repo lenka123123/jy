@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, IThi
     private ThirdLoginInfo thirdLoginInfo = new ThirdLoginInfo();
     private ThirdLoginPresenter thirdLoginPresenter;
 
-    //极光推送，绑定用户时候的参数.
+    //极光推送，绑定用户时候的参数
     private String userType;
     private Set<String> set;
     private Activity context;

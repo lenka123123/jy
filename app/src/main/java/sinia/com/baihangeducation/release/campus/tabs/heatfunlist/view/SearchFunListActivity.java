@@ -24,6 +24,7 @@ import java.util.List;
 
 import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.R;
+import sinia.com.baihangeducation.club.searchschool.SearchListActivity;
 import sinia.com.baihangeducation.release.campus.tabs.heatfunlist.adapter.HotFunAdapter;
 import sinia.com.baihangeducation.release.campus.tabs.heatfunlist.bean.HotFunListBean;
 import sinia.com.baihangeducation.release.campus.tabs.heatfunlist.interfaces.HotFunListContract;
@@ -98,7 +99,14 @@ public class SearchFunListActivity extends BaseActivity implements HotFunListCon
         mErrorTextView = findViewById(R.id.tv_state);
         mAutoLoadRecyclerView = findViewById(R.id.recyclerView);
         mRelativeLayout = findViewById(R.id.search);
+        ImageView back = findViewById(R.id.back);
 
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SearchFunListActivity.this.finish();
+            }
+        });
         hotFunAdapter = new HotFunAdapter(context);
         mAutoLoadRecyclerView.setAdapter(hotFunAdapter);
         setPullRefresher();

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/nanjing"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y88"
+        android:layout_marginRight="@dimen/x40"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="@dimen/x120"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:padding="@dimen/x26"
+            android:src="@drawable/back" />
+
+        <LinearLayout
+            android:id="@+id/fragment_home_adress"
+            android:layout_width="@dimen/x200"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/x220"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_home_adressName"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="编辑公告"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/fragment_home_arrow"
+                android:layout_width="@dimen/x16"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/y20"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="@dimen/space_10"
+                android:src="@drawable/arrow_down_black"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="82dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/home_search"
+                android:layout_width="@dimen/x40"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/black_search"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/editor"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:text="发布"
+                android:textColor="@color/black" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_0.5"
+        android:background="#DDDDDD" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y16"
+        android:background="@color/club_item_gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y80"
+        android:background="@color/white">
+
+        <EditText
+            android:id="@+id/edit_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/x40"
+            android:background="@null"
+            android:hint="请输入标题，2-20个字"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y16"
+        android:background="@color/club_item_gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y300"
+        android:background="@color/white">
+
+        <EditText
+            android:gravity="left"
+            android:paddingTop="@dimen/x10"
+            android:id="@+id/edit_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/x40"
+            android:background="@null"
+            android:hint="请输入正文，10-200个字"
+            android:inputType="textMultiLine"
+            android:singleLine="false"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</LinearLayout>

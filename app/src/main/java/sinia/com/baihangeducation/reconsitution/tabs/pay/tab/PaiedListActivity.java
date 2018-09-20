@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.mcxtzhang.swipemenulib.customview.GlideLoadUtils;
 import com.scwang.smartrefresh.header.MaterialHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -35,6 +36,8 @@ public class PaiedListActivity extends BaseActivity {
     private int perpage = 20;
     private boolean isCreated = false;
     private PayListPresenter payListPresenter;
+    private ImageView mErrorImageView;
+    private TextView mErrorTextView;
 
     public int initLayoutResID() {
         return R.layout.paied_list;
@@ -80,6 +83,9 @@ public class PaiedListActivity extends BaseActivity {
 
         mAutoLoadRecyclerView = findViewById(R.id.recyclerView);
 
+        mErrorImageView = findViewById(R.id.img_state);
+        mErrorTextView = findViewById(R.id.tv_state);
+
         paiedListAdapter = new PaiedListAdapter(this);
         mAutoLoadRecyclerView.setAdapter(paiedListAdapter);
         setPullRefresher();
@@ -119,13 +125,15 @@ public class PaiedListActivity extends BaseActivity {
 
     private void showErrorState(boolean isError) {
 //        if (isError) {
-//
-//            GlideLoadUtils.getInstance().glideLoadDefault(context, R.drawable.logo, mErrorImageView, R.drawable.logo);
-//
+//            mErrorImageView.setVisibility(View.VISIBLE);
+//            mErrorTextView.setVisibility(View.VISIBLE);
+//            Glide.with(context).load(R.mipmap.ic_launcher).into(mErrorImageView);
+//            mErrorTextView.setText("没有数据");
 //            if (mSmartRefreshLayout != null)
 //                mSmartRefreshLayout.finishLoadMoreWithNoMoreData();
 //        } else {
-//
+//            mErrorImageView.setVisibility(View.GONE);
+//            mErrorTextView.setVisibility(View.GONE);
 //        }
     }
 

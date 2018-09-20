@@ -22,7 +22,8 @@
             android:layout_marginBottom="@dimen/y20"
             android:paddingLeft="@dimen/x40"
             android:paddingRight="@dimen/x30"
-            android:src="@drawable/drawable" />
+            android:src="@drawable/drawable"
+            android:visibility="invisible" />
 
         <LinearLayout
             android:id="@+id/fragment_home_adress"
@@ -67,20 +68,6 @@
 
 
     </LinearLayout>
-
-    <GridView
-        android:id="@+id/MyGridView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="@dimen/x80"
-        android:layout_marginRight="@dimen/x80"
-        android:layout_marginTop="@dimen/y10"
-        android:background="@color/white"
-        android:numColumns="6"
-        android:stretchMode="columnWidth"
-        android:visibility="gone" />
-
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_container"

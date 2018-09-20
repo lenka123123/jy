@@ -8,6 +8,7 @@ import com.example.framwork.base.BasePresenter;
 import com.example.framwork.noHttp.Bean.BaseResponseBean;
 import com.example.framwork.noHttp.OnRequestListener;
 import com.example.framwork.utils.Toast;
+import com.mcxtzhang.swipemenulib.customview.BitmapUtil;
 import com.yanzhenjie.nohttp.FileBinary;
 import com.yanzhenjie.nohttp.rest.Request;
 
@@ -15,7 +16,9 @@ import java.io.File;
 import java.util.HashMap;
 
 import sinia.com.baihangeducation.mine.model.AccountManger;
+
 import com.mcxtzhang.swipemenulib.info.bean.RealNameInfo;
+
 import sinia.com.baihangeducation.mine.view.IRealNameView;
 import sinia.com.baihangeducation.supplement.tool.BaseRequestInfo;
 
@@ -42,9 +45,10 @@ public class RealNamePresenter extends BasePresenter {
         info.put("idcard_no", view.getIDNum());
         Request<String> request = postFile(info);
         if (!TextUtils.isEmpty(view.getIDCard_OnHand()) && !TextUtils.isEmpty(view.getIDCard_On()) && !TextUtils.isEmpty(view.getIDCard_Off())) {
-            request.add("idcard_hand_img", new FileBinary(new File(view.getIDCard_OnHand())));
-            request.add("idcard_face_img", new FileBinary(new File(view.getIDCard_On())));
-            request.add("idcard_opposite_img", new FileBinary(new File(view.getIDCard_Off())));
+
+            request.add("idcard_hand_img", new File(BitmapUtil.compressImageUpload(view.getIDCard_OnHand())));//new FileBinary(new File(view.getIDCard_OnHand())));
+            request.add("idcard_face_img", new File(BitmapUtil.compressImageUpload(view.getIDCard_On())));
+            request.add("idcard_opposite_img", new File(BitmapUtil.compressImageUpload(view.getIDCard_Off())));
             view.showLoading();
             model.execute(activity, request, new OnRequestListener() {
                 @Override

@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/nanjing"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y88"
+        android:layout_marginRight="@dimen/x40"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="@dimen/x120"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:padding="@dimen/x26"
+            android:src="@drawable/back" />
+
+        <LinearLayout
+            android:id="@+id/fragment_home_adress"
+            android:layout_width="@dimen/x200"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/x220"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_home_adressName"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="评价"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/fragment_home_arrow"
+                android:layout_width="@dimen/x16"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/y20"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="@dimen/space_10"
+                android:src="@drawable/arrow_down_black"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="82dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/home_search"
+                android:layout_width="@dimen/x40"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/black_search"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/exit"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/black" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_0.5"
+        android:background="#F5F7F9" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y160"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x40"
+            android:layout_marginRight="@dimen/x40"
+            android:layout_marginTop="@dimen/y30"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="南京"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x40"
+                android:text="100"
+                android:textColor="@color/red_fa3e3e"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x40"
+            android:layout_marginTop="@dimen/y30"
+            android:text="南京"
+            android:textColor="#666"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y18"
+        android:background="#F5F7F9" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y40"
+        android:gravity="center_horizontal"
+        android:text="工作难度"
+        android:textColor="#B3B3B3"
+        android:textSize="13sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y90"
+        android:layout_marginTop="@dimen/y20"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/difficult_ont_star"
+            android:layout_width="@dimen/x62"
+            android:layout_height="@dimen/y60"
+            android:layout_marginLeft="@dimen/x20"
+            android:background="@drawable/comment_red" />
+
+        <ImageView
+            android:id="@+id/difficult_two_star"
+            android:layout_width="@dimen/x62"
+            android:layout_height="@dimen/y60"
+            android:layout_marginLeft="@dimen/x20"
+            android:background="@drawable/comment_red" />
+
+        <ImageView
+            android:id="@+id/difficult_three_star"
+            android:layout_width="@dimen/x62"
+            android:layout_height="@dimen/y60"
+            android:layout_marginLeft="@dimen/x20"
+            android:background="@drawable/comment_red" />
+
+        <ImageView
+            android:id="@+id/difficult_four_star"
+            android:layout_width="@dimen/x62"
+            android:layout_height="@dimen/y60"
+            android:layout_marginLeft="@dimen/x20"
+            android:background="@drawable/comment_red" />
+
+        <ImageView
+            android:id="@+id/difficult_five_star"
+            android:layout_width="@dimen/x62"
+            android:layout_height="@dimen/y60"
+            android:layout_marginLeft="@dimen/x20"
+            android:background="@drawable/comment_red" />
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y40"
+        android:gravity="center_horizontal"
+        android:text="岗位与信息是否相符"
+        android:textColor="#B3B3B3"
+        android:textSize="13sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y90"
+        android:layout_marginTop="@dimen/y20"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/info_ont_star"
+            android:layout_width="@dimen/x62"
+            android:layout_height="@dimen/y60"
+            android:layout_marginLeft="@dimen/x20"
+            android:background="@drawable/comment_red" />
+
+        <ImageView
+            android:id="@+id/info_two_star"
+            android:layout_width="@dimen/x62"
+            android:layout_height="@dimen/y60"
+            android:layout_marginLeft="@dimen/x20"
+            android:background="@drawable/comment_red" />
+
+        <ImageView
+            android:id="@+id/info_three_star"
+            android:layout_width="@dimen/x62"
+            android:layout_height="@dimen/y60"
+            android:layout_marginLeft="@dimen/x20"
+            android:background="@drawable/comment_red" />
+
+        <ImageView
+            android:id="@+id/info_four_star"
+            android:layout_width="@dimen/x62"
+            android:layout_height="@dimen/y60"
+            android:layout_marginLeft="@dimen/x20"
+            android:background="@drawable/comment_red" />
+
+        <ImageView
+            android:id="@+id/info_five_star"
+            android:layout_width="@dimen/x62"
+            android:layout_height="@dimen/y60"
+            android:layout_marginLeft="@dimen/x20"
+            android:background="@drawable/comment_red" />
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/y40"
+        android:gravity="center_horizontal"
+        android:text="工资是否与信息承诺一致"
+        android:textColor="#B3B3B3"
+        android:textSize="13sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/y20"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/money_ont_star"
+            android:layout_width="@dimen/x62"
+            android:layout_height="@dimen/y60"
+            android:layout_marginLeft="@dimen/x20"
+            android:background="@drawable/comment_red" />
+
+        <ImageView
+            android:id="@+id/money_two_star"
+            android:layout_width="@dimen/x62"
+            android:layout_height="@dimen/y60"
+            android:layout_marginLeft="@dimen/x20"
+            android:background="@drawable/comment_red" />
+
+        <ImageView
+            android:id="@+id/money_three_star"
+            android:layout_width="@dimen/x62"
+            android:layout_height="@dimen/y60"
+            android:layout_marginLeft="@dimen/x20"
+            android:background="@drawable/comment_red" />
+
+        <ImageView
+            android:id="@+id/money_four_star"
+            android:layout_width="@dimen/x62"
+            android:layout_height="@dimen/y60"
+            android:layout_marginLeft="@dimen/x20"
+            android:background="@drawable/comment_red" />
+
+        <ImageView
+            android:id="@+id/money_five_star"
+            android:layout_width="@dimen/x62"
+            android:layout_height="@dimen/y60"
+            android:layout_marginLeft="@dimen/x20"
+            android:background="@drawable/comment_red" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/send_ad"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_50"
+        android:layout_marginBottom="@dimen/space_10"
+        android:layout_marginLeft="@dimen/x40"
+        android:layout_marginRight="@dimen/x40"
+        android:background="@drawable/textview_round2"
+        android:gravity="center"
+        android:text="提交评价"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_size_18" />
+
+
+</LinearLayout>

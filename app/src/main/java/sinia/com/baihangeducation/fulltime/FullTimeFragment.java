@@ -91,8 +91,6 @@ public class FullTimeFragment extends MyBaseFragment implements HomePartTimeView
 
             if (mSalaryList != null && mList != null) {
                 if (mSalaryList.size() < 1 || mList.size() < 1) {
-
-
                 }
             }
         }

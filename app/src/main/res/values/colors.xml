@@ -96,4 +96,9 @@
     <color name="base_F2F2F2">#f2f2f2</color>
     <color name="interval_line">#E8E8E8</color>
 
+    <color name="club_item_red">#FF6D6D</color>
+    <color name="club_item_green">#37CF7A</color>
+    <color name="club_item_gray">#F5F7F9</color>
+
+
 </resources>

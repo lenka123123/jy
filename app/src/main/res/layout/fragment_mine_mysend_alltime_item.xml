@@ -1,70 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/fragment_mine_mysend_alltime_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="@dimen/space_10"
-    android:paddingLeft="@dimen/space_20"
-    android:paddingRight="@dimen/space_20"
-    android:paddingTop="@dimen/space_10">
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y14"
+        android:background="#F5F7F9" />
 
-        <ImageView
-            android:id="@+id/fragment_mine_mysend_alltime_item_logo"
-            android:layout_width="@dimen/space_60"
-            android:layout_height="@dimen/space_60" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/space_10"
+        android:paddingLeft="@dimen/space_20"
+        android:paddingRight="@dimen/space_20">
+
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/space_10"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/fragment_mine_mysend_alltime_item_title"
-                android:layout_width="@dimen/space_180"
-                android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:ellipsize="end"
-                android:text="招募高薪日结"
-                android:textColor="@color/color_3a3a3a_black" />
-
-            <TextView
-                android:id="@+id/fragment_mine_mysend_alltime_item_job"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_5"
-                android:maxLength="16"
-                android:singleLine="true"
-                android:text="德心桂文化培训文员"
-                android:textColor="@color/color_C5C5C5_gray"
-                android:textSize="@dimen/font_size_12" />
+            <ImageView
+                android:id="@+id/fragment_mine_mysend_alltime_item_logo"
+                android:layout_width="@dimen/space_60"
+                android:layout_height="@dimen/space_60"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_5">
+                android:layout_marginLeft="@dimen/space_10"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/fragment_mine_mysend_alltime_item_adressanddate"
-                    android:layout_width="@dimen/space_150"
+                    android:id="@+id/fragment_mine_mysend_alltime_item_title"
+                    android:layout_width="@dimen/space_180"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/y30"
+                    android:ellipsize="end"
                     android:singleLine="true"
-                    android:text="南京市 鼓楼区 2018/04/04"
-                    android:textColor="@color/color_C5C5C5_gray"
-                    android:textSize="@dimen/font_size_12" />
+                    android:text="招募高薪日结"
+                    android:textColor="#333"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/fragment_mine_mysend_alltime_item_job"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/y20"
+                    android:maxLength="16"
+                    android:singleLine="true"
+                    android:text="德心桂文化培训文员"
+                    android:textColor="#666"
+                    android:textSize="13sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/y20"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/comment_img"
+                        android:layout_width="@dimen/y110"
+                        android:layout_height="@dimen/y54"
+                        android:background="@drawable/to_comment"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/fragment_mine_mysend_alltime_item_adressanddate"
+                        android:layout_width="@dimen/space_150"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="已评价"
+                        android:textColor="#333"
+                        android:textSize="14sp"
+                        android:visibility="gone" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
 
-    <TextView
-        android:id="@+id/fragment_mine_mysend_alltime_item_salary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:text="100/天"
-        android:textColor="@color/color_E14222"/>
-</RelativeLayout>
+        <TextView
+            android:id="@+id/fragment_mine_mysend_alltime_item_salary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/y20"
+            android:text="100/天"
+            android:textColor="@color/color_E14222"
+            android:textSize="13sp" />
+    </RelativeLayout>
+
+</LinearLayout>

@@ -28,6 +28,8 @@ public class MySendActivity extends BaseActivity {
 
     private String full = "";
 
+
+
     @Override
     public int initLayoutResID() {
         return R.layout.fragment_mine_mysend;
@@ -47,6 +49,7 @@ public class MySendActivity extends BaseActivity {
 
         if (full == null || full.equals("")) {
             mMySendPartTimeFragment = new MySendPartTimeFragment();
+            mMySendPartTimeFragment.setComplete(true);
             ft.add(R.id.fragment_mine_mysend_framlayout, mMySendPartTimeFragment);
             ft.commit();
             mPartTime.setChecked(true);

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:banner="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.example.framwork.banner.SimpleImageBanner
+            android:id="@+id/sib_top_ad"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y300"
+
+            banner:bb_barPaddingLeft="10dp"
+            banner:bb_barPaddingRight="10dp"
+
+            banner:bb_delay="2"
+            banner:bb_indicatorCornerRadius="3dp"
+            banner:bb_indicatorGap="8dp"
+            banner:bb_indicatorGravity="CENTER"
+            banner:bb_indicatorHeight="6dp"
+            banner:bb_indicatorSelectColor="@color/colorPrimary"
+            banner:bb_indicatorStyle="CORNER_RECTANGLE"
+            banner:bb_indicatorUnselectColor="#88ffffff"
+            banner:bb_indicatorWidth="6dp"
+            banner:bb_isAutoScrollEnable="true"
+            banner:bb_isBarShowWhenLast="true"
+            banner:bb_isIndicatorShow="true"
+            banner:bb_isLoopEnable="true"
+            banner:bb_isTitleShow="false"
+            banner:bb_period="10"
+            banner:bb_scale="1" />
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x40"
+        android:layout_marginTop="@dimen/y40"
+        android:text="俱乐部收入排行"
+        android:textColor="#333"
+        android:textSize="13sp" />
+
+</LinearLayout>

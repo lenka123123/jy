@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -22,6 +23,9 @@ import sinia.com.baihangeducation.R;
 import sinia.com.baihangeducation.release.campus.ReleaseFunActivity;
 import sinia.com.baihangeducation.supplement.base.BaseActivity;
 
+import com.fm.openinstall.OpenInstall;
+import com.fm.openinstall.listener.AppInstallAdapter;
+import com.fm.openinstall.model.AppData;
 import com.mcxtzhang.swipemenulib.info.bean.AuthCodeInfo;
 
 import sinia.com.baihangeducation.mine.presenter.AuthCodePresenter;
@@ -65,16 +69,41 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
 
         setContentView(R.layout.activity_register);
         context = this;
+
+        OpenInstall.getInstall(new AppInstallAdapter() {
+            @Override
+            public void onInstall(AppData appData) {
+                //获取渠道数据
+                String channelCode = appData.getChannel();
+                //获取自定义数据
+                String bindData = appData.getData();
+                Log.d("OpenInstallww", "getInstall : installData = " + appData.toString());
+            }
+        });
+
+
         initView();
         initData();
     }
 
+    private String channelCode = "";
 
     protected void initData() {
 //        if (decorViewGroup != null && statusBarView != null)
 //        decorViewGroup.removeView(statusBarView);
         mAuthCodePresenter = new AuthCodePresenter(context, this);
         mRegisterPresenter = new RegisterPresenter(context, this);
+
+        OpenInstall.getInstall(new AppInstallAdapter() {
+            @Override
+            public void onInstall(AppData appData) {
+                //获取渠道数据
+                channelCode = appData.getChannel();
+                //获取自定义数据
+                String bindData = appData.getData();
+                Log.d("OpenInstall", "getInstall : installData = " + appData.toString());
+            }
+        });
     }
 
     protected void initView() {
@@ -149,7 +178,7 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
 
                 if (TimeUtils.isLetterDigit(getPassword())) {
                     //注册
-                    mRegisterPresenter.register();
+                    mRegisterPresenter.register(channelCode);
                 } else {
                     Toast.getInstance().showErrorToast(context, "请输入6-12位数字或字母");
                 }
@@ -192,6 +221,8 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
 
     @Override
     public void succress() {
+        //用户注册成功后调用
+        OpenInstall.reportRegister();
         Goto.toMainActivity(context);
         Toast.getInstance().showSuccessToast(context, "注册成功");
 //        Goto.toLogin(mContext);

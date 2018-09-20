@@ -36,7 +36,7 @@ public class SearchReasultSSTAdapter extends SuperBaseAdapter<SearchResultSSTInf
         holder.setOnClickListener(R.id.fragment_mine_collection_sstitem, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Goto.toJobBangDetailActivity(context,item.raiders_id,cocllectionType,messageId);
+                Goto.toJobBangDetailActivity(context,item.raiders_id,cocllectionType,messageId,"");
             }
         });
     }

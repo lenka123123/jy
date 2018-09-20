@@ -18,6 +18,7 @@ import java.util.HashMap;
 
 import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.MyApplication;
+import sinia.com.baihangeducation.mine.MineFragment;
 import sinia.com.baihangeducation.mine.model.AccountManger;
 import sinia.com.baihangeducation.mine.view.GetBaseInfoView;
 import sinia.com.baihangeducation.supplement.base.Goto;
@@ -34,10 +35,10 @@ import com.mcxtzhang.swipemenulib.utils.FileUtils;
 public class GetBaseInfoPresenter extends BasePresenter {
 
     private Activity activity;
-    private GetBaseInfoView view;
+    private MineFragment view;
 
 
-    public GetBaseInfoPresenter(Activity activity, GetBaseInfoView view) {
+    public GetBaseInfoPresenter(Activity activity, MineFragment view) {
         super(activity);
         this.activity = activity;
         this.view = view;
@@ -51,17 +52,17 @@ public class GetBaseInfoPresenter extends BasePresenter {
     }
 
 
-    public void getBaseInfoLoginAfter(String token,String userid) {
+    public void getBaseInfoLoginAfter() {
         HashMap mGetBaseInfoData = BaseRequestInfo.getInstance().getRequestInfo(activity, "getMyInfo", "ucenter", true);
-        mGetBaseInfoData.put("token", token);
-        mGetBaseInfoData.put("user_id",userid);
-        if (AppConfig.TOKEN.length() < 2 || AppConfig.USERID.length() < 2) {
-            new AlertDialog.Builder(activity).setTitle("提示！").setMessage("您尚未登录，请先登录。").setPositiveButton("登录", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Goto.toLogin(activity);
-                }
-            }).setNegativeButton("取消", null).show();
+        mGetBaseInfoData.put("token", AppConfig.TOKEN);
+        mGetBaseInfoData.put("user_id", AppConfig.USERID);
+        if (!AppConfig.ISlOGINED) {
+//            new AlertDialog.Builder(activity).setTitle("提示！").setMessage("您尚未登录，请先登录。").setPositiveButton("登录", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialog, int which) {
+//                    Goto.toLogin(activity);
+//                }
+//            }).setNegativeButton("取消", null).show();
             return;
         }
         post(mGetBaseInfoData, new OnRequestListener() {
@@ -70,14 +71,8 @@ public class GetBaseInfoPresenter extends BasePresenter {
                 Log.i("获取资本信息", bean.toString());
 
                 UserInfo userInfo = bean.parseObject(UserInfo.class);
-                Gson gson=new Gson();
-               String s= gson.toJson(userInfo);
+                view.showUserInfoSuccess(userInfo);
 
-                try {
-                    FileUtils.writeInternal(activity,"userinfo",s);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
 
 
             }
@@ -93,7 +88,6 @@ public class GetBaseInfoPresenter extends BasePresenter {
             }
         });
     }
-
 
 
 }

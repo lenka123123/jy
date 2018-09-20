@@ -215,12 +215,12 @@ public class ShareEveryDayDetailActivity extends BaseActivity implements ShareEv
                                         if (AppConfig.ISlOGINED) {
                                             mShareEveryDayDetailPresenter.sendCommen(v.getText().toString().trim());
                                         } else {
-                                            new AlertDialog.Builder(context).setTitle("提示！").setMessage("您尚未登录，请先登录。").setPositiveButton("登录", new DialogInterface.OnClickListener() {
-                                                @Override
-                                                public void onClick(DialogInterface dialog, int which) {
-                                                    Goto.toLogin(context);
-                                                }
-                                            }).setNegativeButton("取消", null).show();
+//                                            new AlertDialog.Builder(context).setTitle("提示！").setMessage("您尚未登录，请先登录。").setPositiveButton("登录", new DialogInterface.OnClickListener() {
+//                                                @Override
+//                                                public void onClick(DialogInterface dialog, int which) {
+//                                                    Goto.toLogin(context);
+//                                                }
+//                                            }).setNegativeButton("取消", null).show();
                                         }
 
                                     }

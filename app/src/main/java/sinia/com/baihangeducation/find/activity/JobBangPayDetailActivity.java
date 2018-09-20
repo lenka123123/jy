@@ -26,6 +26,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import com.example.framwork.utils.ProgressActivityUtils;
 import com.example.framwork.widget.ProgressActivity;
 import com.example.framwork.widget.superrecyclerview.recycleview.SuperRecyclerView;
@@ -92,7 +93,7 @@ public class JobBangPayDetailActivity extends BaseActivity implements ShareEvery
     private ImageView mShare;
     private EditText mWriteMessage;
     private WebView webview;
-    private ZZoomImageView img;
+    private SubsamplingScaleImageView img;
 
     private MessagePresenter mMessagePresenter;             //留言
     private SuperRecyclerView rvContainer;
@@ -205,7 +206,7 @@ public class JobBangPayDetailActivity extends BaseActivity implements ShareEvery
     public void saveBitmap(Bitmap bitmap) {
 
         webview.setVisibility(View.GONE);
-        img.setImageBitmap(bitmap);
+//        img.setImageBitmap(bitmap);
     }
 
     @Override

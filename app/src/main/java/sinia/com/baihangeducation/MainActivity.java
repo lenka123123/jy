@@ -50,7 +50,11 @@ import com.example.framwork.utils.ObjectSaveUtil;
 import com.example.framwork.utils.SPUtils;
 import com.example.framwork.utils.SpCommonUtils;
 import com.example.framwork.utils.UserInfo;
+import com.fm.openinstall.OpenInstall;
+import com.fm.openinstall.listener.AppWakeUpAdapter;
+import com.fm.openinstall.model.AppData;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.mcxtzhang.swipemenulib.activity.BaseRequestActivity;
 import com.mcxtzhang.swipemenulib.customview.NoScrollViewPager;
 import com.mcxtzhang.swipemenulib.utils.MyActivityManager;
@@ -65,6 +69,7 @@ import java.util.Set;
 import butterknife.ButterKnife;
 import cn.jpush.android.api.JPushInterface;
 import cn.jpush.android.api.TagAliasCallback;
+import sinia.com.baihangeducation.club.ClubFragment;
 import sinia.com.baihangeducation.fulltime.FullTimeFragment;
 import sinia.com.baihangeducation.mine.model.AccountManger;
 import sinia.com.baihangeducation.mine.presenter.GetBaseInfoPresenter;
@@ -86,6 +91,8 @@ import com.mcxtzhang.swipemenulib.info.bean.VersionInfo;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import sinia.com.baihangeducation.mine.presenter.UpdateVersionPresenter;
 import sinia.com.baihangeducation.mine.view.IUpdateVersionView;
@@ -148,6 +155,7 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
         updateVersionPresenter = null;
         mNoScrollViewPager = null;
         mRadioGroup = null;
+        wakeUpAdapter = null;
 
     }
 
@@ -157,24 +165,11 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
         StatService.onResume(this);
     }
 
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         //       super.onSaveInstanceState(outState);
     }
-
-    //    @Override
-//    public void onAttachFragment(Fragment fragment) {
-//        //重新让新的Fragment指向了原本未被销毁的fragment，它就是onAttach方法对应的Fragment对象
-//        if (HomeFm == null && fragment instanceof Fragment1)
-//            HomeFm = fragment;
-//        if (SpcFm == null && fragment instanceof Fragment2)
-//            SpcFm = fragment;
-//        if (OrderFm == null && fragment instanceof Fragment3)
-//            OrderFm = fragment;
-//        if (MyFm == null && fragment instanceof Fragment4)
-//            MyFm = fragment;
-//        super.onAttachFragment(fragment);
-//    }
 
 
     @Override
@@ -189,6 +184,8 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
 
         HomeFragment homeFragment = (HomeFragment) TabFragment.home.fragment();
         homeFragment.setReSatart();
+        MineFragment mineFragment = (MineFragment) TabFragment.me.fragment();
+        mineFragment.setReSatart();
     }
 
     public DrawerLayout getmDrawerLayout() {
@@ -199,7 +196,43 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
         return R.layout.activity_main;
     }
 
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        // 此处要调用，否则App在后台运行时，会无法截获
+        OpenInstall.getWakeUp(intent, wakeUpAdapter);
+    }
+
+    AppWakeUpAdapter wakeUpAdapter = new AppWakeUpAdapter() {
+        @Override
+        public void onWakeUp(AppData appData) {
+            //获取渠道数据
+            String channelCode = appData.getChannel();
+            //获取绑定数据
+            String bindData = appData.getData();
+            System.out.println("getWakeUp : wakeupData = " + appData.toString());
+            Log.d("OpenInstallww", "getInstall : installData = " + appData.toString());
+            // getWakeUp : wakeupData = AppData : channelCode= , bindData={"app":"share","act":"job","id":"452"}
+            try {
+                JSONObject object = new JSONObject(appData.getData().toString());
+                String app = object.getString("app");
+                String act = object.getString("act");
+                String id = object.getString("id");
+                if (app.equals("share") && act.equals("job")) {
+                    Goto.toPartTimeJobDetailActivity(MainActivity.this, Integer.valueOf(id));
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+    };
+
     public void initView() {
+        OpenInstall.getWakeUp(getIntent(), wakeUpAdapter);
 
         MyActivityManager mam = MyActivityManager.getInstance();
         mam.pushOneActivity(MainActivity.this);//就把当前activity压入了栈中
@@ -219,6 +252,7 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
         mLinearLayout = (LinearLayout) findViewById(R.id.linearLayout);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         // TODO: 2018/8/23 0023      mDrawerLayout.setScrimColor(Color.WHITE);
+        mDrawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
         //培训
         delete_train = (LinearLayout) findViewById(R.id.delete_train);
@@ -299,6 +333,7 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
 
         initPagerContent();
 
+
         mDrawerLayout.setDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
@@ -318,7 +353,6 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
             public void onDrawerStateChanged(int newState) {
             }
         });
-
 
     }
 
@@ -429,13 +463,13 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
                     case 1:
                         mRadioGroup.check(R.id.main_tab_find);
                         break;
+//                    case 2:
+//                        mRadioGroup.check(R.id.main_tab_add);
+//                        break;
                     case 2:
-                        mRadioGroup.check(R.id.main_tab_add);
-                        break;
-                    case 3:
                         mRadioGroup.check(R.id.main_tab_campus);
                         break;
-                    case 4:
+                    case 3:
                         mRadioGroup.check(R.id.main_tab_mine);
                         break;
                 }
@@ -452,14 +486,14 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
             case R.id.main_tab_find:
                 mNoScrollViewPager.setCurrentItem(1);
                 break;
-            case R.id.main_tab_add:
+//            case R.id.main_tab_add:
+//                mNoScrollViewPager.setCurrentItem(2);
+//                break;
+            case R.id.main_tab_campus:
                 mNoScrollViewPager.setCurrentItem(2);
                 break;
-            case R.id.main_tab_campus:
-                mNoScrollViewPager.setCurrentItem(3);
-                break;
             case R.id.main_tab_mine:
-                mNoScrollViewPager.setCurrentItem(4);
+                mNoScrollViewPager.setCurrentItem(3);
                 break;
         }
     }
@@ -487,12 +521,12 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
                 break;
             case R.id.setting_home:
                 if (!AppConfig.ISlOGINED) {
-                    new AlertDialog.Builder(activity).setTitle("提示！").setMessage("您尚未登录，请先登录。").setPositiveButton("登录", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Goto.toLogin(activity);
-                        }
-                    }).setNegativeButton("取消", null).show();
+//                    new AlertDialog.Builder(activity).setTitle("提示！").setMessage("您尚未登录，请先登录。").setPositiveButton("登录", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            Goto.toLogin(activity);
+//                        }
+//                    }).setNegativeButton("取消", null).show();
                 } else {
                     Goto.toMySettingActivity(mContext);
                 }
@@ -630,56 +664,6 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
     }
 
 
-//    public void setDrawable(UserInfo userInfo) {
-//
-//        if (userInfo == null) {
-//            return;
-//        }
-//
-//        no_read_num.setText(" " + userInfo.no_read_num + " ");
-//        delete_train_text.setText(userInfo.my_num.train_num);
-//        linearLayout_full_text.setText(userInfo.my_num.full_job_num);
-//        linearLayout_park_text.setText(userInfo.my_num.part_job_num);
-//        huzhu_text.setText(userInfo.my_num.help_num);
-//        textViewName.setText(userInfo.nickname);
-////    public int type;                //用户类型（1个人/2企业/3培训机构）
-//
-//        if (userInfo != null) {
-//            delete_train.setVisibility(View.VISIBLE);
-//            mMyCoffers.setVisibility(View.VISIBLE);
-//            huzhu.setVisibility(View.VISIBLE);
-//
-//            if (userInfo.type == 1) { //1个人/2企业/3培训机构
-//                delete_train.setVisibility(View.GONE); //培训
-//                mMyCoffers.setVisibility(View.VISIBLE);//金 库
-//                huzhu.setVisibility(View.VISIBLE);
-//            }
-//            if (userInfo.type == 2) {
-//                delete_train.setVisibility(View.VISIBLE); //培训
-//                mMyCoffers.setVisibility(View.GONE);//金 库
-//                huzhu.setVisibility(View.GONE);
-//            }
-//            if (userInfo.type == 3) {
-//                huzhu.setVisibility(View.GONE);
-//                mMyCoffers.setVisibility(View.GONE);//金 库
-//                delete_train.setVisibility(View.VISIBLE); //培训
-//            }
-//        }
-//
-//
-//        shiming_text.setText(userInfo.auth_status == 1 ? "未认证" : "已认证");
-//        // public int auth_status;  //认证状态（1：未认证；2：审核中；3：已认证；4：认证不通过；）
-//
-//        if (userInfo.gender == 1) {
-//            Glide.with(MainActivity.this).load("").error(R.drawable.new_male).into(logo_man);
-//        } else {
-//            Glide.with(MainActivity.this).load("").error(R.drawable.moman).into(logo_man);
-//        }
-//
-//        Glide.with(MainActivity.this).load(userInfo.avatar).error(R.drawable.logo).into(logoImg);
-//
-//    }
-
     @Override
     public void showLoading() {
 
@@ -722,9 +706,10 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
     private enum TabFragment {
         home(R.id.nav_home, HomeFragment.class),
         part(R.id.nav_part, PartTimeFragment.class),
-        release(R.id.nav_release, AddFragment.class),
-        campus(R.id.nav_full, FullTimeFragment.class),
-        me(R.id.nav_compus, NewCampusFragment.class);
+        //        release(R.id.nav_release, AddFragment.class),
+        campus(R.id.nav_full, ClubFragment.class),
+        me(R.id.nav_compus, MineFragment.class);
+//        me(R.id.nav_compus, NewCampusFragment.class);
 
         private Fragment fragment;
         private final int menuId;
@@ -775,13 +760,13 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
                 case 1:
                     mRadioGroup.check(R.id.main_tab_find);
                     break;
+//                case 2:
+//                    mRadioGroup.check(R.id.main_tab_add);
+//                    break;
                 case 2:
-                    mRadioGroup.check(R.id.main_tab_add);
-                    break;
-                case 3:
                     mRadioGroup.check(R.id.main_tab_campus);
                     break;
-                case 4:
+                case 3:
                     mRadioGroup.check(R.id.main_tab_mine);
                     break;
             }

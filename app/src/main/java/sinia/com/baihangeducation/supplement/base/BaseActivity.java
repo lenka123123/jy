@@ -81,6 +81,25 @@ public abstract class BaseActivity extends CheckPermissionsActivity implements V
     public Bundle savedInstanceState;
 
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if (mCommonTitle != null) {
+            mCommonTitle.setBackgroundColor(getResources().getColor(R.color.white));
+            mCommonTitle.getBackground().setAlpha(0);
+            mCommonTitle.getCenter_txt().setTextColor(Color.BLACK);
+            mCommonTitle.getCenter_txt().setTextSize(20);
+            mCommonTitle.getCenter_txt().setTypeface(Typeface.DEFAULT);
+            mCommonTitle.getLeftRes().setImageDrawable(getResources().getDrawable(R.drawable.back_black));
+            mCommonTitle.getLeftRes().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+        }
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -476,6 +495,7 @@ public abstract class BaseActivity extends CheckPermissionsActivity implements V
             hidePopListView();
         }
     }
+
 
     /**
      * 自定义OnDismissListener

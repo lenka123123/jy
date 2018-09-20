@@ -93,7 +93,13 @@ public class SearchFunSearchListActivity extends BaseActivity implements HotFunL
         mErrorTextView = findViewById(R.id.tv_state);
         mAutoLoadRecyclerView = findViewById(R.id.recyclerView);
         mSearchEditText = findViewById(R.id.background);
-
+        TextView cancel = findViewById(R.id.cancel);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SearchFunSearchListActivity.this.finish();
+            }
+        });
         hotFunAdapter = new HotFunAdapter(context);
         mAutoLoadRecyclerView.setAdapter(hotFunAdapter);
         setPullRefresher();

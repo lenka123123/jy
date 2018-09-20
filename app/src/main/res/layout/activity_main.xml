@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:fitsSystemWindows="true"
-    tools:openDrawer="start">
+    android:fitsSystemWindows="true">
 
 
     <FrameLayout
@@ -74,6 +73,7 @@
                         android:textSize="@dimen/font_size_12" />
 
                     <RadioButton
+
                         style="@style/MTabStyle"
                         android:layout_width="10dp"
                         android:layout_height="match_parent"
@@ -82,7 +82,7 @@
                         android:text="你好"
                         android:textColor="@drawable/maintextcolorselector"
                         android:textSize="@dimen/font_size_12"
-                        android:visibility="invisible" />
+                        android:visibility="gone" />
 
                     <RadioButton
                         android:id="@+id/main_tab_campus"
@@ -90,7 +90,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableTop="@drawable/maintab_campus_icon_selector"
-                        android:text="全职"
+                        android:text="俱乐部"
                         android:textColor="@drawable/maintextcolorselector"
                         android:textSize="@dimen/font_size_12" />
 
@@ -100,7 +100,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:drawableTop="@drawable/maintab_mine_icon_selector"
-                        android:text="校内圈"
+                        android:text="我的"
                         android:textColor="@drawable/maintextcolorselector"
                         android:textSize="@dimen/font_size_12" />
                 </RadioGroup>
@@ -113,7 +113,8 @@
                     android:layout_centerInParent="true"
                     android:button="@null"
                     android:drawableTop="@drawable/new_main_add"
-                    android:paddingTop="@dimen/space_20" />
+                    android:paddingTop="@dimen/space_20"
+                    android:visibility="gone" />
             </RelativeLayout>
 
 
@@ -380,9 +381,9 @@
                 android:layout_gravity="center"
                 android:paddingTop="@dimen/y25"
                 android:text="我 的 购 买"
-                android:visibility="gone"
                 android:textColor="#666"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:visibility="gone" />
         </LinearLayout>
 
 
@@ -413,8 +414,8 @@
                     android:layout_marginLeft="@dimen/x257">
 
                     <ImageView
-                        android:layout_width="@dimen/x45"
-                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/x6"
                         android:src="@drawable/news_home" />
 
@@ -426,9 +427,9 @@
                         android:layout_alignParentTop="true"
                         android:background="@drawable/dialog_red_shape"
                         android:gravity="center"
-                        android:visibility="gone"
                         android:textColor="@color/white"
-                        android:textSize="8sp" />
+                        android:textSize="8sp"
+                        android:visibility="gone" />
                 </RelativeLayout>
 
             </LinearLayout>

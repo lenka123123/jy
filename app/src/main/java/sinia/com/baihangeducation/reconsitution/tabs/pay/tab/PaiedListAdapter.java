@@ -77,7 +77,12 @@ public class PaiedListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public void onClick(View v) {
         int potion = (Integer) v.getTag();
-        Goto.toJobBangPayDetailActivity(context, mInviteListInfo.get(potion).order_raiders_id, "", 5, 3);
+
+
+
+        Goto.toJobBangDetailActivity(context, mInviteListInfo.get(potion).order_raiders_id, "真题试卷", 5, 3);
+
+//        Goto.toJobBangPayDetailActivity(context, mInviteListInfo.get(potion).order_raiders_id, "", 5, 3);
     }
 }
 

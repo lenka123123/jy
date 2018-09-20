@@ -54,7 +54,7 @@ public class RegisterPresenter extends BasePresenter {
     /**
      * 注册
      */
-    public void register() {
+    public void register(String channelCode) {
         if (!AccountManger.checkupRegisterInfo(activity, view.getphoneNum(), view.getAuthCode(), view.getPassword(), view.getPasswordAgain(), view.getIsRead())) {
             return;
         }
@@ -63,6 +63,8 @@ public class RegisterPresenter extends BasePresenter {
         info.put("password", view.getPassword());
         info.put("vcode", view.getAuthCode());
         info.put("device_id", CommonUtil.getAndroidId(activity));
+        if (!channelCode.equals(""))
+            info.put("channel", channelCode);
 //        view.showLoading();
         post(info, new OnRequestListener() {
             @Override
@@ -98,7 +100,7 @@ public class RegisterPresenter extends BasePresenter {
         AppConfig.USERID = userInfo.user_id;
         AppConfig.USERIDTYPE = userInfo.type;
         System.out.println("userInfouserInfouserIns试试fo.type" + userInfo.type);
-        getBaseInfoPresenter.getBaseInfoLoginAfter(AppConfig.TOKEN, AppConfig.USERID);
+//        getBaseInfoPresenter.getBaseInfoLoginAfter(AppConfig.TOKEN, AppConfig.USERID);
 
         SpCommonUtils.put(activity, AppConfig.USERTOKEN, userInfo.token);
         SpCommonUtils.put(activity, AppConfig.FINALUSERID, userInfo.user_id);
@@ -123,7 +125,7 @@ public class RegisterPresenter extends BasePresenter {
         SpCommonUtils.put(activity, AppConfig.IS_LOGIN_APP, true);
 
         SpCommonUtils.put(activity, AppConfig.FINAL_NUM_FULL_AUTH_STATUS, userInfo.auth_status);
-
+        SpCommonUtils.put(activity, AppConfig.FINAL_NUM_FULL_VIP_LEVEL, userInfo.vip_level);
 
 //                ObjectSaveUtil.saveObject(activity, bean.parseObject(UserInfo.class));
         SPUtils.getInstance().saveObject(activity, Constants.USER_INFO, bean.parseObject(UserInfo.class));
@@ -133,7 +135,7 @@ public class RegisterPresenter extends BasePresenter {
 
         RegisterPresenter.MyAsyncTask myAsyncTask = new RegisterPresenter.MyAsyncTask();
         myAsyncTask.execute(userInfo.avatar);
-       view.succress();
+        view.succress();
     }
 
     private class MyAsyncTask extends AsyncTask<String, Void, Bitmap> {

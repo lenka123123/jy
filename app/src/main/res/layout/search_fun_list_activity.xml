@@ -16,7 +16,7 @@
             android:gravity="center">
 
             <ImageView
-
+             android:id="@+id/back"
                 android:layout_width="@dimen/space_10"
                 android:layout_height="@dimen/space_20"
                 android:layout_centerVertical="true"

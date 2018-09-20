@@ -4,6 +4,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 
 import com.example.framwork.utils.ProgressActivityUtils;
+import com.example.framwork.utils.Toast;
 import com.example.framwork.widget.ProgressActivity;
 import com.example.framwork.widget.superrecyclerview.recycleview.SuperRecyclerView;
 
@@ -23,7 +24,7 @@ import sinia.com.baihangeducation.mine.presenter.MySendPresent;
 import sinia.com.baihangeducation.mine.view.MySendView;
 
 /**
- * Created by Administrator on 2018/4/17.
+ * 已经报名
  */
 
 public class MySendPartTimeFragment extends BaseFragment implements MySendView, SuperRecyclerView.LoadingListener, SwipeRefreshLayout.OnRefreshListener {
@@ -33,6 +34,7 @@ public class MySendPartTimeFragment extends BaseFragment implements MySendView, 
     private String type = "2";
     private int countpage = 1;
     private int itemnum = 20;
+    private boolean complete = false;
 
     private SuperRecyclerView rvContainer;
     private ProgressActivity progressActivity;
@@ -42,10 +44,8 @@ public class MySendPartTimeFragment extends BaseFragment implements MySendView, 
     private List<MySendInfo> mList;
     private boolean isLoadMore = false;
 
-    public void change(String full) {
-        if (full.equals("")) {
-
-        }
+    public void setComplete(boolean full) {
+        complete = full;
     }
 
     @Override
@@ -59,7 +59,7 @@ public class MySendPartTimeFragment extends BaseFragment implements MySendView, 
         mList = new ArrayList<>();
 
         present = new MySendPresent(context, this);
-        present.getMySendPartTimeData();
+        present.getMySendPartTimeData("0" ,complete);
 
         mMySendPartTimeAdapter = new MySendPartTimeAdapter(context, mList);
 
@@ -109,16 +109,18 @@ public class MySendPartTimeFragment extends BaseFragment implements MySendView, 
     @Override
     public void getMySendPartTimeDataSuccess(MySendListInfo mMySendListInfo, int maxpage) {
         List<MySendInfo> list = mMySendListInfo.list;
-        if (list.size() == 0) {
+        if (countpage == 1 && list.size() == 0) {
             progressActivityUtils.showEmptry("暂无数据");
         } else {
             progressActivityUtils.showContent();
-            countpage++;
-            if (maxpage == 1 || countpage > maxpage) {
+
+            if (countpage > maxpage) {
                 rvContainer.setLoadMoreEnabled(false);
+//                Toast.getInstance().showErrorToast(getActivity(),"没有更多数据");
             } else {
                 rvContainer.setLoadMoreEnabled(true);
             }
+            countpage++;
             if (!isLoadMore) {
                 mList.clear();
             }
@@ -149,6 +151,6 @@ public class MySendPartTimeFragment extends BaseFragment implements MySendView, 
      * 获取数据
      */
     private void getServerData() {
-        present.getMySendPartTimeData();
+        present.getMySendPartTimeData("0",complete);
     }
 }

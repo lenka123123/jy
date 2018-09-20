@@ -326,10 +326,11 @@ public class AccountManger {
         } else if (TextUtils.isEmpty(idimgonhand)) {
             Toast.getInstance().showToastView(context, "请上传手持身份证照片");
             return false;
-        } else if (!isIDNumber(idcardnum)) {
-            Toast.getInstance().showToastView(context, "请输入正确的身份证号码");
-            return false;
         }
+//        else if (!isIDNumber(idcardnum)) {
+//            Toast.getInstance().showToastView(context, "请输入正确的身份证号码");
+//            return false;
+//        }
         return true;
     }
 

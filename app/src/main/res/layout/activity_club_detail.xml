@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <!-- start club信息-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y440"
+        android:background="@drawable/club_bg"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x40"
+            android:layout_marginRight="@dimen/x40"
+            android:layout_marginTop="@dimen/y40">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="@dimen/x158"
+                android:layout_height="@dimen/y159" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="@dimen/y160"
+                android:layout_marginLeft="@dimen/x40"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/school_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:padding="0dp"
+                    android:singleLine="true"
+                    android:text="南京大学"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/school_person"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:padding="0dp"
+                    android:singleLine="true"
+                    android:text="999人"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/school_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:padding="0dp"
+                    android:singleLine="true"
+                    android:text="No.1"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="@dimen/x146"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/y40"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/join_club"
+                    android:layout_width="@dimen/x146"
+                    android:layout_height="@dimen/y70"
+                    android:layout_gravity="center"
+                    android:background="@drawable/join_bg"
+                    android:gravity="center"
+                    android:text="已加入"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/school_total_money"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/x40"
+            android:layout_marginTop="@dimen/y40"
+            android:text="俱乐部总收入"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:id="@+id/administrator"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y70"
+            android:layout_marginTop="@dimen/y40"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="@dimen/x178"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/x178"
+                android:background="@drawable/kuang"
+                android:gravity="center"
+                android:text="任务"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/club_person_list"
+                android:layout_width="@dimen/x178"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/x50"
+                android:background="@drawable/kuang"
+                android:gravity="center"
+                android:text="成员列表"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/visitor"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y70"
+            android:layout_marginTop="@dimen/y40"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/x40"
+                android:gravity="center"
+                android:text="管理员："
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/administrator_logo"
+                android:layout_width="@dimen/x70"
+                android:layout_height="match_parent"
+                android:src="@drawable/logo" />
+
+            <TextView
+                android:id="@+id/administrator_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x20"
+                android:text="暂无"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <!-- end club信息-->
+
+
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y27"
+        android:background="#F5F7F9" />
+
+
+    <TextView
+        android:id="@+id/notice_tv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y220"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/x20"
+        android:paddingRight="@dimen/x20"
+        android:paddingTop="@dimen/y20"
+        android:text="123" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y27"
+        android:background="#F5F7F9" />
+
+
+</LinearLayout>

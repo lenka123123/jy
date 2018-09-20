@@ -12,6 +12,7 @@ import com.example.framwork.banner.BannerItem;
 import com.example.framwork.banner.SimpleImageBanner;
 import com.example.framwork.utils.CommonUtil;
 import com.example.framwork.utils.SpCommonUtils;
+import com.example.framwork.utils.Toast;
 import com.flyco.banner.anim.select.ZoomInEnter;
 
 import java.util.ArrayList;
@@ -61,16 +62,30 @@ public class ADDataProvider {
     public static void adToInformation(final Context context, JobBangClassADListInfo imageInfo) {
 //         MyApplication application = (MyApplication) context.getApplicationContext();
 
-        if (CommonUtil.isFastClick())
+        /**
+         *   public int type;                            //类型1：跳转APP内容；2：跳转H5 URL；）
+         public String cover_url;                            //广告图片地址
+         public int plate;                            //跳转板块 1兼职 2全职 3培训 4转让 5互助 6App内容板块 7趣事 8每日分享    ( 仅type 为1时有效 )
+         public int type_id;                            //对应板块ID    ( 仅type 为1时有效 )
+         public String title;                            //广告标题
+         public int is_need_login;                            //打开该广告是否需要强制登录 1是2否
+         public String url;                            //跳转的URL地址    ( 仅type为2时有效 )
+         public String share_url;                            //分享地址
+         */
+
+
+        if (CommonUtil.isFastClick()){
             return;
+        }
+
         if (imageInfo.is_need_login == 1) {
             if (!AppConfig.ISlOGINED) {
-                new AlertDialog.Builder(context).setTitle("提示！").setMessage("您尚未登录，请先登录。").setPositiveButton("登录", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Goto.toLogin(context);
-                    }
-                }).setNegativeButton("取消", null).show();
+//                new AlertDialog.Builder(context).setTitle("提示！").setMessage("您尚未登录，请先登录。").setPositiveButton("登录", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        Goto.toLogin(context);
+//                    }
+//                }).setNegativeButton("取消", null).show();
 
             } else {
                 if (imageInfo != null) {
@@ -100,6 +115,9 @@ public class ADDataProvider {
                                 break;
                             case 8:
                                 Goto.toShareEveryDayDetailActivity(context, imageInfo.type_id);
+                                break;
+                            case 9:
+                                Goto.toClubDetailActivity(context, String.valueOf(imageInfo.type_id));
                                 break;
                         }
                     } else {
@@ -145,6 +163,9 @@ public class ADDataProvider {
                             break;
                         case 8:
                             Goto.toShareEveryDayDetailActivity(context, imageInfo.type_id);
+                            break;
+                        case 9:
+                            Goto.toClubDetailActivity(context, String.valueOf(imageInfo.type_id));
                             break;
                     }
                 } else {

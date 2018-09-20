@@ -66,7 +66,17 @@
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="c346t2" />
+            </intent-filter>
+        </activity>
+
         <!-- w -->
         <activity
             android:name=".supplement.web.ShareWebViewActivity"
@@ -359,9 +369,13 @@
             android:name=".home.activity.CompanyJoinInActivity"
             android:screenOrientation="portrait" />
         <!-- 兼职详情 -->
+
         <activity
             android:name=".home.activity.PartTimeJobDetailActivity"
-            android:screenOrientation="portrait" />
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+
+        </activity>
         <!-- 培训详情 -->
         <activity
             android:name=".home.activity.TraingDetailActivity"
@@ -508,6 +522,63 @@
             android:name=".find.activity.JobBangPayDetailActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
+        <!-- club 详情-->
+        <activity
+            android:name=".club.clubdetail.ClubDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <!-- club 搜索-->
+        <activity
+            android:name=".club.searchschool.SearchListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <!-- club 更多列表-->
+        <activity
+            android:name=".club.clubschoollist.ClubSchoolListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+
+        <!-- club 申请列表-->
+        <activity
+            android:name=".club.applyclublist.ApplyClubListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+
+        <!-- club 成员列表-->
+        <activity
+            android:name=".club.applyclublist.ClubPersonClubListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+
+        <!-- club 编辑公告-->
+        <activity
+            android:name=".club.clubsendannounce.ClubSendAnnounceActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+
+        <!-- club 公告详情-->
+        <activity
+            android:name=".club.clubannouncedetail.ClubAnnounceDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+
+        <!-- club 编辑简介-->
+        <activity
+            android:name=".club.notice.ClubNoticeActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+
+        <!-- club 兼职评价-->
+        <activity
+            android:name=".club.clubcomment.CommentActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+
+        <!-- club 我的兼职列表-->
+        <activity
+            android:name=".mine.activity.MySendCommentActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
 
         <activity
             android:name=".wxapi.WXEntryActivity"
@@ -601,6 +672,11 @@
         <meta-data
             android:name="BaiduMobAd_WIFI_LOCATION"
             android:value="true" />
+
+        <!--  OpenInstall 集成 -->
+        <meta-data
+            android:name="com.openinstall.APP_KEY"
+            android:value="c346t2" />
 
 
         <!-- 定位需要的服务 -->
@@ -700,10 +776,9 @@
             android:value="11dd2beba30978b536b11606" /> <!--  </>值来自开发者平台取得的AppKey-->
 
 
-
-        <receiver android:name=".receiver.TokenBroadcastReceiver" >
+        <receiver android:name=".receiver.TokenBroadcastReceiver">
             <intent-filter>
-                <action android:name="com.feichang.a91consultant.main.broadcast"/>
+                <action android:name="com.feichang.a91consultant.main.broadcast" />
             </intent-filter>
         </receiver>
 

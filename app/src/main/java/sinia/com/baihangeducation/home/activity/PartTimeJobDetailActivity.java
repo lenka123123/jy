@@ -42,6 +42,9 @@ import com.amap.api.services.geocoder.RegeocodeResult;
 import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
 import com.example.framwork.utils.LogUtils;
+import com.fm.openinstall.OpenInstall;
+import com.fm.openinstall.listener.AppWakeUpAdapter;
+import com.fm.openinstall.model.AppData;
 import com.mcxtzhang.swipemenulib.info.bean.JobInfoes;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareAPI;
@@ -135,8 +138,13 @@ public class PartTimeJobDetailActivity extends BaseActivity implements JobInfoVi
 
     private String jobInfo_is_collect = "";
 
+
+
     @Override
     protected void initData() {
+
+
+
         mCommonTitle.setCenterText(R.string.jobinfo);
         mCommonTitle.setCenterTextColor(R.color.black);
         mCommonTitle.setBackground(getResources().getDrawable(R.color.white));
@@ -285,11 +293,12 @@ public class PartTimeJobDetailActivity extends BaseActivity implements JobInfoVi
 //                .setCallback(shareListener)
 //                .share();
 //    }
-
-
     private void doShare(SHARE_MEDIA media) {
+
         UMWeb web = new UMWeb(jobInfo.job_share_url);
-        web.setTitle(jobInfo.job_title);//标题
+        web.setTitle(jobInfo.job_share_title);//标题
+        web.setDescription(jobInfo.job_share_introduce);
+//        web.setThumb(thumb);  //缩略图
         new ShareAction(PartTimeJobDetailActivity.this)
                 .setPlatform(media)
                 .withMedia(web)
@@ -297,6 +306,7 @@ public class PartTimeJobDetailActivity extends BaseActivity implements JobInfoVi
                     @Override
                     public void onStart(SHARE_MEDIA platform) {
                     }
+
                     /**
                      * @descrption 分享成功的回调
                      * @param platform 平台类型
@@ -327,15 +337,6 @@ public class PartTimeJobDetailActivity extends BaseActivity implements JobInfoVi
                 })
                 .share();
     }
-
-
-
-
-
-
-
-
-
 
 
     //分享回调监听
@@ -473,13 +474,13 @@ public class PartTimeJobDetailActivity extends BaseActivity implements JobInfoVi
             mDetailAdress.setText(mJobInfo.job_link_type_name);
             mLinkTel.setText(mJobInfo.job_link_phone);
 
-            System.out.println("======报错======" );
+            System.out.println("======报错======");
             mContent.setText(Html.fromHtml(mJobInfo.job_content, new Html.ImageGetter() {
                 @Override
                 public Drawable getDrawable(String s) {
                     System.out.println("======报错======" + s);
                     // ======报错====== http://apps.bdimg.com/libs/ueditor/1.4.3.1/themes/default/images/spacer.gif
-                    if (!s.endsWith("gif")){
+                    if (!s.endsWith("gif")) {
                         int drawableId = Integer.parseInt(s);
                         Drawable drawable = getResources().getDrawable(drawableId);
                         drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
@@ -547,7 +548,7 @@ public class PartTimeJobDetailActivity extends BaseActivity implements JobInfoVi
 
     @Override
     public void addCollectionSuccess(AddCollectionSuccessInfo mAddCollectionSuccessInfo) {
-        if (AppConfig.ISlOGINED){
+        if (AppConfig.ISlOGINED) {
             collectionId = String.valueOf(mAddCollectionSuccessInfo.collect_id);
             imageViewCollect.setBackgroundResource(R.drawable.new_find_collection);
             jobInfo_is_collect = "1";
@@ -571,7 +572,6 @@ public class PartTimeJobDetailActivity extends BaseActivity implements JobInfoVi
         super.onActivityResult(requestCode, resultCode, data);
         UMShareAPI.get(this).onActivityResult(requestCode, resultCode, intent);
     }
-
 
 
     private String city = "";
@@ -659,6 +659,7 @@ public class PartTimeJobDetailActivity extends BaseActivity implements JobInfoVi
         super.onDestroy();
         mapView.onDestroy();
         UMShareAPI.get(this).release();
+
     }
 
     @Override

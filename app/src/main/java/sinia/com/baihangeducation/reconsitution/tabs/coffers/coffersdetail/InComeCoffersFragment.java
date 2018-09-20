@@ -167,16 +167,19 @@ public class InComeCoffersFragment extends Fragment implements RankingContract.V
     }
 
     private void showErrorState(boolean isError) {
-        if (isError) {
-            mErrorImageView.setVisibility(View.VISIBLE);
-            mErrorTextView.setVisibility(View.VISIBLE);
-            GlideLoadUtils.getInstance().glideLoadDefault(getActivity(), R.drawable.logo, mErrorImageView, R.drawable.logo);
-            mErrorTextView.setText("没有数据");
-            if (refreshlayout != null)
-                refreshlayout.finishLoadMoreWithNoMoreData();
-        } else {
-            mErrorImageView.setVisibility(View.GONE);
-            mErrorTextView.setVisibility(View.GONE);
-        }
+        mErrorImageView.setVisibility(View.GONE);
+        mErrorTextView.setVisibility(View.GONE);
+
+//        if (isError) {
+//            mErrorImageView.setVisibility(View.VISIBLE);
+//            mErrorTextView.setVisibility(View.VISIBLE);
+//            GlideLoadUtils.getInstance().glideLoadDefault(getActivity(), R.drawable.logo, mErrorImageView, R.drawable.logo);
+//            mErrorTextView.setText("没有数据");
+//            if (refreshlayout != null)
+//                refreshlayout.finishLoadMoreWithNoMoreData();
+//        } else {
+//            mErrorImageView.setVisibility(View.GONE);
+//            mErrorTextView.setVisibility(View.GONE);
+//        }
     }
 }

@@ -183,7 +183,7 @@ public class JobBangClassActivity extends BaseActivity implements JobBangClassVi
         mSecretListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Goto.toJobBangDetailActivity(context, secretList.get(position).raiders_id, 6, 2);
+                Goto.toJobBangDetailActivity(context, secretList.get(position).raiders_id, 6, 2,"职场秘籍");
             }
         });
         //为试卷加载数据
@@ -192,7 +192,7 @@ public class JobBangClassActivity extends BaseActivity implements JobBangClassVi
         mTestListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Goto.toJobBangDetailActivity(context, testList.get(position).raiders_id, 5, 4);
+                Goto.toJobBangDetailActivity(context, testList.get(position).raiders_id, 5, 4,"真题试卷");
             }
         });
     }

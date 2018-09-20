@@ -227,8 +227,6 @@ public class JobBangDetailActivity extends BaseActivity
         mList = new ArrayList<>();
 
 
-        mCommonTitle.setCenterText(R.string.jobbangclassdetail);
-        mCommonTitle.setBackgroundColor(Color.WHITE);
         intent = getIntent();
         //获取raiderid 用于获取详情
         raderId = intent.getStringExtra("RAIDERID");
@@ -237,6 +235,15 @@ public class JobBangDetailActivity extends BaseActivity
         //获取留言ID
         type = intent.getStringExtra("messageID");
         typename = intent.getStringExtra("typename");
+
+        mCommonTitle.setBackgroundColor(Color.WHITE);
+        if (typename.equals("")) {
+            mCommonTitle.setCenterText(R.string.jobbangclassdetail);
+        } else {
+            mCommonTitle.setCenterText(typename + "详情");
+        }
+
+
         //获取详情presenter
         mJobBangDetailPresenter = new JobBangDetailPresenter(context, this);
         //获取详情
@@ -284,7 +291,6 @@ public class JobBangDetailActivity extends BaseActivity
         img = header.findViewById(R.id.img);
         img.setVisibility(View.GONE);
 
-
         WebSettings mWebSettings = webview.getSettings();
         // 设置是否可缩放 仅支持双击缩放，不支持触摸缩放
         mWebSettings.setSupportZoom(true);
@@ -297,7 +303,7 @@ public class JobBangDetailActivity extends BaseActivity
         mWebSettings.setLoadsImagesAutomatically(true);
         mWebSettings.setJavaScriptCanOpenWindowsAutomatically(true); //支持通过JS打开新窗口
 
-        int fontSize = (int) getResources().getDimension(R.dimen.y28);
+        int fontSize = (int) getResources().getDimension(R.dimen.y24);
         mWebSettings.setDefaultFontSize(fontSize);//修改webvew字体大小
 
 
@@ -714,7 +720,9 @@ public class JobBangDetailActivity extends BaseActivity
 //        }
 
     }
+
     int position = 0;
+
     public class JavascriptInterface {
         @android.webkit.JavascriptInterface
         public void openImage(String imageUrl, String img) {
@@ -740,7 +748,7 @@ public class JobBangDetailActivity extends BaseActivity
                 imageInfo.add(info);
             }
 
-             runOnUiThread(new Runnable() {
+            runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     PhotoShowDialog photoShowDialog = new PhotoShowDialog(JobBangDetailActivity.this, imageInfo, position);

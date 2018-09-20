@@ -109,6 +109,7 @@ public class RealNameActivity extends BaseActivity implements IRealNameView {
                 takePhoto(IDCARD_ONHEAD);
                 break;
             case R.id.realname_confirm:
+                showProgress();
                 presenter.doRealNameAuthentication();
                 break;
         }
@@ -211,6 +212,7 @@ public class RealNameActivity extends BaseActivity implements IRealNameView {
 
     @Override
     public void submitSucess() {
+        hideLoading();
         Intent intent = new Intent(context, RealNameSuccessActivity.class);
         startActivity(intent);
         finish();
@@ -218,7 +220,7 @@ public class RealNameActivity extends BaseActivity implements IRealNameView {
 
     @Override
     public void submitFailed() {
-
+        hideLoading();
     }
 
     @Override

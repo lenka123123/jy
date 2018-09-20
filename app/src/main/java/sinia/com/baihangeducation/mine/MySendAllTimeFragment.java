@@ -4,6 +4,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 
 import com.example.framwork.utils.ProgressActivityUtils;
+import com.example.framwork.utils.Toast;
 import com.example.framwork.widget.ProgressActivity;
 import com.example.framwork.widget.superrecyclerview.recycleview.SuperRecyclerView;
 
@@ -11,15 +12,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sinia.com.baihangeducation.R;
+
 import com.mcxtzhang.swipemenulib.base.BaseFragment;
+
 import sinia.com.baihangeducation.mine.adapter.MySendAllTimeAdapter;
+
 import com.mcxtzhang.swipemenulib.info.bean.MySendInfo;
 import com.mcxtzhang.swipemenulib.info.bean.MySendListInfo;
+
 import sinia.com.baihangeducation.mine.presenter.MySendPresent;
 import sinia.com.baihangeducation.mine.view.MySendView;
 
 /**
- * Created by Administrator on 2018/4/17.
+ * 已经完成
  */
 
 public class MySendAllTimeFragment extends BaseFragment implements MySendView, SuperRecyclerView.LoadingListener, SwipeRefreshLayout.OnRefreshListener {
@@ -37,6 +42,17 @@ public class MySendAllTimeFragment extends BaseFragment implements MySendView, S
     private MySendAllTimeAdapter mMySendAllTimeAdapter;
     private List<MySendInfo> mList;
     private boolean isLoadMore = false;
+    private boolean isCreated = false;
+
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isCreated) {
+            getServerData();
+        }
+    }
+
 
     @Override
     public int initLayoutResID() {
@@ -45,11 +61,11 @@ public class MySendAllTimeFragment extends BaseFragment implements MySendView, S
 
     @Override
     protected void initData() {
-
+        isCreated = true;
         mList = new ArrayList<>();
 
         present = new MySendPresent(context, this);
-        present.getMySendAllTimeData();
+        present.getMySendAllTimeData("1");
 
         mMySendAllTimeAdapter = new MySendAllTimeAdapter(context, mList);
 
@@ -104,16 +120,18 @@ public class MySendAllTimeFragment extends BaseFragment implements MySendView, S
     @Override
     public void getMySendAllTimeDataSuccess(MySendListInfo mMySendListInfo, int maxpage) {
         List<MySendInfo> list = mMySendListInfo.list;
-        if (list.size() == 0) {
+        if (countpage == 1 && list.size() == 0) {
             progressActivityUtils.showEmptry("暂无数据");
         } else {
             progressActivityUtils.showContent();
-            countpage++;
-            if (maxpage == 1 || countpage > maxpage) {
+
+            if (countpage > maxpage) {
                 rvContainer.setLoadMoreEnabled(false);
+//                Toast.getInstance().showErrorToast(getActivity(),"没有更多数据");
             } else {
                 rvContainer.setLoadMoreEnabled(true);
             }
+            countpage++;
             if (!isLoadMore) {
                 mList.clear();
             }
@@ -138,7 +156,8 @@ public class MySendAllTimeFragment extends BaseFragment implements MySendView, S
     /**
      * 获取数据
      */
-    private void getServerData() {
-        present.getMySendAllTimeData();
+    public void getServerData() {
+        if (present != null)
+            present.getMySendAllTimeData("1");
     }
 }

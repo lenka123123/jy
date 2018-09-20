@@ -1,98 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/fragment_mine_mysend_parttime_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="@dimen/space_10"
-    android:paddingLeft="@dimen/space_20"
-    android:paddingRight="@dimen/space_20"
-    android:paddingTop="@dimen/space_10">
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y14"
+        android:background="#F5F7F9" />
 
-        <ImageView
-            android:visibility="gone"
-            android:id="@+id/fragment_mine_mysend_parttime_item_logo"
-            android:layout_width="@dimen/space_60"
-            android:layout_height="@dimen/space_60" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x40"
+        android:layout_marginRight="@dimen/x40"
+        android:background="@color/white">
+
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/space_5"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/fragment_mine_mysend_parttime_item_title"
-                android:layout_width="@dimen/space_200"
-                android:layout_height="wrap_content"
-                android:text="招募高薪日结"
-                android:singleLine="true"
-                android:textColor="@color/color_3a3a3a_black" />
-
-            <TextView
-                android:id="@+id/fragment_mine_mysend_parttime_item_adressanddata"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_5"
-                android:textSize="@dimen/font_size_12"
-                android:singleLine="true"
-                android:text="南京市 鼓楼区 2018/03/25"
-                android:textColor="@color/color_C5C5C5_gray" />
-
-            <TextView
-                android:id="@+id/fragment_mine_mysend_parttime_item_adressanddata_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_10"
-                android:textSize="@dimen/font_size_12"
-                android:singleLine="true"
-                android:text="南京市 鼓楼区 2018/03/25"
-                android:textColor="@color/color_C5C5C5_gray" />
-
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_15"
-                android:textSize="@dimen/font_size_14"
-                android:singleLine="true"
-                android:text="已投递"
-               />
+            <ImageView
+                android:id="@+id/fragment_mine_mysend_parttime_item_logo"
+                android:layout_width="@dimen/space_60"
+                android:layout_height="@dimen/space_60"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_5">
+                android:layout_marginLeft="@dimen/space_5"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/fragment_mine_mysend_parttime_item_daily"
-                    android:layout_width="@dimen/font_size_30"
-                    android:layout_height="@dimen/space_15"
-                    android:background="@drawable/new_daily"
-                    android:gravity="center"
+                    android:id="@+id/fragment_mine_mysend_parttime_item_title"
+                    android:layout_width="@dimen/space_200"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/y20"
+                    android:singleLine="true"
+                    android:text="招募高薪日结"
+                    android:textSize="16sp"
+                    android:textColor="@color/color_3a3a3a_black" />
+
+                <TextView
+                    android:id="@+id/fragment_mine_mysend_parttime_item_adressanddata"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_5"
+                    android:singleLine="true"
+                    android:text="南京市 鼓楼区 2018/03/25"
+                    android:textColor="#666"
+                    android:textSize="@dimen/font_size_12" />
+
+                <TextView
+                    android:id="@+id/fragment_mine_mysend_parttime_item_adressanddata_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:singleLine="true"
+                    android:text=" "
+                    android:textColor="@color/color_C5C5C5_gray"
+                    android:textSize="@dimen/font_size_12"
                     android:visibility="gone" />
 
                 <TextView
-                    android:id="@+id/fragment_mine_mysend_parttime_item_reallyname"
-                    android:layout_width="@dimen/font_size_30"
-                    android:layout_height="@dimen/space_15"
-                    android:layout_marginLeft="@dimen/space_10"
-                    android:background="@drawable/new_truename"
-                    android:gravity="center"
-                    android:visibility="gone" />
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/y10"
+                    android:singleLine="true"
+                    android:text="已报名"
+                    android:textColor="#333"
+                    android:textSize="@dimen/font_size_14" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/y8"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_5">
+
+                    <TextView
+                        android:id="@+id/fragment_mine_mysend_parttime_item_daily"
+                        android:layout_width="@dimen/font_size_30"
+                        android:layout_height="@dimen/space_15"
+                        android:background="@drawable/new_daily"
+                        android:gravity="center"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/fragment_mine_mysend_parttime_item_reallyname"
+                        android:layout_width="@dimen/font_size_30"
+                        android:layout_height="@dimen/space_15"
+                        android:layout_marginLeft="@dimen/space_10"
+                        android:background="@drawable/new_truename"
+                        android:gravity="center"
+                        android:visibility="gone" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
 
-    <TextView
-        android:id="@+id/fragment_mine_mysend_parttime_item_salary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:text="100/天"
-        android:textColor="@color/color_E14222" />
-</RelativeLayout>
+        <TextView
+            android:id="@+id/fragment_mine_mysend_parttime_item_salary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="100/天"
+            android:textColor="@color/color_E14222" />
+    </RelativeLayout>
+</LinearLayout>

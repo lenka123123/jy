@@ -102,7 +102,7 @@ public class LoginPresenter extends BasePresenter {
                 AppConfig.USERID = userInfo.user_id;
                 AppConfig.USERIDTYPE = userInfo.type;
                 System.out.println("userInfouserInfouserIns试试fo.type" + userInfo.type);
-                getBaseInfoPresenter.getBaseInfoLoginAfter(AppConfig.TOKEN, AppConfig.USERID);
+//                getBaseInfoPresenter.getBaseInfoLoginAfter(AppConfig.TOKEN, AppConfig.USERID);
 
                 SpCommonUtils.put(activity, AppConfig.USERTOKEN, userInfo.token);
                 SpCommonUtils.put(activity, AppConfig.FINALUSERID, userInfo.user_id);
@@ -127,6 +127,7 @@ public class LoginPresenter extends BasePresenter {
                 SpCommonUtils.put(activity, AppConfig.IS_LOGIN_APP, true);
 
                 SpCommonUtils.put(activity, AppConfig.FINAL_NUM_FULL_AUTH_STATUS, userInfo.auth_status);
+                SpCommonUtils.put(activity, AppConfig.FINAL_NUM_FULL_VIP_LEVEL, userInfo.vip_level);
 
 
 //                ObjectSaveUtil.saveObject(activity, bean.parseObject(UserInfo.class));
@@ -185,7 +186,7 @@ public class LoginPresenter extends BasePresenter {
                 AppConfig.USERID = userInfo.user_id;
                 AppConfig.USERIDTYPE = userInfo.type;
                 System.out.println("userInfouserInfouserIns试试fo.type" + userInfo.type);
-                getBaseInfoPresenter.getBaseInfoLoginAfter(AppConfig.TOKEN, AppConfig.USERID);
+//                getBaseInfoPresenter.getBaseInfoLoginAfter(AppConfig.TOKEN, AppConfig.USERID);
 
                 SpCommonUtils.put(activity, AppConfig.USERTOKEN, userInfo.token);
                 SpCommonUtils.put(activity, AppConfig.FINALUSERID, userInfo.user_id);
@@ -210,7 +211,7 @@ public class LoginPresenter extends BasePresenter {
                 SpCommonUtils.put(activity, AppConfig.IS_LOGIN_APP, true);
 
                 SpCommonUtils.put(activity, AppConfig.FINAL_NUM_FULL_AUTH_STATUS, userInfo.auth_status);
-
+                SpCommonUtils.put(activity, AppConfig.FINAL_NUM_FULL_VIP_LEVEL, userInfo.vip_level);
 
 //                ObjectSaveUtil.saveObject(activity, bean.parseObject(UserInfo.class));
                 SPUtils.getInstance().saveObject(activity, Constants.USER_INFO, bean.parseObject(UserInfo.class));

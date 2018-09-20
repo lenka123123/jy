@@ -259,9 +259,7 @@ public class HomeFragment extends BaseFragment implements HomeView, SuperRecycle
 
 
     private void addHeaderView() {
-
         header = LayoutInflater.from(getActivity()).inflate(R.layout.include_scroll_banner, null);
-
         sibTopAd = header.findViewById(R.id.sib_top_ad);
 
         gridView = header.findViewById(R.id.gridview);
@@ -424,22 +422,21 @@ public class HomeFragment extends BaseFragment implements HomeView, SuperRecycle
                 Goto.toSearchActivity(context);
                 break;
             case R.id.drawable:
-
-                System.out.println("==========ISlOGINED===");
-                System.out.println(AppConfig.ISlOGINED);
-                if (!AppConfig.ISlOGINED) {
-                    new AlertDialog.Builder(getActivity()).setTitle("提示！").setMessage("您尚未登录，请先登录。").setPositiveButton("登录", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Goto.toLogin(getActivity());
-                        }
-                    }).setNegativeButton("取消", null).show();
-                } else {
-
-                    ((MainActivity) getActivity()).getmDrawerLayout().openDrawer(Gravity.LEFT);
-
-                    ((MainActivity) getActivity()).open();
-                }
+//
+//                System.out.println("==========ISlOGINED===");
+//                System.out.println(AppConfig.ISlOGINED);
+//                if (!AppConfig.ISlOGINED) {
+//                    new AlertDialog.Builder(getActivity()).setTitle("提示！").setMessage("您尚未登录，请先登录。").setPositiveButton("登录", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            Goto.toLogin(getActivity());
+//                        }
+//                    }).setNegativeButton("取消", null).show();
+//                } else {
+//
+//                    ((MainActivity) getActivity()).getmDrawerLayout().openDrawer(Gravity.LEFT);
+//                    ((MainActivity) getActivity()).open();
+//                }
                 break;
             case R.id.fragment_find_jobbangclass:
                 Goto.toJobBangClassActivity(context);
@@ -449,13 +446,13 @@ public class HomeFragment extends BaseFragment implements HomeView, SuperRecycle
                 break;
             case R.id.intention_setting:
                 if (!AppConfig.ISlOGINED) {
-                    new AlertDialog.Builder(getActivity()).setTitle("提示！").setMessage("您尚未登录，请先登录。").setPositiveButton("登录", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Goto.toLogin(getActivity());
-                        }
-                    }).setNegativeButton("取消", null).show();
-                    return;
+//                    new AlertDialog.Builder(getActivity()).setTitle("提示！").setMessage("您尚未登录，请先登录。").setPositiveButton("登录", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            Goto.toLogin(getActivity());
+//                        }
+//                    }).setNegativeButton("取消", null).show();
+//                    return;
                 }
                 Goto.toWantJobActivity(context);
                 break;
