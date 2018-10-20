@@ -1,10 +1,19 @@
 package sinia.com.baihangeducation.club.clubdetail.presenter;
 
+import com.example.framwork.noHttp.Bean.BaseResponseBean;
+import com.example.framwork.noHttp.OnRequestListener;
+import com.example.framwork.utils.Toast;
+
+import java.util.HashMap;
+
+import sinia.com.baihangeducation.AppConfig;
+import sinia.com.baihangeducation.club.club.interfaces.GetRequestListener;
 import sinia.com.baihangeducation.club.clubdetail.interfaces.ClubDetailContract;
 import sinia.com.baihangeducation.club.clubdetail.interfaces.ClubDetailListener;
 import sinia.com.baihangeducation.club.clubdetail.interfaces.JoinClubDetailListener;
 import sinia.com.baihangeducation.club.clubdetail.model.ClubDetailBean;
 import sinia.com.baihangeducation.club.clubdetail.model.ClubDetailModel;
+import sinia.com.baihangeducation.supplement.tool.BaseRequestInfo;
 
 public class ClubDetailPresenter implements ClubDetailContract.Presenter {
 
@@ -60,4 +69,22 @@ public class ClubDetailPresenter implements ClubDetailContract.Presenter {
             }
         });
     }
+
+    public void getClubPermission(String club_id, GetRequestListener getRequestListener) {
+        searchSchoolModel.getClubPermission(club_id, new GetRequestListener() {
+
+            @Override
+            public void setRequestSuccess(String msg) {
+                getRequestListener.setRequestSuccess(msg);
+            }
+
+            @Override
+            public void setRequestFail() {
+                getRequestListener.setRequestFail();
+            }
+
+        });
+    }
+
+
 }

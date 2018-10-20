@@ -64,7 +64,7 @@ import sinia.com.baihangeducation.supplement.base.Goto;
 import sinia.com.baihangeducation.supplement.tool.BaseUtil;
 
 /**
- * Created by Administrator on 2018/4/23.
+ * 更多
  */
 
 public class MoreDetailActivity extends BaseActivity {

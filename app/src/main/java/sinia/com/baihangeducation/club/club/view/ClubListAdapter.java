@@ -16,6 +16,7 @@ import com.mcxtzhang.swipemenulib.info.bean.HomePartTimeInfo;
 import java.util.List;
 
 import sinia.com.baihangeducation.R;
+import sinia.com.baihangeducation.club.ClubFragment;
 import sinia.com.baihangeducation.club.club.model.ClubHomeInfo;
 import sinia.com.baihangeducation.club.searchschool.model.ClubSchoolList;
 import sinia.com.baihangeducation.supplement.base.Goto;
@@ -26,20 +27,17 @@ import sinia.com.baihangeducation.supplement.base.Goto;
 
 public class ClubListAdapter extends SuperBaseAdapter<ClubHomeInfo.School> {
     private Context context;
+    private ClubFragment clubFragment;
 
-    public ClubListAdapter(Context context, List<ClubHomeInfo.School> data) {
-        super(context, data);
-        this.context = context;
+    public ClubListAdapter(ClubFragment clubFragment, List<ClubHomeInfo.School> data) {
+        super(clubFragment.getActivity(), data);
+        this.context = clubFragment.getActivity();
+        this.clubFragment = clubFragment;
     }
-
 
     @Override
     protected void convert(BaseViewHolder holder, final ClubHomeInfo.School mInviteListInfo, int position) {
-
-
         holder.setText(R.id.ranking_number, mInviteListInfo.new_order);
-
-
         if (mInviteListInfo.fluctuate.equals("0")) {
             holder.setVisible(R.id.ranking_up_img, false);
             holder.setVisible(R.id.ranking_up_tx, false);
@@ -61,10 +59,16 @@ public class ClubListAdapter extends SuperBaseAdapter<ClubHomeInfo.School> {
 
         holder.setText(R.id.ranking_school_name, mInviteListInfo.name);
         holder.setText(R.id.ranking_school_number, mInviteListInfo.member_num + "人");
-        holder.setText(R.id.ranking_money, mInviteListInfo.income);
+//        holder.setText(R.id.ranking_money, mInviteListInfo.income);
 
         ImageView img = holder.getView(R.id.ranking_logo);
         GlideLoadUtils.getInstance().glideLoad(context, mInviteListInfo.logo, img, R.drawable.logo);
+        holder.setOnClickListener(R.id.ranking_money, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { //点击加入
+                clubFragment.applyClub(mInviteListInfo.id,"");
+            }
+        });
 
 
         holder.setOnClickListener(R.id.club_item_view, new View.OnClickListener() {

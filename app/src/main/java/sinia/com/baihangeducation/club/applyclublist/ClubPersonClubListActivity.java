@@ -42,6 +42,7 @@ public class ClubPersonClubListActivity extends BaseActivity implements ApplyClu
     private ImageView mErrorImageView;
     private TextView mErrorTextView;
     private ApplyClubListPresenter clubSchoolListPresenter;
+    private TextView textView;
 
     public int initLayoutResID() {
         return R.layout.activity_club_apply;
@@ -52,7 +53,8 @@ public class ClubPersonClubListActivity extends BaseActivity implements ApplyClu
     protected void initView() {
         mSmartRefreshLayout = findViewById(R.id.refreshLayout);
         mAutoLoadRecyclerView = findViewById(R.id.recyclerView);
-
+        textView = findViewById(R.id.fragment_home_adressName);
+        textView.setText("成员列表");
         mErrorImageView = findViewById(R.id.img_state);
         mErrorTextView = findViewById(R.id.tv_state);
         ImageView back = findViewById(R.id.back);

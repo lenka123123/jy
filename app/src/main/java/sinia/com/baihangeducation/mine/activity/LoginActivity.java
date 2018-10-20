@@ -17,10 +17,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.framwork.baseapp.AppManager;
 import com.example.framwork.utils.CommonUtil;
 import com.example.framwork.utils.SpCommonUtils;
 import com.example.framwork.utils.Toast;
 import com.githang.statusbar.StatusBarCompat;
+import com.mcxtzhang.swipemenulib.utils.Constants;
 import com.mcxtzhang.swipemenulib.utils.TimeUtils;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
@@ -33,12 +35,16 @@ import java.util.Set;
 
 import cn.jpush.android.api.JPushInterface;
 import cn.jpush.android.api.TagAliasCallback;
+import cn.jpush.im.android.api.event.MessageEvent;
 import sinia.com.baihangeducation.AppConfig;
+import sinia.com.baihangeducation.MainActivity;
 import sinia.com.baihangeducation.R;
 import sinia.com.baihangeducation.supplement.base.BaseActivity;
 
 import com.mcxtzhang.swipemenulib.info.IsCompleteInfo;
 import com.mcxtzhang.swipemenulib.info.bean.ThirdLoginInfo;
+
+import org.greenrobot.eventbus.EventBus;
 
 import sinia.com.baihangeducation.mine.presenter.LoginPresenter;
 import sinia.com.baihangeducation.mine.presenter.ThirdLoginPresenter;
@@ -46,9 +52,6 @@ import sinia.com.baihangeducation.mine.view.ILoginView;
 import sinia.com.baihangeducation.mine.view.IThirdLoginView;
 import sinia.com.baihangeducation.supplement.base.Goto;
 
-/**
- * 登录页面 sinia.com.baihangeducation.mine.activity.LoginActivity
- */
 
 public class LoginActivity extends AppCompatActivity implements ILoginView, IThirdLoginView, View.OnClickListener {
     private LoginPresenter mLoginPresenter;
@@ -86,10 +89,21 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, IThi
         context = this;
         initView();
         initData();
+
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        EventBus.getDefault().post("Main");
+    }
 
     protected void initData() {
+        Intent intent = new Intent();
+        //设置广播的名字（设置Action）
+        intent.setAction("myBroadCastAction");
+        sendBroadcast(intent);
+
 
         String name = (String) SpCommonUtils.get(context, AppConfig.USERPHOTO, "");
         String pwd = (String) SpCommonUtils.get(context, AppConfig.USERPWD, "");
@@ -147,7 +161,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, IThi
                 break;
             case R.id.tv_login:
                 if (TimeUtils.isLetterDigit(getPassword())) {
-                    mLoginPresenter.login(this);
+                    mLoginPresenter.login( );
                 } else {
                     Toast.getInstance().showErrorToast(context, "请输入6-12位数字或字母");
                 }
@@ -269,7 +283,9 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, IThi
      */
     @Override
     public void showLoginSuccress() {
+        Goto.toMainActivity(context);
         initJPushTag();
+
         finish();
 
     }

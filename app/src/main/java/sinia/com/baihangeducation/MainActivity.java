@@ -2,9 +2,11 @@ package sinia.com.baihangeducation;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -40,21 +42,21 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.baidu.mobstat.StatService;
+import com.amap.api.location.AMapLocation;
+import com.amap.api.location.AMapLocationClient;
+import com.amap.api.location.AMapLocationClientOption;
+import com.amap.api.location.AMapLocationListener;
+import com.amap.api.services.core.LatLonPoint;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
-import com.example.framwork.glide.ImageLoaderUtils;
 import com.example.framwork.utils.CommonUtil;
 import com.example.framwork.utils.DateUtil;
-import com.example.framwork.utils.ObjectSaveUtil;
 import com.example.framwork.utils.SPUtils;
 import com.example.framwork.utils.SpCommonUtils;
 import com.example.framwork.utils.UserInfo;
 import com.fm.openinstall.OpenInstall;
 import com.fm.openinstall.listener.AppWakeUpAdapter;
 import com.fm.openinstall.model.AppData;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.mcxtzhang.swipemenulib.activity.BaseRequestActivity;
 import com.mcxtzhang.swipemenulib.customview.NoScrollViewPager;
 import com.mcxtzhang.swipemenulib.utils.MyActivityManager;
@@ -62,28 +64,26 @@ import com.umeng.socialize.UMShareAPI;
 import com.yanzhenjie.nohttp.Logger;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-import butterknife.ButterKnife;
+import cn.jiguang.api.JCoreInterface;
 import cn.jpush.android.api.JPushInterface;
 import cn.jpush.android.api.TagAliasCallback;
+import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.callback.GetUserInfoCallback;
+import cn.jpush.im.android.api.model.Conversation;
+import cn.jpush.im.api.BasicCallback;
+import sinia.com.baihangeducation.chat.ChatFragment;
 import sinia.com.baihangeducation.club.ClubFragment;
-import sinia.com.baihangeducation.fulltime.FullTimeFragment;
-import sinia.com.baihangeducation.mine.model.AccountManger;
-import sinia.com.baihangeducation.mine.presenter.GetBaseInfoPresenter;
+import sinia.com.baihangeducation.club.im.ChatActivity;
 import sinia.com.baihangeducation.mine.view.GetBaseInfoView;
-import sinia.com.baihangeducation.newcampus.tabs.fun.FunCampusFragment;
 import sinia.com.baihangeducation.parttime.PartTimeFragment;
-import sinia.com.baihangeducation.supplement.base.BaseActivity;
-import sinia.com.baihangeducation.release.AddFragment;
-import sinia.com.baihangeducation.minecompany.CompanyMineFragment;
 
 import com.mcxtzhang.swipemenulib.dialog.CommonDialog;
 import com.mcxtzhang.swipemenulib.dialog.ForceUpdateDialog;
 
-import sinia.com.baihangeducation.find.FindFragment;
 import sinia.com.baihangeducation.home.HomeFragment;
 import sinia.com.baihangeducation.mine.MineFragment;
 
@@ -100,9 +100,7 @@ import sinia.com.baihangeducation.newcampus.NewCampusFragment;
 
 import sinia.com.baihangeducation.supplement.base.Goto;
 import sinia.com.baihangeducation.supplement.tool.BaseUtil;
-
-import static java.lang.System.exit;
-
+import sinia.com.baihangeducation.supplement.tool.JudgeUtils;
 
 public class MainActivity extends BaseRequestActivity implements IUpdateVersionView, RadioGroup.OnCheckedChangeListener, View.OnClickListener, NavigationView.OnNavigationItemSelectedListener, GetBaseInfoView {
 
@@ -148,27 +146,107 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
     private LinearLayout huzhu;
     private TextView mMyCoffers;
     private TextView mMyPay;
+    private ChatFragment chatFragment;
+    private ClubFragment clubFragment;
+    private MineFragment mineFragment;
+    private HomeFragment homeFragment;
+    private MyBroadCastRecevir recevir;
+    private PartTimeFragment partTimeFragment;
+
+
+    public void loginIm() {
+        String phone = (String) SpCommonUtils.get(activity, AppConfig.USERPHOTO, "");
+
+        JMessageClient.login(phone, "123456", new BasicCallback() {
+            @Override
+            public void gotResult(int i, String s) {
+                //更新用户头像
+
+                String phonePath = (String) SpCommonUtils.get(activity, AppConfig.FINAL_SAVE_PHOTO_PATH, "");
+                JMessageClient.updateUserAvatar(new File(phonePath), new BasicCallback() {
+                    @Override
+                    public void gotResult(int i, String s) {
+                        List<Conversation> list = JMessageClient.getConversationList();
+
+                        if (list != null)
+                            System.out.println("JMessageClient dong" + i + "===" + s + "====" + list.size());
+                    }
+                });
+//                System.out.println("JMessageClient dong" + i + "===" + s);
+//                JMessageClient.getUserInfo("19951770207", new GetUserInfoCallback() {
+//                    @Override
+//                    public void gotResult(int i, String s, cn.jpush.im.android.api.model.UserInfo userInfo) {
+//                        System.out.println("JMessageClient dong1" + i + "===" + s + "===" + userInfo.getAppKey());
+//                           chat(userInfo);
+//                    }
+//                });
+
+
+            }
+        });
+    }
+
+
+    public void chat(cn.jpush.im.android.api.model.UserInfo userInfo) {
+        Intent intent = new Intent();
+        intent.putExtra(MyApplication.CONV_TITLE, "聊天");
+        String targetId = userInfo.getUserName();
+        intent.putExtra(MyApplication.TARGET_ID, targetId);
+        intent.putExtra(MyApplication.TARGET_APP_KEY, userInfo.getAppKey());
+        intent.putExtra(MyApplication.DRAFT, "***");
+
+        intent.setClass(mContext, ChatActivity.class);
+        startActivity(intent);
+    }
+
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
+        unregisterReceiver(recevir);
         updateVersionPresenter = null;
         mNoScrollViewPager = null;
         mRadioGroup = null;
         wakeUpAdapter = null;
 
-    }
+        homeFragment.onDestroyView();
+        homeFragment.onDestroy();
+        homeFragment.onDetach();
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        StatService.onResume(this);
+        mineFragment.onDestroyView();
+        mineFragment.onDestroy();
+        mineFragment.onDetach();
+
+        clubFragment.onDestroyView();
+        clubFragment.onDestroy();
+        clubFragment.onDetach();
+
+        chatFragment.onDestroyView();
+        chatFragment.onDestroy();
+        chatFragment.onDetach();
+
+
+        partTimeFragment.onDestroyView();
+        partTimeFragment.onDestroy();
+        partTimeFragment.onDetach();
+
+        TabFragment.onDestroy();
+
+        System.out.println("Mian delete");
+        Log.i("", "onDestroy:      Mian delete");
+
+        if (mLocationClient != null) {
+            mLocationClient.onDestroy();//销毁定位客户端。
+        }
+
+        super.onDestroy();
+
+
     }
 
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        //       super.onSaveInstanceState(outState);
+        super.onSaveInstanceState(outState);
     }
 
 
@@ -179,14 +257,52 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+
+
+        if (mLocationClient != null) {
+            mLocationClient.startLocation(); // 启动定位
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        JCoreInterface.onPause(this);
+        super.onPause();
+        if (mLocationClient != null) {
+            mLocationClient.stopLocation();//停止定位
+        }
+    }
+
+    @Override
     protected void onRestart() {
         super.onRestart();
+        if (AppConfig.ISlOGINED) {
+            homeFragment.setReSatart();
+            mineFragment.setReSatart();
+            clubFragment.setReSatart();
+            chatFragment.setReSatart();
+        }
 
-        HomeFragment homeFragment = (HomeFragment) TabFragment.home.fragment();
-        homeFragment.setReSatart();
-        MineFragment mineFragment = (MineFragment) TabFragment.me.fragment();
-        mineFragment.setReSatart();
     }
+
+    @Override
+    protected void onResume() {
+        JCoreInterface.onResume(this);
+        // TODO: 2018/10/20 0020      chatFragment.sortConvList();
+        super.onResume();
+
+    }
+
+    private class MyBroadCastRecevir extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            System.out.println("MainActivity.this.finish======");
+            MainActivity.this.finish();
+        }
+    }
+
 
     public DrawerLayout getmDrawerLayout() {
         return mDrawerLayout;
@@ -232,6 +348,24 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
     };
 
     public void initView() {
+
+        recevir = new MyBroadCastRecevir();
+        IntentFilter intentFiltet = new IntentFilter();
+        //设置广播的名字（设置Action，可以添加多个要监听的动作）
+        intentFiltet.addAction("myBroadCastAction");
+        // 注册广播,传入两个参数， 实例化的广播接受者对象，
+        registerReceiver(recevir, intentFiltet);
+
+
+        homeFragment = (HomeFragment) TabFragment.home.fragment();
+        mineFragment = (MineFragment) TabFragment.me.fragment();
+        clubFragment = (ClubFragment) TabFragment.club.fragment();
+        chatFragment = (ChatFragment) TabFragment.chat.fragment();
+        partTimeFragment = (PartTimeFragment) TabFragment.part.fragment();
+
+        getCurrentLocationLatLng();
+
+
         OpenInstall.getWakeUp(getIntent(), wakeUpAdapter);
 
         MyActivityManager mam = MyActivityManager.getInstance();
@@ -242,7 +376,7 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
         updateVersionPresenter.getVersionInfo();
 
 
-        // TODO: 2018/8/9 0009   initJPushTag();
+        initJPushTag();
 
         mHome = (RadioButton) findViewById(R.id.main_tab_home);
         mFine = (RadioButton) findViewById(R.id.main_tab_find);
@@ -363,6 +497,7 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
 
     public void initData() {
 
+        loginIm();
     }
 
     @Override
@@ -463,13 +598,13 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
                     case 1:
                         mRadioGroup.check(R.id.main_tab_find);
                         break;
-//                    case 2:
-//                        mRadioGroup.check(R.id.main_tab_add);
-//                        break;
                     case 2:
-                        mRadioGroup.check(R.id.main_tab_campus);
+                        mRadioGroup.check(R.id.main_tab_add);
                         break;
                     case 3:
+                        mRadioGroup.check(R.id.main_tab_campus);
+                        break;
+                    case 4:
                         mRadioGroup.check(R.id.main_tab_mine);
                         break;
                 }
@@ -486,14 +621,14 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
             case R.id.main_tab_find:
                 mNoScrollViewPager.setCurrentItem(1);
                 break;
-//            case R.id.main_tab_add:
-//                mNoScrollViewPager.setCurrentItem(2);
-//                break;
-            case R.id.main_tab_campus:
+            case R.id.main_tab_add:
                 mNoScrollViewPager.setCurrentItem(2);
                 break;
-            case R.id.main_tab_mine:
+            case R.id.main_tab_campus:
                 mNoScrollViewPager.setCurrentItem(3);
+                break;
+            case R.id.main_tab_mine:
+                mNoScrollViewPager.setCurrentItem(4);
                 break;
         }
     }
@@ -703,18 +838,25 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
         }
     }
 
+    /**
+     * private ChatFragment chatFragment;
+     * private ClubFragment clubFragment;
+     * private MineFragment mineFragment;
+     * private HomeFragment homeFragment;
+     */
+
     private enum TabFragment {
         home(R.id.nav_home, HomeFragment.class),
         part(R.id.nav_part, PartTimeFragment.class),
-        //        release(R.id.nav_release, AddFragment.class),
-        campus(R.id.nav_full, ClubFragment.class),
+        //release(R.id.nav_release, AddFragment.class),
+        chat(R.id.nav_release, ChatFragment.class),
+        club(R.id.nav_full, ClubFragment.class),
         me(R.id.nav_compus, MineFragment.class);
-//        me(R.id.nav_compus, NewCampusFragment.class);
+//me(R.id.nav_compus, NewCampusFragment.class);
 
         private Fragment fragment;
         private final int menuId;
         private final Class<? extends Fragment> clazz;
-
 
         TabFragment(@IdRes int menuId, Class<? extends Fragment> clazz) {
             this.menuId = menuId;
@@ -747,8 +889,10 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
             for (TabFragment fragment : values()) {
                 fragment.fragment = null;
             }
+
         }
     }
+
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void getEventBus(Integer changeTab) {
@@ -760,18 +904,93 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
                 case 1:
                     mRadioGroup.check(R.id.main_tab_find);
                     break;
-//                case 2:
-//                    mRadioGroup.check(R.id.main_tab_add);
-//                    break;
                 case 2:
-                    mRadioGroup.check(R.id.main_tab_campus);
+                    mRadioGroup.check(R.id.main_tab_add);
                     break;
                 case 3:
+                    mRadioGroup.check(R.id.main_tab_campus);
+                    break;
+                case 4:
                     mRadioGroup.check(R.id.main_tab_mine);
                     break;
             }
         }
     }
 
+    //声明AMapLocationClient类对象
+    AMapLocationClient mLocationClient = null;
+    //声明AMapLocationClientOption对象
+    public AMapLocationClientOption mLocationOption = null;
+    private LatLonPoint latLonPoint;
+
+    public void getCurrentLocationLatLng() {
+        //初始化定位
+        mLocationClient = new AMapLocationClient(getApplicationContext());
+        //设置定位回调监听
+        mLocationClient.setLocationListener(mLocationListener);
+        //初始化AMapLocationClientOption对象
+        mLocationOption = new AMapLocationClientOption();
+
+ /* //设置定位场景，目前支持三种场景（签到、出行、运动，默认无场景） 设置了场景就不用配置定位模式等
+    option.setLocationPurpose(AMapLocationClientOption.AMapLocationPurpose.SignIn);
+    if(null != locationClient){
+        locationClient.setLocationOption(option);
+        //设置场景模式后最好调用一次stop，再调用start以保证场景模式生效
+        locationClient.stopLocation();
+        locationClient.startLocation();
+    }*/
+        // 同时使用网络定位和GPS定位,优先返回最高精度的定位结果,以及对应的地址描述信息
+        mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
+        //只会使用网络定位
+        /* mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Battery_Saving);*/
+        //只使用GPS进行定位
+        /*mLocationOption.setLocationMode(AMapLocationMode.Device_Sensors);*/
+        // 设置为单次定位 默认为false
+        /*mLocationOption.setOnceLocation(true);*/
+        //设置定位间隔,单位毫秒,默认为2000ms，最低1000ms。默认连续定位 切最低时间间隔为1000ms
+        mLocationOption.setInterval(3500);
+        //设置是否返回地址信息（默认返回地址信息）
+        /*mLocationOption.setNeedAddress(true);*/
+        //关闭缓存机制 默认开启 ，在高精度模式和低功耗模式下进行的网络定位结果均会生成本地缓存,不区分单次定位还是连续定位。GPS定位结果不会被缓存。
+        /*mLocationOption.setLocationCacheEnable(false);*/
+        //给定位客户端对象设置定位参数
+        mLocationClient.setLocationOption(mLocationOption);
+        //启动定位
+        mLocationClient.startLocation();
+    }
+
+    /**
+     * 定位回调监听器
+     */
+    public AMapLocationListener mLocationListener = new AMapLocationListener() {
+        @Override
+        public void onLocationChanged(AMapLocation amapLocation) {
+            if (!JudgeUtils.isOPenGPS(getApplicationContext())) {
+                Toast toast = Toast.makeText(getApplicationContext(), "检测GPS没有开启", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+            } else {
+                if (amapLocation != null) {
+                    if (amapLocation.getErrorCode() == 0) {
+                        //定位成功回调信息，设置相关消息
+                        amapLocation.getLocationType();//获取当前定位结果来源，如网络定位结果，详见定位类型表
+                        double currentLat = amapLocation.getLatitude();//获取纬度
+                        double currentLon = amapLocation.getLongitude();//获取经度
+
+                        latLonPoint = new LatLonPoint(currentLat, currentLon);  // latlng形式的
+                        AppConfig.CURRENTLAT = String.valueOf(latLonPoint.getLatitude());
+                        AppConfig.CURRENTLON = String.valueOf(latLonPoint.getLongitude());
+
+                        amapLocation.getAccuracy();//获取精度信息
+                    } else {
+                        //显示错误信息ErrCode是错误码，errInfo是错误信息，详见错误码表。
+                        Log.e("AmapError", "location Error, ErrCode:"
+                                + amapLocation.getErrorCode() + ", errInfo:"
+                                + amapLocation.getErrorInfo());
+                    }
+                }
+            }
+        }
+    };
 }
 

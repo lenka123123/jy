@@ -468,12 +468,14 @@ public abstract class BaseActivity extends CheckPermissionsActivity implements V
                                  AdapterView.OnItemClickListener itemClickListener, final CheckBox... tabs) {
         if (isChecked) {
             if (tabs.length <= 0) {
-                return;
+//                return;
             }
             // 第一个checkBox为当前点击选中的cb,其他cb进行setChecked(false);
-            for (int i = 1; i < tabs.length; i++) {
-                tabs[i].setChecked(false);
-            }
+
+            if (tabs.length >= 1)
+                for (int i = 1; i < tabs.length; i++) {
+                    tabs[i].setChecked(false);
+                }
             // 从数据源中提取出展示的筛选条件
             List<BaseBean> showStr = new ArrayList<>();
             for (BaseFilter baseFilter : showMes) {
@@ -487,7 +489,8 @@ public abstract class BaseActivity extends CheckPermissionsActivity implements V
                 public void onDismiss() {
                     super.onDismiss();
                     // 当pop消失时对第一个cb进行.setChecked(false)操作
-                    tabs[0].setChecked(false);
+                    if (tabs.length >= 1)
+                        tabs[0].setChecked(false);
                 }
             });
         } else {

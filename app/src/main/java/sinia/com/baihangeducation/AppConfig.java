@@ -19,6 +19,19 @@ import sinia.com.baihangeducation.newcampus.info.FunContantInfo;
 
 public class AppConfig extends BaseAppConfig {
 
+    //    currentLat, currentLon
+    public static String CURRENTLAT = "32.089858";
+    public static String CURRENTLON = "118.755877";
+
+    public static boolean HOMT = false;
+    public static boolean PART = false;
+    public static boolean CHAT = false;
+    public static boolean CLUB = false;
+    public static boolean ME = false;
+
+    public static boolean ISSELECTCLICK = false;
+
+
     public static final String USERTOKEN = "FINALUSERTOKEN";
     public static final String FINALUSERID = "FINALUSERID";
     public static final String FINALUAVATAR = "FINALUAVATAR";
@@ -38,7 +51,7 @@ public class AppConfig extends BaseAppConfig {
     public static final String FINAL_NUM_FULL_AUTH_STATUS = "FINAL_NUM_FULL_AUTH_STATUS";
     public static final String FINAL_NUM_FULL_VIP_LEVEL = "FINAL_NUM_FULL_VIP_LEVEL";
     public static final String FINAL_SAVE_PHOTO_PATH = "FINAL_SAVE_PHOTO_PATH";
-    public static final String USERPHOTO = "USERPHOTO";
+    public static final String USERPHOTO = "USERPHOTO";  //手机号
     public static final String USERPWD = "USERPWD";
     public static final String IS_LOGIN_APP = "IS_LOGIN_APP";
 
@@ -76,12 +89,12 @@ public class AppConfig extends BaseAppConfig {
     public static String CTYLENAME = "CTYLENAME";
     public static String LOGINPHOTOTPATH = "";
     public static boolean CTYLENAMESELECT = false;
-    public static UserInfo APPINFO = null;
-
+    public static Boolean SHOWCLUBJOB = false;
     public static FunContantInfo mFunContantInfo = null;
 
 
     public static boolean ISlOGINED = true;
+    public static boolean IS_MANUAL_lOGINED = false;
     public static boolean PAYSUCCESS = false;
     public static boolean INTENTION_SETTING = false; //意向设置
     public static final int SERVER_TYPE_OLINE = 1;//正式服务器

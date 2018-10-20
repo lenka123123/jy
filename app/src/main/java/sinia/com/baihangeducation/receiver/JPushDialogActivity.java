@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.framwork.utils.SpCommonUtils;
+
 import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.R;
 import sinia.com.baihangeducation.mine.model.AccountManger;
@@ -33,7 +35,7 @@ public class JPushDialogActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dialog_jpush_message);
         presenter = new MySettingPresenter(JPushDialogActivity.this, this);
-        presenter.logout();
+//        presenter.logout();
         AccountManger.clearUserInfo(JPushDialogActivity.this);
         initView();
     }
@@ -47,6 +49,11 @@ public class JPushDialogActivity extends AppCompatActivity implements View.OnCli
 
         dialogCancel.setOnClickListener(this);
         dialogYes.setOnClickListener(this);
+        AppConfig.USERID = "USERID";
+        AppConfig.TOKEN = "USERID";
+        SpCommonUtils.put(JPushDialogActivity.this, AppConfig.USERTOKEN, "USERID");
+        SpCommonUtils.put(JPushDialogActivity.this, AppConfig.FINALUSERID, "USERID");
+
     }
 
     @Override
@@ -54,15 +61,11 @@ public class JPushDialogActivity extends AppCompatActivity implements View.OnCli
         switch (v.getId()) {
             case R.id.dialog_cancel:
                 AppConfig.ISlOGINED = false;
-                AppConfig.TOKEN = "USERID";
-                AppConfig.USERID = "USERID";
                 Goto.toLogin(this);
                 finish();
                 break;
             case R.id.dialog_yes:
                 AppConfig.ISlOGINED = false;
-                AppConfig.TOKEN = "USERID";
-                AppConfig.USERID = "USERID";
                 Goto.toLogin(this);
                 finish();
                 break;

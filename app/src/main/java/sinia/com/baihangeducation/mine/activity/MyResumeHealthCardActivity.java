@@ -100,8 +100,8 @@ public class MyResumeHealthCardActivity extends BaseActivity {
 
     private void takePhoto(int type) {
         SImagePicker
-                .from(context)
-                .pickMode(SImagePicker.MODE_AVATAR)
+                .from(MyResumeHealthCardActivity.this)
+                .pickMode(SImagePicker.MODE_IMAGE)
                 .showCamera(true).rowCount(3)
                 .cropFilePath(
                         AppConfig.IMAGE_PATH + "/healthcard_img.png")

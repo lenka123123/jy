@@ -11,7 +11,7 @@
     <sinia.com.baihangeducation.supplement.sortrecycleview.ClearEditText
         android:id="@+id/filter_edit"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y46"
+        android:layout_height="@dimen/y66"
         android:background="@color/white"
         android:drawableLeft="@drawable/new_search"
         android:hint="请输入关键字"

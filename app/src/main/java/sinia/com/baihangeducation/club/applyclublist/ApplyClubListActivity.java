@@ -94,17 +94,22 @@ public class ApplyClubListActivity extends BaseActivity implements ApplyClubList
         clubSchoolListPresenter.acceptPerson(club_id, id, applySuccessListListener);
     }
 
+    public void ignore(String id) {
+        clubSchoolListPresenter.ignore(id);
+    }
+
 
     private void setPullRefresher() {
-        mSmartRefreshLayout.setRefreshHeader(new MaterialHeader(this));
+//        mSmartRefreshLayout.setRefreshHeader(new MaterialHeader(this));
         //   mSmartRefreshLayout.setRefreshFooter(new BallPulseFooter(getContext()));
         mSmartRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
                 currentPage = 1;
                 mRows.clear();
-//                clubSchoolListPresenter.getSearchSchoolList("1", String.valueOf(perpage), "");
-                refreshlayout.finishRefresh(500);
+                clubSchoolListPresenter.getSearchSchoolList("1", String.valueOf(perpage), club_id);
+                refreshlayout.finishRefresh(1000);
+
             }
         });
         mSmartRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
@@ -112,7 +117,7 @@ public class ApplyClubListActivity extends BaseActivity implements ApplyClubList
             public void onLoadMore(RefreshLayout refreshlayout) {
                 //      AllCoffersFragment.this.refreshlayout = refreshlayout;
                 if (addData) {
-                    clubSchoolListPresenter.getSearchSchoolList(String.valueOf(currentPage), String.valueOf(perpage), "");
+                    clubSchoolListPresenter.getSearchSchoolList(String.valueOf(currentPage), String.valueOf(perpage), club_id);
                 } else {
                     mSmartRefreshLayout.finishLoadMoreWithNoMoreData();
                 }

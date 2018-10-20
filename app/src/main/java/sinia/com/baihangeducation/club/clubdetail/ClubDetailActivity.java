@@ -1,6 +1,8 @@
 package sinia.com.baihangeducation.club.clubdetail;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -24,21 +26,42 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.example.framwork.utils.ProgressActivityUtils;
+import com.example.framwork.utils.SpCommonUtils;
 import com.example.framwork.utils.Toast;
 import com.example.framwork.widget.ProgressActivity;
 import com.example.framwork.widget.superrecyclerview.recycleview.SuperRecyclerView;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.mcxtzhang.swipemenulib.customview.GlideLoadUtils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.callback.GetGroupInfoCallback;
+import cn.jpush.im.android.api.callback.GetUserInfoCallback;
+import cn.jpush.im.android.api.enums.ConversationType;
+import cn.jpush.im.android.api.model.Conversation;
+import cn.jpush.im.android.api.model.GroupInfo;
+import cn.jpush.im.android.eventbus.EventBus;
+import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.MainActivity;
+import sinia.com.baihangeducation.MyApplication;
 import sinia.com.baihangeducation.R;
+import sinia.com.baihangeducation.club.club.interfaces.GetRequestListener;
+import sinia.com.baihangeducation.club.club.presenter.ClubHomePresenter;
 import sinia.com.baihangeducation.club.clubdetail.interfaces.ClubDetailContract;
 import sinia.com.baihangeducation.club.clubdetail.model.ClubDetailBean;
 import sinia.com.baihangeducation.club.clubdetail.model.ClubDetailModel;
 import sinia.com.baihangeducation.club.clubdetail.presenter.ClubDetailPresenter;
 import sinia.com.baihangeducation.club.clubdetail.view.ClubDetailListAdapter;
+import sinia.com.baihangeducation.club.im.ChatActivity;
+import sinia.com.baihangeducation.club.im.entity.Event;
+import sinia.com.baihangeducation.club.im.entity.EventType;
+import sinia.com.baihangeducation.mine.activity.LoginActivity;
 import sinia.com.baihangeducation.newcampus.tabs.friend.Utils;
 import sinia.com.baihangeducation.supplement.alertview.AlertViewContorller;
 import sinia.com.baihangeducation.supplement.alertview.OnItemClickListener;
@@ -46,8 +69,8 @@ import sinia.com.baihangeducation.supplement.base.BaseActivity;
 import sinia.com.baihangeducation.supplement.base.Goto;
 
 public class ClubDetailActivity extends BaseActivity implements
-        ClubDetailContract.View, SuperRecyclerView.LoadingListener, SwipeRefreshLayout.OnRefreshListener, OnItemClickListener {
-
+        ClubDetailContract.View, SuperRecyclerView.LoadingListener,
+        SwipeRefreshLayout.OnRefreshListener, OnItemClickListener, GetRequestListener {
 
     private TextView notice_tv;
     private ImageView logo_img;
@@ -62,7 +85,7 @@ public class ClubDetailActivity extends BaseActivity implements
 
     private boolean addData = false;
     private int currentPage = 1;
-    private int perpage = 20;
+    private int perpage = 10;
     private boolean isCreated = false;
 
     private List<ClubDetailBean.NoticeList.Notice> list = new ArrayList<ClubDetailBean.NoticeList.Notice>();
@@ -77,7 +100,7 @@ public class ClubDetailActivity extends BaseActivity implements
     private ImageView administrator_logo;
     private TextView club_person_list;
     private TextView send_ad;
-    private String power;
+
     private String introduce;
     private String club_id;
     private ProgressActivity progressActivity;
@@ -87,6 +110,9 @@ public class ClubDetailActivity extends BaseActivity implements
     private TextView transparent;
     private TextView exit;
     private ImageView back;
+    private TextView im_chat;
+    private String phone;
+    private String jmessage_group_id = "0";
 
     @Override
     public int initLayoutResID() {
@@ -109,11 +135,13 @@ public class ClubDetailActivity extends BaseActivity implements
     protected void initData() {
         Intent intent = getIntent();
         club_id = intent.getStringExtra("club_id");
+        phone = (String) SpCommonUtils.get(context, AppConfig.USERPHOTO, "");
 
         progressActivityUtils = new ProgressActivityUtils(ClubDetailActivity.this, progressActivity);
         initSwipeLayout(swipeContainer, this);
         clubDetailPresenter = new ClubDetailPresenter(new ClubDetailModel(ClubDetailActivity.this), this);
         getServerData();
+
 
     }
 
@@ -136,6 +164,14 @@ public class ClubDetailActivity extends BaseActivity implements
 
     }
 
+    @Override
+    public void onItemClick(View view, List<String> mOthers, Object o, int position) {
+        if (position >= 0) {
+            clubDetailPresenter.dropClub(club_id);
+        }
+
+    }
+
     private void addHeaderView() {
         View header = LayoutInflater.from(ClubDetailActivity.this).inflate(R.layout.activity_club_detail, null);
 
@@ -149,7 +185,9 @@ public class ClubDetailActivity extends BaseActivity implements
         administrator_name = header.findViewById(R.id.administrator_name);
         administrator_logo = header.findViewById(R.id.administrator_logo);
         club_person_list = header.findViewById(R.id.club_person_list);
+        im_chat = header.findViewById(R.id.im_chat);
 
+        im_chat.setOnClickListener(this);
         notice_tv.setOnClickListener(this);
         join_club.setOnClickListener(this);
         club_person_list.setOnClickListener(this);
@@ -173,14 +211,15 @@ public class ClubDetailActivity extends BaseActivity implements
 //        Glide.with(getApplicationClubDetailActivity.this()).load(url).into(imageview)
 
 
+        jmessage_group_id = successMessage.info.jmessage_group_id;
         school_name.setText(successMessage.info.name);
         clubId = successMessage.info.id;
-        power = successMessage.info.power;
+
         logoUrl = successMessage.info.logo;
         introduce = "  " + successMessage.info.introduce.trim();
 
         school_person.setText(successMessage.info.member_num + "人");
-        school_number.setText("No." + successMessage.info.new_order);
+        school_number.setText(successMessage.info.school_name);
         school_total_money.setText("俱乐部总收入: " + successMessage.info.income);
 
 //        public String page;
@@ -190,7 +229,9 @@ public class ClubDetailActivity extends BaseActivity implements
         if (currentPage == 1) {
             list.clear();
         }
-        mClubListAdapter.setData(successMessage.info.power, successMessage.info.id);
+        System.out.println(currentPage + "currentdddPage" + successMessage.notice_list.list.size());
+
+        mClubListAdapter.setData("", successMessage.info.id);
         if (perpage * currentPage > Integer.valueOf(successMessage.notice_list.count)) { //没
             isLoadMore = false;
 //            mClubListAdapter.setData(successMessage.notice_list.list, false, successMessage.info.power, successMessage.info.id);
@@ -206,78 +247,55 @@ public class ClubDetailActivity extends BaseActivity implements
 //            mClubListAdapter.setData(successMessage.notice_list.list, true, successMessage.info.power, successMessage.info.id);
         }
 
-        if (power.equals("2")) {
-            setNotice(notice_tv, introduce);
-        } else {
-            notice_tv.setText(introduce);
-        }
-
-        if (successMessage.info.power.equals("0")) {
-            join_club.setClickable(true);
-            join_club.setText("申请加入");
-            if (successMessage.info.is_apply.equals("0")) {
-                join_club.setClickable(false);
-                join_club.setText("已申请");
-            } else {
-                join_club.setClickable(true);
-                join_club.setText("申请加入");
-            }
-        } else {
-            join_club.setClickable(false);
-            join_club.setText("已加入");
-        }
-        // role  角色    ( 1：成员 2：财务 3：副会长 4：会长 )
-        // power   ( 0：游客 1：普通成员 2：管理员 )
-        if (power.equals("2")) {
-            visitor.setVisibility(View.GONE);
-            administrator.setVisibility(View.VISIBLE);//任务
-            send_ad.setVisibility(View.VISIBLE); //发布公告
+        //   ( 0：已申请 1：未申请 2：社员 )
+        if (successMessage.info.is_apply.equals("2")) {
             join_club.setClickable(true);
             join_club.setText("申请列表");
+            exit.setText("退出");
+            exit.setVisibility(View.VISIBLE);
+        } else if (successMessage.info.is_apply.equals("1")) {
+            join_club.setClickable(true);
+            join_club.setText("申请加入");
+            exit.setVisibility(View.INVISIBLE);
         } else {
-            if (power.equals("1")) {
-                exit.setText("退出");
-            } else {
-                exit.setVisibility(View.INVISIBLE);
-            }
-            if (power.equals("1")) {//普通成员
-                visitor.setVisibility(View.GONE);
-                administrator.setVisibility(View.VISIBLE);//任务
-            } else {
-                visitor.setVisibility(View.VISIBLE);
-                administrator.setVisibility(View.GONE);
-            }
+            join_club.setClickable(false);
+            join_club.setText("审核中");
+            exit.setVisibility(View.INVISIBLE);
+        }
+        setNotice(notice_tv, successMessage.info.introduce);
 
-            send_ad.setVisibility(View.GONE);
+        visitor.setVisibility(View.GONE);
+        administrator.setVisibility(View.VISIBLE);//任务
+        send_ad.setVisibility(View.VISIBLE); //发布公告
+
+        send_ad.setVisibility(View.GONE);
 
 //            if (successMessage.admin_info != null && successMessage.admin_info.id != null) {   //没有管理员
-            System.out.println("=======null===");
-            if (successMessage.admin_info.nickname != null)
-                administrator_name.setText(successMessage.admin_info.nickname);
-            if (successMessage.admin_info.avatar != null) {
-
-                Glide.with(ClubDetailActivity.this).load(successMessage.admin_info.avatar).asBitmap().error(R.drawable.new_eorrlogo).centerCrop().into(new BitmapImageViewTarget(administrator_logo) {
-                    @Override
-                    protected void setResource(Bitmap resource) {
-                        RoundedBitmapDrawable circularBitmapDrawable =
-                                RoundedBitmapDrawableFactory.create(ClubDetailActivity.this.getResources(), resource);
-                        circularBitmapDrawable.setCircular(true);
-                        administrator_logo.setImageDrawable(circularBitmapDrawable);
-                    }
-                });
-            } else {
-                Glide.with(ClubDetailActivity.this).load(R.drawable.new_eorrlogo).asBitmap().error(R.drawable.new_eorrlogo).centerCrop().into(new BitmapImageViewTarget(administrator_logo) {
-                    @Override
-                    protected void setResource(Bitmap resource) {
-                        RoundedBitmapDrawable circularBitmapDrawable =
-                                RoundedBitmapDrawableFactory.create(ClubDetailActivity.this.getResources(), resource);
-                        circularBitmapDrawable.setCircular(true);
-                        administrator_logo.setImageDrawable(circularBitmapDrawable);
-                    }
-                });
-            }
-        }
-
+        System.out.println("=======null===");
+//            if (successMessage.admin_info.nickname != null)
+//                administrator_name.setText(successMessage.admin_info.nickname);
+//            if (successMessage.admin_info.avatar != null) {
+//
+//                Glide.with(ClubDetailActivity.this).load(successMessage.admin_info.avatar).asBitmap().error(R.drawable.new_eorrlogo).centerCrop().into(new BitmapImageViewTarget(administrator_logo) {
+//                    @Override
+//                    protected void setResource(Bitmap resource) {
+//                        RoundedBitmapDrawable circularBitmapDrawable =
+//                                RoundedBitmapDrawableFactory.create(ClubDetailActivity.this.getResources(), resource);
+//                        circularBitmapDrawable.setCircular(true);
+//                        administrator_logo.setImageDrawable(circularBitmapDrawable);
+//                    }
+//                });
+//            } else {
+//                Glide.with(ClubDetailActivity.this).load(R.drawable.new_eorrlogo).asBitmap().error(R.drawable.new_eorrlogo).centerCrop().into(new BitmapImageViewTarget(administrator_logo) {
+//                    @Override
+//                    protected void setResource(Bitmap resource) {
+//                        RoundedBitmapDrawable circularBitmapDrawable =
+//                                RoundedBitmapDrawableFactory.create(ClubDetailActivity.this.getResources(), resource);
+//                        circularBitmapDrawable.setCircular(true);
+//                        administrator_logo.setImageDrawable(circularBitmapDrawable);
+//                    }
+//                });
+//            }
     }
 
 
@@ -316,34 +334,100 @@ public class ClubDetailActivity extends BaseActivity implements
     @Override
     public void onClick(View v) {
         super.onClick(v);
+        if (v.getId() == R.id.im_chat) {
+            JMessageClient.enterGroupConversation(Long.valueOf(jmessage_group_id));
+
+
+//            Intent intent = new Intent();
+//            JMessageClient.getGroupInfo(Long.valueOf(jmessage_group_id), new GetGroupInfoCallback() {
+//                @Override
+//                public void gotResult(int i, String s, GroupInfo groupInfo) {
+//                    intent.putExtra(MyApplication.CONV_TITLE, groupInfo.getGroupName());
+//
+//
+//                    if (mListAdapter.includeAtMsg(conv)) {
+//                        intent.putExtra("atMsgId", groupInfo.geta(conv));
+//                    }
+//
+//                    if (mListAdapter.includeAtAllMsg(conv)) {
+//                        intent.putExtra("atAllMsgId", mListAdapter.getatAllMsgId(conv));
+//                    }
+//                    long groupId = Long.valueOf(jmessage_group_id);
+//                    intent.putExtra(MyApplication.GROUP_ID, groupId);
+//                    intent.putExtra(MyApplication.DRAFT, getAdapter().getDraft(conv.getId()));
+//                    intent.setClass(context, ChatActivity.class);
+//                    context .startActivity(intent);
+//                }
+//            });
+
+
+//            Conversation groupConversation = JMessageClient.getGroupConversation( Long.valueOf(jmessage_group_id));
+//            if (groupConversation == null) {
+//                groupConversation = Conversation.createGroupConversation( Long.valueOf(jmessage_group_id));
+//                EventBus.getDefault().post(new Event.Builder()
+//                        .setType(EventType.createConversation)
+//                        .setConversation(groupConversation)
+//                        .build());
+//            }
+
+//            Intent intent = new Intent(context, ChatActivity.class);
+//            intent.putExtra(MyApplication.CONV_TITLE, groupInfo.getGroupName());
+//            intent.putExtra(MyApplication.GROUP_ID,  Long.valueOf(jmessage_group_id));
+//            context.startActivity(intent);
+
+            JMessageClient.getGroupInfo(Long.valueOf(jmessage_group_id), new GetGroupInfoCallback() {
+                @Override
+                public void gotResult(int i, String s, GroupInfo groupInfo) {
+                    final Intent intent = new Intent(context, ChatActivity.class);
+                    intent.putExtra(MyApplication.GROUP_ID, Long.valueOf(jmessage_group_id));
+                    intent.putExtra("fromGroup", false);
+
+                    intent.putExtra(MyApplication.MEMBERS_COUNT, groupInfo.getGroupMembers().size());
+                    intent.putExtra(MyApplication.CONV_TITLE, groupInfo.getGroupName());
+                    startActivity(intent);
+                }
+            });
+
+        }
+
         if (v.getId() == R.id.back) {
             ClubDetailActivity.this.finish();
         }
         if (v.getId() == R.id.exit) {
+            if (isNeetLogin()) return;
             AlertViewContorller mAlertViewContorller = new AlertViewContorller(transparent, "是否退出该俱乐部", null, "取消", null, gender,
                     ClubDetailActivity.this, AlertViewContorller.Style.ActionSheet, this);
             mAlertViewContorller.setCancelable(true).show();
         }
 
         if (v.getId() == R.id.join_club) {
-            if (join_club.getText().equals("申请加入"))
+            if (join_club.getText().equals("申请加入")) {
+                if (isNeetLogin()) return;
                 clubDetailPresenter.joinClub(clubId);
+            }
 
-            if (join_club.getText().equals("申请列表"))
+
+            if (join_club.getText().equals("申请列表")) {
+                if (isNeetLogin()) return;
                 Goto.toApplyClubListActivity(ClubDetailActivity.this, clubId);
+            }
+
         }
         if (v.getId() == R.id.club_person_list) {
+            if (isNeetLogin()) return;
             Goto.toClubPersonClubListActivity(ClubDetailActivity.this, clubId);
         }
 
         if (v.getId() == R.id.send_ad) {
             //发布公告
+            if (isNeetLogin()) return;
             Goto.toClubSendAnnounceActivity(ClubDetailActivity.this, clubId, "", "", "");
         }
         if (v.getId() == R.id.notice_tv) {//
             //编辑简介
-            if (power.equals("2"))
-                Goto.toClubNoticeActivity(ClubDetailActivity.this, clubId, introduce);
+            if (isNeetLogin()) return;
+//   todo         if (power.equals("2"))
+            Goto.toClubNoticeActivity(ClubDetailActivity.this, clubId, introduce);
         }
     }
 
@@ -351,10 +435,23 @@ public class ClubDetailActivity extends BaseActivity implements
     public void showError(String errorMessage) {
     }
 
+    public boolean isNeetLogin() {
+        if (!AppConfig.ISlOGINED) {
+            new AlertDialog.Builder(ClubDetailActivity.this).setTitle("提示！").setMessage("您尚未登录，请先登录。").setPositiveButton("登录", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Goto.toLogin(ClubDetailActivity.this);
+                }
+            }).setNegativeButton("取消", null).show();
+            return true;
+        }
+        return false;
+    }
+
 
     @Override
     public void onRefresh() {
-        isLoadMore = false;
+
         showLoading();
         currentPage = 1;
         getServerData();
@@ -363,9 +460,13 @@ public class ClubDetailActivity extends BaseActivity implements
 
     @Override
     public void onLoadMore() {
-        isLoadMore = true;
-        currentPage = 1;
-        hideLoading();
+        if (isLoadMore) {
+            showLoading();
+            getServerData();
+        } else {
+            hideLoading();
+        }
+
 
     }
 
@@ -386,16 +487,10 @@ public class ClubDetailActivity extends BaseActivity implements
      * 获取数据
      */
     private void getServerData() {
-        if (clubDetailPresenter != null)
-            clubDetailPresenter.getSearchSchoolList(String.valueOf(currentPage), "20", club_id);
-    }
-
-    @Override
-    public void onItemClick(View view, List<String> mOthers, Object o, int position) {
-        if (position >= 0) {
-            clubDetailPresenter.dropClub(club_id);
+        if (clubDetailPresenter != null) {
+            clubDetailPresenter.getSearchSchoolList(String.valueOf(currentPage), String.valueOf(perpage), club_id);
+            clubDetailPresenter.getClubPermission(club_id, this);
         }
-
     }
 
     @Override
@@ -411,4 +506,21 @@ public class ClubDetailActivity extends BaseActivity implements
     }
 
 
+    // 权限返回
+    @Override
+    public void setRequestSuccess(String msg) {
+        System.out.println("=====String==" + msg);
+//        String[] arr=
+
+//        JsonParser parse = new JsonParser();
+//        JsonObject json = (JsonObject) parse.parse(msg);
+//        System.out.println(json.has("firstName"));
+//        System.out.println(json.has("pushNotice"));
+
+    }
+
+    @Override
+    public void setRequestFail() {
+
+    }
 }

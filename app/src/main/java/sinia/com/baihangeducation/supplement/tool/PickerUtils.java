@@ -76,6 +76,31 @@ public class PickerUtils {
         return pvTime;
     }
 
+
+    public static TimePickerView initTimePickerAll(final Context context, final TextView view) {
+        TimePickerView pvTime = new TimePickerView(context, TimePickerView.Type.ALL);
+        //控制时间范围
+        Calendar calendar = Calendar.getInstance();
+        pvTime.setRange(calendar.get(Calendar.YEAR) - 56, calendar.get(Calendar.YEAR));
+        pvTime.setTime(new Date());
+        pvTime.setCyclic(false);
+        pvTime.setCancelable(true);
+        //时间选择后回调
+        pvTime.setOnTimeSelectListener(new TimePickerView.OnTimeSelectListener() {
+
+            @Override
+            public void onTimeSelect(Date date) {
+                view.setText(DateUtil.getInstance().getHHmm(date));
+//                if (DateUtil.getInstance().compareDate(DateUtil.getInstance().getTime(date))) {
+//                    Toast.getInstance().showWarningToast(context, "生日不能大于今天");
+//                } else {
+//
+//                }
+            }
+        });
+        return pvTime;
+    }
+
     public static TimePickerView initTimeHoursPicker(final Context context, final TextView view) {
         TimePickerView pvTime = new TimePickerView(context, TimePickerView.Type.HOURS_MINS);
         //控制时间范围

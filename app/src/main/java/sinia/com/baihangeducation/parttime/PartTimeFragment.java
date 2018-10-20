@@ -47,8 +47,8 @@ import sinia.com.baihangeducation.supplement.tool.PartTimeDialog;
 public class PartTimeFragment extends MyBaseFragment implements HomePartTimeView, SuperRecyclerView.LoadingListener, SwipeRefreshLayout.OnRefreshListener {
     private HomePartTimePresenter mHomePartTimePresenter;
 
-    private String lat = "32.089858";
-    private String lng = "118.755877";
+//    private String lat = "32.089858";
+//    private String lng = "118.755877";
 
     private int countpage = 1;
     private int itemnum = 20;
@@ -86,6 +86,7 @@ public class PartTimeFragment extends MyBaseFragment implements HomePartTimeView
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
+        AppConfig.SHOWCLUBJOB = false;
         if (isCreated) {
             getServerData();
             mHomePartTimePresenter.getPartTimeSeachList();
@@ -225,12 +226,12 @@ public class PartTimeFragment extends MyBaseFragment implements HomePartTimeView
 
     @Override
     public String getLocationLat() {
-        return lat;
+        return AppConfig.CURRENTLAT;
     }
 
     @Override
     public String getLocationLng() {
-        return lng;
+        return AppConfig.CURRENTLON;
     }
 
     @Override
@@ -268,6 +269,8 @@ public class PartTimeFragment extends MyBaseFragment implements HomePartTimeView
         mIndustryList.clear();
         if (mHomePartTimeSearchListInfo.industry_list != null && mHomePartTimeSearchListInfo.industry_list.size() > 0) {
             mIndustryList.addAll(mHomePartTimeSearchListInfo.industry_list);
+            System.out.println(mHomePartTimeSearchListInfo.industry_list.size() + "=industry_list==2" + mHomePartTimeSearchListInfo.industry_list.get(0).industry_name);
+
         }
         mSalaryList.clear();
         if (mHomePartTimeSearchListInfo.money_list != null && mHomePartTimeSearchListInfo.money_list.size() > 0) {

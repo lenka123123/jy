@@ -72,7 +72,7 @@ public class CompleteInfoActivity extends BaseActivity implements IGetSimpleResu
             case R.id.completeinfo_schoolname:
 
                 //获取学校名字
-                Goto.toEditMyResumeEducationExpChoiceSchool(context);
+                Goto.toEditMyResumeEducationExpChoiceSchool(context,"");
                 break;
             case R.id.completeinfo_major:
                 //获取专业

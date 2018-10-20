@@ -11,6 +11,7 @@ import com.example.framwork.utils.Toast;
 import java.util.HashMap;
 
 import sinia.com.baihangeducation.AppConfig;
+import sinia.com.baihangeducation.club.club.interfaces.GetRequestListener;
 import sinia.com.baihangeducation.club.clubdetail.interfaces.ClubDetailListener;
 import sinia.com.baihangeducation.club.clubdetail.interfaces.JoinClubDetailListener;
 import sinia.com.baihangeducation.supplement.tool.BaseRequestInfo;
@@ -76,7 +77,7 @@ public class ClubDetailModel extends BasePresenter {
         post(info, new OnRequestListener() {
             @Override
             public void requestSuccess(BaseResponseBean bean) {
-                Toast.getInstance().showSuccessToast(activity, "加入成功");
+                Toast.getInstance().showSuccessToast(activity, "申请成功");
                 joinClubDetailListener.setSchookList("加入成功");
 
             }
@@ -117,6 +118,40 @@ public class ClubDetailModel extends BasePresenter {
                 Toast.getInstance().showErrorToast(activity, error);
                 joinClubDetailListener.setSchookListFail(error);
 
+            }
+
+            @Override
+            public void requestFinish() {
+
+            }
+        });
+
+    }
+
+
+    public void getClubPermission(String club_id, GetRequestListener getRequestListener) {
+        HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "getPermission", "club", true);
+        info.put("user_id", AppConfig.USERID);
+        info.put("token", AppConfig.TOKEN);
+        if (!club_id.equals("")) {
+            info.put("club_id", club_id);
+        }
+
+        post(info, new OnRequestListener() {
+            @Override
+            public void requestSuccess(BaseResponseBean bean) {
+                System.out.println("getDatagetData===" + bean.getData());
+                getRequestListener.setRequestSuccess(bean.getData().toString());
+
+//                ClubHomeInfo clubSchoolList = bean.parseObject(ClubHomeInfo.class);
+//                clubHomeListener.setClubHomeSuccess(clubSchoolList);
+            }
+
+            @Override
+            public void requestFailed(String error) {
+                Toast.getInstance().showErrorToast(activity, error);
+                getRequestListener.setRequestFail();
+//                clubHomeListener.setClubHomeFail(error);
             }
 
             @Override

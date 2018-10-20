@@ -81,8 +81,6 @@ public class ClubSchoolListActivity extends BaseActivity implements ClubSchoolLi
         mAutoLoadRecyclerView.setLayoutManager(manager);
         mAutoLoadRecyclerView.setItemAnimator(new DefaultItemAnimator());
         addData = false;
-        paiedListAdapter.setData(mRows, currentPage);
-
     }
 
     @Override
@@ -141,7 +139,7 @@ public class ClubSchoolListActivity extends BaseActivity implements ClubSchoolLi
 
     @Override
     public void showSearchSchoolList(List<ClubSchoolList.School> successMessage, int maxpage) {
-
+        System.out.println("===========" + "keywordkeyword" + successMessage.size());
         if (successMessage.size() < 1) {
             showErrorState(true);
         } else {

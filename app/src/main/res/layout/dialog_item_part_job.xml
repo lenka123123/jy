@@ -300,7 +300,7 @@
                     android:layout_marginBottom="@dimen/y15"
                     android:layout_marginLeft="@dimen/x20"
                     android:layout_marginTop="@dimen/y15"
-                    android:text="结账类型"
+                    android:text="薪资类型"
                     android:textColor="@color/position_select"
                     android:textSize="14sp" />
 

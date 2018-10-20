@@ -44,11 +44,19 @@ public class MySendAllTimeFragment extends BaseFragment implements MySendView, S
     private boolean isLoadMore = false;
     private boolean isCreated = false;
 
+    public void onRestart() {
+        if (isCreated) {
+            countpage = 1;
+            getServerData();
+        }
+    }
+
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isCreated) {
+            countpage = 1;
             getServerData();
         }
     }

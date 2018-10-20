@@ -30,8 +30,8 @@ public class CompanyDetailActivity extends BaseActivity implements ICompanyDetai
     private Intent intent;
     private String companyId;           //公司ID
     private ACache mCache;
-    private String lng;                 //经度
-    private String lat;                 //纬度
+//    private String lng;                 //经度
+//    private String lat;                 //纬度
     private CompanyDetailPresenter mCompanyDetailPresenter;
     private int countpage = 1;          //页码
     private int itemnum = 20;           //每页数

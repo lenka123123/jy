@@ -125,7 +125,7 @@ public class MyResumeEditEducationExpActivity extends BaseActivity implements IG
         switch (v.getId()) {
             case R.id.educationexp_schoolname:
                 //获取学校名字
-                Goto.toEditMyResumeEducationExpChoiceSchool(context);
+                Goto.toEditMyResumeEducationExpChoiceSchool(context,"");
                 break;
             case R.id.educationexp_major:
                 //获取专业

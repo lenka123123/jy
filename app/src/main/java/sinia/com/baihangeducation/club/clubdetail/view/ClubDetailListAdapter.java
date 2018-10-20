@@ -1,6 +1,8 @@
 package sinia.com.baihangeducation.club.clubdetail.view;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -11,8 +13,10 @@ import com.mcxtzhang.swipemenulib.customview.GlideLoadUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.R;
 import sinia.com.baihangeducation.club.club.model.ClubHomeInfo;
+import sinia.com.baihangeducation.club.clubdetail.ClubDetailActivity;
 import sinia.com.baihangeducation.club.clubdetail.model.ClubDetailBean;
 import sinia.com.baihangeducation.supplement.base.Goto;
 
@@ -25,7 +29,6 @@ public class ClubDetailListAdapter extends SuperBaseAdapter<ClubDetailBean.Notic
     private String power = "";
     private String clubid = "";
     private Context context;
-    private List<ClubDetailBean.NoticeList.Notice> data = new ArrayList<>();
 
     public ClubDetailListAdapter(Context context, List<ClubDetailBean.NoticeList.Notice> data) {
         super(context, data);
@@ -45,12 +48,25 @@ public class ClubDetailListAdapter extends SuperBaseAdapter<ClubDetailBean.Notic
         holder.setOnClickListener(R.id.club_item_view, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if (isNeetLogin()) return;
                 Goto.toClubAnnounceDetailActivity(context, clubid, mInviteListInfo.id, power);
             }
         });
     }
 
+
+    public boolean isNeetLogin() {
+        if (!AppConfig.ISlOGINED) {
+            new AlertDialog.Builder(context).setTitle("提示！").setMessage("您尚未登录，请先登录。").setPositiveButton("登录", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Goto.toLogin(context);
+                }
+            }).setNegativeButton("取消", null).show();
+            return true;
+        }
+        return false;
+    }
 
     @Override
     protected int getItemViewLayoutId(int position, ClubDetailBean.NoticeList.Notice item) {

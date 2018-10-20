@@ -19,7 +19,8 @@
                 android:id="@+id/back"
                 android:layout_width="@dimen/x90"
                 android:layout_height="match_parent"
-                android:paddingLeft="@dimen/x60"
+                android:paddingLeft="@dimen/x40"
+                android:paddingRight="@dimen/x20"
                 android:paddingTop="@dimen/y60"
                 android:src="@drawable/back_img" />
 
@@ -73,9 +74,9 @@
                     android:layout_width="@dimen/x24"
                     android:layout_height="@dimen/y40"
                     android:layout_alignParentLeft="true"
+                    android:layout_marginBottom="@dimen/y33"
                     android:layout_marginLeft="@dimen/x86"
                     android:layout_marginTop="@dimen/y33"
-                    android:layout_marginBottom="@dimen/y33"
                     android:src="@drawable/phone" />
 
                 <EditText
@@ -135,8 +136,8 @@
                     android:layout_marginRight="@dimen/x50"
                     android:background="@null"
                     android:drawablePadding="0dp"
-                    android:inputType="textPassword"
                     android:hint="请输入密码"
+                    android:inputType="textPassword"
                     android:paddingLeft="@dimen/x70"
                     android:paddingTop="0dp"
                     android:textColorHint="@color/edit_textColorHint_6F6F6F"
@@ -184,12 +185,12 @@
 
 
         <LinearLayout
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="@dimen/y60"
             android:layout_gravity="center_vertical"
             android:gravity="center_horizontal"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"

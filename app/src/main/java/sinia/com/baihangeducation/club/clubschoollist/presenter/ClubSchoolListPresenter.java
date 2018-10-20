@@ -17,6 +17,7 @@ public class ClubSchoolListPresenter implements ClubSchoolListContract.Presenter
 
     @Override
     public void getSearchSchoolList(String page, String perpage, String keyword) {
+        System.out.println("===========" + page + "keywordkeyword" + perpage + "");
         searchSchoolModel.getClubListList(page, perpage, keyword, new setSchoolListListener() {
             @Override
             public void setSchookList(ClubSchoolList list, int maxpage) {

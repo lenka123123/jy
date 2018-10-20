@@ -98,37 +98,37 @@ public class UpdateVersionPresenter extends BasePresenter {
     }
 
 
-    public void getBaseInfoLoginAfter(MainActivity mainActivity) {
-        HashMap mGetBaseInfoData = BaseRequestInfo.getInstance().getRequestInfo(activity, "getMyInfo", "ucenter", true);
-        mGetBaseInfoData.put("token", AppConfig.TOKEN);
-        mGetBaseInfoData.put("user_id", AppConfig.USERID);
-
-        post(mGetBaseInfoData, new OnRequestListener() {
-            @Override
-            public void requestSuccess(BaseResponseBean bean) {
-                Log.i("获取资本信息", bean.toString());
-
-                UserInfo userInfo = bean.parseObject(UserInfo.class);
-
-                String no_read_num = userInfo.no_read_num;
-                int num = Integer.valueOf(no_read_num);
-                if (num < 1) no_read_num = "0";
-
-                SpCommonUtils.put(activity, AppConfig.FINAL_NO_READ_NUM, no_read_num);
-                mainActivity.gsetBaseInfoSuccess(userInfo);
-
-            }
-
-            @Override
-            public void requestFailed(String error) {
-                Toast.getInstance().showErrorToast(activity, error);
-            }
-
-            @Override
-            public void requestFinish() {
-
-            }
-        });
+    public void getBaseInfoLoginAfter(MainActivity mainActivity) {  //更新消息数据
+//        HashMap mGetBaseInfoData = BaseRequestInfo.getInstance().getRequestInfo(activity, "getMyInfo", "ucenter", true);
+//        mGetBaseInfoData.put("token", AppConfig.TOKEN);
+//        mGetBaseInfoData.put("user_id", AppConfig.USERID);
+//
+//        post(mGetBaseInfoData, new OnRequestListener() {
+//            @Override
+//            public void requestSuccess(BaseResponseBean bean) {
+//                Log.i("获取资本信息", bean.toString());
+//
+//                UserInfo userInfo = bean.parseObject(UserInfo.class);
+//
+//                String no_read_num = userInfo.no_read_num;
+//                int num = Integer.valueOf(no_read_num);
+//                if (num < 1) no_read_num = "0";
+//
+//                SpCommonUtils.put(activity, AppConfig.FINAL_NO_READ_NUM, no_read_num);
+//                mainActivity.gsetBaseInfoSuccess(userInfo);
+//
+//            }
+//
+//            @Override
+//            public void requestFailed(String error) {
+//                Toast.getInstance().showErrorToast(activity, error);
+//            }
+//
+//            @Override
+//            public void requestFinish() {
+//
+//            }
+//        });
     }
 
 
@@ -164,8 +164,6 @@ public class UpdateVersionPresenter extends BasePresenter {
             }
         });
     }
-
-
 
 
 }

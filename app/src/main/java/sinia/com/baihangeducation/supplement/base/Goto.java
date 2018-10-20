@@ -8,11 +8,14 @@ import com.example.framwork.utils.BaseGoto;
 import sinia.com.baihangeducation.MainActivity;
 import sinia.com.baihangeducation.club.applyclublist.ApplyClubListActivity;
 import sinia.com.baihangeducation.club.applyclublist.ClubPersonClubListActivity;
+import sinia.com.baihangeducation.club.clubactive.ClubActiveDetailActivity;
 import sinia.com.baihangeducation.club.clubannouncedetail.ClubAnnounceDetailActivity;
 import sinia.com.baihangeducation.club.clubcomment.CommentActivity;
 import sinia.com.baihangeducation.club.clubdetail.ClubDetailActivity;
+import sinia.com.baihangeducation.club.clubpaint.ClubPaintActivity;
 import sinia.com.baihangeducation.club.clubschoollist.ClubSchoolListActivity;
 import sinia.com.baihangeducation.club.clubsendannounce.ClubSendAnnounceActivity;
+import sinia.com.baihangeducation.club.editorclubactive.ClubShowActiveActivity;
 import sinia.com.baihangeducation.club.notice.ClubNoticeActivity;
 import sinia.com.baihangeducation.club.searchschool.SearchListActivity;
 import sinia.com.baihangeducation.find.activity.JobBangPayDetailActivity;
@@ -146,6 +149,7 @@ public class Goto extends BaseGoto {
      * @param context
      */
     public static void toJPushDialogActivity(Context context) {
+
         Intent intent = new Intent(context, JPushDialogActivity.class);
         context.startActivity(intent);
     }
@@ -259,8 +263,9 @@ public class Goto extends BaseGoto {
     /**
      * 跳转我的简历编辑教育经历选择学校页面
      */
-    public static void toEditMyResumeEducationExpChoiceSchool(Context context) {
+    public static void toEditMyResumeEducationExpChoiceSchool(Context context, String msg) {
         Intent intent = new Intent(context, MyResumeEditEducationExpChoiceSchoolAcitvity.class);
+        intent.putExtra("active", msg);
         context.startActivity(intent);
     }
 
@@ -322,7 +327,7 @@ public class Goto extends BaseGoto {
     }
 
     /**
-     * 跳转个人中心基本资料页面
+     * 跳转个人中心   基本资料
      */
     public static void toUCentreBaseInfoActivity(Context context) {
         Intent intent = new Intent(context, UCentreBaseInfoActivity.class);
@@ -1121,7 +1126,7 @@ public class Goto extends BaseGoto {
     }
 
     //club 编辑简介
-    public static void toCommentActivity(Context context, String job_title, String job_city_name, String job_money, int job_apply_id,String iscommnent) {
+    public static void toCommentActivity(Context context, String job_title, String job_city_name, String job_money, int job_apply_id, String iscommnent) {
         Intent intent = new Intent(context, CommentActivity.class);
         intent.putExtra("job_title", job_title);
         intent.putExtra("job_city_name", job_city_name);
@@ -1130,4 +1135,25 @@ public class Goto extends BaseGoto {
         intent.putExtra("is_comment", iscommnent);
         context.startActivity(intent);
     }
+
+
+    //club 热门活动
+    public static void toHotActive(Context context) {
+        Intent intent = new Intent(context, ClubActiveDetailActivity.class);
+        context.startActivity(intent);
+    }
+
+    //club 编辑热门活动
+    public static void toEditorHotActive(Context context, String activity_id) {
+        Intent intent = new Intent(context, ClubShowActiveActivity.class);
+        intent.putExtra("activity_id", activity_id);
+        context.startActivity(intent);
+    }
+
+    //club 社团兼职
+    public static void toClubPart(Context context) {
+        Intent intent = new Intent(context, ClubPaintActivity.class);
+        context.startActivity(intent);
+    }
+
 }

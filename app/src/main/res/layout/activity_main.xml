@@ -73,16 +73,16 @@
                         android:textSize="@dimen/font_size_12" />
 
                     <RadioButton
-
+                        android:id="@+id/main_tab_add"
                         style="@style/MTabStyle"
                         android:layout_width="10dp"
                         android:layout_height="match_parent"
-                        android:background="@drawable/radiobutton_selecter"
+                        android:layout_centerInParent="true"
                         android:button="@null"
+                        android:drawableTop="@drawable/maintab_campus_icon_selector"
                         android:text="你好"
                         android:textColor="@drawable/maintextcolorselector"
-                        android:textSize="@dimen/font_size_12"
-                        android:visibility="gone" />
+                        android:textSize="@dimen/font_size_12" />
 
                     <RadioButton
                         android:id="@+id/main_tab_campus"
@@ -106,7 +106,6 @@
                 </RadioGroup>
 
                 <RadioButton
-                    android:id="@+id/main_tab_add"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"

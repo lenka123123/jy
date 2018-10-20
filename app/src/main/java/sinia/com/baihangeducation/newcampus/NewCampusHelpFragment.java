@@ -11,17 +11,23 @@ import com.example.framwork.widget.superrecyclerview.recycleview.SuperRecyclerVi
 import java.util.ArrayList;
 import java.util.List;
 
+import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.R;
+
 import com.mcxtzhang.swipemenulib.base.BaseFragment;
 import com.mcxtzhang.swipemenulib.info.bean.JobBangClassADListInfo;
+
 import sinia.com.baihangeducation.home.adapter.HomeAndFindHelpEachOtherAdapter;
+
 import com.mcxtzhang.swipemenulib.info.HomeAndFindHelpEachOtherListInfo;
 import com.mcxtzhang.swipemenulib.info.bean.HomeAndFindHelpEachOtherInfo;
+
 import sinia.com.baihangeducation.home.present.HomeAndFindHelpEachOtherPresenter;
 import sinia.com.baihangeducation.home.view.HomeAndFindHelpEachOtherView;
+
 import com.mcxtzhang.swipemenulib.utils.ACache;
 
-public class NewCampusHelpFragment extends BaseFragment implements HomeAndFindHelpEachOtherView, SuperRecyclerView.LoadingListener, SwipeRefreshLayout.OnRefreshListener{
+public class NewCampusHelpFragment extends BaseFragment implements HomeAndFindHelpEachOtherView, SuperRecyclerView.LoadingListener, SwipeRefreshLayout.OnRefreshListener {
 
     private HomeAndFindHelpEachOtherPresenter mHomeAndFindHelpEachOtherPresenter;
     private List<JobBangClassADListInfo> adList;                    //广告数据
@@ -127,12 +133,12 @@ public class NewCampusHelpFragment extends BaseFragment implements HomeAndFindHe
 
     @Override
     public String getLocationLat() {
-        return lat;
+        return AppConfig.CURRENTLAT;
     }
 
     @Override
     public String getLocationLng() {
-        return lng;
+        return AppConfig.CURRENTLON;
     }
 
     @Override
@@ -169,6 +175,7 @@ public class NewCampusHelpFragment extends BaseFragment implements HomeAndFindHe
             mHomeAndFindHelpEachOtherAdapter.notifyDataSetChanged();
         }
     }
+
     /**
      * 获取数据
      */

@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.framwork.banner.SimpleImageBanner;
 import com.example.framwork.utils.DensityUtil;
+import com.example.framwork.utils.EncryptUtil;
 import com.example.framwork.utils.ProgressActivityUtils;
 import com.example.framwork.utils.Toast;
 import com.example.framwork.utils.UserInfo;
@@ -139,6 +140,8 @@ public class HomeFragment extends BaseFragment implements HomeView, SuperRecycle
     }
 
     public void setReSatart() {
+        if (!AppConfig.HOMT) return;
+
         if (AppConfig.INTENTION_SETTING) {
             adList.clear();
             industry_list.clear();
@@ -146,7 +149,6 @@ public class HomeFragment extends BaseFragment implements HomeView, SuperRecycle
 
             AppConfig.INTENTION_SETTING = false;
         }
-
 
         if (AppConfig.CTYLENAMESELECT) {
             adressName.setText(AppConfig.CTYLENAME);
@@ -157,10 +159,15 @@ public class HomeFragment extends BaseFragment implements HomeView, SuperRecycle
         }
     }
 
+
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-
+        AppConfig.HOMT = true;
+        AppConfig.PART = false;
+        AppConfig.CHAT = false;
+        AppConfig.CLUB = false;
+        AppConfig.ME = false;
 
         //fragment可见时恢复轮播图滚动
         //开始轮播
@@ -250,7 +257,10 @@ public class HomeFragment extends BaseFragment implements HomeView, SuperRecycle
         //获取屏幕宽度
         itemADWidth = DensityUtil.getScreenWidth(context);
         //设置高度数据为屏幕宽度/1.9
-        itemADHeight = (int) (itemADWidth * 60 / 100);
+        itemADHeight = (int) (itemADWidth * 50 / 100);
+
+        System.out.println("initAdvertisement" + itemADHeight);
+
         //设置广告栏宽高属性
         sibTopAd.setLayoutParams(new FrameLayout.LayoutParams(itemADWidth, itemADHeight));
         ADDataProvider.initAdvertisement(sibTopAd, adList, itemADHeight, itemADWidth);
@@ -310,22 +320,26 @@ public class HomeFragment extends BaseFragment implements HomeView, SuperRecycle
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        rvContainer.removeAllViews();
-        rvContainer = null;
+        if (rvContainer != null) {
+            rvContainer.removeAllViews();
+            rvContainer = null;
+        }
+
         header = null;
         sibTopAd.pauseScroll();
-        getActivity().finish();
+//        getActivity().finish();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        getActivity().finish();
+//        getActivity().finish();
         header = null;
         if (rvContainer != null)
             rvContainer.removeAllViews();
         rvContainer = null;
-        sibTopAd.pauseScroll();
+        if (sibTopAd != null)
+            sibTopAd.pauseScroll();
 
     }
 
@@ -646,6 +660,7 @@ public class HomeFragment extends BaseFragment implements HomeView, SuperRecycle
     public void onLoadMore() {
         isLoadMore = true;
         getServerData();
+
     }
 
     /**

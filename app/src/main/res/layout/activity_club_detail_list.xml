@@ -70,7 +70,7 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:gravity="center"
-                android:text=""
+                android:text="退出"
                 android:textColor="@color/black" />
         </RelativeLayout>
 

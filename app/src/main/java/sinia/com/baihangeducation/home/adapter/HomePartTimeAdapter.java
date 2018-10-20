@@ -11,6 +11,7 @@ import com.example.framwork.adapter.SuperBaseAdapter;
 import java.text.ParseException;
 import java.util.List;
 
+import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.R;
 
 import com.example.framwork.utils.LogUtils;
@@ -38,7 +39,7 @@ public class HomePartTimeAdapter extends SuperBaseAdapter<HomePartTimeInfo> {
 
 //        holder.setLoadalImageUrl(R.id.fragment_home_down_item_img, getDrawable(item.job_industry_id), R.drawable.new_eorrlogo);
         ImageView imageView = holder.getView(R.id.fragment_home_down_item_img);
-        GlideLoadUtils.getInstance().glideLoad(context, item.job_industry_icon, imageView, R.drawable.new_eorrlogo);
+        GlideLoadUtils.getInstance().glideLoad(context, item.job_industry_icon, imageView, R.drawable.select_0);
 
 
         holder.setText(R.id.fragment_home_down_item_title, item.job_title);
@@ -70,6 +71,8 @@ public class HomePartTimeAdapter extends SuperBaseAdapter<HomePartTimeInfo> {
             holder.setVisible(R.id.fragment_home_down_item_realname, false);
         }
         holder.setText(R.id.fragment_home_down_item_salary, item.job_money);
+
+        holder.setVisible(R.id.show_club_job, AppConfig.SHOWCLUBJOB);
 
         Log.i("兼职的type", item.job_type + "");
         holder.setOnClickListener(R.id.fragment_home_down_item, new View.OnClickListener() {
@@ -172,5 +175,9 @@ public class HomePartTimeAdapter extends SuperBaseAdapter<HomePartTimeInfo> {
     @Override
     protected int getItemViewLayoutId(int position, HomePartTimeInfo item) {
         return R.layout.fragment_home_down_item;
+    }
+
+    public void showClubJob(int show_club_job) {
+
     }
 }

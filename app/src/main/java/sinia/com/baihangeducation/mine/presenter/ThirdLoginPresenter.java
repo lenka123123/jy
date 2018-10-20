@@ -30,6 +30,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.HashMap;
 
+import cn.jpush.im.android.api.JMessageClient;
 import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.mine.model.AccountManger;
 
@@ -160,7 +161,7 @@ public class ThirdLoginPresenter extends BasePresenter {
 
 
     private void loginSuccessBack(BaseResponseBean bean) {
-
+        JMessageClient.logout();
         UserInfo userInfo = bean.parseObject(UserInfo.class);
         AppConfig.ISlOGINED = true;
         AppConfig.TOKEN = userInfo.token;

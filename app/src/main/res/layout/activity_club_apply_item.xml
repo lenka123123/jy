@@ -47,16 +47,35 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/accept"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_marginTop="@dimen/y20"
+            android:layout_marginBottom="@dimen/y20"
+            android:layout_width="@dimen/x160"
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/x40"
-            android:gravity="center"
-            android:text="接受"
-            android:textColor="@color/club_item_red"
-            android:textSize="14sp" />
+            android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/accept"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical|right"
+                android:text="接受"
+                android:textColor="@color/club_item_red"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/ignore"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical|right"
+                android:text="忽略"
+                android:textColor="#B3B3B3"
+                android:textSize="14sp" />
+
+        </LinearLayout>
 
 
     </LinearLayout>

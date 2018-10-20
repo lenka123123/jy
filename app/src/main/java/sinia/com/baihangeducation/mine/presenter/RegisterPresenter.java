@@ -15,6 +15,7 @@ import com.example.framwork.utils.SpCommonUtils;
 import com.example.framwork.utils.Toast;
 import com.example.framwork.utils.UserInfo;
 
+import cn.jpush.im.android.api.JMessageClient;
 import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.mine.model.AccountManger;
 import sinia.com.baihangeducation.mine.view.IRegisterView;
@@ -55,6 +56,7 @@ public class RegisterPresenter extends BasePresenter {
      * 注册
      */
     public void register(String channelCode) {
+        System.out.println("=======channelCode==" + channelCode);
         if (!AccountManger.checkupRegisterInfo(activity, view.getphoneNum(), view.getAuthCode(), view.getPassword(), view.getPasswordAgain(), view.getIsRead())) {
             return;
         }
@@ -94,6 +96,7 @@ public class RegisterPresenter extends BasePresenter {
      * @param bean
      */
     private void loginSuccessBack(BaseResponseBean bean) {
+        JMessageClient.logout();
         UserInfo userInfo = bean.parseObject(UserInfo.class);
         AppConfig.ISlOGINED = true;
         AppConfig.TOKEN = userInfo.token;

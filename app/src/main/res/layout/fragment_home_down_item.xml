@@ -32,8 +32,7 @@
             android:id="@+id/fragment_home_down_item_img"
             android:layout_width="@dimen/x68"
             android:layout_height="@dimen/y68"
-            android:layout_marginTop="@dimen/y20"
-            />
+            android:layout_marginTop="@dimen/y20" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,15 +56,21 @@
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
-                <ImageView
-                    android:layout_width="@dimen/x30"
-                    android:layout_height="@dimen/y16"
-                    android:layout_gravity="right"
-                    android:layout_marginLeft="@dimen/x2"
-                    android:layout_marginTop="@dimen/y5"
-                    android:background="@drawable/part_job"
-                    android:gravity="right"
-                    android:visibility="gone" />
+                <LinearLayout
+                    android:layout_marginLeft="@dimen/x4"
+                    android:layout_width="@dimen/x62"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/show_club_job"
+                        android:layout_width="@dimen/x62"
+                        android:layout_height="@dimen/y28"
+                        android:layout_gravity="center"
+                        android:background="@drawable/club_job" />
+
+                </LinearLayout>
 
 
                 <TextView

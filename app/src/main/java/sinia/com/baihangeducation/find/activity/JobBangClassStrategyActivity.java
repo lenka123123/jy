@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.framwork.utils.ProgressActivityUtils;
 import com.example.framwork.widget.ProgressActivity;
 import com.example.framwork.widget.superrecyclerview.recycleview.SuperRecyclerView;
+import com.scwang.smartrefresh.layout.util.DensityUtil;
 import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
@@ -210,7 +211,8 @@ public class JobBangClassStrategyActivity extends BaseActivity implements JobBan
         int width1 = wm1.getDefaultDisplay().getWidth();
         int height1 = wm1.getDefaultDisplay().getHeight();
         View view = LayoutInflater.from(this).inflate(R.layout.jobbangclassshaixuanmenu, null);
-        final PopupWindow pop = new PopupWindow(view, width1 * 6 / 10, height1 * 8 / 10, true);
+
+        final PopupWindow pop = new PopupWindow(view, width1 * 6 / 10, height1 - DensityUtil.dp2px(10), true);
         pop.setBackgroundDrawable(getResources().getDrawable(android.R.color.transparent));
         pop.setOnDismissListener(new PopupWindow.OnDismissListener() {
 

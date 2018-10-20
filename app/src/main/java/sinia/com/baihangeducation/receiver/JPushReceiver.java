@@ -47,7 +47,8 @@ public class JPushReceiver extends BroadcastReceiver {
         } else if (JPushInterface.ACTION_MESSAGE_RECEIVED.equals(intent.getAction())) {
         	Log.d(TAG, "[MyReceiver] 接收到推送下来的自定义消息: " + bundle.getString(JPushInterface.EXTRA_MESSAGE));
         	if ((bundle.getString(JPushInterface.EXTRA_MESSAGE).equals("该帐号已在其他设备登录，本地已下线，如果非本人操作，请立即修改您的登录密码！"))){
-				Goto.toJPushDialogActivity(context);
+
+        		Goto.toJPushDialogActivity(context);
 			}
         	processCustomMessage(context, bundle);
         

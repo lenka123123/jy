@@ -303,9 +303,10 @@ public class JobBangDetailActivity extends BaseActivity
         mWebSettings.setLoadsImagesAutomatically(true);
         mWebSettings.setJavaScriptCanOpenWindowsAutomatically(true); //支持通过JS打开新窗口
 
-        int fontSize = (int) getResources().getDimension(R.dimen.y24);
-        mWebSettings.setDefaultFontSize(fontSize);//修改webvew字体大小
+//        int fontSize = (int) getResources().getDimension(R.dimen.y60);
+//        mWebSettings.setDefaultFontSize(fontSize);//修改webvew字体大小
 
+        mWebSettings.setTextSize(WebSettings.TextSize.LARGEST);
 
         //调用JS方法.安卓版本大于17,加上注解 @JavascriptInterface
         mWebSettings.setJavaScriptEnabled(true);

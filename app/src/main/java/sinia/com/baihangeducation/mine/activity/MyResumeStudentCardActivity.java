@@ -23,6 +23,7 @@ import sinia.com.baihangeducation.MyApplication;
 import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.mine.model.AccountManger;
 import sinia.com.baihangeducation.mine.model.ContrastResumeInfo;
+
 import com.mcxtzhang.swipemenulib.info.bean.MyResumInfo;
 
 /**
@@ -60,7 +61,7 @@ public class MyResumeStudentCardActivity extends BaseActivity {
         mStudentCardImage.setOnClickListener(this);
         mStudentCardConfirm.setOnClickListener(this);
 
-        GlideLoadUtils.getInstance().glideLoad(this,  MyResumInfo.student_photo ,mStudentCardImage,R.drawable.new_input_studentcard);
+        GlideLoadUtils.getInstance().glideLoad(this, MyResumInfo.student_photo, mStudentCardImage, R.drawable.new_input_studentcard);
 
 
     }
@@ -101,8 +102,8 @@ public class MyResumeStudentCardActivity extends BaseActivity {
 
     private void takePhoto(int type) {
         SImagePicker
-                .from(context)
-                .pickMode(SImagePicker.MODE_AVATAR)
+                .from(MyResumeStudentCardActivity.this)
+                .pickMode(SImagePicker.MODE_IMAGE)
                 .showCamera(true).rowCount(3)
                 .cropFilePath(
                         AppConfig.IMAGE_PATH + "/studentcard_img.png")

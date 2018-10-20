@@ -1,5 +1,8 @@
 package sinia.com.baihangeducation.club.clubsendannounce.model;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+
 import com.example.framwork.base.BasePresenter;
 import com.example.framwork.noHttp.Bean.BaseResponseBean;
 import com.example.framwork.noHttp.OnRequestListener;
@@ -9,6 +12,7 @@ import java.util.HashMap;
 
 import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.club.clubsendannounce.ClubSendAnnounceActivity;
+import sinia.com.baihangeducation.supplement.base.Goto;
 import sinia.com.baihangeducation.supplement.tool.BaseRequestInfo;
 
 /**
@@ -27,6 +31,16 @@ public class ClubSendAnnounceModel extends BasePresenter {
     }
 
     public void getClubListList(String club_id, String notice_id, String title, String content) {
+        if (!AppConfig.ISlOGINED) {
+            new AlertDialog.Builder(activity).setTitle("提示！").setMessage("您尚未登录，请先登录。").setPositiveButton("登录", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Goto.toLogin(activity);
+                }
+            }).setNegativeButton("取消", null).show();
+            return;
+        }
+
         HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "setNotice", "club", true);
 
         info.put("user_id", AppConfig.USERID);

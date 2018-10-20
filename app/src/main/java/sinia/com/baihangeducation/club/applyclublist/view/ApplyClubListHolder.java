@@ -16,6 +16,7 @@ import sinia.com.baihangeducation.R;
 public class ApplyClubListHolder extends RecyclerView.ViewHolder {
 
 
+    public TextView ignore;
     public TextView accept;
     public TextView name;
     public ImageView logo;
@@ -24,6 +25,7 @@ public class ApplyClubListHolder extends RecyclerView.ViewHolder {
     public ApplyClubListHolder(View itemView) {
         super(itemView);
         accept = (TextView) itemView.findViewById(R.id.accept);
+        ignore = (TextView) itemView.findViewById(R.id.ignore);
 
         name = (TextView) itemView.findViewById(R.id.name);
         logo = (ImageView) itemView.findViewById(R.id.logo);

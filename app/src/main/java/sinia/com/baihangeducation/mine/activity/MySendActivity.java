@@ -27,8 +27,17 @@ public class MySendActivity extends BaseActivity {
     private MySendAllTimeFragment mMySendAllTimeFragment;
 
     private String full = "";
+    private boolean isOncread = false;
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if (isOncread) {
+            if (mMySendAllTimeFragment != null)
+                mMySendAllTimeFragment.onRestart();
+        }
 
+    }
 
     @Override
     public int initLayoutResID() {
@@ -38,6 +47,7 @@ public class MySendActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        isOncread = true;
         Intent intent = getIntent();
         full = intent.getStringExtra("full");
 

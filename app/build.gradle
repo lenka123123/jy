@@ -5,8 +5,8 @@ android {
         applicationId "sinia.com.baihangeducation"
         minSdkVersion 17
         targetSdkVersion 26
-        versionCode 427
-        versionName "4.2.7"
+        versionCode 428
+        versionName "4.2.8"
 //        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         ndk {
@@ -19,6 +19,12 @@ android {
                 JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
         vectorDrawables.useSupportLibrary = true
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath true
+            }
+        }
     }
     buildTypes {
         release {
@@ -36,11 +42,11 @@ android {
         checkReleaseBuilds false
         abortOnError false
     }
+
     signingConfigs {
         debug {
             storeFile file('D:/jyb.jks')
             //  storeFile file('F:/mycode/jobbang/jyb.jks')
-
             storePassword 'jyb520'
             keyAlias 'jyb'
             keyPassword 'jyb520'
@@ -73,6 +79,10 @@ dependencies {
     implementation 'cn.jiguang.sdk:jcore:1.1.9'
     // 此处以JCore 1.1.9 版本为例。
     implementation files('libs/OpenInstall_v2.2.0.jar')
+    // 此处以JMessage 2.7.0 版本为例。
+    implementation 'cn.jiguang.sdk:jmessage:2.7.0'
+    implementation 'com.jakewharton:butterknife:7.0.1'
+    implementation 'com.github.w446108264:AndroidEmoji:1.0.0'
 }
 repositories {
     flatDir {

@@ -54,7 +54,7 @@ public class GridViewSimForOther extends BaseAdapter {
 
         if (layoutInflater != null) {
 
-            view = layoutInflater.inflate(R.layout.textview_item_black_for_otherr, null);
+            view = layoutInflater.inflate(R.layout.textview_item_black_for_otherr_more, null);
             TextView textView = (TextView) view.findViewById(R.id.text);
             ImageView imageView = (ImageView) view.findViewById(R.id.img);
 

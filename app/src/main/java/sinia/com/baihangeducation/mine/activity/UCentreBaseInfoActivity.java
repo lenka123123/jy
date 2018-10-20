@@ -33,6 +33,7 @@ import com.example.framwork.utils.FileUtil;
 import com.example.framwork.utils.SpCommonUtils;
 import com.imnjh.imagepicker.SImagePicker;
 import com.imnjh.imagepicker.activity.PhotoPickerActivity;
+import com.mcxtzhang.swipemenulib.utils.BitmapSave;
 import com.yanzhenjie.nohttp.Logger;
 
 import java.io.File;
@@ -43,6 +44,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.api.BasicCallback;
 import sinia.com.baihangeducation.R;
 import sinia.com.baihangeducation.supplement.alertview.AlertViewContorller;
 import sinia.com.baihangeducation.supplement.alertview.OnItemClickListener;
@@ -86,6 +89,7 @@ public class UCentreBaseInfoActivity extends BaseActivity implements OnItemClick
     private String[] genderes = {"男", "女"};
     private Context activity;
     private File file;
+    private String needSavePath;
 
     @Override
     public int initLayoutResID() {
@@ -112,11 +116,16 @@ public class UCentreBaseInfoActivity extends BaseActivity implements OnItemClick
 
     public void setPhoto(String avatar) {
         Glide.with(context).load(avatar).asBitmap().error(R.drawable.new_eorrlogo).centerCrop().into(new BitmapImageViewTarget(mUCentreImage) {
+
+
+
             @Override
             protected void setResource(Bitmap resource) {
                 RoundedBitmapDrawable circularBitmapDrawable =
                         RoundedBitmapDrawableFactory.create(context.getResources(), resource);
                 circularBitmapDrawable.setCircular(true);
+
+                needSavePath = BitmapSave.saveBitmap(activity, resource);
                 mUCentreImage.setImageDrawable(circularBitmapDrawable);
             }
         });
@@ -196,7 +205,7 @@ public class UCentreBaseInfoActivity extends BaseActivity implements OnItemClick
                 showSoftInput(mUCentreEmail);
                 break;
             case R.id.ucentre_confirm:
-
+                showLoading();
                 presenter.updataUCentreBaseInfo();
 
 
@@ -474,18 +483,33 @@ public class UCentreBaseInfoActivity extends BaseActivity implements OnItemClick
 
     @Override
     public void upDataUCentreBaseInfoSuccess() {
-        new AlertDialog.Builder(context).setTitle("提示！").setMessage("修改资料成功,请重新登录").setPositiveButton("登录", new DialogInterface.OnClickListener() {
+        AppConfig.LOGINPHOTOTPATH = needSavePath;
+        SpCommonUtils.put(activity, AppConfig.FINAL_SAVE_PHOTO_PATH, needSavePath);
+
+        JMessageClient.updateUserAvatar(new File(needSavePath), new BasicCallback() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Goto.toLogin(context);
-                UCentreBaseInfoActivity.this.finish();
+            public void gotResult(int i, String s) {
+                 System.out.println(i+"更新用户图片"+s);
             }
-        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                UCentreBaseInfoActivity.this.finish();
-            }
-        }).show();
+        });
+
+        SpCommonUtils.put(context, AppConfig.FINAL_NUM_FULL_HULP_NICKNAME, mUCentreNickName.getText().toString());
+
+        hideLoading();
+        UCentreBaseInfoActivity.this.finish();
+//
+//        new AlertDialog.Builder(context).setTitle("提示！").setMessage("修改资料成功,请重新登录").setPositiveButton("登录", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                Goto.toLogin(context);
+//                UCentreBaseInfoActivity.this.finish();
+//            }
+//        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                UCentreBaseInfoActivity.this.finish();
+//            }
+//        }).show();
 
 
         //   presenter.login(UCentreBaseInfoActivity.this);

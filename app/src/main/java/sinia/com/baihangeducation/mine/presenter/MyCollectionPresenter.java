@@ -1,6 +1,7 @@
 package sinia.com.baihangeducation.mine.presenter;
 
 import android.app.Activity;
+import android.icu.util.Measure;
 import android.util.Log;
 
 import com.example.framwork.base.BasePresenter;
@@ -14,8 +15,10 @@ import java.util.List;
 
 import com.mcxtzhang.swipemenulib.info.bean.MyCollectionInfo;
 import com.mcxtzhang.swipemenulib.info.bean.MyCollectionListInfo;
+import com.mcxtzhang.swipemenulib.info.bean.MyCollectionMessage;
 
 import sinia.com.baihangeducation.AppConfig;
+import sinia.com.baihangeducation.mine.MyCollectionMessageFragment;
 import sinia.com.baihangeducation.mine.view.MyCollectionView;
 import sinia.com.baihangeducation.supplement.tool.BaseRequestInfo;
 
@@ -258,6 +261,41 @@ public class MyCollectionPresenter extends BasePresenter {
                 List<MyCollectionListInfo> myCollectionListInfo = myCollectionInfo.list;
                 int maxpag = CommonUtil.getMaxPage(myCollectionInfo.count, myCollectionInfo.perpage);
                 view.getInformationSuccess(myCollectionListInfo, maxpag);
+            }
+
+            @Override
+            public void requestFailed(String error) {
+                Toast.getInstance().showErrorToast(activity, error);
+            }
+
+            @Override
+            public void requestFinish() {
+                view.hideLoading();
+            }
+        });
+    }
+
+
+    /**
+     * 培训
+     * @param myCollectionMessageFragment
+     */
+    public void getInforMessageData(MyCollectionMessageFragment myCollectionMessageFragment) {
+        HashMap mPartTime = BaseRequestInfo.getInstance().getRequestInfo(activity, "getMyCollect", "ucenter", true);
+        mPartTime.put("user_id", AppConfig.USERID);
+        mPartTime.put("token", AppConfig.TOKEN);
+        mPartTime.put("type", view.getType());
+        mPartTime.put("page", view.getPage());
+        mPartTime.put("perpage", view.getPerpage());
+        view.hideLoading();
+        post(mPartTime, new OnRequestListener() {
+            @Override
+            public void requestSuccess(BaseResponseBean bean) {
+                Log.i("我的收藏", bean.toString() + "兼职");
+                MyCollectionMessage myCollectionInfo = bean.parseObject(MyCollectionMessage.class);
+                List<MyCollectionMessage.Message> measures = myCollectionInfo.list;
+                int maxpag = CommonUtil.getMaxPage(myCollectionInfo.count, myCollectionInfo.perpage);
+                myCollectionMessageFragment.getPatrTimesSuccess(measures, maxpag);
             }
 
             @Override

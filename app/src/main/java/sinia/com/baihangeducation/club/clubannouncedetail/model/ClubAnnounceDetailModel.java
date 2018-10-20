@@ -1,5 +1,8 @@
 package sinia.com.baihangeducation.club.clubannouncedetail.model;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+
 import com.example.framwork.base.BasePresenter;
 import com.example.framwork.noHttp.Bean.BaseResponseBean;
 import com.example.framwork.noHttp.OnRequestListener;
@@ -9,6 +12,7 @@ import java.util.HashMap;
 
 import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.club.clubannouncedetail.ClubAnnounceDetailActivity;
+import sinia.com.baihangeducation.supplement.base.Goto;
 import sinia.com.baihangeducation.supplement.tool.BaseRequestInfo;
 
 /**
@@ -63,7 +67,15 @@ public class ClubAnnounceDetailModel extends BasePresenter {
 
     public void detailAnnounce(String notice_id) {
         HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "dropNotice", "club", true);
-
+        if (!AppConfig.ISlOGINED) {
+            new AlertDialog.Builder(activity).setTitle("提示！").setMessage("您尚未登录，请先登录。").setPositiveButton("登录", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Goto.toLogin(activity);
+                }
+            }).setNegativeButton("取消", null).show();
+            return;
+        }
         info.put("user_id", AppConfig.USERID);
         info.put("token", AppConfig.TOKEN);
         info.put("notice_id", notice_id);
@@ -92,6 +104,15 @@ public class ClubAnnounceDetailModel extends BasePresenter {
     }
 
     public void getAnnounceInfo(String notice_id) {
+        if (!AppConfig.ISlOGINED) {
+            new AlertDialog.Builder(activity).setTitle("提示！").setMessage("您尚未登录，请先登录。").setPositiveButton("登录", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Goto.toLogin(activity);
+                }
+            }).setNegativeButton("取消", null).show();
+            return;
+        }
         HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "getNotice", "club", true);
 
         info.put("notice_id", notice_id);

@@ -23,6 +23,7 @@ import com.example.framwork.utils.Toast;
 import com.example.framwork.utils.UserInfo;
 
 import cn.jpush.android.api.JPushInterface;
+import cn.jpush.im.android.api.JMessageClient;
 import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.MyApplication;
 import sinia.com.baihangeducation.mine.activity.LoginActivity;
@@ -60,22 +61,18 @@ public class LoginPresenter extends BasePresenter {
     private Activity activity;
     private ILoginView view;
     private GetLocation getLocation;
-    private final GetBaseInfoPresenter getBaseInfoPresenter;
 
     public LoginPresenter(Activity activity, LoginActivity view) {
         super(activity);
         this.activity = activity;
         this.view = view;
         getLocation = new GetLocation(activity);
-        getBaseInfoPresenter = new GetBaseInfoPresenter(activity);
     }
 
     /**
      * 登录方法
-     *
-     * @param loginActivity
      */
-    public void login(final LoginActivity loginActivity) {
+    public void login(  ) {
         if (!AccountManger.checkupLogin(activity, view.getPhoneNum(), view.getPassword())) {
             return;
         }
@@ -95,7 +92,9 @@ public class LoginPresenter extends BasePresenter {
         post(info, new OnRequestListener() {
             @Override
             public void requestSuccess(BaseResponseBean bean) {
-                view.showLoginSuccress();
+
+                JMessageClient.logout();
+
                 UserInfo userInfo = bean.parseObject(UserInfo.class);
                 AppConfig.ISlOGINED = true;
                 AppConfig.TOKEN = userInfo.token;
@@ -138,7 +137,8 @@ public class LoginPresenter extends BasePresenter {
 
                 MyAsyncTask myAsyncTask = new MyAsyncTask();
                 myAsyncTask.execute(userInfo.avatar);
-                loginActivity.finish();
+                view.showLoginSuccress();
+//                loginActivity.finish();
             }
 
             @Override
@@ -153,10 +153,6 @@ public class LoginPresenter extends BasePresenter {
             }
         });
     }
-
-
-
-
 
 
     public void loginRegister(final LoginActivity loginActivity) {

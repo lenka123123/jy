@@ -6,18 +6,19 @@
 
     <ImageView
         android:id="@+id/img"
-        android:gravity="center"
-        android:layout_gravity="center"
         android:layout_width="@dimen/x120"
-        android:layout_height="@dimen/y60" />
+        android:layout_height="@dimen/y60"
+        android:layout_gravity="center"
+
+        android:gravity="center" />
 
     <TextView
         android:id="@+id/text1"
         android:layout_width="@dimen/x120"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="@dimen/y10"
         android:gravity="center"
-        android:layout_gravity="center"
         android:text="餐饮"
         android:textColor="@color/black"
         android:textSize="13sp" />

@@ -1,6 +1,8 @@
 package sinia.com.baihangeducation.club.applyclublist.model;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 import com.example.framwork.base.BasePresenter;
 import com.example.framwork.noHttp.Bean.BaseResponseBean;
@@ -14,6 +16,7 @@ import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.club.applyclublist.interfaces.ApplyClubListListener;
 import sinia.com.baihangeducation.club.applyclublist.interfaces.GetPersonListener;
 import sinia.com.baihangeducation.club.clubdetail.interfaces.JoinClubDetailListener;
+import sinia.com.baihangeducation.supplement.base.Goto;
 import sinia.com.baihangeducation.supplement.tool.BaseRequestInfo;
 
 /**
@@ -67,6 +70,15 @@ public class ApplyClubListModel extends BasePresenter {
 
 
     public void joinClub(String club_id, String member_id, final JoinClubDetailListener joinClubDetailListener) {
+        if (!AppConfig.ISlOGINED) {
+            new AlertDialog.Builder(activity).setTitle("提示！").setMessage("您尚未登录，请先登录。").setPositiveButton("登录", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Goto.toLogin(activity);
+                }
+            }).setNegativeButton("取消", null).show();
+            return;
+        }
         HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "setClubApply", "club", true);
 
         info.put("user_id", AppConfig.USERID);
@@ -94,11 +106,58 @@ public class ApplyClubListModel extends BasePresenter {
 
             }
         });
-
     }
 
 
+    public void ignoreClub(String member_id ) {
+        if (!AppConfig.ISlOGINED) {
+            new AlertDialog.Builder(activity).setTitle("提示！").setMessage("您尚未登录，请先登录。").setPositiveButton("登录", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Goto.toLogin(activity);
+                }
+            }).setNegativeButton("取消", null).show();
+            return;
+        }
+        HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "dropClubApply", "club", true);
+
+        info.put("user_id", AppConfig.USERID);
+        info.put("token", AppConfig.TOKEN);
+        info.put("member_id", member_id);
+
+        post(info, new OnRequestListener() {
+            @Override
+            public void requestSuccess(BaseResponseBean bean) {
+//                Toast.getInstance().showSuccessToast(activity, "");
+
+
+            }
+
+            @Override
+            public void requestFailed(String error) {
+                Toast.getInstance().showErrorToast(activity, error);
+
+
+            }
+
+            @Override
+            public void requestFinish() {
+
+            }
+        });
+
+    }
+
     public void getPersonList(String club_id, String page, String perpage, final GetPersonListener joinClubDetailListener) {
+        if (!AppConfig.ISlOGINED) {
+            new AlertDialog.Builder(activity).setTitle("提示！").setMessage("您尚未登录，请先登录。").setPositiveButton("登录", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Goto.toLogin(activity);
+                }
+            }).setNegativeButton("取消", null).show();
+            return;
+        }
         HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "getMemberList", "club", true);
 
         info.put("user_id", AppConfig.USERID);

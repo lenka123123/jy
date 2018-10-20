@@ -53,28 +53,28 @@
                 android:id="@+id/realname_on"
                 android:layout_width="@dimen/space_270"
                 android:layout_height="@dimen/space_200"
+                android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/space_20"
-                android:background="@drawable/new_input_idcard_on"
-                android:scaleType="fitXY" />
+                android:layout_marginTop="@dimen/y40"
+                android:src="@drawable/new_input_idcard_on" />
 
             <ImageView
                 android:id="@+id/realname_off"
                 android:layout_width="@dimen/space_270"
                 android:layout_height="@dimen/space_200"
+                android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/space_20"
-                android:background="@drawable/new_input_idcard_off"
-                android:scaleType="fitXY" />
+                android:layout_marginTop="@dimen/y40"
+                android:src="@drawable/new_input_idcard_off" />
 
             <ImageView
                 android:id="@+id/realname_onhand"
                 android:layout_width="@dimen/space_270"
-                android:layout_height="@dimen/space_180"
+                android:layout_height="@dimen/space_200"
+                android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/space_20"
-                android:background="@drawable/new_input_idcard_onhand"
-                android:scaleType="fitXY" />
+                android:layout_marginTop="@dimen/y40"
+                android:src="@drawable/new_input_idcard_onhand" />
 
             <TextView
                 android:id="@+id/realname_confirm"

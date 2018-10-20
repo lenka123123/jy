@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.RadioButton;
 
 import sinia.com.baihangeducation.R;
+import sinia.com.baihangeducation.mine.MyCollectionMessageFragment;
 import sinia.com.baihangeducation.supplement.base.BaseActivity;
 import sinia.com.baihangeducation.mine.MyCollectionAllTimeFragment;
 import sinia.com.baihangeducation.mine.MyCollectionFunnyFragment;
@@ -35,9 +36,11 @@ public class MyCollectionActivity extends BaseActivity {
     private RadioButton mTest;         //试卷
     private RadioButton mSecret;       //秘籍
     private RadioButton mInformation;  //资讯
+    private RadioButton mMessage;  //资讯
 
     private FragmentManager mFragmentManager;
 
+    private MyCollectionMessageFragment mMyCollectionMessageFragment;         //资讯Fragment
     private MyCollectionPartTimeFragment mMyCollectionPartTimeFragment;         //兼职Fragment
     private MyCollectionAllTimeFragment mMyCollectionAllTimeFragment;           //全职Fragment
     private MyCollectionFunnyFragment mMyCollectionFunnyFragment;               //趣事Fragment
@@ -52,8 +55,9 @@ public class MyCollectionActivity extends BaseActivity {
         mFragmentManager = getSupportFragmentManager();
 
         FragmentTransaction ft = mFragmentManager.beginTransaction();
-        mMyCollectionPartTimeFragment = new MyCollectionPartTimeFragment();
-        ft.add(R.id.fragment_mine_collection_framlayout, mMyCollectionPartTimeFragment);
+//        mMyCollectionPartTimeFragment = new MyCollectionPartTimeFragment();
+        mMyCollectionAllTimeFragment = new MyCollectionAllTimeFragment();
+        ft.add(R.id.fragment_mine_collection_framlayout, mMyCollectionAllTimeFragment);
         ft.commit();
     }
 
@@ -77,7 +81,9 @@ public class MyCollectionActivity extends BaseActivity {
         mTest = $(R.id.fragment_mine_collection_test);
         mSecret = $(R.id.fragment_mine_collection_secret);
         mInformation = $(R.id.fragment_mine_collection_information);
+        mMessage = $(R.id.fragment_mine_message_information);
 
+        mAllTime.setChecked(true);
         mPartTime.setOnClickListener(this);
         mAllTime.setOnClickListener(this);
         mFunny.setOnClickListener(this);
@@ -85,6 +91,7 @@ public class MyCollectionActivity extends BaseActivity {
         mTest.setOnClickListener(this);
         mSecret.setOnClickListener(this);
         mInformation.setOnClickListener(this);
+        mMessage.setOnClickListener(this);
     }
 
     @Override
@@ -116,6 +123,9 @@ public class MyCollectionActivity extends BaseActivity {
                 if (null != mMyCollectionInformationFragment) {
                     ft.hide(mMyCollectionInformationFragment);
                 }
+                if (null != mMyCollectionMessageFragment) {
+                    ft.hide(mMyCollectionMessageFragment);
+                }
                 ft.show(mMyCollectionPartTimeFragment);
                 break;
             case R.id.fragment_mine_collection_alltime:
@@ -142,6 +152,9 @@ public class MyCollectionActivity extends BaseActivity {
                 }
                 if (null != mMyCollectionInformationFragment) {
                     ft.hide(mMyCollectionInformationFragment);
+                }
+                if (null != mMyCollectionMessageFragment) {
+                    ft.hide(mMyCollectionMessageFragment);
                 }
                 ft.show(mMyCollectionAllTimeFragment);
                 break;
@@ -170,6 +183,9 @@ public class MyCollectionActivity extends BaseActivity {
                 if (null != mMyCollectionInformationFragment) {
                     ft.hide(mMyCollectionInformationFragment);
                 }
+                if (null != mMyCollectionMessageFragment) {
+                    ft.hide(mMyCollectionMessageFragment);
+                }
                 ft.show(mMyCollectionFunnyFragment);
                 break;
             case R.id.fragment_mine_collection_strategy:
@@ -196,6 +212,9 @@ public class MyCollectionActivity extends BaseActivity {
                 if (null != mMyCollectionInformationFragment) {
                     ft.hide(mMyCollectionInformationFragment);
                 }
+                if (null != mMyCollectionMessageFragment) {
+                    ft.hide(mMyCollectionMessageFragment);
+                }
                 ft.show(mMyCollectionStrategyFragment);
                 break;
             case R.id.fragment_mine_collection_test:
@@ -221,6 +240,9 @@ public class MyCollectionActivity extends BaseActivity {
                 }
                 if (null != mMyCollectionInformationFragment) {
                     ft.hide(mMyCollectionInformationFragment);
+                }
+                if (null != mMyCollectionMessageFragment) {
+                    ft.hide(mMyCollectionMessageFragment);
                 }
                 ft.show(mMyCollectionTestFragment);
                 break;
@@ -249,6 +271,9 @@ public class MyCollectionActivity extends BaseActivity {
                 if (null != mMyCollectionInformationFragment) {
                     ft.hide(mMyCollectionInformationFragment);
                 }
+                if (null != mMyCollectionMessageFragment) {
+                    ft.hide(mMyCollectionMessageFragment);
+                }
                 ft.show(mMyCollectionSecretFragment);
                 break;
             case R.id.fragment_mine_collection_information:
@@ -276,7 +301,43 @@ public class MyCollectionActivity extends BaseActivity {
                 if (null != mMyCollectionSecretFragment) {
                     ft.hide(mMyCollectionSecretFragment);
                 }
+
+                if (null != mMyCollectionMessageFragment) {
+                    ft.hide(mMyCollectionMessageFragment);
+                }
                 ft.show(mMyCollectionInformationFragment);
+                break;
+
+
+            case R.id.fragment_mine_message_information:
+                //培训
+                if (null == mMyCollectionMessageFragment) {
+                    mMyCollectionMessageFragment = new MyCollectionMessageFragment();
+                    ft.add(R.id.fragment_mine_collection_framlayout, mMyCollectionMessageFragment);
+                }
+
+                if (null != mMyCollectionPartTimeFragment) {
+                    ft.hide(mMyCollectionPartTimeFragment);
+                }
+                if (null != mMyCollectionAllTimeFragment) {
+                    ft.hide(mMyCollectionAllTimeFragment);
+                }
+                if (null != mMyCollectionFunnyFragment) {
+                    ft.hide(mMyCollectionFunnyFragment);
+                }
+                if (null != mMyCollectionStrategyFragment) {
+                    ft.hide(mMyCollectionStrategyFragment);
+                }
+                if (null != mMyCollectionTestFragment) {
+                    ft.hide(mMyCollectionTestFragment);
+                }
+                if (null != mMyCollectionSecretFragment) {
+                    ft.hide(mMyCollectionSecretFragment);
+                }
+                if (null != mMyCollectionMessageFragment) {
+                    ft.hide(mMyCollectionMessageFragment);
+                }
+                ft.show(mMyCollectionMessageFragment);
                 break;
         }
         ft.commit();   //提交事务

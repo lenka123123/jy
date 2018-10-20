@@ -37,9 +37,7 @@ public class RealNamePresenter extends BasePresenter {
     }
 
     public void doRealNameAuthentication() {
-        if (!AccountManger.checkRealName(activity, view.getRealName(), view.getIDNum(), view.getIDCard_On(), view.getIDCard_Off(), view.getIDCard_OnHand())) {
-            return;
-        }
+
         HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "setAuthentication", "ucenter", true);
         info.put("realname", view.getRealName());
         info.put("idcard_no", view.getIDNum());

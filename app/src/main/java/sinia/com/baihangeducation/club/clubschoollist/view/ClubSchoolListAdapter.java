@@ -112,16 +112,14 @@ public class ClubSchoolListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     public void setData(List<ClubSchoolList.School> pDatas, int currentPage) {
         System.out.println("后台数据" + pDatas.size());
-        if (currentPage == 1) {
-            mInviteListInfo.clear();
-        }
+        mInviteListInfo.clear();
         mInviteListInfo.addAll(pDatas);
     }
 
     @Override
     public void onClick(View v) {
         int potion = (Integer) v.getTag();
-        Goto.toClubDetailActivity(context,   mInviteListInfo.get(potion).id );
+        Goto.toClubDetailActivity(context, mInviteListInfo.get(potion).id);
     }
 }
 

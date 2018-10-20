@@ -19,9 +19,12 @@ import com.yanzhenjie.nohttp.Logger;
 import java.util.ArrayList;
 
 import sinia.com.baihangeducation.R;
+import sinia.com.baihangeducation.mine.model.AccountManger;
 import sinia.com.baihangeducation.supplement.base.BaseActivity;
 import sinia.com.baihangeducation.AppConfig;
+
 import com.mcxtzhang.swipemenulib.info.bean.RealNameInfo;
+
 import sinia.com.baihangeducation.mine.presenter.RealNamePresenter;
 import sinia.com.baihangeducation.mine.view.IRealNameView;
 
@@ -109,6 +112,10 @@ public class RealNameActivity extends BaseActivity implements IRealNameView {
                 takePhoto(IDCARD_ONHEAD);
                 break;
             case R.id.realname_confirm:
+
+                if (!AccountManger.checkRealName(context, getRealName(), getIDNum(), getIDCard_On(), getIDCard_Off(), getIDCard_OnHand())) {
+                    return;
+                }
                 showProgress();
                 presenter.doRealNameAuthentication();
                 break;
@@ -118,9 +125,11 @@ public class RealNameActivity extends BaseActivity implements IRealNameView {
     private void takePhoto(int type) {
         switch (type) {
             case IDCARD_ON:
+
+
                 SImagePicker
-                        .from(context)
-                        .pickMode(SImagePicker.MODE_AVATAR)
+                        .from(RealNameActivity.this)
+                        .pickMode(SImagePicker.MODE_IMAGE)
                         .showCamera(true).rowCount(3)
                         .cropFilePath(
                                 AppConfig.IMAGE_PATH + "/idimg_on.png")
@@ -128,8 +137,8 @@ public class RealNameActivity extends BaseActivity implements IRealNameView {
                 break;
             case IDCARD_OFF:
                 SImagePicker
-                        .from(context)
-                        .pickMode(SImagePicker.MODE_AVATAR)
+                        .from(RealNameActivity.this)
+                        .pickMode(SImagePicker.MODE_IMAGE)
                         .showCamera(true).rowCount(3)
                         .cropFilePath(
                                 AppConfig.IMAGE_PATH + "/idimg_off.png")
@@ -137,8 +146,8 @@ public class RealNameActivity extends BaseActivity implements IRealNameView {
                 break;
             case IDCARD_ONHEAD:
                 SImagePicker
-                        .from(context)
-                        .pickMode(SImagePicker.MODE_AVATAR)
+                        .from(RealNameActivity.this)
+                        .pickMode(SImagePicker.MODE_IMAGE)
                         .showCamera(true).rowCount(3)
                         .cropFilePath(
                                 AppConfig.IMAGE_PATH + "/idimg_onhead.png")
@@ -235,6 +244,8 @@ public class RealNameActivity extends BaseActivity implements IRealNameView {
             ImageLoaderUtils.display(context, mIdCardOn, info.idcard_face_img, R.drawable.logo, true);
             ImageLoaderUtils.display(context, mIdCardOff, info.idcard_opposite_img, R.drawable.logo, true);
             ImageLoaderUtils.display(context, mIdCardOnHand, info.idcard_hand_img, R.drawable.logo, true);
+
+
             if (info.real_status == 1) {
                 mInputName.setFocusable(true);
                 mInputIdCard.setFocusable(true);

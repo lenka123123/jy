@@ -20,7 +20,8 @@
             android:layout_height="wrap_content"
             android:checked="true"
             android:text="全职"
-            android:textColor="@drawable/radiobuttontextcolor" />
+            android:textColor="@drawable/radiobuttontextcolor"
+            android:visibility="gone" />
 
         <RadioButton
             android:id="@+id/fragment_mine_collection_alltime"
@@ -35,8 +36,10 @@
             style="@style/MTabStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:text="趣事"
-            android:textColor="@drawable/radiobuttontextcolor"/>
+            android:textColor="@drawable/radiobuttontextcolor"
+            />
 
         <RadioButton
             android:id="@+id/fragment_mine_collection_strategy"
@@ -69,6 +72,15 @@
             android:layout_height="wrap_content"
             android:text="资讯"
             android:textColor="@drawable/radiobuttontextcolor" />
+
+        <RadioButton
+            android:id="@+id/fragment_mine_message_information"
+            style="@style/MTabStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="培训"
+            android:textColor="@drawable/radiobuttontextcolor" />
+
     </RadioGroup>
 
     <include layout="@layout/include_line_gray_5" />

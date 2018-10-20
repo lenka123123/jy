@@ -16,7 +16,8 @@
         <ImageView
             android:id="@+id/fragment_mine_collection_alltimeitem_img"
             android:layout_width="@dimen/space_80"
-            android:layout_height="@dimen/space_80" />
+            android:layout_height="@dimen/space_80"
+            android:padding="10dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -60,7 +61,7 @@
         android:gravity="center">
 
         <TextView
-            android:layout_width="@dimen/space_15"
+            android:layout_width="wrap_content"
             android:layout_height="@dimen/space_20"
             android:background="@drawable/new_detel_trash" />
     </LinearLayout>

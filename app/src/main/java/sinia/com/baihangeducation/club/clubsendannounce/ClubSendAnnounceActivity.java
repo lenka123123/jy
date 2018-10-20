@@ -5,6 +5,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,7 +19,6 @@ import sinia.com.baihangeducation.club.searchschool.model.ClubSchoolList;
 import sinia.com.baihangeducation.supplement.base.BaseActivity;
 
 public class ClubSendAnnounceActivity extends BaseActivity {
-    private List<ClubSchoolList.School> mRows = new ArrayList<>();
     private EditText edit_title;
     private EditText edit_content;
     private String club_id = "";
@@ -47,6 +47,8 @@ public class ClubSendAnnounceActivity extends BaseActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                hideSoftInput(edit_title);
+                hideSoftInput(edit_content);
                 finish();
             }
         });
@@ -71,6 +73,8 @@ public class ClubSendAnnounceActivity extends BaseActivity {
                     com.example.framwork.utils.Toast.getInstance().showErrorToast(context, "正文请输入10-200个字");
                     return;
                 }
+                hideSoftInput(edit_title);
+                hideSoftInput(edit_content);
                 clubSendAnnounceModel.getClubListList(club_id, notice_id, edit_title.getText().toString(), edit_content.getText().toString());
             }
         });
@@ -81,8 +85,15 @@ public class ClubSendAnnounceActivity extends BaseActivity {
     protected void initData() {
         clubSendAnnounceModel = new ClubSendAnnounceModel(this);
 //        clubSendAnnounceModel.getClubListList(club_id,notice_id,);
+    }
 
-
+    /**
+     * 隐藏软键盘
+     */
+    protected void hideSoftInput(EditText view) {
+        InputMethodManager mInputMethodManager = (InputMethodManager) getSystemService(this.INPUT_METHOD_SERVICE);
+        mInputMethodManager
+                .hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
 

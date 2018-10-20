@@ -56,7 +56,7 @@ public class ApplyClubListPresenter implements ApplyClubListContract.Presenter {
             @Override
             public void showGetPersonSuccess(GetPersonList getPersonList, int max) {
 
-                view.showGetPersonListSuccess(getPersonList,max);
+                view.showGetPersonListSuccess(getPersonList, max);
             }
 
             @Override
@@ -64,6 +64,10 @@ public class ApplyClubListPresenter implements ApplyClubListContract.Presenter {
 
             }
         });
+    }
+
+    public void ignore(String club_id) {
+        searchSchoolModel.ignoreClub(club_id);
     }
 
 }

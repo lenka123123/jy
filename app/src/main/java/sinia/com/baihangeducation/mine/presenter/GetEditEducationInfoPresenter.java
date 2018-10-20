@@ -71,6 +71,7 @@ public class GetEditEducationInfoPresenter extends BasePresenter {
         choiceSchoolInfo.put("user_id", AppConfig.USERID);
         choiceSchoolInfo.put("token", AppConfig.TOKEN);
         choiceSchoolInfo.put("perpage", view.getItenmNum());
+
         post(choiceSchoolInfo, new OnRequestListener() {
             @Override
             public void requestSuccess(BaseResponseBean bean) {
@@ -91,6 +92,39 @@ public class GetEditEducationInfoPresenter extends BasePresenter {
             }
         });
     }
+
+
+    /**
+     * 选择大学  club
+     */
+    public void getEducationChoiceSchoolClub() {
+        HashMap choiceSchoolInfo = BaseRequestInfo.getInstance().getRequestInfo(activity, "getSchoolList", "club", true);
+        choiceSchoolInfo.put("page", view.getPage());
+        choiceSchoolInfo.put("user_id", AppConfig.USERID);
+        choiceSchoolInfo.put("token", AppConfig.TOKEN);
+        choiceSchoolInfo.put("perpage", view.getItenmNum());
+
+        post(choiceSchoolInfo, new OnRequestListener() {
+            @Override
+            public void requestSuccess(BaseResponseBean bean) {
+                CollegeInfo collegeInfo = bean.parseObject(CollegeInfo.class);
+                List<College> list = bean.parseObject(CollegeInfo.class).list;
+                int maxpag = CommonUtil.getMaxPage(collegeInfo.count, collegeInfo.perpage);
+                view.getEducationSchoolSuccess(list, maxpag);
+            }
+
+            @Override
+            public void requestFailed(String error) {
+
+            }
+
+            @Override
+            public void requestFinish() {
+                view.hideLoading();
+            }
+        });
+    }
+
 
     /**
      * 选择 专业

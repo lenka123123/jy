@@ -27,5 +27,5 @@
         banner:bb_isLoopEnable="true"
         banner:bb_isTitleShow="false"
         banner:bb_period="10"
-        banner:bb_scale="1" />
+        banner:bb_scale="3" />
 </FrameLayout>

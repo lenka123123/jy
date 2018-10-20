@@ -10,11 +10,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/y160"
-        android:layout_marginLeft="@dimen/x30"
-        android:layout_marginRight="@dimen/x30"
+        android:layout_marginLeft="@dimen/x40"
+        android:layout_marginRight="@dimen/x40"
         android:orientation="horizontal">
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="@dimen/x75"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
@@ -114,7 +115,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical|right"
-                android:text="100"
+                android:text="加入"
                 android:textColor="#F63F1A" />
 
         </LinearLayout>
@@ -123,6 +124,7 @@
     </LinearLayout>
 
     <View
+        android:visibility="gone"
         android:id="@+id/view_line"
         android:layout_width="match_parent"
         android:layout_height="@dimen/space_0.5"

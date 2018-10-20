@@ -17,11 +17,14 @@ import com.example.framwork.glide.ImageLoaderUtils;
 import com.example.framwork.utils.SpCommonUtils;
 import com.example.framwork.utils.UserInfo;
 
+import cn.jpush.im.android.api.JMessageClient;
 import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.MainActivity;
 import sinia.com.baihangeducation.R;
 
 import com.mcxtzhang.swipemenulib.base.BaseFragment;
+
+import java.io.File;
 
 import sinia.com.baihangeducation.MyApplication;
 import sinia.com.baihangeducation.mine.presenter.GetBaseInfoPresenter;
@@ -31,34 +34,33 @@ import sinia.com.baihangeducation.supplement.base.Goto;
 import sinia.com.baihangeducation.supplement.tool.BaseUtil;
 
 /**
- * Created by Administrator on 2018.02.24.
+ * Created by Administrator on 2018.02.24
  */
 
 public class MineFragment extends BaseFragment implements View.OnClickListener, GetBaseInfoView {
 
-    private UserInfo userInfo;
     private MyApplication application;
 
     private LinearLayout mMyResumeBaseInfo;     //我的简历基本信息
     private TextView mLogin;                    //登录
-    private TextView mIsMessage;                    //是否有消息红点提示
-    private RelativeLayout chat_layout;                    //消息
+    private TextView mIsMessage;                //是否有消息红点提示
+    private RelativeLayout chat_layout;         //消息
     private TextView mSingleNum;                //签到加分
-    private TextView mPartTimeNum;                //兼职加分
+    private TextView mPartTimeNum;              //兼职加分
     private TextView mTraingNum;                //培训加分
-    private TextView mInvitionNum;                //邀请加分
-    private TextView mHelpOtherNum;                //互助加分
-    //    private TextView mGrowth;                //我的成长
-    private LinearLayout mSingle;                //签到
-    private LinearLayout mPatrTime;                //兼职
-    private LinearLayout mTraing;                //培训
-    private LinearLayout mInvition;                //邀请
-    private LinearLayout mHelpEachOher;                //互助
-    //    private LinearLayout mBaseInfo;                //个人基本资料
-    private TextView mTask;                         //任务
-    private TextView mRealName;                         //实名认证
-    private TextView mVIP;                         //vip
-    private ImageView mGender;                         //性别
+    private TextView mInvitionNum;              //邀请加分
+    private TextView mHelpOtherNum;             //互助加分
+    //    private TextView mGrowth;             //我的成长
+    private LinearLayout mSingle;               //签到
+    private LinearLayout mPatrTime;             //兼职
+    private LinearLayout mTraing;               //培训
+    private LinearLayout mInvition;             //邀请
+    private LinearLayout mHelpEachOher;         //互助
+    //    private LinearLayout mBaseInfo;       //个人基本资料
+    private TextView mTask;                     //任务
+    private TextView mRealName;                 //实名认证
+    private TextView mVIP;                      //vip
+    private ImageView mGender;                  //性别
     //    private TextView mNickName;                         //昵称
     private TextView mMyInfoPercent;                         //个人信息百分之
     private LinearLayout mMyInfoSend;                 //个人信息我的投递
@@ -86,20 +88,34 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
+        AppConfig.HOMT = false;
+        AppConfig.PART = false;
+        AppConfig.CHAT = false;
+        AppConfig.CLUB = false;
+        AppConfig.ME = true;
+
         if (isCreated) {
-            setDrawableOPpen();
+//            setDrawableOPpen();
             if (getBaseInfoPresenter != null)
                 getBaseInfoPresenter.getBaseInfoLoginAfter();
         }
     }
 
     public void setReSatart() {
+        if (!AppConfig.ME) return;
         if (isCreated) {
-            setDrawableOPpen();
-            if (getBaseInfoPresenter != null)
+//            setDrawableOPpen();
+            System.out.println("====切换账号=====");
+            if (getBaseInfoPresenter != null) {
                 getBaseInfoPresenter.getBaseInfoLoginAfter();
-            if (updateVersionPresenter != null)
+                System.out.println("====切换账号=====");
+            }
+
+            if (updateVersionPresenter != null) {
                 updateVersionPresenter.getBaseInfo(this);
+                System.out.println("====切换账号=====");
+            }
+
         }
     }
 
@@ -120,7 +136,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
         if (no_read_num_es.equals("0")) {
             no_read_num.setVisibility(View.GONE);
         } else {
-            no_read_num.setText(no_read_num_es);
+            no_read_num.setText(" " + no_read_num_es + " ");
             no_read_num.setVisibility(View.VISIBLE);
         }
 
@@ -177,7 +193,37 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
         //培训数
         mTraingNum.setText(myinfo.my_num.train_num + "");
         //互助数
-        mHelpOtherNum.setText(myinfo.my_num.help_num + "");
+//        mHelpOtherNum.setText(myinfo.my_num.help_num + "");
+        mHelpOtherNum.setText("0");
+
+        SpCommonUtils.put(context, AppConfig.FINALUAVATAR, myinfo.avatar);
+        SpCommonUtils.put(context, AppConfig.FINALNICKNAME, myinfo.nickname);
+        SpCommonUtils.put(context, AppConfig.FINALSLOGAN, myinfo.slogan);
+        SpCommonUtils.put(context, AppConfig.FINALGENDEREEE, String.valueOf(myinfo.gender));
+        SpCommonUtils.put(context, AppConfig.FINALEMEMAIL, myinfo.email);
+
+        if (!AppConfig.LOGINPHOTOTPATH.equals("")) {
+            AppConfig.LOGINPHOTOTPATH = myinfo.avatar;
+        }
+
+        Glide.with(getActivity()).load(myinfo.avatar).asBitmap().error(R.drawable.new_eorrlogo).centerCrop().into(new BitmapImageViewTarget(logoImg) {
+            @Override
+            protected void setResource(Bitmap resource) {
+                RoundedBitmapDrawable circularBitmapDrawable = RoundedBitmapDrawableFactory.create(getActivity().getResources(), resource);
+                circularBitmapDrawable.setCircular(true);
+                logoImg.setImageDrawable(circularBitmapDrawable);
+            }
+        });
+
+
+        if (Integer.valueOf(myinfo.gender) == 1) {
+            Glide.with(getActivity()).load("").error(R.drawable.new_male).into(logo_man);
+        } else {
+            Glide.with(getActivity()).load("").error(R.drawable.moman).into(logo_man);
+        }
+        textViewName.setText(myinfo.nickname);
+        mRealName.setText(myinfo.auth_status == 1 ? "未认证" : "已认证");
+        mVIP.setText("Lv." + myinfo.vip_level);
 
     }
 
@@ -200,8 +246,6 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
 
 
     private void setView(UserInfo userInfo) {
-
-
         ImageLoaderUtils.displayRound(getActivity(), mImg, "", R.drawable.new_eorrlogo);
 
         mLogin.setVisibility(View.GONE);
@@ -237,8 +281,6 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
     public void onResume() {
         super.onResume();
         application = (MyApplication) getActivity().getApplication();
-
-
     }
 
     /**

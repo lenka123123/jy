@@ -116,11 +116,12 @@ public class PartTimeJobDetailActivity extends BaseActivity implements JobInfoVi
     private TextView mNeedAge;
     private TextView mNeedFace;
     private TextView mNeedContinuous;
-    private TextView mContent;
+    private WebView mContent;
     private ImageView imageViewShow;
     private ImageView imageViewCollect;
 
     private boolean isCollect = false;
+    private ImageView online_contact;
 
     @Override
     public int initLayoutResID() {
@@ -139,10 +140,8 @@ public class PartTimeJobDetailActivity extends BaseActivity implements JobInfoVi
     private String jobInfo_is_collect = "";
 
 
-
     @Override
     protected void initData() {
-
 
 
         mCommonTitle.setCenterText(R.string.jobinfo);
@@ -205,6 +204,7 @@ public class PartTimeJobDetailActivity extends BaseActivity implements JobInfoVi
         mDetailAdress = $(R.id.fragment_home_parttimejobinfo_detailadress);
         mLinkTel = $(R.id.fragment_home_parttimejobinfo_linktel);
         mLinkName = $(R.id.fragment_home_parttimejobinfo_linkname);
+        online_contact = $(R.id.online_contact);
         mCollectionLayout = $(R.id.fragment_home_parttimejobinfo_collectionimglayout);
         mCollection = $(R.id.fragment_home_parttimejobinfo_collectionimg);
         mShareLayout = $(R.id.fragment_home_parttimejobinfo_sharelayout);
@@ -473,24 +473,28 @@ public class PartTimeJobDetailActivity extends BaseActivity implements JobInfoVi
             mLinkName.setText(mJobInfo.job_link_person);
             mDetailAdress.setText(mJobInfo.job_link_type_name);
             mLinkTel.setText(mJobInfo.job_link_phone);
+            online_contact.setVisibility(AppConfig.SHOWCLUBJOB ? View.VISIBLE : View.INVISIBLE);
 
-            System.out.println("======报错======");
-            mContent.setText(Html.fromHtml(mJobInfo.job_content, new Html.ImageGetter() {
-                @Override
-                public Drawable getDrawable(String s) {
-                    System.out.println("======报错======" + s);
-                    // ======报错====== http://apps.bdimg.com/libs/ueditor/1.4.3.1/themes/default/images/spacer.gif
-                    if (!s.endsWith("gif")) {
-                        int drawableId = Integer.parseInt(s);
-                        Drawable drawable = getResources().getDrawable(drawableId);
-                        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
-                        return drawable;
-                    }
+            if (!mJobInfo.job_content.isEmpty())
+                mContent.loadDataWithBaseURL(null, mJobInfo.job_content, "text/html", "utf-8", null);
 
-
-                    return null;
-                }
-            }, null));
+//            System.out.println("======报错======"); ssssssssss
+//            mContent.setText(Html.fromHtml(mJobInfo.job_content, new Html.ImageGetter() {
+//                @Override
+//                public Drawable getDrawable(String s) {
+//                    System.out.println("======报错======" + s);
+//                    // ======报错====== http://apps.bdimg.com/libs/ueditor/1.4.3.1/themes/default/images/spacer.gif
+//                    if (!s.endsWith("gif")) {
+//                        int drawableId = Integer.parseInt(s);
+//                        Drawable drawable = getResources().getDrawable(drawableId);
+//                        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+//                        return drawable;
+//                    }
+//
+//
+//                    return null;
+//                }
+//            }, null));
 
             GeocodeSearch(mJobInfo.job_address);
 //            if (mJobInfo.job_company_status == 1) {

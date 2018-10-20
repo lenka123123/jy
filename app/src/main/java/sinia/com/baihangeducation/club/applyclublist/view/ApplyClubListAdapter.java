@@ -75,11 +75,18 @@ public class ApplyClubListAdapter extends RecyclerView.Adapter<RecyclerView.View
         vh.accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changeAccept(vh.accept, mInviteListInfo.get(position).id);
+                changeAccept(vh.accept, vh.ignore, mInviteListInfo.get(position).id);
             }
         });
 
-        if (!mInviteListInfo.get(position).avatar.equals("")){
+        vh.ignore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ignoreAccept(mInviteListInfo.get(position), mInviteListInfo.get(position).id);
+            }
+        });
+
+        if (!mInviteListInfo.get(position).avatar.equals("")) {
             Glide.with(context).load(mInviteListInfo.get(position).avatar).asBitmap().error(R.drawable.new_eorrlogo).centerCrop().into(new BitmapImageViewTarget(vh.logo) {
                 @Override
                 protected void setResource(Bitmap resource) {
@@ -89,17 +96,17 @@ public class ApplyClubListAdapter extends RecyclerView.Adapter<RecyclerView.View
                     vh.logo.setImageDrawable(circularBitmapDrawable);
                 }
             });
-    } else {
-        Glide.with(context).load(R.drawable.new_eorrlogo).asBitmap().error(R.drawable.new_eorrlogo).centerCrop().into(new BitmapImageViewTarget(vh.logo) {
-            @Override
-            protected void setResource(Bitmap resource) {
-                RoundedBitmapDrawable circularBitmapDrawable =
-                        RoundedBitmapDrawableFactory.create(context.getResources(), resource);
-                circularBitmapDrawable.setCircular(true);
-                vh.logo.setImageDrawable(circularBitmapDrawable);
-            }
-        });
-    }
+        } else {
+            Glide.with(context).load(R.drawable.new_eorrlogo).asBitmap().error(R.drawable.new_eorrlogo).centerCrop().into(new BitmapImageViewTarget(vh.logo) {
+                @Override
+                protected void setResource(Bitmap resource) {
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(context.getResources(), resource);
+                    circularBitmapDrawable.setCircular(true);
+                    vh.logo.setImageDrawable(circularBitmapDrawable);
+                }
+            });
+        }
 
 //            GlideLoadUtils.getInstance().glideLoad(context, mInviteListInfo.get(position).avatar, vh.logo, R.drawable.logo);
 
@@ -107,13 +114,14 @@ public class ApplyClubListAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
 
-    private void changeAccept(TextView accept, String id) {
+    private void changeAccept(TextView accept, TextView ignore, String id) {
         ApplyClubListActivity applyClubListActivity = (ApplyClubListActivity) context;
         applyClubListActivity.changeAccept(id, new ApplySuccessListListener() {
             @Override
             public void showApplySuccess() {
                 accept.setClickable(false);
                 accept.setText("已接受");
+                ignore.setVisibility(View.GONE);
             }
 
             @Override
@@ -121,6 +129,14 @@ public class ApplyClubListAdapter extends RecyclerView.Adapter<RecyclerView.View
                 accept.setClickable(true);
             }
         });
+    }
+
+    private void ignoreAccept(ApplyClubListBean.ApplyList ignore, String id) {
+        mInviteListInfo.remove(ignore);
+        notifyDataSetChanged();
+        ApplyClubListActivity applyClubListActivity = (ApplyClubListActivity) context;
+        applyClubListActivity.ignore(id);
+
     }
 
 

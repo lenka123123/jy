@@ -1,6 +1,7 @@
 package sinia.com.baihangeducation.mine.activity;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -25,7 +26,9 @@ import sinia.com.baihangeducation.supplement.base.BaseActivity;
 
 import com.fm.openinstall.OpenInstall;
 import com.fm.openinstall.listener.AppInstallAdapter;
+import com.fm.openinstall.listener.AppInstallListener;
 import com.fm.openinstall.model.AppData;
+import com.fm.openinstall.model.Error;
 import com.mcxtzhang.swipemenulib.info.bean.AuthCodeInfo;
 
 import sinia.com.baihangeducation.mine.presenter.AuthCodePresenter;
@@ -36,6 +39,9 @@ import sinia.com.baihangeducation.supplement.base.Goto;
 
 import com.mcxtzhang.swipemenulib.utils.Constants;
 import com.mcxtzhang.swipemenulib.utils.TimeUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import static sinia.com.baihangeducation.R.drawable.new_login_showpwd;
 
@@ -61,7 +67,7 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
     private RegisterPresenter mRegisterPresenter;
 
     private Activity context;
-
+    private String channelCode = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -70,23 +76,53 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
         setContentView(R.layout.activity_register);
         context = this;
 
-        OpenInstall.getInstall(new AppInstallAdapter() {
-            @Override
-            public void onInstall(AppData appData) {
-                //获取渠道数据
-                String channelCode = appData.getChannel();
-                //获取自定义数据
-                String bindData = appData.getData();
-                Log.d("OpenInstallww", "getInstall : installData = " + appData.toString());
-            }
-        });
+        final SharedPreferences sp = getSharedPreferences("filename", MODE_PRIVATE);
+        boolean isFirst = sp.getBoolean("isFirst", true);
+        if(isFirst){
+            OpenInstall.getInstall(new AppInstallListener() {
+                @Override
+                public void onInstallFinish(AppData appData, Error error) {
+                    //获取渠道数据
+                    System.out.println("=======channelCode==qq" + appData.getData().toString());
+                    try {
+                        JSONObject   object = new JSONObject(appData.getData().toString());
+                        channelCode = object.getString("channel");
+
+                        System.out.println("=======channelCode==qq" + channelCode);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+//                @Override
+//                public void onInstallFinish(AppData appData, Error error) {
+//                    //使用数据后，不想再调用，将isFirst设置为false
+//                    sp.edit().putBoolean("isFirst", false).apply();
+//                }
+            });
+        }
+
+
+
+
+//        OpenInstall.getInstall(new AppInstallAdapter() {
+//            @Override
+//            public void onInstall(AppData appData) {
+//                //获取渠道数据
+//                String channelCode = appData.getChannel();
+//                //获取自定义数据
+//                String bindData = appData.getData();
+//                Log.d("OpenInstallww", "getInstall : installData = " + appData.toString());
+//            }
+//        });
 
 
         initView();
         initData();
     }
 
-    private String channelCode = "";
+
 
     protected void initData() {
 //        if (decorViewGroup != null && statusBarView != null)
@@ -94,16 +130,7 @@ public class RegisterActivity extends AppCompatActivity implements IRegisterView
         mAuthCodePresenter = new AuthCodePresenter(context, this);
         mRegisterPresenter = new RegisterPresenter(context, this);
 
-        OpenInstall.getInstall(new AppInstallAdapter() {
-            @Override
-            public void onInstall(AppData appData) {
-                //获取渠道数据
-                channelCode = appData.getChannel();
-                //获取自定义数据
-                String bindData = appData.getData();
-                Log.d("OpenInstall", "getInstall : installData = " + appData.toString());
-            }
-        });
+
     }
 
     protected void initView() {

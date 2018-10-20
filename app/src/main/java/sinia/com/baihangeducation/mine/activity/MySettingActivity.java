@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.framwork.utils.DialogUtils;
 
+import cn.jpush.im.android.api.JMessageClient;
 import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.R;
 import sinia.com.baihangeducation.supplement.base.BaseActivity;
@@ -57,7 +58,7 @@ public class MySettingActivity extends BaseActivity implements IMySettingView {
         mCommonTitle.setCenterText(R.string.mine_setting);
         mCommonTitle.setBackgroundColor(Color.WHITE);
         presenter = new MySettingPresenter(context, this);
-
+        AppConfig.IS_MANUAL_lOGINED = false;
     }
 
     @Override
@@ -114,7 +115,6 @@ public class MySettingActivity extends BaseActivity implements IMySettingView {
             case R.id.setting_changepd:
                 //修改密码
                 Goto.toUpdataPwdActivity(context);
-                finish();
                 break;
             case R.id.setting_cleancache:
                 //清除缓存
@@ -140,13 +140,15 @@ public class MySettingActivity extends BaseActivity implements IMySettingView {
             case R.id.btn_left:
                 if (exitDialog != null)
                     exitDialog.dismiss();
+                AppConfig.IS_MANUAL_lOGINED = false;
                 break;
             case R.id.btn_right:
-
+                JMessageClient.logout();
                 if (exitDialog != null)
                     exitDialog.dismiss();
                 presenter.logout();
                 AppConfig.ISlOGINED = false;
+                AppConfig.IS_MANUAL_lOGINED = true;
 
                 SpCommonUtils.put(context, AppConfig.IS_LOGIN_APP, false);
                 System.out.println("tokentoken  false" + false + "==" + false);

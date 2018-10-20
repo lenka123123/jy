@@ -1,5 +1,6 @@
 package sinia.com.baihangeducation.mine.activity;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -58,6 +59,7 @@ public class MyResumeEditEducationExpChoiceSchoolAcitvity extends BaseActivity i
     private List<College> mList = new ArrayList<>();
     private List<SortModel> sSourceDateList = new ArrayList<>();
     private RelativeLayout noData;
+    private String active;
 
 
     @Override
@@ -69,6 +71,8 @@ public class MyResumeEditEducationExpChoiceSchoolAcitvity extends BaseActivity i
     protected void initView() {
         mCurrentPage = "1";
         mCurrentTime = 0;
+        Intent intent = getIntent();
+        active = intent.getStringExtra("active");
         pinyinComparator = new PinyinComparator();
 
         sideBar = (SideBar) findViewById(R.id.sideBar);
@@ -148,9 +152,11 @@ public class MyResumeEditEducationExpChoiceSchoolAcitvity extends BaseActivity i
         mCommonTitle.setCenterText(R.string.choicschool);
         mCommonTitle.setBackground(getResources().getDrawable(R.color.white));
         presenter = new GetEditEducationInfoPresenter(context, this);
-        presenter.getEducationChoiceSchool();
-
-
+        if (active.equals("club")) {
+            presenter.getEducationChoiceSchoolClub();
+        } else {
+            presenter.getEducationChoiceSchool();
+        }
     }
 
 
