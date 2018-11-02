@@ -75,6 +75,7 @@ public class Constants {
     public static final String MYCOLLECTION_TEST = "5";           //试卷
     public static final String MYCOLLECTION_SECRET = "6";           //秘籍
     public static final String MYCOLLECTION_INFORMATION = "7";           //资讯
+    public static final String MYCOLLECTION_MESSAGE = "8";           //资讯
 
     /**
      * 绑定手机

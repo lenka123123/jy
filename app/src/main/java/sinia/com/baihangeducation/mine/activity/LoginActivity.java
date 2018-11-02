@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,24 +40,25 @@ import cn.jpush.im.android.api.event.MessageEvent;
 import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.MainActivity;
 import sinia.com.baihangeducation.R;
-import sinia.com.baihangeducation.supplement.base.BaseActivity;
 
 import com.mcxtzhang.swipemenulib.info.IsCompleteInfo;
 import com.mcxtzhang.swipemenulib.info.bean.ThirdLoginInfo;
 
 import org.greenrobot.eventbus.EventBus;
 
+import sinia.com.baihangeducation.club.club.interfaces.GetRequestListener;
 import sinia.com.baihangeducation.mine.presenter.LoginPresenter;
 import sinia.com.baihangeducation.mine.presenter.ThirdLoginPresenter;
 import sinia.com.baihangeducation.mine.view.ILoginView;
 import sinia.com.baihangeducation.mine.view.IThirdLoginView;
+import sinia.com.baihangeducation.receiver.JPushDialogActivity;
 import sinia.com.baihangeducation.supplement.base.Goto;
 
 
-public class LoginActivity extends AppCompatActivity implements ILoginView, IThirdLoginView, View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements ILoginView, IThirdLoginView, View.OnClickListener, GetRequestListener {
     private LoginPresenter mLoginPresenter;
     private UMShareAPI umShareAPI = null;
-
+    public boolean isCheck = true;
     private EditText mPhoneNum;         //用户名
     private EditText mPassword;         //密码
     private TextView mLogin;            //登录
@@ -89,7 +91,11 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, IThi
         context = this;
         initView();
         initData();
-
+        SpCommonUtils.put(context, AppConfig.IS_NEED_LOGIN, true);
+        AppConfig.USERID = "USERID";
+        AppConfig.TOKEN = "USERID";
+        SpCommonUtils.put(LoginActivity.this, AppConfig.USERTOKEN, "USERID");
+        SpCommonUtils.put(LoginActivity.this, AppConfig.FINALUSERID, "USERID");
     }
 
     @Override
@@ -125,6 +131,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, IThi
      */
 
     protected void initView() {
+        isCheck = true;
         mPhoneNum = (EditText) findViewById(R.id.edt_phone_num);
         mPassword = (EditText) findViewById(R.id.edt_password);
         mLogin = (TextView) findViewById(R.id.tv_login);
@@ -153,16 +160,25 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, IThi
         mUserAgreement.setOnClickListener(this);
     }
 
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.back:
+                Goto.toMainActivity(context);
                 LoginActivity.this.finish();
                 break;
             case R.id.tv_login:
                 if (TimeUtils.isLetterDigit(getPassword())) {
-                    mLoginPresenter.login( );
+                    showLoading();
+                    mLogin.setClickable(false);
+                    if (isCheck) {
+                        mLoginPresenter.login(this);
+                    }
+                    isCheck = false;
                 } else {
+                    isCheck = true;
+                    mLogin.setClickable(true);
                     Toast.getInstance().showErrorToast(context, "请输入6-12位数字或字母");
                 }
 
@@ -441,4 +457,27 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, IThi
     }
 
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            Goto.toMainActivity(context);
+            LoginActivity.this.finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void setRequestSuccess(String msg) {
+        hideLoading();
+        mLogin.setClickable(false);
+        isCheck = false;
+    }
+
+    @Override
+    public void setRequestFail() {
+        hideLoading();
+        isCheck = true;
+        mLogin.setClickable(true);
+    }
 }

@@ -17,9 +17,8 @@
             android:layout_width="@dimen/x120"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:padding="@dimen/x26"
-            android:src="@drawable/back"
-            />
+            android:padding="@dimen/y26"
+            android:src="@drawable/back" />
 
         <LinearLayout
             android:id="@+id/fragment_home_adress"
@@ -37,7 +36,7 @@
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="1"
-                android:text="俱乐部"
+                android:text="社团"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
@@ -81,8 +80,8 @@
         android:id="@+id/swipe_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/space_60"
-        android:layout_below="@+id/nanjing">
+        android:layout_below="@+id/nanjing"
+        android:layout_marginBottom="@dimen/space_60">
         <!--加载条-->
         <com.example.framwork.widget.ProgressActivity
             android:id="@+id/progressActivity"
@@ -119,6 +118,7 @@
         android:gravity="center"
         android:text="发布公告"
         android:textColor="@color/white"
-        android:textSize="@dimen/font_size_18" />
+        android:textSize="@dimen/font_size_18"
+        android:visibility="invisible" />
 
 </RelativeLayout>

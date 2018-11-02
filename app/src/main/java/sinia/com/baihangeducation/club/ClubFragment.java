@@ -5,11 +5,6 @@ import android.graphics.Bitmap;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -29,6 +24,8 @@ import com.example.framwork.utils.SpCommonUtils;
 import com.example.framwork.utils.Toast;
 import com.example.framwork.widget.ProgressActivity;
 import com.example.framwork.widget.superrecyclerview.recycleview.SuperRecyclerView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.mcxtzhang.swipemenulib.info.IsCompleteInfo;
 import com.mcxtzhang.swipemenulib.info.bean.JobBangClassADListInfo;
 import com.mcxtzhang.swipemenulib.utils.ACache;
@@ -77,10 +74,10 @@ public class ClubFragment extends MyBaseFragment implements SuperRecyclerView.Lo
     private SimpleImageBanner sibTopAd;                             //广告栏
     private List<JobBangClassADListInfo> adList;
     private ImageView home_search;
+    private ImageView club_add;
     private boolean isCreated = false;
     private ClubHomePresenter clubHomePresenter;
     private ClubPresenter mHomePresenter;
-    private RelativeLayout home_search_layout;
     private TextView rinking;
     private LinearLayout hot_active;
     private LinearLayout hot_part;
@@ -90,6 +87,12 @@ public class ClubFragment extends MyBaseFragment implements SuperRecyclerView.Lo
     private ImageView user_photo;
     private TextView user_name;
     private String avatar;
+    private ClubHomeInfo.UserInfo userInfo;
+    private boolean onClickSchoolSelect = false;
+    private String school_id = "";
+    private String is_edit;
+    private List<String> mPermissionList;
+    private LinearLayout apply_help;
 
 
     @Override
@@ -101,6 +104,7 @@ public class ClubFragment extends MyBaseFragment implements SuperRecyclerView.Lo
         AppConfig.CLUB = true;
         AppConfig.ME = false;
         if (isCreated) {
+            getClubPermission("");
             getServerData();
         }
     }
@@ -109,13 +113,12 @@ public class ClubFragment extends MyBaseFragment implements SuperRecyclerView.Lo
         if (!AppConfig.CLUB) return;
         if (isCreated) {
             clubTitleChange();
+            getServerData();
             System.out.println("暂未选择====" + AppConfig.SCHOOLNAME);
             System.out.println("暂未选择id====" + AppConfig.SCHOOLNAMEID);
             if (school_name != null && !AppConfig.SCHOOLNAME.equals("")) {
-                school_name.setText(AppConfig.SCHOOLNAME);
+
                 clubHomePresenter.setSelectSchool();
-            } else {
-                school_name.setText("暂未选择大学");
             }
         }
     }
@@ -130,6 +133,7 @@ public class ClubFragment extends MyBaseFragment implements SuperRecyclerView.Lo
         AppConfig.SCHOOLNAME = "";
         AppConfig.SCHOOLNAMEID = "";
         isCreated = true;
+        onClickSchoolSelect = false;
         AppConfig.ISSELECTCLICK = false; //切换学校用
         clubHomePresenter = new ClubHomePresenter(new ClubHomeModel(context), this);
         mHomePresenter = new ClubPresenter(context, this);
@@ -144,6 +148,7 @@ public class ClubFragment extends MyBaseFragment implements SuperRecyclerView.Lo
         ADDataProvider.initAdvertisement(sibTopAd, adList, itemADHeight, itemADWidth);
         adClickEvent();
         clubTitleChange();
+
 
     }
 
@@ -179,11 +184,14 @@ public class ClubFragment extends MyBaseFragment implements SuperRecyclerView.Lo
         swipeContainer = $(R.id.swipe_container);
         rvContainer = $(R.id.rv_container);
         home_search = $(R.id.home_search);
-        home_search_layout = $(R.id.home_search_layout);
+        club_add = $(R.id.club_add);
+
         fragment_home_adress = $(R.id.fragment_home_adress);
 
 //        home_search.setOnClickListener(this);
-        home_search_layout.setOnClickListener(this);
+        user_photo.setOnClickListener(this);
+        club_add.setOnClickListener(this);
+        home_search.setOnClickListener(this);
         fragment_home_adress.setOnClickListener(this);
 
         adList = new ArrayList<>();
@@ -213,14 +221,28 @@ public class ClubFragment extends MyBaseFragment implements SuperRecyclerView.Lo
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.home_search_layout:
+            case R.id.apply_help:
+                Goto.toMyHelpActivity(context);
+                break;
+            case R.id.drawable:
+                Goto.toPersonScenter(context);
+                break;
+            case R.id.club_add:
+                Goto.addClub(context);
+                break;
+            case R.id.home_search:
                 Goto.toClubSearchActivity(context);
                 break;
             case R.id.hot_active:
-                Goto.toHotActive(context);
+                Goto.toHotActive(context, "main", "");
                 break;
             case R.id.hot_part:
-                Goto.toClubPart(context);
+                if (mPermissionList == null) {
+                    Goto.toClubPart(context, false);
+                } else {
+                    Goto.toClubPart(context, mPermissionList.contains("pushJob"));
+                }
+
                 break;
             case R.id.hot_club:
                 Goto.toClubSchoolListActivity(context);
@@ -228,11 +250,11 @@ public class ClubFragment extends MyBaseFragment implements SuperRecyclerView.Lo
             case R.id.fragment_home_adress:
                 //获取学校名字
 
+                onClickSchoolSelect = true;
                 Goto.toEditMyResumeEducationExpChoiceSchool(context, "club");
                 break;
         }
     }
-
 
     @Override
     public void onRefresh() {
@@ -262,39 +284,40 @@ public class ClubFragment extends MyBaseFragment implements SuperRecyclerView.Lo
      * 获取数据
      */
     private void getServerData() {
-        clubHomePresenter.getClubHomeInfo();
+        clubHomePresenter.getClubHomeInfo(school_id);
     }
 
     /**
      * 申请加入社团
      */
-    public void applyClub(String club_id, String member_id) {
+    public void applyClub(String club_id, String member_id, GetRequestListener listener) {
         clubHomePresenter.applyClub(club_id, member_id, new GetRequestListener() {
             @Override
             public void setRequestSuccess(String msg) {
-                Toast.getInstance().showSuccessToast(context, "申请club" + club_id);
+//                Toast.getInstance().showSuccessToast(context, "申请成功，等待审核");
+                listener.setRequestSuccess("");
             }
 
             @Override
             public void setRequestFail() {
-
+                listener.setRequestFail();
             }
         });
     }
 
     /**
-     * 申请加入社团
+     * 没用到
      */
-    public void getClubPermission(String club_id, GetRequestListener getRequestListener) {
+    public void getClubPermission(String club_id) {
         clubHomePresenter.getClubPermission(club_id, new GetRequestListener() {
             @Override
             public void setRequestSuccess(String msg) {
-                getRequestListener.setRequestSuccess(msg);
+                mPermissionList = new Gson().fromJson(msg, new TypeToken<List<String>>() {
+                }.getType());
             }
 
             @Override
             public void setRequestFail() {
-                getRequestListener.setRequestFail();
             }
         });
     }
@@ -306,10 +329,12 @@ public class ClubFragment extends MyBaseFragment implements SuperRecyclerView.Lo
         hot_active = header.findViewById(R.id.hot_active);
         hot_part = header.findViewById(R.id.hot_part);
         hot_club = header.findViewById(R.id.hot_club);
+        apply_help = header.findViewById(R.id.apply_help);
 
         hot_active.setOnClickListener(this);
         hot_part.setOnClickListener(this);
         hot_club.setOnClickListener(this);
+        apply_help.setOnClickListener(this);
         mClubListAdapter.addHeaderView(header);
 
     }
@@ -362,6 +387,14 @@ public class ClubFragment extends MyBaseFragment implements SuperRecyclerView.Lo
 
     @Override
     public void showClubList(ClubHomeInfo clubSchoolList) {
+        userInfo = clubSchoolList.user_info;
+        is_edit = clubSchoolList.user_info.is_edit;
+        if (userInfo != null) {
+            if (!userInfo.school_name.equals("")) {
+                school_name.setText(userInfo.school_name);
+                AppConfig.SCHOOLNAMEID = userInfo.school_id;
+            }
+        }
         if (clubSchoolList.list.size() == 0) {
 //            look_more.setText("暂无俱乐部入驻，敬请期待");
 //            loke.setVisibility(View.INVISIBLE);
@@ -379,9 +412,10 @@ public class ClubFragment extends MyBaseFragment implements SuperRecyclerView.Lo
 
         list.clear();
         adList.clear();
-
+        mClubListAdapter.notifyDataSetChanged();
         list.addAll(clubSchoolList.list);
         adList.addAll(clubSchoolList.ad_list);
+        mClubListAdapter.notifyDataSetChanged();
 //        clubHorizontalAdapter.setData(clubSchoolList.late_list);
         ADDataProvider.initAdvertisement(sibTopAd, adList, itemADHeight, itemADWidth);
 
@@ -389,16 +423,15 @@ public class ClubFragment extends MyBaseFragment implements SuperRecyclerView.Lo
 
     @Override
     public void showError(String errorMessage) {
-
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (rvContainer != null) {
-            rvContainer.removeAllViews();
-            rvContainer = null;
-        }
+//        if (rvContainer != null) {
+//            rvContainer.removeAllViews();
+//            rvContainer = null;
+//        }
         header = null;
 //        foot = null;
         if (sibTopAd != null)
@@ -416,9 +449,18 @@ public class ClubFragment extends MyBaseFragment implements SuperRecyclerView.Lo
 
         header = null;
 //        foot = null;
-        if (sibTopAd != null)
-            sibTopAd.pauseScroll();
+//        if (sibTopAd != null)
+//            sibTopAd.pauseScroll();
     }
 
+    public void showSelectSchool() {
+        if (is_edit.equals("1")) return; //能否选择学校 0：允许修改 1：禁止修改
+        if (school_name != null && !AppConfig.SCHOOLNAME.equals("")) {
+            school_name.setText(AppConfig.SCHOOLNAME);
+            school_id = AppConfig.SCHOOLNAMEID;
+            getServerData();
+
+        }
+    }
 
 }

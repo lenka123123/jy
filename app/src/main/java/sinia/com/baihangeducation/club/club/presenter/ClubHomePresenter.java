@@ -11,9 +11,6 @@ public class ClubHomePresenter implements ClubHomeContract.Presenter {
     private ClubHomeModel clubHomeModel;
     private ClubHomeContract.View clubFragment;
 
-    public ClubHomePresenter() {
-
-    }
 
     public ClubHomePresenter(ClubHomeModel clubHomeModel, ClubHomeContract.View clubFragment) {
         this.clubHomeModel = clubHomeModel;
@@ -22,8 +19,8 @@ public class ClubHomePresenter implements ClubHomeContract.Presenter {
 
 
     @Override
-    public void getClubHomeInfo() {
-        clubHomeModel.getClubHomeInfo(new SetClubHomeListener() {
+    public void getClubHomeInfo(String school_id) {
+        clubHomeModel.getClubHomeInfo(school_id,"",new SetClubHomeListener() {
             @Override
             public void setClubHomeSuccess(ClubHomeInfo clubSchoolList) {
                 clubFragment.showClubList(clubSchoolList);
@@ -67,8 +64,18 @@ public class ClubHomePresenter implements ClubHomeContract.Presenter {
         });
     }
 
-    public void setSelectSchool(){
-        clubHomeModel.setSelectSchool();
+    public void setSelectSchool() {
+        clubHomeModel.setSelectSchool(new GetRequestListener() {
+            @Override
+            public void setRequestSuccess(String msg) {
+           clubFragment.showSelectSchool();
+            }
+
+            @Override
+            public void setRequestFail() {
+
+            }
+        });
     }
 
 

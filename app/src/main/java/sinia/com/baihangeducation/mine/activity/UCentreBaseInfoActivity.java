@@ -26,6 +26,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
@@ -33,6 +34,11 @@ import com.example.framwork.utils.FileUtil;
 import com.example.framwork.utils.SpCommonUtils;
 import com.imnjh.imagepicker.SImagePicker;
 import com.imnjh.imagepicker.activity.PhotoPickerActivity;
+import com.lzy.imagepicker.ImagePicker;
+import com.lzy.imagepicker.bean.ImageItem;
+import com.lzy.imagepicker.ui.ImageGridActivity;
+import com.lzy.imagepicker.view.CropImageView;
+import com.mcxtzhang.swipemenulib.customview.listdialog.MyAdapter;
 import com.mcxtzhang.swipemenulib.utils.BitmapSave;
 import com.yanzhenjie.nohttp.Logger;
 
@@ -55,6 +61,7 @@ import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.mine.presenter.UCentreBaseInfoPresenter;
 import sinia.com.baihangeducation.mine.view.IUCentreBaseInfoView;
 import sinia.com.baihangeducation.supplement.base.Goto;
+import sinia.com.baihangeducation.supplement.tool.PicassoImageLoader;
 
 /**
  * 个人中心编辑资料页面
@@ -111,14 +118,24 @@ public class UCentreBaseInfoActivity extends BaseActivity implements OnItemClick
         presenter = new UCentreBaseInfoPresenter(context, this);
 
         initBaseInfo();
+
+
+        ImagePicker imagePicker = ImagePicker.getInstance();
+        imagePicker.setImageLoader(new PicassoImageLoader());   //设置图片加载器
+        imagePicker.setMultiMode(false); //设置多状态
+        imagePicker.setShowCamera(true);  //显示拍照按钮
+        imagePicker.setCrop(true);        //允许裁剪（单选才有效）
+        imagePicker.setSaveRectangle(false); //是否按矩形区域保存
+//        imagePicker.setSelectLimit(1);    //选中数量限制
+        imagePicker.setStyle(CropImageView.Style.RECTANGLE);  //裁剪框的形状
+        imagePicker.setFocusWidth(800);   //裁剪框的宽度。单位像素（圆形自动取宽高最小值）
+        imagePicker.setFocusHeight(800);  //裁剪框的高度。单位像素（圆形自动取宽高最小值）
+
     }
 
 
     public void setPhoto(String avatar) {
         Glide.with(context).load(avatar).asBitmap().error(R.drawable.new_eorrlogo).centerCrop().into(new BitmapImageViewTarget(mUCentreImage) {
-
-
-
             @Override
             protected void setResource(Bitmap resource) {
                 RoundedBitmapDrawable circularBitmapDrawable =
@@ -135,8 +152,9 @@ public class UCentreBaseInfoActivity extends BaseActivity implements OnItemClick
 
         if (!AppConfig.LOGINPHOTOTPATH.equals("")) {
             avatar = AppConfig.LOGINPHOTOTPATH;
+            setPhoto(avatar);
         }
-        setPhoto(avatar);
+
 
         if (!nickname.isEmpty() && !nickname.equals("") && nickname != "")
             mUCentreNickName.setText(nickname);
@@ -207,8 +225,6 @@ public class UCentreBaseInfoActivity extends BaseActivity implements OnItemClick
             case R.id.ucentre_confirm:
                 showLoading();
                 presenter.updataUCentreBaseInfo();
-
-
                 break;
         }
     }
@@ -240,21 +256,48 @@ public class UCentreBaseInfoActivity extends BaseActivity implements OnItemClick
     }
 
     private boolean istakePhoto = false;
+    private final int IMAGE_PICKER = 9090;
 
     private void takePhoto(int type) {
+        Intent intent = new Intent(this, ImageGridActivity.class);
+        startActivityForResult(intent, IMAGE_PICKER);
 
-        SImagePicker
-                .from(UCentreBaseInfoActivity.this)
-                .pickMode(SImagePicker.MODE_IMAGE)
-                .showCamera(true).rowCount(3)
-                .cropFilePath(
-                        AppConfig.IMAGE_PATH + "/user_logo_my.png")
-                .forResult(type);
+
+//        SImagePicker
+//                .from(UCentreBaseInfoActivity.this)
+//                .pickMode(SImagePicker.MODE_IMAGE)
+//                .showCamera(true).rowCount(3)
+//                .cropFilePath(
+//                        AppConfig.IMAGE_PATH + "/user_logo_my.png")
+//                .forResult(type);
 
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
+            if (data != null && requestCode == IMAGE_PICKER) {
+                ArrayList<ImageItem> images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
+                if (images == null || images.size() < 1) return;
+                img = images.get(0).path;
+                setPhoto(img);
+                File appDir = new File(img);
+                try {
+                    MediaStore.Images.Media.insertImage(UCentreBaseInfoActivity.this.getContentResolver(), appDir.getAbsolutePath().toString(), appDir.getName(), "");
+                    sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + "/sdcard/namecard/")));
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                Toast.makeText(this, "没有数据", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+
+    protected void onActivityResulsdfst(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK && requestCode == COMPANY_LOGO) {
             ArrayList<String> pathList = data.getStringArrayListExtra(PhotoPickerActivity.EXTRA_RESULT_SELECTION);
@@ -483,16 +526,16 @@ public class UCentreBaseInfoActivity extends BaseActivity implements OnItemClick
 
     @Override
     public void upDataUCentreBaseInfoSuccess() {
-        AppConfig.LOGINPHOTOTPATH = needSavePath;
-        SpCommonUtils.put(activity, AppConfig.FINAL_SAVE_PHOTO_PATH, needSavePath);
-
-        JMessageClient.updateUserAvatar(new File(needSavePath), new BasicCallback() {
-            @Override
-            public void gotResult(int i, String s) {
-                 System.out.println(i+"更新用户图片"+s);
-            }
-        });
-
+        if (needSavePath != null && needSavePath.length() > 1) {
+            AppConfig.LOGINPHOTOTPATH = needSavePath;
+            SpCommonUtils.put(activity, AppConfig.FINAL_SAVE_PHOTO_PATH, needSavePath);
+            JMessageClient.updateUserAvatar(new File(needSavePath), new BasicCallback() {
+                @Override
+                public void gotResult(int i, String s) {
+                    System.out.println(i + "更新用户图片" + s);
+                }
+            });
+        }
         SpCommonUtils.put(context, AppConfig.FINAL_NUM_FULL_HULP_NICKNAME, mUCentreNickName.getText().toString());
 
         hideLoading();

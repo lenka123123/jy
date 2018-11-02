@@ -113,6 +113,7 @@
     <orderEntry type="library" name="Gradle: com.githang:status-bar-compat-0.3" level="project" />
     <orderEntry type="library" name="Gradle: com.android.databinding:adapters-1.2.1" level="project" />
     <orderEntry type="library" name="Gradle: com.yanzhenjie.nohttp:nohttp-1.1.4" level="project" />
+    <orderEntry type="library" name="Gradle: com.lzy.widget:imagepicker-0.6.1" level="project" />
     <orderEntry type="library" name="Gradle: com.parse.bolts:bolts-android:1.1.4@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.youth.banner:banner-1.4.10" level="project" />
     <orderEntry type="library" name="Gradle: com.xiaosu:VerticalRollingTextView-2.0.8" level="project" />
@@ -130,9 +131,9 @@
     <orderEntry type="library" name="Gradle: com.android.support:support-fragment-27.1.1" level="project" />
     <orderEntry type="library" name="Gradle: com.facebook.fresco:fresco-0.10.0" level="project" />
     <orderEntry type="library" name="Gradle: com.facebook.fresco:imagepipeline-base-0.10.0" level="project" />
-    <orderEntry type="library" name="Gradle: com.baidu.mobstat:mtj-sdk-circle:3.9.2.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.core:runtime-1.1.0" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:design-27.1.1" level="project" />
+    <orderEntry type="library" name="Gradle: com.michaelpardo:activeandroid:3.1.0-SNAPSHOT@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:appcompat-v7-27.1.1" level="project" />
     <orderEntry type="library" name="Gradle: com.facebook.rebound:rebound:0.3.8@jar" level="project" />
     <orderEntry type="library" name="Gradle: org.greenrobot:eventbus:3.0.0@jar" level="project" />
@@ -171,6 +172,7 @@
     <orderEntry type="library" name="Gradle: com.github.pinguo-zhouwei:CustomPopwindow-2.1.1" level="project" />
     <orderEntry type="library" name="Gradle: com.alibaba:fastjson:1.1.56.android@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:exifinterface-27.1.0" level="project" />
+    <orderEntry type="library" name="Gradle: com.squareup.picasso:picasso:2.5.2@jar" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.lifecycle:livedata-core-1.1.0" level="project" />
     <orderEntry type="library" name="Gradle: com.kaopiz:kprogresshud-1.0.5" level="project" />
     <orderEntry type="library" name="Gradle: com.timehop.stickyheadersrecyclerview:library-0.4.3" level="project" />
@@ -179,6 +181,7 @@
     <orderEntry type="library" name="Gradle: com.umeng.sdk:analytics:7.5.3@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.umeng.sdk:common:1.5.3@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-v13-27.1.1" level="project" />
+    <orderEntry type="library" name="Gradle: com.baidu.mobstat:mtj-sdk-circle:3.9.2.5@jar" level="project" />
     <orderEntry type="module" module-name="framwork" />
     <orderEntry type="module" module-name="imageselector" />
   </component>

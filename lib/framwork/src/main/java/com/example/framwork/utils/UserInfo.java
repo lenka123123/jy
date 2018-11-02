@@ -34,7 +34,7 @@ public class UserInfo implements Serializable {
     public int is_bind;             //是否已绑定    ( 1是 2否 )
     public int is_seed;             //是否种子用户    ( 1是2否 )
     public String email;            //邮箱地址
-    public String no_read_num ;            //未读消息数
+    public String no_read_num;            //未读消息数
 
 
     public int company_apply_status;            //企业入驻状态  1已通过 2未通过
@@ -55,11 +55,13 @@ public class UserInfo implements Serializable {
     public String uid;
 
     public MyNum my_num;
-    public class  MyNum {
-        public String full_job_num ;
-        public String part_job_num  ;
-        public String train_num  ;
-        public String help_num  ;
+
+    public class MyNum {
+        public String full_job_num;
+        public String part_job_num;
+        public String train_num;
+        public String help_num;
+        public String sign_num;
     }
 
 

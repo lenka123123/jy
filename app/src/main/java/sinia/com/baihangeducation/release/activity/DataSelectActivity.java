@@ -1,6 +1,8 @@
 package sinia.com.baihangeducation.release.activity;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.widget.OrientationHelper;
 import android.util.Log;
 import android.view.MenuItem;
@@ -116,6 +118,7 @@ public class DataSelectActivity extends BaseActivity {
 //                Toast.makeText(DataSelectAct.this, "Selected " + calendarView.getSelectedDays().size(), Toast.LENGTH_SHORT).show();
 //            }
 //        });
+
         calendarView.setOnMonthChangeListener(new OnMonthChangeListener() {
             @Override
             public void onMonthChanged(Month month) {
@@ -123,111 +126,8 @@ public class DataSelectActivity extends BaseActivity {
                 for (int i = 0; i < day.size(); i++) {
                     Log.i("onMonthChanged===" + i, "onMonthChanged: " + day.get(i).toString());
                 }
-                Toast.makeText(DataSelectActivity.this, "Selected " + calendarView.getSelectedDays().size(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(DataSelectActivity.this, "Selected " + calendarView.getSelectedDays().size(), Toast.LENGTH_SHORT).show();
             }
         });
     }
-
-    private void fridayMenuClick() {
-        if (fridayCriteriaEnabled) {
-            menuFridays.setTitle("select_all_fridays");
-            unselectAllFridays();
-        } else {
-            menuFridays.setTitle("unselect_all_fridays");
-            selectAllFridays();
-        }
-        fridayCriteriaEnabled = !fridayCriteriaEnabled;
-    }
-
-    private void threeMonthsMenuClick() {
-        if (threeMonthsCriteriaEnabled) {
-            menuThreeMonth.setTitle("干啥");
-            unselectThreeMonths();
-        } else {
-            menuThreeMonth.setTitle("unselect_three_months");
-            selectThreeMonths();
-        }
-        threeMonthsCriteriaEnabled = !threeMonthsCriteriaEnabled;
-    }
-
-    private void selectAllFridays() {
-        if (calendarView.getSelectionManager() instanceof MultipleSelectionManager) {
-            ((MultipleSelectionManager) calendarView.getSelectionManager()).addCriteria(fridayCriteria);
-        }
-        calendarView.update();
-    }
-
-    private void unselectAllFridays() {
-        if (calendarView.getSelectionManager() instanceof MultipleSelectionManager) {
-            ((MultipleSelectionManager) calendarView.getSelectionManager()).removeCriteria(fridayCriteria);
-        }
-        calendarView.update();
-    }
-
-    private void selectThreeMonths() {
-        if (calendarView.getSelectionManager() instanceof MultipleSelectionManager) {
-            ((MultipleSelectionManager) calendarView.getSelectionManager()).addCriteriaList(threeMonthsCriteriaList);
-        }
-        calendarView.update();
-    }
-
-    private void unselectThreeMonths() {
-        if (calendarView.getSelectionManager() instanceof MultipleSelectionManager) {
-            ((MultipleSelectionManager) calendarView.getSelectionManager()).removeCriteriaList(threeMonthsCriteriaList);
-        }
-        calendarView.update();
-    }
-
-    private void clearSelectionsMenuClick() {
-        calendarView.clearSelections();
-
-        fridayCriteriaEnabled = false;
-        threeMonthsCriteriaEnabled = false;
-        menuFridays.setTitle("select_all_fridays");
-        menuThreeMonth.setTitle("select_three_months");
-    }
-
-
-    private void logSelectedDaysMenuClick() {
-
-        Toast.makeText(this, "Selected " + calendarView.getSelectedDays().size(), Toast.LENGTH_SHORT).show();
-    }
-
-//    @Override
-//    public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-//        clearSelectionsMenuClick();
-//        switch (checkedId) {
-//            case R.id.rb_horizontal:
-//                calendarView.setCalendarOrientation(OrientationHelper.HORIZONTAL);
-//                break;
-//
-//            case R.id.rb_vertical:
-//
-//                break;
-//
-//            case R.id.rb_single:
-//                calendarView.setSelectionType(SelectionType.SINGLE);
-//                menuFridays.setVisible(false);
-//                menuThreeMonth.setVisible(false);
-//                break;
-//
-//            case R.id.rb_multiple:
-//                calendarView.setSelectionType(SelectionType.MULTIPLE);
-//                menuFridays.setVisible(true);
-//                menuThreeMonth.setVisible(true);
-//                break;
-//
-//            case R.id.rb_range:
-//                calendarView.setSelectionType(SelectionType.RANGE);
-//                menuFridays.setVisible(false);
-//                menuThreeMonth.setVisible(false);
-//                break;
-//
-//            case R.id.rb_none:
-//                calendarView.setSelectionType(SelectionType.NONE);
-//                menuFridays.setVisible(false);
-//                menuThreeMonth.setVisible(false);
-//                break;
-//        }
-//    }
 }

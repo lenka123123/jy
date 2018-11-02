@@ -5,6 +5,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.daimajia.swipe.SwipeLayout;
+
 import sinia.com.baihangeducation.R;
 
 
@@ -21,6 +23,10 @@ public class GetPersonListHolder extends RecyclerView.ViewHolder {
     public TextView name;
     public ImageView logo;
 
+    public TextView delete;
+    public TextView ok;
+    public SwipeLayout srl_item;
+
     //实现的方法
     public GetPersonListHolder(View itemView) {
         super(itemView);
@@ -29,6 +35,10 @@ public class GetPersonListHolder extends RecyclerView.ViewHolder {
 
         name = (TextView) itemView.findViewById(R.id.name);
         logo = (ImageView) itemView.findViewById(R.id.logo);
+
+        srl_item = (SwipeLayout) itemView.findViewById(R.id.srl_item);
+        delete = (TextView) itemView.findViewById(R.id.delete);
+        ok = (TextView) itemView.findViewById(R.id.ok);
 
 
     }

@@ -21,11 +21,16 @@ import android.view.WindowManager;
 import android.widget.PopupWindow;
 
 import com.example.framwork.utils.SpCommonUtils;
+import com.google.gson.Gson;
+import com.google.gson.jpush.JsonObject;
+import com.google.gson.jpush.JsonParser;
 
 import java.util.List;
 
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.android.api.callback.GetAvatarBitmapCallback;
+import cn.jpush.im.android.api.callback.GetUserInfoCallback;
+import cn.jpush.im.android.api.content.TextContent;
 import cn.jpush.im.android.api.enums.ConversationType;
 import cn.jpush.im.android.api.event.ConversationRefreshEvent;
 import cn.jpush.im.android.api.event.MessageEvent;
@@ -44,10 +49,11 @@ import sinia.com.baihangeducation.R;
 import sinia.com.baihangeducation.chat.view.ConversationListView;
 import sinia.com.baihangeducation.chat.view.MenuItemController;
 import sinia.com.baihangeducation.chat.view.MenuItemView;
+import sinia.com.baihangeducation.club.ClubPermissModel;
+import sinia.com.baihangeducation.club.club.interfaces.GetRequestListener;
 import sinia.com.baihangeducation.club.im.entity.Event;
 
-public class ChatFragment extends ChatBaseFragment {
-
+public class ChatFragment extends ChatBaseFragment implements GetRequestListener {
 
     private Activity mContext;
     private View mRootView;
@@ -64,7 +70,20 @@ public class ChatFragment extends ChatBaseFragment {
     private NetworkReceiver mReceiver;
     private MenuItemController mMenuController;
     protected boolean isCreate = false;
+    private String phone;
+    private ClubPermissModel clubPermissModel;
 
+
+    @Override
+    public void setRequestSuccess(String msg) {
+//        unread -  消息数量
+////        content -  最新消息内容
+        Gson gson = new Gson();
+        ChatData chatData = gson.fromJson(msg, ChatData.class);
+        AppConfig.CHATMESSAGE = chatData.content;
+        AppConfig.CHATMESSAGENUM = chatData.unread + "";
+        sortConvList();
+    }
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
@@ -75,23 +94,28 @@ public class ChatFragment extends ChatBaseFragment {
         AppConfig.CLUB = false;
         AppConfig.ME = false;
         if (isCreate) {
+            if (clubPermissModel != null)
+                clubPermissModel.getSystemHome(this);
+//            Conversation conv = JMessageClient.getSingleConversation(targetId, userInfo.getAppKey());
+//            mBackgroundHandler.sendMessage(mBackgroundHandler.obtainMessage(REFRESH_CONVERSATION_LIST, conv));
             sortConvList();
         }
     }
 
     public void setReSatart() {
-
-        String phone = (String) SpCommonUtils.get(getContext(), AppConfig.USERPHOTO, "");
-
-        JMessageClient.login(phone, "123456", new BasicCallback() {
-            @Override
-            public void gotResult(int i, String s) {
-                List<Conversation> list = JMessageClient.getConversationList();
-                if (mConvListController != null)
-                    mConvListController.updata();
-            }
-        });
-
+//        if (!AppConfig.CHAT) return;
+        if (isCreate) {
+            if (clubPermissModel != null)
+                clubPermissModel.getSystemHome(this);
+            JMessageClient.login(phone, "123456", new BasicCallback() {
+                @Override
+                public void gotResult(int i, String s) {
+                    List<Conversation> list = JMessageClient.getConversationList();
+                    if (mConvListController != null)
+                        mConvListController.updata();
+                }
+            });
+        }
 
         if (!AppConfig.CHAT) return;
 
@@ -104,11 +128,22 @@ public class ChatFragment extends ChatBaseFragment {
         super.onCreate(savedInstanceState);
         isCreate = true;
         mContext = this.getActivity();
-
+        clubPermissModel = new ClubPermissModel(getActivity());
+        clubPermissModel.getSystemHome(this);
+        phone = (String) SpCommonUtils.get(getContext(), AppConfig.USERPHOTO, "");
 
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
         mRootView = layoutInflater.inflate(R.layout.chat_fragment,
                 (ViewGroup) getActivity().findViewById(R.id.drawer_layout), false);
+
+        mRootView.findViewById(R.id.create_group_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("点击率");
+                systemMsg();
+            }
+        });
+
         mConvListView = new ConversationListView(mRootView, this.getActivity(), this);
         mConvListView.initModule();
         mThread = new HandlerThread("MainActivity");
@@ -117,7 +152,6 @@ public class ChatFragment extends ChatBaseFragment {
         mMenuView = getActivity().getLayoutInflater().inflate(R.layout.drop_down_menu, null);
         mConvListController = new ConversationListController(mConvListView, this, mWidth);
 
-        System.out.println("创建controller");
         mConvListView.setListener(mConvListController);
         mConvListView.setItemListeners(mConvListController);
         mConvListView.setLongClickListener(mConvListController);
@@ -169,6 +203,12 @@ public class ChatFragment extends ChatBaseFragment {
         super.onDestroy();
     }
 
+
+    @Override
+    public void setRequestFail() {
+
+    }
+
     //监听网络状态的广播
     private class NetworkReceiver extends BroadcastReceiver {
         @Override
@@ -198,8 +238,30 @@ public class ChatFragment extends ChatBaseFragment {
         if (mMenuPopWindow.isShowing()) {
             mMenuPopWindow.dismiss();
         } else {
-            mMenuPopWindow.showAsDropDown(mRootView.findViewById(R.id.create_group_btn), -10, -5);
+//            mMenuPopWindow.showAsDropDown(mRootView.findViewById(R.id.create_group_btn), -10, -5);
         }
+    }
+
+    private Conversation mConv;
+
+    public void systemMsg() {
+
+//        String username 目标的用户用户名。
+//        String appkey 用户所属应用的appkey
+
+//        mConv = JMessageClient.getSingleConversation("系统用户www", "");
+//        TextContent content = new TextContent("======");
+//        mConv.createSendMessage(content);
+//        JMessageClient.getUserInfo("系统用户www", new GetUserInfoCallback() {
+//            @Override
+//            public void gotResult(int i, String s, cn.jpush.im.android.api.model.UserInfo userInfo) {
+//                System.out.println("JMessageClient dong1" + i + "===" + s + "===" + userInfo.getAppKey());
+//                Conversation conv = JMessageClient.getSingleConversation("系统用户www", userInfo.getAppKey());
+//
+//                mBackgroundHandler.sendMessage(mBackgroundHandler.obtainMessage(REFRESH_CONVERSATION_LIST,
+//                        conv));
+//            }
+//        });
     }
 
     /**
@@ -302,7 +364,8 @@ public class ChatFragment extends ChatBaseFragment {
             switch (msg.what) {
                 case REFRESH_CONVERSATION_LIST:
                     Conversation conv = (Conversation) msg.obj;
-                    mConvListController.getAdapter().setToTop(conv);
+                    if (mConvListController != null && mConvListController.getAdapter() != null)
+                        mConvListController.getAdapter().setToTop(conv);
                     break;
                 case DISMISS_REFRESH_HEADER:
                     mContext.runOnUiThread(new Runnable() {
@@ -314,7 +377,8 @@ public class ChatFragment extends ChatBaseFragment {
                     break;
                 case ROAM_COMPLETED:
                     conv = (Conversation) msg.obj;
-                    mConvListController.getAdapter().addAndSort(conv);
+                    if (mConvListController != null && mConvListController.getAdapter() != null)
+                        mConvListController.getAdapter().addAndSort(conv);
                     break;
             }
         }
@@ -338,13 +402,15 @@ public class ChatFragment extends ChatBaseFragment {
             case createConversation:
                 Conversation conv = event.getConversation();
                 if (conv != null) {
-                    mConvListController.getAdapter().addNewConversation(conv);
+                    if (mConvListController != null && mConvListController.getAdapter() != null)
+                        mConvListController.getAdapter().addNewConversation(conv);
                 }
                 break;
             case deleteConversation:
                 conv = event.getConversation();
                 if (null != conv) {
-                    mConvListController.getAdapter().deleteConversation(conv);
+                    if (mConvListController != null && mConvListController.getAdapter() != null)
+                        mConvListController.getAdapter().deleteConversation(conv);
                 }
                 break;
             //收到保存为草稿事件
@@ -353,11 +419,14 @@ public class ChatFragment extends ChatBaseFragment {
                 String draft = event.getDraft();
                 //如果草稿内容不为空，保存，并且置顶该会话
                 if (!TextUtils.isEmpty(draft)) {
-                    mConvListController.getAdapter().putDraftToMap(conv, draft);
-                    mConvListController.getAdapter().setToTop(conv);
+                    if (mConvListController != null && mConvListController.getAdapter() != null)
+                        mConvListController.getAdapter().putDraftToMap(conv, draft);
+                    if (mConvListController != null && mConvListController.getAdapter() != null)
+                        mConvListController.getAdapter().setToTop(conv);
                     //否则删除
                 } else {
-                    mConvListController.getAdapter().delDraftFromMap(conv);
+                    if (mConvListController != null && mConvListController.getAdapter() != null)
+                        mConvListController.getAdapter().delDraftFromMap(conv);
                 }
                 break;
             case addFriend:
@@ -379,19 +448,22 @@ public class ChatFragment extends ChatBaseFragment {
     public void onResume() {
         super.onResume();
         dismissPopWindow();
-        mMenuItemView.showAddFriend();
-        mConvListController.getAdapter().notifyDataSetChanged();
+        if (mMenuItemView != null)
+            mMenuItemView.showAddFriend();
+        if (mConvListController != null && mConvListController.getAdapter() != null)
+            mConvListController.getAdapter().notifyDataSetChanged();
     }
 
     public void dismissPopWindow() {
-        if (mMenuPopWindow.isShowing()) {
+
+        if (mMenuPopWindow != null && mMenuPopWindow.isShowing()) {
             mMenuPopWindow.dismiss();
         }
     }
 
 
     public void sortConvList() {
-        if (mConvListController != null) {
+        if (mConvListController != null && mConvListController.getAdapter() != null) {
             mConvListController.getAdapter().sortConvList();
         }
     }

@@ -29,7 +29,10 @@ import com.example.framwork.widget.customtoolbar.CommonTitle;
 import com.example.framwork.widget.superrecyclerview.recycleview.SuperRecyclerView;
 import com.imnjh.imagepicker.SImagePicker;
 import com.imnjh.imagepicker.activity.PhotoPickerActivity;
+import com.mcxtzhang.swipemenulib.info.ClubPartTimeListInfo;
 import com.mcxtzhang.swipemenulib.info.HomePartTimeSearchListInfo;
+import com.mcxtzhang.swipemenulib.info.bean.ClubPartTimeSearchListInfo;
+import com.mcxtzhang.swipemenulib.info.bean.ClubTraingSeachIndustryInfo;
 import com.mcxtzhang.swipemenulib.info.bean.HomePartTimeDistInfo;
 import com.mcxtzhang.swipemenulib.info.bean.HomePartTimeInfo;
 import com.mcxtzhang.swipemenulib.info.bean.HomePartTimeSalaryInfo;
@@ -47,15 +50,17 @@ import sinia.com.baihangeducation.home.adapter.HomePartTimeAdapter;
 import sinia.com.baihangeducation.home.present.HomePartTimePresenter;
 import sinia.com.baihangeducation.home.view.HomePartTimeView;
 import sinia.com.baihangeducation.supplement.base.BaseActivity;
+import sinia.com.baihangeducation.supplement.base.Goto;
 import sinia.com.baihangeducation.supplement.tool.PartTimeDialog;
 import sinia.com.baihangeducation.supplement.tool.PickerUtils;
 
 public class ClubPaintActivity extends BaseActivity implements HomePartTimeView, SuperRecyclerView.LoadingListener, SwipeRefreshLayout.OnRefreshListener {
 
-    private HomePartTimePresenter mHomePartTimePresenter;
+    private ClubPartTimePresenter mHomePartTimePresenter;
 
 //    private String lat = "32.089858";
 //    private String lng = "118.755877";
+
 
     private int countpage = 1;
     private int itemnum = 20;
@@ -69,13 +74,13 @@ public class ClubPaintActivity extends BaseActivity implements HomePartTimeView,
     private ProgressActivity progressActivity;
     private SwipeRefreshLayout swipeContainer;
     private ProgressActivityUtils progressActivityUtils;
-    private HomePartTimeAdapter mHomePartTimeAdapter;
-    private List<HomePartTimeInfo> mList;
+    private ClubPartTimeAdapter mHomePartTimeAdapter;
+    private List<ClubPartTimeListInfo.ClubPartInfo> mList;
     private boolean isLoadMore = false;
 
-    public List<HomePartTimeSalaryInfo> mSalaryList;                    //薪资
-    public List<HomeTraingSeachIndustryInfo> mIndustryList;             //行业
-    public List<HomeTraingSeachOrderInfo> mOrderList;                   //排序
+    //    public List<HomePartTimeSalaryInfo> mSalaryList;                    //薪资
+    public List<ClubTraingSeachIndustryInfo> mIndustryList;             //行业
+    //    public List<HomeTraingSeachOrderInfo> mOrderList;                   //排序
     public List<HomePartTimeDistInfo> mDistList;                        //地区
 
     private final static String type = "2";
@@ -89,13 +94,13 @@ public class ClubPaintActivity extends BaseActivity implements HomePartTimeView,
     private PartTimeDialog partTimeDialog;
 
     private boolean isCreated = false;
+    private boolean pushJob;
 
 
     @Override
     public int initLayoutResID() {
         return R.layout.fragment_home_parttime;
     }
-
 
     @Override
     protected void initData() {
@@ -105,7 +110,8 @@ public class ClubPaintActivity extends BaseActivity implements HomePartTimeView,
     @Override
     protected void initView() {
         isCreated = true;
-
+        Intent intent = getIntent();
+        pushJob = intent.getBooleanExtra("pushJob", false);
 //        mIndustryLayout = $(R.id.fragment_home_parttime_industrylayout);
 //        mSalaryLayout = $(R.id.fragment_home_parttime_salarylayout);
 //        mDistLayout = $(R.id.fragment_home_parttime_distlayout);
@@ -121,25 +127,35 @@ public class ClubPaintActivity extends BaseActivity implements HomePartTimeView,
         swipeContainer = $(R.id.swipe_container);
 
         CommonTitle commonTitle = $(R.id.title_bar);
-        commonTitle.getLeftRes().setVisibility(View.GONE);
+        commonTitle.getLeftRes().setVisibility(View.VISIBLE);
         commonTitle.setBackgroundColor(Color.WHITE);
-        commonTitle.setCenterText("兼职");
+        commonTitle.setCenterText("热门兼职");
+        if (pushJob) {
+            commonTitle.setRightText("创建");
+            commonTitle.getRightTxt().setVisibility(View.VISIBLE);
+        } else {
+            commonTitle.getRightTxt().setVisibility(View.INVISIBLE);
+        }
 
+        commonTitle.getRightTxt().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Goto.toReleaseJobInfoActivity(context);
+            }
+        });
 
         mList = new ArrayList<>();
-        mSalaryList = new ArrayList<>();
         mIndustryList = new ArrayList<>();
-        mOrderList = new ArrayList<>();
         mDistList = new ArrayList<>();
 
 //        mCommonTitle.setCenterText(R.string.home_tab_parttime);
 //        mCommonTitle.setBackgroundColor(Color.WHITE);
 
-        mHomePartTimePresenter = new HomePartTimePresenter(context, this);
+        mHomePartTimePresenter = new ClubPartTimePresenter(context, this);
 //        mHomePartTimePresenter.getPartTimeSeachList();
 //        getServerData(); //数据
 
-        mHomePartTimeAdapter = new HomePartTimeAdapter(context, mList);
+        mHomePartTimeAdapter = new ClubPartTimeAdapter(context, mList);
         initSwipeLayout(swipeContainer, this);
         showSwipeRefreshLayout(swipeContainer);
         progressActivityUtils = new ProgressActivityUtils(context, progressActivity);
@@ -195,7 +211,7 @@ public class ClubPaintActivity extends BaseActivity implements HomePartTimeView,
 
     @Override
     public void showLoading() {
-        showProgress();
+        hideLoading();
     }
 
 
@@ -259,26 +275,31 @@ public class ClubPaintActivity extends BaseActivity implements HomePartTimeView,
 
     @Override
     public void getPartTimeSeachSuccess(HomePartTimeSearchListInfo mHomePartTimeSearchListInfo) {
+        hideLoading();
+    }
+
+    public void getPartTimeSeachSuccess(ClubPartTimeSearchListInfo mHomePartTimeSearchListInfo) {
+        hideLoading();
         mIndustryList.clear();
         if (mHomePartTimeSearchListInfo.industry_list != null && mHomePartTimeSearchListInfo.industry_list.size() > 0) {
             mIndustryList.addAll(mHomePartTimeSearchListInfo.industry_list);
             System.out.println(mHomePartTimeSearchListInfo.industry_list.size() + "=industry_list==" + mHomePartTimeSearchListInfo.industry_list.get(0).industry_name);
 
         }
-        mSalaryList.clear();
-        if (mHomePartTimeSearchListInfo.money_list != null && mHomePartTimeSearchListInfo.money_list.size() > 0) {
-            mSalaryList.addAll(mHomePartTimeSearchListInfo.money_list);
-        }
+//        mSalaryList.clear();
+//        if (mHomePartTimeSearchListInfo.money_list != null && mHomePartTimeSearchListInfo.money_list.size() > 0) {
+//            mSalaryList.addAll(mHomePartTimeSearchListInfo.money_list);
+//        }
         mDistList.clear();
         if (mHomePartTimeSearchListInfo.dist_list != null && mHomePartTimeSearchListInfo.dist_list.size() > 0) {
             mDistList.addAll(mHomePartTimeSearchListInfo.dist_list);
             System.out.println(mDistList.size() + "调用意向" + AppConfig.CTYLEID + "" + AppConfig.CTYLENAME);
 
         }
-        mOrderList.clear();
-        if (mHomePartTimeSearchListInfo.order_list != null && mHomePartTimeSearchListInfo.order_list.size() > 0) {
-            mOrderList.addAll(mHomePartTimeSearchListInfo.order_list);
-        }
+//        mOrderList.clear();
+//        if (mHomePartTimeSearchListInfo.order_list != null && mHomePartTimeSearchListInfo.order_list.size() > 0) {
+//            mOrderList.addAll(mHomePartTimeSearchListInfo.order_list);
+//        }
 
         mIndustry.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -389,10 +410,14 @@ public class ClubPaintActivity extends BaseActivity implements HomePartTimeView,
 
     @Override
     public void getPartTimeDataSuccess(List<HomePartTimeInfo> mHomePartTimeInfo, int maxpage) {
+        hideLoading();
+    }
+
+    public void getPartTimeData(List<ClubPartTimeListInfo.ClubPartInfo> mHomePartTimeInfo, int maxpage) {
+        hideLoading();
         if (mHomePartTimeInfo.size() == 0) {
             progressActivityUtils.showEmptry("暂无数据");
         } else {
-
             progressActivityUtils.showContent();
             countpage++;
             if (maxpage == 1 || countpage > maxpage) {
@@ -412,12 +437,14 @@ public class ClubPaintActivity extends BaseActivity implements HomePartTimeView,
     public void onRefresh() {
         isLoadMore = false;
         countpage = 1;
+        hideLoading();
         mHomePartTimePresenter.getPartTimeData(indutryId, money_id, areaId, worktime_id, distance_id, sex_id, pubtime_id);
     }
 
     @Override
     public void onLoadMore() {
         isLoadMore = true;
+        hideLoading();
         mHomePartTimePresenter.getPartTimeData(indutryId, money_id, areaId, worktime_id, distance_id, sex_id, pubtime_id);
     }
 
@@ -426,7 +453,7 @@ public class ClubPaintActivity extends BaseActivity implements HomePartTimeView,
      * industryId,行业   money_id,日结 areaId,地址  worktime_id周末,distance_id一公里,sex_id,pubtime_id 三天内
      */
     private void getServerData() {
-
+        hideLoading();
         mList.clear();
         mHomePartTimeAdapter.notifyDataSetChanged();
         countpage = 1;

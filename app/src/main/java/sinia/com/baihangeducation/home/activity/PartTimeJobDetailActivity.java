@@ -53,8 +53,11 @@ import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMWeb;
 import com.zzhoujay.richtext.RichText;
 
+import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.callback.GetUserInfoCallback;
 import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.R;
+import sinia.com.baihangeducation.club.im.ChatActivity;
 import sinia.com.baihangeducation.home.present.JobInfoesPresenter;
 import sinia.com.baihangeducation.home.view.JobInfoView;
 import sinia.com.baihangeducation.newcampus.info.FunContantInfo;
@@ -68,6 +71,7 @@ import sinia.com.baihangeducation.home.present.AddOrDetelCollctionPresenter;
 import sinia.com.baihangeducation.home.present.JobInfoPresenter;
 import sinia.com.baihangeducation.home.view.AddCollctionView;
 import sinia.com.baihangeducation.home.view.JobView;
+import sinia.com.baihangeducation.supplement.base.Goto;
 import sinia.com.baihangeducation.supplement.tool.BaseUtil;
 
 import com.mcxtzhang.swipemenulib.utils.Constants;
@@ -122,6 +126,9 @@ public class PartTimeJobDetailActivity extends BaseActivity implements JobInfoVi
 
     private boolean isCollect = false;
     private ImageView online_contact;
+    private String club = "";
+    private String phone = "";
+    private LinearLayout potion_icon;
 
     @Override
     public int initLayoutResID() {
@@ -144,7 +151,7 @@ public class PartTimeJobDetailActivity extends BaseActivity implements JobInfoVi
     protected void initData() {
 
 
-        mCommonTitle.setCenterText(R.string.jobinfo);
+        mCommonTitle.setCenterText("兼职");
         mCommonTitle.setCenterTextColor(R.color.black);
         mCommonTitle.setBackground(getResources().getDrawable(R.color.white));
         mCommonTitle.getLeftRes().setImageDrawable(getResources().getDrawable(R.drawable.back_black));
@@ -187,6 +194,10 @@ public class PartTimeJobDetailActivity extends BaseActivity implements JobInfoVi
     protected void initView() {
         intent = getIntent();
         jobId = intent.getStringExtra("JOBID");
+        club = intent.getStringExtra("club");
+        phone = intent.getStringExtra("phone");
+//        if (intent.getStringExtra("club") != null && !intent.getStringExtra("club").equals("")) {
+//        }
 
         mTitle = $(R.id.fragment_home_parttimejobinfo_title);
         mAdressAndDare = $(R.id.fragment_home_parttimejobinfo_adressanddate);
@@ -209,6 +220,8 @@ public class PartTimeJobDetailActivity extends BaseActivity implements JobInfoVi
         mCollection = $(R.id.fragment_home_parttimejobinfo_collectionimg);
         mShareLayout = $(R.id.fragment_home_parttimejobinfo_sharelayout);
         mSendResume = $(R.id.fragment_home_parttimejobinfo_sendresume);
+        potion_icon = $(R.id.potion_icon);
+
 
 
         mLockPersonNumber = $(R.id.lock_person_number);
@@ -229,6 +242,18 @@ public class PartTimeJobDetailActivity extends BaseActivity implements JobInfoVi
         mCollectionLayout.setOnClickListener(this);
         mShareLayout.setOnClickListener(this);
         mSendResume.setOnClickListener(this);
+        online_contact.setOnClickListener(this);
+        potion_icon.setOnClickListener(this);
+
+        if (club.equals("")) {
+            online_contact.setVisibility(View.GONE);
+        } else {
+            online_contact.setVisibility(View.VISIBLE);
+        }
+
+        if (club.equals("club")) {
+            mSendResume.setText("分享");
+        }
     }
 
     MapView mapView = null;//地图视图
@@ -243,6 +268,9 @@ public class PartTimeJobDetailActivity extends BaseActivity implements JobInfoVi
             return;
         }
         switch (v.getId()) {
+            case R.id.potion_icon:
+                Goto.toSystemMeaagePotion(context, jobInfo.job_insurance_url);
+                break;
             case R.id.fragment_home_parttimejobinfo_collectionimglayout:
                 //收藏
 //                Log.i("收藏", jobInfo.is_collect + "点击收藏按钮的时候判断是否收藏");
@@ -253,9 +281,27 @@ public class PartTimeJobDetailActivity extends BaseActivity implements JobInfoVi
                 //分享
 
                 break;
+            case R.id.online_contact:
+                //打开单聊
+                JMessageClient.getUserInfo(phone, new GetUserInfoCallback() {
+                    @Override
+                    public void gotResult(int i, String s, cn.jpush.im.android.api.model.UserInfo userInfo) {
+                        chat(userInfo);
+                    }
+                });
+
+                break;
             case R.id.fragment_home_parttimejobinfo_sendresume:
                 //投递简历
-                mJobInfoPresenter.sendResume();
+                if (club.equals("club")) {
+                    if (jobInfo != null) {
+                        addShareMeun();
+                        System.out.println(" clu==2====");
+                    }
+                } else {
+                    mJobInfoPresenter.sendResume();
+                }
+
                 break;
             case R.id.sharemeun_qqfriend:
                 //QQ好友
@@ -278,6 +324,19 @@ public class PartTimeJobDetailActivity extends BaseActivity implements JobInfoVi
                 break;
         }
     }
+
+
+    public void chat(cn.jpush.im.android.api.model.UserInfo userInfo) {
+        Intent intent = new Intent();
+        intent.putExtra(MyApplication.CONV_TITLE, userInfo.getNickname());
+        String targetId = userInfo.getUserName();
+        intent.putExtra(MyApplication.TARGET_ID, targetId);
+        intent.putExtra(MyApplication.TARGET_APP_KEY, userInfo.getAppKey());
+        intent.putExtra(MyApplication.DRAFT, "");
+        intent.setClass(context, ChatActivity.class);
+        startActivity(intent);
+    }
+
 
     /**
      * 分享
@@ -431,6 +490,7 @@ public class PartTimeJobDetailActivity extends BaseActivity implements JobInfoVi
             jobInfo = mJobInfo;
             jobInfo_is_collect = mJobInfo.is_collect;
             collectionId = mJobInfo.collect_id;
+            phone = mJobInfo.job_link_phone;
             mTitle.setText(mJobInfo.job_title);
             mPrice.setText(mJobInfo.job_money);
             mAdressAndDare.setText(mJobInfo.job_city_name);//+ " " + mJobInfo.job_add_date
@@ -473,7 +533,9 @@ public class PartTimeJobDetailActivity extends BaseActivity implements JobInfoVi
             mLinkName.setText(mJobInfo.job_link_person);
             mDetailAdress.setText(mJobInfo.job_link_type_name);
             mLinkTel.setText(mJobInfo.job_link_phone);
-            online_contact.setVisibility(AppConfig.SHOWCLUBJOB ? View.VISIBLE : View.INVISIBLE);
+
+//            online_contact.setVisibility(AppConfig.SHOWCLUBJOB ? View.VISIBLE : View.INVISIBLE);
+
 
             if (!mJobInfo.job_content.isEmpty())
                 mContent.loadDataWithBaseURL(null, mJobInfo.job_content, "text/html", "utf-8", null);

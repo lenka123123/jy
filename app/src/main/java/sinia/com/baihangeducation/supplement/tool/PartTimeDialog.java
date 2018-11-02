@@ -3,6 +3,7 @@ package sinia.com.baihangeducation.supplement.tool;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
@@ -15,10 +16,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mcxtzhang.swipemenulib.customview.CommonPopupWindow;
+import com.zhy.view.flowlayout.TagFlowLayout;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
 import sinia.com.baihangeducation.R;
 import sinia.com.baihangeducation.home.activity.HomePartTimeActivity;
 import sinia.com.baihangeducation.release.activity.SiftUrNeedActivity;
+import sinia.com.baihangeducation.release.adapter.TagAdapter;
+import sinia.com.baihangeducation.release.info.bean.JobTagListInfo;
 
 public class PartTimeDialog implements CompoundButton.OnCheckedChangeListener {
 
@@ -27,7 +36,7 @@ public class PartTimeDialog implements CompoundButton.OnCheckedChangeListener {
     private String distance_id = "0";
     private String sex_id = "0";
     private String pubtime_id = "0";
-
+    private TagFlowLayout layout;
     private RadioButton mRadioButtonNone;
     private RadioButton mRadioButtonThreeDay;
     private RadioButton mRadioButtonOneWeek;
@@ -50,10 +59,13 @@ public class PartTimeDialog implements CompoundButton.OnCheckedChangeListener {
     private RadioButton mRadioButtonAccountByMonth;
     private TextView textViewCancle;
     private TextView textViewOk;
+    private String[] array = {"不限", "日结", "周结", "月结", "次日结", "时结", "次结"};
+    List<JobTagListInfo> datas = new ArrayList<>();
 
     private CommonPopupWindow.LayoutGravity layoutGravity;
     private View window;
     public CommonPopupWindow commonPopupWindow;
+    private RadioButton wai_button;
 
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -111,22 +123,41 @@ public class PartTimeDialog implements CompoundButton.OnCheckedChangeListener {
 
             case R.id.account_none:
                 money_id = "0";
+                wai_button.setChecked(false);
                 break;
             case R.id.account_by_day:
                 money_id = "1";
+                wai_button.setChecked(false);
                 break;
             case R.id.account_by_morrow:
                 money_id = "5";
+                wai_button.setChecked(false);
                 break;
             case R.id.account_by_time:
                 money_id = "6";
+                wai_button.setChecked(false);
                 break;
             case R.id.account_by_week:
                 money_id = "2";
+                wai_button.setChecked(false);
                 break;
             case R.id.account_by_month:
                 money_id = "3";
+                wai_button.setChecked(false);
                 break;
+            case R.id.wai_button:
+                money_id = "7";
+                mRadioButtonAccountNone.setChecked(false);
+                mRadioButtonAccountByTime.setChecked(false);
+                mRadioButtonAccountByDay.setChecked(false);
+                mRadioButtonAccountByMorrow.setChecked(false);
+                mRadioButtonAccountByWeek.setChecked(false);
+                mRadioButtonAccountByMonth.setChecked(false);
+                break;
+            /**
+
+             *
+             */
 
         }
     }
@@ -147,6 +178,9 @@ public class PartTimeDialog implements CompoundButton.OnCheckedChangeListener {
             @Override
             protected void initView() {
                 window = getContentView();
+
+                wai_button = window.findViewById(R.id.wai_button);
+                wai_button.setOnCheckedChangeListener(PartTimeDialog.this);
                 mRadioButtonNone = window.findViewById(R.id.sent_time_none);
                 mRadioButtonThreeDay = window.findViewById(R.id.sent_time_three_day);
                 mRadioButtonOneWeek = window.findViewById(R.id.sent_time_one_week);

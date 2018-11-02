@@ -146,6 +146,7 @@ public class MySettingActivity extends BaseActivity implements IMySettingView {
                 JMessageClient.logout();
                 if (exitDialog != null)
                     exitDialog.dismiss();
+                System.out.println("logoutSuccess  rrrr");
                 presenter.logout();
                 AppConfig.ISlOGINED = false;
                 AppConfig.IS_MANUAL_lOGINED = true;

@@ -12,7 +12,9 @@ public class ApplyClubListContract {
         void showApplyClubList(ApplyClubListBean successMessage, int maxpage);
 
         void showError(String errorMessage);
+
         void showApplySuccess(String errorMessage);
+
 
 
         void showGetPersonListSuccess(GetPersonList getPersonList, int max);
@@ -21,6 +23,7 @@ public class ApplyClubListContract {
 
     public interface Presenter {
         void getSearchSchoolList(String page, String perpage, String keyword);
-        void acceptPerson(String club_id, String member_id,ApplySuccessListListener listListener);
+
+        void acceptPerson(String club_id, String member_id, ApplySuccessListListener listListener);
     }
 }

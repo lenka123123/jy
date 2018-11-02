@@ -40,6 +40,7 @@ import cn.jpush.im.android.api.model.Conversation;
 import cn.jpush.im.android.api.model.GroupInfo;
 import cn.jpush.im.android.api.model.Message;
 import cn.jpush.im.android.api.model.UserInfo;
+import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.MyApplication;
 import sinia.com.baihangeducation.R;
 import sinia.com.baihangeducation.chat.view.ConversationListView;
@@ -69,12 +70,15 @@ public class ConversationListAdapter extends BaseAdapter {
     private UserInfo mUserInfo;
     private GroupInfo mGroupInfo;
     private ConversationListView mConversationListView;
+    private boolean isCreateSystem = false;
 
     public ConversationListAdapter(Activity context, List<Conversation> data, ConversationListView convListView) {
         this.mContext = context;
         this.mDatas = data;
         this.mConversationListView = convListView;
+
     }
+
 
     /**
      * 收到消息后将会话置顶
@@ -119,12 +123,14 @@ public class ConversationListAdapter extends BaseAdapter {
                         } else {
                             oldCount = i;
                         }
+
                     }
                     mDatas.add(oldCount, conv);
                     mUIHandler.sendEmptyMessageDelayed(REFRESH_CONVERSATION_LIST, 200);
                     return;
                 }
             }
+
         }
         if (mDatas.size() == 0) {
             mDatas.add(conv);
@@ -156,6 +162,9 @@ public class ConversationListAdapter extends BaseAdapter {
             if (!TextUtils.isEmpty(conv.getExtra())) {
                 count++;
             }
+        }
+        if (conversation.getTargetAppKey().equals("1712")) {  //系统消息置顶
+            count = 0;
         }
         conversation.updateConversationExtra(count + "");
         mDatas.remove(conversation);
@@ -254,11 +263,14 @@ public class ConversationListAdapter extends BaseAdapter {
         if (TextUtils.isEmpty(draft)) {
             Message lastMsg = convItem.getLatestMessage();
             if (lastMsg != null) {
+
                 TimeFormat timeFormat = new TimeFormat(mContext, lastMsg.getCreateTime());
                 //会话界面时间
                 datetime.setText(timeFormat.getTime());
                 String contentStr;
+
                 switch (lastMsg.getContentType()) {
+
                     case image:
                         contentStr = mContext.getString(R.string.type_picture);
                         break;
@@ -295,7 +307,13 @@ public class ConversationListAdapter extends BaseAdapter {
                         contentStr = ((PromptContent) lastMsg.getContent()).getPromptText();
                         break;
                     default:
-                        contentStr = ((TextContent) lastMsg.getContent()).getText();
+
+                        if (convItem.getTargetAppKey().equals("1712")) {
+                            contentStr = "测试数据来的";
+                        } else {
+                            contentStr = ((TextContent) lastMsg.getContent()).getText();
+                        }
+
                         break;
                 }
 
@@ -386,14 +404,28 @@ public class ConversationListAdapter extends BaseAdapter {
                     }
                 }
             } else {
+
                 if (convItem.getLastMsgDate() == 0) {
                     //会话列表时间展示的是最后一条会话,那么如果最后一条消息是空的话就不显示
-                    datetime.setText("");
-                    content.setText("");
+                    if (convItem.getTargetAppKey().equals("1712")) {
+                        TimeFormat timeFormat = new TimeFormat(mContext, convItem.getLastMsgDate());
+                        datetime.setText(timeFormat.getTime());
+                        content.setText("");
+                    } else {
+                        datetime.setText("");
+                        content.setText("");
+                    }
                 } else {
                     TimeFormat timeFormat = new TimeFormat(mContext, convItem.getLastMsgDate());
                     datetime.setText(timeFormat.getTime());
-                    content.setText("");
+                    if (AppConfig.CHATMESSAGE.length() > 0) {
+                        content.setVisibility(View.VISIBLE);
+                        if (AppConfig.CHATMESSAGE.startsWith("\"") && AppConfig.CHATMESSAGE.endsWith("\"") && AppConfig.CHATMESSAGE.length() < 5)
+                            content.setVisibility(View.INVISIBLE);
+                        content.setText(AppConfig.CHATMESSAGE);  //系统消息这里面显示
+                    } else {
+                        content.setVisibility(View.INVISIBLE);
+                    }
                 }
             }
         } else {
@@ -407,7 +439,9 @@ public class ConversationListAdapter extends BaseAdapter {
             groupBlocked.setVisibility(View.GONE);
             convName.setText(convItem.getTitle());
             mUserInfo = (UserInfo) convItem.getTargetInfo();
+            System.out.println(position + "eeee" + convItem.getTitle());
             if (mUserInfo != null) {
+                System.out.println(position + "eee33e" + convItem.getTitle());
                 mUserInfo.getAvatarBitmap(new GetAvatarBitmapCallback() {
                     @Override
                     public void gotResult(int status, String desc, Bitmap bitmap) {
@@ -418,15 +452,23 @@ public class ConversationListAdapter extends BaseAdapter {
 //                            headIcon.setImageBitmap(bitmap);
                         } else {
 
-                            RoundedBitmapDrawable circularBitmapDrawable = RoundedBitmapDrawableFactory.create(content.getResources(),
-                                    BitmapFactory.decodeResource(content.getResources(), R.drawable.jmui_head_icon));
-                            circularBitmapDrawable.setCircular(true);
-                            headIcon.setImageDrawable(circularBitmapDrawable);
+                            if (convItem.getTitle().equals("系统提醒")) {
+                                RoundedBitmapDrawable circularBitmapDrawable = RoundedBitmapDrawableFactory.create(content.getResources(),
+                                        BitmapFactory.decodeResource(content.getResources(), R.drawable.system_alert));
+                                circularBitmapDrawable.setCircular(true);
+                                headIcon.setImageDrawable(circularBitmapDrawable);
+                            } else {
+                                RoundedBitmapDrawable circularBitmapDrawable = RoundedBitmapDrawableFactory.create(content.getResources(),
+                                        BitmapFactory.decodeResource(content.getResources(), R.drawable.jmui_head_icon));
+                                circularBitmapDrawable.setCircular(true);
+                                headIcon.setImageDrawable(circularBitmapDrawable);
 //                            headIcon.setImageResource(R.drawable.jmui_head_icon);
+                            }
                         }
                     }
                 });
             } else {
+
                 RoundedBitmapDrawable circularBitmapDrawable = RoundedBitmapDrawableFactory.create(content.getResources(),
                         BitmapFactory.decodeResource(content.getResources(), R.drawable.jmui_head_icon));
                 circularBitmapDrawable.setCircular(true);
@@ -500,6 +542,14 @@ public class ConversationListAdapter extends BaseAdapter {
             newMsgNumber.setVisibility(View.GONE);
         }
 
+        if (convItem.getTitle().equals("系统提醒")) {
+            if (!AppConfig.CHATMESSAGENUM.equals("") && !AppConfig.CHATMESSAGENUM.equals("0")) {
+                newMsgNumber.setVisibility(View.VISIBLE);
+                newMsgNumber.setText(AppConfig.CHATMESSAGENUM);
+            } else {
+                newMsgNumber.setVisibility(View.INVISIBLE);
+            }
+        }
         //禁止使用侧滑功能.如果想要使用就设置为true
         swipeLayout.setSwipeEnabled(false);
         //侧滑删除会话
@@ -575,9 +625,19 @@ public class ConversationListAdapter extends BaseAdapter {
         SortConvList sortConvList = new SortConvList();
         Collections.sort(mDatas, sortConvList);
         for (Conversation con : mDatas) {
+            if (con.getTargetAppKey().equals("1712")) {
+                isCreateSystem = true;
+            } else {
+                isCreateSystem = false;
+            }
             if (!TextUtils.isEmpty(con.getExtra())) {
                 forCurrent.add(con);
             }
+        }
+        if (!isCreateSystem) {
+            Conversation conversation = Conversation.createSingleConversation("系统提醒", "1712");
+            conversation.updateConversationExtra(0 + "");
+            mDatas.add(0, conversation);
         }
         topConv.addAll(forCurrent);
         mDatas.removeAll(forCurrent);

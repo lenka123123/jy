@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.framwork.utils.Toast;
 import com.scwang.smartrefresh.header.MaterialHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
@@ -144,6 +145,7 @@ public class MyRecommendFragment extends Fragment implements RankingContract.Vie
     public void showRankingList(ActiveListData successMessage) {
         if (successMessage.list.size() < 1) {
             showErrorState(true);
+            Toast.getInstance().showSuccessToast(getContext(),"暂无数据");
         } else {
             showErrorState(false);
         }

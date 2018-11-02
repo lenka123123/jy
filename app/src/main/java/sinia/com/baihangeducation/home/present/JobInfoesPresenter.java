@@ -79,7 +79,7 @@ public class JobInfoesPresenter extends BasePresenter {
         post(mSendResume, new OnRequestListener() {
             @Override
             public void requestSuccess(BaseResponseBean bean) {
-
+                view.hideLoading();
 
                 String parkname = (String) SpCommonUtils.get(activity, AppConfig.FINAL_NUM_FULL_PARK_NUM, "0");
                 parkname = (Integer.valueOf(parkname) + 1) + "";
@@ -90,7 +90,7 @@ public class JobInfoesPresenter extends BasePresenter {
 
             @Override
             public void requestFailed(String error) {
-
+                view.hideLoading();
                 if (error.equals("请先完善简历信息后再投递")) {
                     new AlertDialog.Builder(activity).setTitle("提示！").setMessage("请先完善简历信息后再投递。").setPositiveButton("前往完善简历", new DialogInterface.OnClickListener() {
                         @Override

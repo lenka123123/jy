@@ -32,6 +32,7 @@ public class JobInfoes {
     public String job_tag_ids_ex;//; "",
     public String job_industry_id_ex;//; "2",
     public String job_industry_name_ex;//; "语言培训",
+    public String job_insurance_url;//; "语言培训",
     public String job_money_type_ex;//; "3",
     public String job_money_name_ex;//; "年薪",
     public String job_num_lower_ex;//; "50",
@@ -69,6 +70,12 @@ public class JobInfoes {
     public String is_collect;//; "",是否收藏 1是2否
     public String is_apply ;//; "",是否投递简历  1是2否
     public String collect_id ;//; 收藏ID
+
+
+    public String job_share_title ;
+    public String job_share_introduce  ;
+
+
 
 
     public List<HomeJobTagInfo> job_tag_list;                     //职位子类名称 对应兼职内的兼职类型

@@ -65,7 +65,7 @@ public class ReCommendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         vh.active_item_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Goto.toEditorHotActive(context, mInviteListInfo.get(position).activity_id);
+                Goto.toShowHotActive(context, mInviteListInfo.get(position).activity_id);
             }
         });
 
@@ -81,8 +81,6 @@ public class ReCommendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 //
 //        vh.time.setText(TimeUtils.getStrTimeHM(mInviteListInfo.get(position).add_time));
 //        vh.title.setText(mInviteListInfo.get(position).title);
-
-
     }
 
     @Override
@@ -91,10 +89,10 @@ public class ReCommendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     public void setData(List<ActiveListData.ActiveList> pDatas, int currentPage) {
-        System.out.println("后台数据" + pDatas.size());
-        if (currentPage == 1) {
-            mInviteListInfo.clear();
-        }
+        System.out.println("后台数据" + pDatas.size() + "uuu" + mInviteListInfo.size());
+
+        mInviteListInfo.clear();
+
         mInviteListInfo.addAll(pDatas);
     }
 

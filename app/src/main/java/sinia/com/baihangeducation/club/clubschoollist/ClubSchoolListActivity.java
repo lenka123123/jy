@@ -52,6 +52,14 @@ public class ClubSchoolListActivity extends BaseActivity implements ClubSchoolLi
 
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+        mRows.clear();
+        if (clubSchoolListPresenter != null)
+            clubSchoolListPresenter.getSearchSchoolList("1", String.valueOf(perpage), "");
+    }
+
+    @Override
     protected void initView() {
         mSmartRefreshLayout = findViewById(R.id.refreshLayout);
         mAutoLoadRecyclerView = findViewById(R.id.recyclerView);
@@ -65,7 +73,6 @@ public class ClubSchoolListActivity extends BaseActivity implements ClubSchoolLi
                 finish();
             }
         });
-
 
         RelativeLayout search = findViewById(R.id.home_search_layout);
         search.setOnClickListener(new View.OnClickListener() {

@@ -28,7 +28,30 @@ public class ReleaseJobPresenter extends BasePresenter {
         this.view = view;
     }
 
-    public void releaseJob() {
+    public void releaseJob(String job_id) {
+        System.out.println(view.getMoneyLower() + "是否返回" + AccountManger.checkReleaseJobInfo(activity,
+                view.getReleaseType(),
+                view.getReleaseTitle(),
+                view.getProvId(),
+                view.getAddress(),
+                view.getNumUpper(),
+                view.getAgeLower(),
+                view.getGender(),
+                view.getExp(),
+                view.getSalaryType(),
+                view.getMoneyUpper(),
+                view.getJobType(),
+                view.getJobTag(),
+                view.getTimeEnd(),
+                view.getIsContinue(),
+                view.getIsInterview(),
+                view.getLinkPerson(),
+                view.getLinkType(),  //联系方式
+                view.getReleaseContent(),
+                view.getJobTime()
+        ));
+
+
         if (!AccountManger.checkReleaseJobInfo(activity,
                 view.getReleaseType(),
                 view.getReleaseTitle(),
@@ -46,91 +69,80 @@ public class ReleaseJobPresenter extends BasePresenter {
                 view.getIsContinue(),
                 view.getIsInterview(),
                 view.getLinkPerson(),
-                view.getLinkType(),
+                view.getLinkType(),  //联系方式
                 view.getReleaseContent(),
-                view.getContant()
-
-
-//                view.getEducationId(),
-//                view.getExperienceId(),
-//                view.getMoneyType(),
-//                view.getMoneyLower(),
-//                view.getIndustryId(),
-//                view.getJobTypeIds(),
-//                view.getSexId(),
-//                view.getLanguage(),
-//                view.getTagIds(),
-//                view.getDateStart(),
-//                view.getDateEnd(),
-//                view.getTimeStart(),
-//                view.getTimeEnd(),
-//                view.getLinkPerson(),
-//                view.getLinkPhone(),
-//                view.getReleaseContent()
+                view.getJobTime()
         )) {
-            return;
-        }
-        HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "addJob", "Publish", true);
+            HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "pushJob", "club", true);
 
             info.put("user_id", AppConfig.USERID);
             info.put("token", AppConfig.TOKEN);
+            if (!job_id.equals(""))
+                info.put("job_id", job_id);
 
+            System.out.println(view.getMoneyLower() + "job_ideeee" + job_id);
+            if (view.getReleaseType().equals("1")) {//仅全职传递
+//
+//            info.put("time_end", view.getTimeEnd());
+//            info.put("education", view.getEducationId());
+//            info.put("time_start", view.getTimeStart());
+//            info.put("date_start", view.getDateStart());
+//            info.put("money_lower", view.getMoneyLower());
+//            info.put("language", view.getLanguage());
+            }
 
-        if (view.getReleaseType().equals("1")) {//仅全职传递
-
-            info.put("time_end", view.getTimeEnd());
-            info.put("education", view.getEducationId());
-            info.put("time_start", view.getTimeStart());
-            info.put("date_start", view.getDateStart());
+            info.put("industry_id", view.getIndustryId());//所属行业
+            info.put("title", view.getReleaseTitle());
+            info.put("content", view.getReleaseContent());
+            info.put("num_lower", view.getNumUpper());
+            info.put("money_type", view.getMoneyType());
             info.put("money_lower", view.getMoneyLower());
-            info.put("language", view.getLanguage());
+            info.put("experience", view.getExperienceId());
+            info.put("sex", view.getSexId());
+            info.put("prov_id", view.getProvId());
+            info.put("city_id", view.getReleaseCityId());
+            info.put("dist_id", view.getDistId());
+            info.put("address", view.getAddress());
+            info.put("link_person", view.getLinkPerson());
+            info.put("link_phone", view.getLinkPhone());
+            info.put("age_lower", view.getAgeLower());
+            info.put("age_upper", view.getAgeUpper());
+            info.put("is_continue", view.getIsContinue());
+            info.put("is_interview", view.getIsInterview());
+            info.put("time_group", view.getJobTime());//上班时间
+            info.put("link_type", view.getLinkType());//联系方式
+
+
+//        info.put("job_type_ids", view.getJobTypeIds());
+//        info.put("type", view.getReleaseType());//职位标签编号 多个英文逗号分隔
+//        info.put("num_upper", view.getNumUpper());
+//        info.put("tag_ids", view.getTagIds());
+//        info.put("money_upper", view.getMoneyUpper());
+
+
+            view.showLoading();
+
+            post(info, new OnRequestListener() {
+                @Override
+                public void requestSuccess(BaseResponseBean bean) {
+                    Log.i("发布职位结果", bean.toString());
+                    view.getReleaseSuccess();
+                }
+
+                @Override
+                public void requestFailed(String error) {
+                    Toast.getInstance().showErrorToast(activity, error);
+                }
+
+                @Override
+                public void requestFinish() {
+                    view.hideLoading();
+                }
+            });
+        } else {
+            System.out.println(view.getMoneyLower() + "job_ideeee去去第三方士大夫去");
         }
-        info.put("age_lower", view.getAgeLower());
-        info.put("age_upper", view.getAgeUpper());
-        info.put("is_continue", view.getIsContinue());
-        info.put("is_interview", view.getIsInterview());
-        info.put("time_group", view.getTimeEnd());//上班时间
-        info.put("link_type", view.getLinkType());//联系方式
-
-        info.put("industry_id", view.getIndustryId());//所属行业
-        info.put("job_type_ids", view.getJobTypeIds());
-        info.put("type", view.getReleaseType());//职位标签编号 多个英文逗号分隔
-        info.put("title", view.getReleaseTitle());
-        info.put("content", view.getReleaseContent());
-        info.put("num_lower", view.getNumUpper());
-        info.put("num_upper", view.getNumUpper());
-        info.put("tag_ids", view.getTagIds());
-        info.put("money_type", view.getMoneyType());
-        info.put("money_upper", view.getMoneyUpper());
-        info.put("experience", view.getExperienceId());
-        info.put("sex", view.getSexId());
-        info.put("prov_id", view.getProvId());
-        info.put("city_id", view.getReleaseCityId());
-        info.put("dist_id", view.getDistId());
-        info.put("address", view.getAddress());
-        info.put("link_person", view.getLinkPerson());
-        info.put("link_phone", view.getLinkPhone());
-        view.showLoading();
-
-        post(info, new OnRequestListener() {
-            @Override
-            public void requestSuccess(BaseResponseBean bean) {
-                Log.i("发布职位结果", bean.toString());
-                view.getReleaseSuccess();
-            }
-
-            @Override
-            public void requestFailed(String error) {
-                Toast.getInstance().showErrorToast(activity, error);
-            }
-
-            @Override
-            public void requestFinish() {
-                view.hideLoading();
-            }
-        });
     }
-
 //    public void editJob() {
 //        if (!AccountManger.checkReleaseJobInfo(activity, view.getReleaseType(), view.getReleaseTitle(), view.getProvId(), view.getAddress(),
 //                view.getNumUpper(), view.getEducationId(), view.getExperienceId(), view.getMoneyType(), view.getMoneyUpper(), view.getMoneyLower(), view.getMoneyUpper(),
@@ -184,4 +196,6 @@ public class ReleaseJobPresenter extends BasePresenter {
 //            }
 //        });
 //    }
+
+
 }

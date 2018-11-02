@@ -29,6 +29,8 @@ public class HomePartTimeInfo {
     public String job_distance;   //距离
     public int job_is_top;   //(  0:不置顶 1:置顶 )
     public int job_is_api;   // ( 0:后台添加 1:手机端添加 )
+    public int is_platform ;   // 发布平台 1:非平台发布; 2:平台发布
+    public String job_time_group ;   // 发布平台 1:非平台发布; 2:平台发布
 
 
 }

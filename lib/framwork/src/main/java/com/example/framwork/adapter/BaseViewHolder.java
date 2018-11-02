@@ -257,4 +257,6 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
         view.setTag(tag);
         return this;
     }
+
+
 }

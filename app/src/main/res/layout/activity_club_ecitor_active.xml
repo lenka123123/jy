@@ -105,6 +105,7 @@
                 android:orientation="horizontal">
 
                 <EditText
+                    android:id="@+id/active_name"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -122,9 +123,9 @@
 
                     <ImageView
 
-                        android:layout_width="@dimen/x40"
+                        android:layout_width="wrap_content"
                         android:layout_height="@dimen/y40"
-                        android:src="@drawable/hot_active_preson" />
+                        android:src="@drawable/chat_img" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -136,6 +137,7 @@
 
             <!--活动类别-->
             <LinearLayout
+                android:id="@+id/active_type"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y80"
                 android:layout_marginLeft="@dimen/x40"
@@ -159,6 +161,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/active_type_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="请选择"
@@ -181,6 +184,7 @@
 
             <!--所属社团-->
             <LinearLayout
+                android:id="@+id/active_club"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y80"
                 android:layout_marginLeft="@dimen/x40"
@@ -204,6 +208,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/active_club_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="请选择"
@@ -366,6 +371,7 @@
 
 
             <EditText
+                android:id="@+id/adr_detail"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y80"
                 android:layout_marginLeft="@dimen/x40"
@@ -376,8 +382,61 @@
                 android:textSize="14sp" />
 
 
+            <!--性别要求 选项-->
+            <LinearLayout
+                android:id="@+id/sex_option"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y80"
+                android:layout_marginLeft="@dimen/x40"
+                android:layout_marginRight="@dimen/x40"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="性别要求"
+                    android:textColor="#000"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/sex_option_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:hint="请选择"
+                        android:inputType="number"
+                        android:textColor="#999"
+                        android:textSize="14sp" />
+
+
+                    <ImageView
+                        android:layout_width="@dimen/x12"
+                        android:layout_height="@dimen/y21"
+                        android:layout_marginLeft="@dimen/x20"
+                        android:src="@drawable/arrow_right" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y1"
+                android:background="#F5F7F9" />
+
+
+
             <!--男女比例-->
             <LinearLayout
+                android:id="@+id/man_woman_linear"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y80"
                 android:layout_marginLeft="@dimen/x40"
@@ -401,6 +460,8 @@
                     android:orientation="horizontal">
 
                     <TextView
+
+                        android:id="@+id/man_num_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="男"
@@ -408,6 +469,7 @@
                         android:textSize="14sp" />
 
                     <EditText
+                        android:id="@+id/man_num"
                         android:layout_width="@dimen/x120"
                         android:layout_height="match_parent"
                         android:background="@null"
@@ -420,6 +482,7 @@
                         android:textSize="14sp" />
 
                     <TextView
+                        android:id="@+id/woman_num_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="女"
@@ -427,6 +490,7 @@
                         android:textSize="14sp" />
 
                     <EditText
+                        android:id="@+id/woman_num"
                         android:layout_width="@dimen/x120"
                         android:layout_height="match_parent"
                         android:background="@null"
@@ -440,6 +504,10 @@
 
                 </LinearLayout>
             </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y1"
+                android:background="#F5F7F9" />
 
 
             <!--人均费用-->
@@ -467,21 +535,15 @@
                     android:orientation="horizontal">
 
                     <EditText
+                        android:id="@+id/free"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@null"
-                        android:text="请选择"
-                        android:visibility="gone"
+                        android:hint="请输入"
+                        android:inputType="number"
                         android:textColor="#999"
                         android:textSize="14sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="请选择"
-                        android:textColor="#999"
-                        android:textSize="14sp"
-                       />
 
                     <ImageView
                         android:layout_width="@dimen/x12"
@@ -499,6 +561,7 @@
 
 
             <EditText
+                android:id="@+id/introduce"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/x40"

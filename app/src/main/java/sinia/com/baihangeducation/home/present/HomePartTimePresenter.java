@@ -113,7 +113,8 @@ public class HomePartTimePresenter extends BasePresenter {
     }
 
 
-    public void getPartTimeData(String industryId, String money_id, String areaId, String worktime_id, String distance_id, String sex_id, String pubtime_id) {
+    public void getPartTimeData(String industryId, String money_id, String areaId, String worktime_id,
+                                String distance_id, String sex_id, String pubtime_id) {
 
 
         HashMap<String, Object> mGetPartTimeDataInfo = new HashMap<>();

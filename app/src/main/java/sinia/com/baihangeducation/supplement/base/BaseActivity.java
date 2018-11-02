@@ -57,6 +57,8 @@ import com.mcxtzhang.swipemenulib.widget.CommonFilterPop;
 import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.MyApplication;
 import sinia.com.baihangeducation.R;
+import sinia.com.baihangeducation.club.applyclublist.model.GetPersonList;
+import sinia.com.baihangeducation.club.club.interfaces.GetRequestListener;
 
 /**
  * Created by Administrator on 2018.02.24.
@@ -84,7 +86,9 @@ public abstract class BaseActivity extends CheckPermissionsActivity implements V
     @Override
     protected void onRestart() {
         super.onRestart();
+
         if (mCommonTitle != null) {
+
             mCommonTitle.setBackgroundColor(getResources().getColor(R.color.white));
             mCommonTitle.getBackground().setAlpha(0);
             mCommonTitle.getCenter_txt().setTextColor(Color.BLACK);
@@ -278,7 +282,7 @@ public abstract class BaseActivity extends CheckPermissionsActivity implements V
 
     protected void showProgress() {
         if (progressHUD != null)
-            progressHUD.show();
+            progressHUD.dismiss();
     }
 
     protected void hideProgress() {

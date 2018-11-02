@@ -160,6 +160,7 @@ public class ImageLoaderUtils {
         if (context == null) {
             return;
         }
+
         Glide.with(context).load(url)
                 .skipMemoryCache(true).diskCacheStrategy(DiskCacheStrategy.NONE).dontAnimate().thumbnail(0.3f).error(error)
                 .centerCrop().bitmapTransform(new CropCircleTransformation(context)).into(imageView);

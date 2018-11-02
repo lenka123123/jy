@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="@dimen/y400"
+        android:layout_height="@dimen/y180"
+        android:background="@drawable/shape_corner"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="@dimen/y400"
+            android:layout_height="@dimen/y90"
+            android:background="@color/white"
+            android:gravity="center"
+            android:text="您尚未加入俱乐部" />
+
+        <View
+            android:layout_width="@dimen/y400"
+            android:layout_height="@dimen/y1"
+            android:background="@color/color_e3e3e3" />
+
+        <LinearLayout
+            android:layout_width="@dimen/y400"
+            android:layout_height="@dimen/y90"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/club_cancel"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="取消"
+                android:textColor="@color/blue_btn_pressed" />
+
+            <View
+                android:layout_width="@dimen/x1"
+                android:layout_height="match_parent"
+                android:background="@color/color_e3e3e3" />
+
+            <TextView
+                android:id="@+id/club_join"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="加入"
+                android:textColor="@color/blue_btn_pressed" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

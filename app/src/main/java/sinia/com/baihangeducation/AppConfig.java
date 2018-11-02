@@ -61,9 +61,12 @@ public class AppConfig extends BaseAppConfig {
     public static final String COMMON_INFO_ABOUT = "COMMON_INFO_ABOUT";
     public static final String COMMON_INFO_ABOUTREGISTRATION_PROTOCOL = "COMMON_INFO_ABOUTREGISTRATION_PROTOCOL";
     public static final String COMMON_INFO_HELP = "COMMON_INFO_HELP";
+    public static final String IS_DIM = "IS_DIM";
+    public static final String IS_NEED_LOGIN = "IS_NEED_LOGIN";
 
 
-    //    public static String API_VERSION = "4.0.4";
+    public static String CHATMESSAGE = "";
+    public static String CHATMESSAGENUM = "";
     public static String API_VERSION = "4.1.8";
     public static String HTML_LV = "1.1.1";
 

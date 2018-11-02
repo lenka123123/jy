@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/nanjing"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y88"
+        android:layout_marginRight="@dimen/x40"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="@dimen/x120"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:padding="@dimen/x26"
+            android:src="@drawable/back" />
+
+        <LinearLayout
+            android:id="@+id/fragment_home_adress"
+            android:layout_width="@dimen/x200"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/x220"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/fragment_home_adressName"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="系统提醒"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/fragment_home_arrow"
+                android:layout_width="@dimen/x16"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/y20"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="@dimen/space_10"
+                android:src="@drawable/arrow_down_black"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/home_search_layout"
+            android:layout_width="82dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/home_search"
+                android:layout_width="@dimen/x30"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/y30"
+                android:src="@drawable/black_search"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_0.5"
+        android:background="#DDDDDD" />
+
+
+    <include layout="@layout/activity_recyclerview_refresh" />
+
+
+</LinearLayout>

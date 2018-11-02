@@ -80,7 +80,7 @@ public class TipView extends View {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setStyle(Paint.Style.FILL);
-        mPaint.setTextSize(sp2px(14));
+        mPaint.setTextSize(sp2px(12));
 
         doPaint = new Paint();
         doPaint.setAntiAlias(true);
@@ -465,6 +465,7 @@ public class TipView extends View {
             TipView flipShare = new TipView(mContext, mRootView, x, y, mTipItemList);
             flipShare.setOnItemClickListener(onItemClickListener);
             flipShare.setSeparateLineColor(mSeparateLineColor);
+
             return flipShare;
         }
     }

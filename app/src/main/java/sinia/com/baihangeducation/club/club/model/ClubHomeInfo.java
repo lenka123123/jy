@@ -33,7 +33,7 @@ public class ClubHomeInfo {
         public String member_num;//
     }
 
-    public List<School> list ;
+    public List<School> list;
 
     public class School {
         public String id;
@@ -42,7 +42,21 @@ public class ClubHomeInfo {
         public String member_num;
         public String income;
         public String new_order;
+        public String is_show;
+        public String is_apply;
         public String fluctuate;//( 正数：上升，负数：下降，0：无变化 )
 
+    }
+
+    public UserInfo user_info;
+
+    public class UserInfo {
+        public String is_edit;
+        public String school_id;
+        public String school_name;
+
+        public String club_num;
+        public String activity_num;
+        public String job_num;
     }
 }

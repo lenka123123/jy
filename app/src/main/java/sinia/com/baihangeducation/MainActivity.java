@@ -115,6 +115,7 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
     public static String lng;
     public static String lat;
     public static String adcode;
+    boolean gpsShowToast = true;
 
     //版本更新
     private UpdateVersionPresenter updateVersionPresenter;
@@ -161,7 +162,6 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
             @Override
             public void gotResult(int i, String s) {
                 //更新用户头像
-
                 String phonePath = (String) SpCommonUtils.get(activity, AppConfig.FINAL_SAVE_PHOTO_PATH, "");
                 JMessageClient.updateUserAvatar(new File(phonePath), new BasicCallback() {
                     @Override
@@ -186,18 +186,18 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
         });
     }
 
-
-    public void chat(cn.jpush.im.android.api.model.UserInfo userInfo) {
-        Intent intent = new Intent();
-        intent.putExtra(MyApplication.CONV_TITLE, "聊天");
-        String targetId = userInfo.getUserName();
-        intent.putExtra(MyApplication.TARGET_ID, targetId);
-        intent.putExtra(MyApplication.TARGET_APP_KEY, userInfo.getAppKey());
-        intent.putExtra(MyApplication.DRAFT, "***");
-
-        intent.setClass(mContext, ChatActivity.class);
-        startActivity(intent);
-    }
+//
+//    public void chat(cn.jpush.im.android.api.model.UserInfo userInfo) {
+//        Intent intent = new Intent();
+//        intent.putExtra(MyApplication.CONV_TITLE, "聊天");
+//        String targetId = userInfo.getUserName();
+//        intent.putExtra(MyApplication.TARGET_ID, targetId);
+//        intent.putExtra(MyApplication.TARGET_APP_KEY, userInfo.getAppKey());
+//        intent.putExtra(MyApplication.DRAFT, "***");
+//
+//        intent.setClass(mContext, ChatActivity.class);
+//        startActivity(intent);
+//    }
 
 
     @Override
@@ -208,27 +208,32 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
         mRadioGroup = null;
         wakeUpAdapter = null;
 
-        homeFragment.onDestroyView();
-        homeFragment.onDestroy();
-        homeFragment.onDetach();
+        if (homeFragment != null) {
+            homeFragment.onDestroyView();
+            homeFragment.onDestroy();
+            homeFragment.onDetach();
+        }
+        if (mineFragment != null) {
+            mineFragment.onDestroyView();
+            mineFragment.onDestroy();
+            mineFragment.onDetach();
+        }
 
-        mineFragment.onDestroyView();
-        mineFragment.onDestroy();
-        mineFragment.onDetach();
-
-        clubFragment.onDestroyView();
-        clubFragment.onDestroy();
-        clubFragment.onDetach();
-
-        chatFragment.onDestroyView();
-        chatFragment.onDestroy();
-        chatFragment.onDetach();
-
-
-        partTimeFragment.onDestroyView();
-        partTimeFragment.onDestroy();
-        partTimeFragment.onDetach();
-
+        if (clubFragment != null) {
+            clubFragment.onDestroyView();
+            clubFragment.onDestroy();
+            clubFragment.onDetach();
+        }
+        if (chatFragment != null) {
+            chatFragment.onDestroyView();
+            chatFragment.onDestroy();
+            chatFragment.onDetach();
+        }
+        if (partTimeFragment != null) {
+            partTimeFragment.onDestroyView();
+            partTimeFragment.onDestroy();
+            partTimeFragment.onDetach();
+        }
         TabFragment.onDestroy();
 
         System.out.println("Mian delete");
@@ -348,7 +353,6 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
     };
 
     public void initView() {
-
         recevir = new MyBroadCastRecevir();
         IntentFilter intentFiltet = new IntentFilter();
         //设置广播的名字（设置Action，可以添加多个要监听的动作）
@@ -547,17 +551,15 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
     private void pushTag() {
         JPushInterface.setAliasAndTags(this, userType, set,
                 new TagAliasCallback() {
-
                     @Override
                     public void gotResult(int result, String arg1,
                                           Set<String> arg2) {
                         if (result == 6002)
-                            //     pushTag();
-                            Logger.d("JPushInterface.setTags--------" + userType + "-------------result=" + result);
+                            pushTag();
+                        Logger.d("JPushInterface.setTags--------" + userType + "-------------result=" + result);
                     }
                 });
     }
-
 
     /**
      * 初始化tab内容页
@@ -849,8 +851,8 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
         home(R.id.nav_home, HomeFragment.class),
         part(R.id.nav_part, PartTimeFragment.class),
         //release(R.id.nav_release, AddFragment.class),
-        chat(R.id.nav_release, ChatFragment.class),
         club(R.id.nav_full, ClubFragment.class),
+        chat(R.id.nav_release, ChatFragment.class),
         me(R.id.nav_compus, MineFragment.class);
 //me(R.id.nav_compus, NewCampusFragment.class);
 
@@ -966,9 +968,12 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
         @Override
         public void onLocationChanged(AMapLocation amapLocation) {
             if (!JudgeUtils.isOPenGPS(getApplicationContext())) {
-                Toast toast = Toast.makeText(getApplicationContext(), "检测GPS没有开启", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.show();
+                if (gpsShowToast) {
+                    Toast toast = Toast.makeText(getApplicationContext(), "检测GPS没有开启", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                    gpsShowToast = false;
+                }
             } else {
                 if (amapLocation != null) {
                     if (amapLocation.getErrorCode() == 0) {

@@ -8,6 +8,8 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -19,6 +21,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.mcxtzhang.swipemenulib.utils.BitmapSave;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -562,19 +568,42 @@ public class ChattingListAdapter extends BaseAdapter {
 
         //显示头像
         if (holder.headIcon != null) {
+            holder.headIcon.setTag(null);
             if (userInfo != null && !TextUtils.isEmpty(userInfo.getAvatar())) {
                 userInfo.getAvatarBitmap(new GetAvatarBitmapCallback() {
                     @Override
                     public void gotResult(int status, String desc, Bitmap bitmap) {
                         if (status == 0) {
-                            holder.headIcon.setImageBitmap(bitmap);
+//                            holder.headIcon.setImageBitmap(bitmap);
+                            RoundedBitmapDrawable circularBitmapDrawable =
+                                    RoundedBitmapDrawableFactory.create(mContext.getResources(), bitmap);
+                            circularBitmapDrawable.setCircular(true);
+                            holder.headIcon.setImageDrawable(circularBitmapDrawable);
                         } else {
-                            holder.headIcon.setImageResource(R.drawable.jmui_head_icon);
+                            Glide.with(mContext).load(R.drawable.jmui_head_icon).asBitmap().error(R.drawable.jmui_head_icon).centerCrop().into(new BitmapImageViewTarget(holder.headIcon) {
+                                @Override
+                                protected void setResource(Bitmap resource) {
+                                    RoundedBitmapDrawable circularBitmapDrawable =
+                                            RoundedBitmapDrawableFactory.create(mContext.getResources(), resource);
+                                    circularBitmapDrawable.setCircular(true);
+                                    holder.headIcon.setImageDrawable(circularBitmapDrawable);
+                                }
+                            });
+//                            holder.headIcon.setImageResource(R.drawable.jmui_head_icon);
                         }
                     }
                 });
             } else {
-                holder.headIcon.setImageResource(R.drawable.jmui_head_icon);
+                Glide.with(mContext).load(R.drawable.jmui_head_icon).asBitmap().error(R.drawable.jmui_head_icon).centerCrop().into(new BitmapImageViewTarget(holder.headIcon) {
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        RoundedBitmapDrawable circularBitmapDrawable =
+                                RoundedBitmapDrawableFactory.create(mContext.getResources(), resource);
+                        circularBitmapDrawable.setCircular(true);
+                        holder.headIcon.setImageDrawable(circularBitmapDrawable);
+                    }
+                });
+//                holder.headIcon.setImageResource(R.drawable.jmui_head_icon);
             }
 
             // 点击头像跳转到个人信息界面
@@ -646,10 +675,11 @@ public class ChattingListAdapter extends BaseAdapter {
                 mController.handleGroupChangeMsg(msg, holder);
                 break;
             case prompt:
-//                mController.handlePromptMsg(msg, holder);
-//                break;
+                mController.handlePromptMsg(msg, holder);
+                break;
             default:
                 mController.handleCustomMsg(msg, holder);
+                break;
         }
         if (msg.getDirect() == MessageDirect.send && !msg.getContentType().equals(ContentType.prompt) && msg.getContentType() != ContentType.custom) {
             if (msg.getUnreceiptCnt() == 0) {
@@ -723,6 +753,7 @@ public class ChattingListAdapter extends BaseAdapter {
 //            }
         };
         mDialog = DialogCreator.createResendDialog(mContext, listener);
+        if (mDialog == null) return;
         mDialog.getWindow().setLayout((int) (0.8 * mWidth), WindowManager.LayoutParams.WRAP_CONTENT);
         mDialog.show();
     }

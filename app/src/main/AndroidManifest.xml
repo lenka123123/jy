@@ -65,7 +65,7 @@
         <!-- 个人中心 基本信息 -->
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleInstance"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -583,12 +583,19 @@
         <!-- club 社团活动 -->
         <activity
             android:name=".club.clubactive.ClubActiveDetailActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
 
         <!-- club 编辑社团活动 -->
         <activity
             android:name=".club.editorclubactive.ClubShowActiveActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+
+        <!-- club 创建社团活动 -->
+        <activity
+            android:name=".club.editorclubactive.ClubEditorActiveActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
 
@@ -625,8 +632,74 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
 
+        <!-- club 任命权限-->
+        <activity
+            android:name=".club.editorclubactive.power.SettingPowerActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+
+        <!-- club 创建社团-->
+        <activity
+            android:name=".club.addclub.AddCLubActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <!-- club 社团权限管理-->
+        <activity
+            android:name=".club.mangerpower.MangerPowerActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+
+        <!-- club 社团我的兼职-->
+        <activity
+            android:name=".club.myclub.myparttime.ClubMyPartTimeActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+
+        <!-- club 社团我的社团-->
+        <activity
+            android:name=".club.myclub.myclub.ClubMyClubActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <!-- club 社团我的活动-->
+        <activity
+            android:name=".club.myclub.myactive.ClubMyActiveActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+
+        <!-- club 社团互助-->
+        <activity
+            android:name=".club.myclub.help.ClubHelpActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <!-- club  申请赞助-->
+        <activity
+            android:name=".club.myclub.help.ClubApplyHelpActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+
+        <!-- club 社团个人中心-->
+        <activity
+            android:name=".club.personcenter.PersonCenterActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <!-- club 系统消息中心-->
+        <activity
+            android:name=".club.systemmessage.ClubSystemListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+
+        <!-- club 保险信息-->
+        <activity
+            android:name=".home.activity.PortionActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+
         <!-- 极光聊天IM -->
-        <activity android:name=".club.im.ChatActivity" />
+        <activity
+            android:name=".club.im.ChatActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
 
         <activity
             android:name=".wxapi.WXEntryActivity"
@@ -823,7 +896,7 @@
             android:value="developer-default" />
         <meta-data
             android:name="JPUSH_APPKEY"
-            android:value="11dd2beba30978b536b11606" /> <!--  </>值来自开发者平台取得的AppKey-->
+            android:value="72e19e132e97f3f052b36edf" /> <!--  </>值来自开发者平台取得的AppKey-->
 
 
         <receiver android:name=".receiver.TokenBroadcastReceiver">

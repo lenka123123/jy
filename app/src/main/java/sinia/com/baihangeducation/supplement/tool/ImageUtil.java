@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.Bitmap.Config;
+import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -442,4 +443,36 @@ public class ImageUtil {
                 || lowerCaseFilepath.toLowerCase().contains("png") || lowerCaseFilepath.toLowerCase().contains("bmp") || lowerCaseFilepath
                 .toLowerCase().contains("gif"));
     }
+
+
+
+    /**
+     * drawable转为file
+     * @param mContext
+     * @param drawableId  drawable的ID
+     * @param fileName   转换后的文件名
+     * @return
+     */
+    public File drawableToFile(Context mContext,int drawableId,File fileName){ //        InputStream is = view.getContext().getResources().openRawResource(R.drawable.logo);
+        Bitmap bitmap = BitmapFactory.decodeResource(mContext.getResources(), drawableId);
+//        Bitmap bitmap = BitmapFactory.decodeStream(is);
+
+        String defaultPath = mContext.getFilesDir() .getAbsolutePath() + "/defaultGoodInfo";
+        File file = new File(defaultPath);
+        if (!file.exists()) { file.mkdirs();
+        } else { return null;
+        } String defaultImgPath = defaultPath + "/"+fileName;
+        file = new File(defaultImgPath);
+        try { file.createNewFile();
+
+            FileOutputStream fOut = new FileOutputStream(file);
+
+            bitmap.compress(Bitmap.CompressFormat.PNG, 20, fOut);
+//            is.close();
+            fOut.flush();
+            fOut.close();
+        } catch (Exception e) { e.printStackTrace();
+        } return file;
+    }
+
 }

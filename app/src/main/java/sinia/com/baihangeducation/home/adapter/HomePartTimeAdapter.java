@@ -41,10 +41,14 @@ public class HomePartTimeAdapter extends SuperBaseAdapter<HomePartTimeInfo> {
         ImageView imageView = holder.getView(R.id.fragment_home_down_item_img);
         GlideLoadUtils.getInstance().glideLoad(context, item.job_industry_icon, imageView, R.drawable.select_0);
 
-
         holder.setText(R.id.fragment_home_down_item_title, item.job_title);
+        holder.setText(R.id.job_time, item.job_time_group);
+        // 发布平台 1:非平台发布; 2:平台发布
+        String address = item.job_city_name + "  " + item.job_distance + "  " + item.job_money_name;
+        if (item.is_platform == 2) {
+            address = item.job_city_name + "  " + item.job_distance + "  " + item.job_money_name + "  平台";
+        }
 
-        String address = item.job_city_name + "  " + item.job_distance +"  "+ item.job_money_name;
         holder.setText(R.id.fragment_home_down_item_adressandtime, address);
         holder.setText(R.id.lock_person_number, "浏览" + item.job_look_num + "人");//+ " " + item.job_add_date
         holder.setText(R.id.apply_person_number, "申请" + item.job_apply_num + "人");//+ " " + item.job_add_date
@@ -72,20 +76,21 @@ public class HomePartTimeAdapter extends SuperBaseAdapter<HomePartTimeInfo> {
         }
         holder.setText(R.id.fragment_home_down_item_salary, item.job_money);
 
-        holder.setVisible(R.id.show_club_job, AppConfig.SHOWCLUBJOB);
+        holder.setVisible(R.id.show_club_job, false);
 
         Log.i("兼职的type", item.job_type + "");
         holder.setOnClickListener(R.id.fragment_home_down_item, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (item.job_type) {
-                    case 1:
-                        Goto.toAllJobDetailActivity(context, item.job_id);
-                        break;
-                    case 2:
-                        Goto.toPartTimeJobDetailActivity(context, item.job_id);
-                        break;
-                }
+                Goto.toPartTimeJobDetailActivityForHome(context, item.job_id, item.job_type);
+//                switch (item.job_type) {
+//                    case 1:
+//                        Goto.toAllJobDetailActivity(context, item.job_id);
+//                        break;
+//                    case 2:
+//                        Goto.toPartTimeJobDetailActivity(context, item.job_id);
+//                        break;
+//                }
             }
         });
     }

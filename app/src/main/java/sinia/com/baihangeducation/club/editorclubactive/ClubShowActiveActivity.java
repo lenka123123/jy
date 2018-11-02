@@ -1,6 +1,7 @@
 package sinia.com.baihangeducation.club.editorclubactive;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -8,7 +9,10 @@ import android.provider.MediaStore;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -18,22 +22,27 @@ import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.TimePickerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.imnjh.imagepicker.SImagePicker;
 import com.imnjh.imagepicker.activity.PhotoPickerActivity;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 
 import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.R;
+import sinia.com.baihangeducation.club.ClubPermissModel;
 import sinia.com.baihangeducation.club.club.interfaces.GetRequestListener;
 import sinia.com.baihangeducation.club.editorclubactive.model.ActiveInfoData;
 import sinia.com.baihangeducation.club.editorclubactive.model.ObtainActiveInfoListener;
 import sinia.com.baihangeducation.supplement.base.BaseActivity;
+import sinia.com.baihangeducation.supplement.base.Goto;
 import sinia.com.baihangeducation.supplement.tool.PickerUtils;
 
-public class ClubShowActiveActivity extends BaseActivity {
+public class ClubShowActiveActivity extends BaseActivity implements GetRequestListener {
 
     private static final int COMPANY_LOGO = 11034;
     private LinearLayout active_start_time;
@@ -60,6 +69,10 @@ public class ClubShowActiveActivity extends BaseActivity {
     private LinearLayout include_club_ll;
     private TextView join;
     private ClubEditorModel clubEditorModel;
+    private TextView exit;
+    private TextView sex_option_text;
+    private TextView man_text;
+    private TextView woman_text;
 
 
     @Override
@@ -90,6 +103,9 @@ public class ClubShowActiveActivity extends BaseActivity {
 
             }
         });
+
+        ClubPermissModel clubPermissModel = new ClubPermissModel(this);
+        clubPermissModel.getClubPermission("", this);
     }
 
     @Override
@@ -100,10 +116,14 @@ public class ClubShowActiveActivity extends BaseActivity {
         include_club = findViewById(R.id.include_club);
         man_num = findViewById(R.id.man);
         woman_num = findViewById(R.id.woman);
+        man_text = findViewById(R.id.man_text);
+        woman_text = findViewById(R.id.woman_text);
         free = findViewById(R.id.free);
         info = findViewById(R.id.info);
         include_club_ll = findViewById(R.id.include_club_ll);
         join = findViewById(R.id.join);
+        exit = findViewById(R.id.exit);
+        sex_option_text = findViewById(R.id.sex_option_text);
 
         active_start_time = findViewById(R.id.active_start_time);
         active_start_time_text = findViewById(R.id.active_start_time_text);
@@ -111,22 +131,29 @@ public class ClubShowActiveActivity extends BaseActivity {
         active_stop_time_text = findViewById(R.id.active_stop_time_text);
         active_address = findViewById(R.id.active_address);
         active_address_text = findViewById(R.id.active_address_text);
+        findViewById(R.id.back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
 
 //        active_start_time.setOnClickListener(this);
 //        active_stop_time.setOnClickListener(this);
 //        active_address.setOnClickListener(this);
         join.setOnClickListener(this);
+        exit.setOnClickListener(this);
     }
 
     private void showInfo(ActiveInfoData activeInfoData) {
         if (activeInfoData.is_apply.equals("1")) {
 //            1：已参加
-            join.setText("已加入");
+            join.setText("已报名");
             join.setClickable(false);
         } else if (activeInfoData.is_apply.equals("0")) {
             // 0：未报名
-            join.setText("加入");
+            join.setText("报名");
             join.setClickable(true);
         }
 
@@ -136,14 +163,39 @@ public class ClubShowActiveActivity extends BaseActivity {
             include_club_ll.setVisibility(View.VISIBLE);
         }
 
+
+        sex_option_text.setText(activeInfoData.human_type_name);
+        if (activeInfoData.human_type.equals("4")) {
+            String[] sexNum = activeInfoData.human_num.split(",");
+            if (sexNum.length > 1) {
+                man_num.setText(sexNum[0]);
+                woman_num.setText(sexNum[1]);
+            }
+        } else if (activeInfoData.human_type.equals("3")) {
+            man_num.setVisibility(View.GONE);
+            man_text.setVisibility(View.GONE);
+            woman_num.setText(activeInfoData.human_num);
+        } else if (activeInfoData.human_type.equals("2")) {
+            woman_num.setVisibility(View.GONE);
+            woman_text.setVisibility(View.GONE);
+
+            man_num.setText(activeInfoData.human_num);
+        } else if (activeInfoData.human_type.equals("1")) {
+            man_num.setVisibility(View.GONE);
+            man_text.setVisibility(View.GONE);
+            woman_text.setVisibility(View.GONE);
+            woman_num.setText(activeInfoData.human_num);
+        }
+
+
         Glide.with(context).load(activeInfoData.cover).error(R.drawable.logo).into(photo);
         title.setText(activeInfoData.name);
         type.setText(activeInfoData.type_name);
         include_club.setText(activeInfoData.club_name);
         active_start_time_text.setText(activeInfoData.begin_time);
         active_stop_time_text.setText(activeInfoData.end_time);
-        man_num.setText(activeInfoData.boy_num);
-        woman_num.setText(activeInfoData.girl_num);
+
+
         free.setText(activeInfoData.expenditure);
         info.setText(activeInfoData.introduce);
         active_address_text.setText(activeInfoData.addr);
@@ -157,8 +209,12 @@ public class ClubShowActiveActivity extends BaseActivity {
                 clubEditorModel.applyActive(activity_id, new GetRequestListener() {
                     @Override
                     public void setRequestSuccess(String msg) {
+                        if (msg.equals("请完善")) {
+                            getCenterCancelDialogShow();
+                            return;
+                        }
                         join.setClickable(false);
-                        join.setText("已加入");
+                        join.setText("已报名");
                     }
 
                     @Override
@@ -275,4 +331,42 @@ public class ClubShowActiveActivity extends BaseActivity {
                 .hideSoftInputFromWindow((ClubShowActiveActivity.this).getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
     }
+
+    @Override
+    public void setRequestSuccess(String msg) {
+        List<String> mPermissionList = new Gson().fromJson(msg, new TypeToken<List<String>>() {
+        }.getType());
+
+    }
+
+    @Override
+    public void setRequestFail() {
+
+    }
+
+
+    public void getCenterCancelDialogShow() {
+        final Dialog dialog = new Dialog(context, com.example.framwork.R.style.custom_cancel_dialog);
+        dialog.setContentView(R.layout.clcub_join_dialog_apply_app);
+        Window dialogWindow = dialog.getWindow();
+
+        dialogWindow.findViewById(R.id.club_join).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Goto.toRealNameActivity(context);
+                dialog.cancel();
+            }
+        });
+        //dialogWindow.setWindowAnimations(R.style.mystyle);
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+        lp.width = context.getResources().getDisplayMetrics().widthPixels;
+        lp.alpha = 1.0f;
+        dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        dialogWindow.setAttributes(lp);
+        dialogWindow.setGravity(Gravity.CENTER);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.show();
+
+    }
+
 }

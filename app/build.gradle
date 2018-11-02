@@ -5,8 +5,8 @@ android {
         applicationId "sinia.com.baihangeducation"
         minSdkVersion 17
         targetSdkVersion 26
-        versionCode 428
-        versionName "4.2.8"
+        versionCode 430
+        versionName "4.3.0"
 //        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         ndk {
@@ -15,7 +15,7 @@ android {
         }
         manifestPlaceholders = [
                 JPUSH_PKGNAME: applicationId,
-                JPUSH_APPKEY : "11dd2beba30978b536b11606", //JPush上注册的包名对应的appkey.
+                JPUSH_APPKEY : "72e19e132e97f3f052b36edf", //JPush上注册的包名对应的appkey.
                 JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
         vectorDrawables.useSupportLibrary = true

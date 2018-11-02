@@ -37,7 +37,6 @@ import sinia.com.baihangeducation.mine.view.FragmentMessageView;
 
 public class FragmentMessageActivity extends BaseActivity implements FragmentMessageView {
 
-
     private List<FragmentMessageInfo> mList = new ArrayList<>();
     private YRecyclerView ycl;
     private FragmentMessagePresenter mFragmentMessagePresenter;
@@ -137,8 +136,10 @@ public class FragmentMessageActivity extends BaseActivity implements FragmentMes
     @Override
     public void getMessageSuccess(FragmentMessageListInfo mInfo, int maxpage) {
         if (mInfo.list.size() == 0) {
+            mCommonTitle.getRightTxt().setText("");
 //            progressActivityUtils.showEmptry("暂无数据");
         } else {
+            mCommonTitle.getRightTxt().setText("一键已读");
 //            progressActivityUtils.showContent();
             countpage++;
             if (maxpage == 1 || countpage > maxpage) {

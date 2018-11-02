@@ -29,7 +29,8 @@
                 android:id="@+id/releasejob_jobchoice_layout"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y84"
-                android:background="@color/white">
+                android:background="@color/white"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -57,7 +58,7 @@
                     android:ellipsize="start"
                     android:focusable="false"
                     android:gravity="center|right"
-                    android:hint="请选择"
+                    android:hint="兼职"
                     android:paddingLeft="@dimen/x20"
                     android:paddingRight="@dimen/x20"
                     android:singleLine="true"
@@ -470,6 +471,7 @@
                         android:ellipsize="none"
                         android:gravity="right"
                         android:hint="请填写 "
+                        android:inputType="number"
                         android:textColor="@color/black"
                         android:textSize="@dimen/space_14" />
 
@@ -535,6 +537,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="@dimen/x20"
                         android:background="@color/white"
+                        android:inputType="number"
                         android:gravity="center_vertical|right"
                         android:hint="请填写 "
                         android:textColor="@color/black"
@@ -644,7 +647,7 @@
             <RelativeLayout
                 android:id="@+id/releasejob_worktimemax_layout"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/y84"
+                android:layout_height="wrap_content"
                 android:background="@color/white">
 
                 <TextView
@@ -662,22 +665,25 @@
 
                 <LinearLayout
 
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/x500"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
+                    android:gravity="right"
+                    android:minHeight="@dimen/y84"
                     android:paddingRight="@dimen/x20">
-
 
                     <TextView
                         android:id="@+id/releasejob_worktimemax_textview"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
                         android:layout_marginRight="@dimen/x20"
                         android:background="@color/white"
                         android:clickable="false"
                         android:focusable="false"
-                        android:gravity="center|right"
+                        android:gravity="center|left"
                         android:hint="请选择"
+                        android:minHeight="@dimen/y84"
                         android:textColor="@color/black"
                         android:textSize="@dimen/space_14" />
 
@@ -846,7 +852,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="@dimen/x20">
+                    android:layout_marginRight="@dimen/x20"
+                    android:clickable="false">
 
                     <TextView
                         android:id="@+id/releasejob_linker_way_text"
@@ -854,6 +861,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="@dimen/space_10"
                         android:background="@color/white"
+                        android:clickable="false"
                         android:focusable="false"
                         android:gravity="center_vertical|right"
                         android:hint="请选择"
@@ -865,11 +873,19 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:background="@drawable/new_more" />
+                        android:background="@drawable/new_more"
+                        android:clickable="false" />
                 </LinearLayout>
             </RelativeLayout>
 
             <include layout="@layout/include_line_half_gray" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y10"
+                android:background="@color/position_select_background"
+                android:gravity="center_vertical" />
+
 
             <EditText
                 android:id="@+id/releasejob_contant_edittext"
@@ -880,13 +896,6 @@
                 android:paddingLeft="@dimen/x20"
                 android:paddingRight="@dimen/x20"
                 android:textSize="@dimen/font_size_14" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/y10"
-                android:background="@color/position_select_background"
-                android:gravity="center_vertical" />
-
 
             <EditText
                 android:id="@+id/releasejob_memo_edittext"

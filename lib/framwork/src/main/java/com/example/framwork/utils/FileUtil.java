@@ -29,6 +29,29 @@ import java.util.List;
  * @author wujianwei;
  */
 public class FileUtil {
+
+    // 获取文件扩展名
+    public static String getExtensionName(String filename) {
+        if ((filename != null) && (filename.length() > 0)) {
+            int dot = filename.lastIndexOf('.');
+            if ((dot > -1) && (dot < (filename.length() - 1))) {
+                return filename.substring(dot + 1);
+            }
+        }
+        return "";
+    }
+
+    // 获取文件名
+    public static String getFileNameFromPath(String filepath) {
+        if ((filepath != null) && (filepath.length() > 0)) {
+            int sep = filepath.lastIndexOf('/');
+            if ((sep > -1) && (sep < filepath.length() - 1)) {
+                return filepath.substring(sep + 1);
+            }
+        }
+        return filepath;
+    }
+
     /**
      * 内部类实现单例模式
      * 延迟加载，减少内存开销

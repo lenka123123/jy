@@ -54,7 +54,8 @@
                     <RadioButton
                         android:id="@+id/main_tab_home"
                         style="@style/MTabStyle"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:checked="true"
                         android:drawableTop="@drawable/maintab_home_icon_selector"
@@ -65,7 +66,8 @@
                     <RadioButton
                         android:id="@+id/main_tab_find"
                         style="@style/MTabStyle"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:drawableTop="@drawable/maintab_find_icon_selector"
                         android:text="兼职"
@@ -75,29 +77,30 @@
                     <RadioButton
                         android:id="@+id/main_tab_add"
                         style="@style/MTabStyle"
-                        android:layout_width="10dp"
-                        android:layout_height="match_parent"
-                        android:layout_centerInParent="true"
-                        android:button="@null"
-                        android:drawableTop="@drawable/maintab_campus_icon_selector"
-                        android:text="你好"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:drawableTop="@drawable/maintab_club_icon_selector"
+                        android:text="社团"
                         android:textColor="@drawable/maintextcolorselector"
                         android:textSize="@dimen/font_size_12" />
 
                     <RadioButton
                         android:id="@+id/main_tab_campus"
                         style="@style/MTabStyle"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:drawableTop="@drawable/maintab_campus_icon_selector"
-                        android:text="俱乐部"
+                        android:text="消息"
                         android:textColor="@drawable/maintextcolorselector"
                         android:textSize="@dimen/font_size_12" />
 
                     <RadioButton
                         android:id="@+id/main_tab_mine"
                         style="@style/MTabStyle"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:drawableTop="@drawable/maintab_mine_icon_selector"
                         android:text="我的"

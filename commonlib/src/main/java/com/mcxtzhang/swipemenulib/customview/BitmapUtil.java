@@ -3,6 +3,7 @@ package com.mcxtzhang.swipemenulib.customview;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
+import android.util.Log;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -20,18 +21,30 @@ public class BitmapUtil {
      * @return
      */
     public static Bitmap compressImage(Bitmap image) {
+        return image;
+//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//        image.compress(Bitmap.CompressFormat.JPEG, 100, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
+//        int options = 100;
+//        while ( baos.toByteArray().length / 1024>100) { //循环判断如果压缩后图片是否大于100kb,大于继续压缩
+//            baos.reset();//重置baos即清空baos
+//            image.compress(Bitmap.CompressFormat.JPEG, options, baos);//这里压缩options%，把压缩后的数据存放到baos中
+//            options -= 10;//每次都减少10
+//        }
+//        ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());//把压缩后的数据baos存放到ByteArrayInputStream中
+//        Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);//把ByteArrayInputStream数据生成图片
 
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        int options = 100;
-        while (baos.toByteArray().length / 1024 > 100) {
-            baos.reset();
-            image.compress(Bitmap.CompressFormat.JPEG, options, baos);
-            options -= 10;
-        }
-        ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());
-        Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);
-        return bitmap;
+
+//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//        image.compress(Bitmap.CompressFormat.PNG, 100, baos);
+//        int options = 100;
+//        while (baos.toByteArray().length / 1024 > 100) {
+//            baos.reset();
+//            image.compress(Bitmap.CompressFormat.PNG, options, baos);
+//            options -= 10;
+//        }
+//        ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());
+//        Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);
+
     }
 
     /**
@@ -71,10 +84,12 @@ public class BitmapUtil {
      *
      * @param filename
      * @param bit
-     * @return
+     * @return ss
      */
+
+
     private static String saveMyBitmap(String filename, Bitmap bit) {
-        String baseDir = Environment.getExternalStorageDirectory().getAbsolutePath()+"/laopai/";
+        String baseDir = Environment.getExternalStorageDirectory().getAbsolutePath() + "/laopai/";
         String filePath = baseDir + filename;
         File dir = new File(baseDir);
         if (!dir.exists()) {
@@ -86,7 +101,8 @@ public class BitmapUtil {
             f.createNewFile();
             FileOutputStream fOut = null;
             fOut = new FileOutputStream(f);
-            bit.compress(Bitmap.CompressFormat.PNG, 100, fOut);
+//  bm.compress(Bitmap.CompressFormat.JPEG, 30, baos);//30 是压缩率，表示压缩70%; 如果不压缩是100，表示压缩率为0
+            bit.compress(Bitmap.CompressFormat.JPEG, 50, fOut);
             fOut.flush();
             fOut.close();
         } catch (IOException e1) {
@@ -98,8 +114,9 @@ public class BitmapUtil {
 
     /**
      * 压缩上传路径
+     *
      * @param path
-     * @return
+     * @return q
      */
     public static String compressImageUpload(String path) {
         String filename = path.substring(path.lastIndexOf("/") + 1);
@@ -111,25 +128,26 @@ public class BitmapUtil {
     /**
      * 清除缓存文件
      */
-    public static void deleteCacheFile(){
-        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/laopai/");
+    public static void deleteCacheFile() {
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/laopai/");
         RecursionDeleteFile(file);
     }
+
     /**
      * 递归删除
      */
-    private static void RecursionDeleteFile(File file){
-        if(file.isFile()){
+    private static void RecursionDeleteFile(File file) {
+        if (file.isFile()) {
             file.delete();
             return;
         }
-        if(file.isDirectory()){
+        if (file.isDirectory()) {
             File[] childFile = file.listFiles();
-            if(childFile == null || childFile.length == 0){
+            if (childFile == null || childFile.length == 0) {
                 file.delete();
                 return;
             }
-            for(File f : childFile){
+            for (File f : childFile) {
                 RecursionDeleteFile(f);
             }
             file.delete();

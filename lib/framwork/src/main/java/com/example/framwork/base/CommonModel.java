@@ -36,41 +36,44 @@ public class CommonModel {
     public void resultPostModel(Activity context, HashMap info, OnRequestListener requestListener, int flag) {
         String token = (String) SpCommonUtils.get(context, USERTOKEN, "USERID");
         String userId = (String) SpCommonUtils.get(context, FINALUSERID, "USERID");
-//        switch (flag){
-//            case 1:
-//                Log.i("区分借口","11111111");
-//                Request<String> request_other = new FastJsonRequest("",
-//                        RequestMethod.POST, JSON.toJSONString(info));
-//                BeanJsonResult.execute(context, request_other, requestListener);
-//                break;
-//            case 0:
-//                Log.i("区分借口","22222222"); https://newapi.891jyb.com
+        switch (flag) {
+            case 1:
+                if (info.containsKey("user_id") && info.containsKey("token"))
+                    if (info.get("user_id").equals("USERID") || info.get("token").equals("USERID")) {
+                        info.remove("user_id");
+                        info.remove("token");
+                    }
 
-        if (info.containsKey("user_id") && info.containsKey("token")) {
-            if (!token.equals("USERID") && !userId.equals("USERID")) {
-                info.put("user_id", userId);
-                info.put("token", token);
-            }
+                Request<String> request_other = new FastJsonRequest(BaseAppConfig.SERVICE_PATH,
+                        RequestMethod.POST, JSON.toJSONString(info));
+                BeanJsonResult.execute(context, request_other, requestListener);
+                break;
+            case 0:
+                // info.put("noAes", "1"); // TODO: 2018/10/15 0015  不加密
+                if (info.containsKey("user_id") && info.containsKey("token")) {
+                    if (!token.equals("USERID") && !userId.equals("USERID")) {
+                        info.put("user_id", userId);
+                        info.put("token", token);
+                    }
 
-            if (info.get("user_id").equals("USERID") || info.get("token").equals("USERID")) {
-                info.remove("user_id");
-                info.remove("token");
-            }
-//            System.out.println(info.get("token") + "=================最后一次传token");
+                    if (info.get("user_id").equals("USERID") || info.get("token").equals("USERID") || info.get("token").equals("")) {
+                        info.remove("user_id");
+                        info.remove("token");
+                    }
+                    System.out.println(info.get("token") + "=================最后一次传token");
+                }
+
+                Request<String> request = new FastJsonRequest(BaseAppConfig.SERVICE_PATH,
+                        RequestMethod.POST, JSON.toJSONString(info));
+                BeanJsonResult.execute(context, request, requestListener);
+                break;
         }
-
-        Request<String> request = new FastJsonRequest(BaseAppConfig.SERVICE_PATH,
-                RequestMethod.POST, JSON.toJSONString(info));
-        BeanJsonResult.execute(context, request, requestListener);
-//                break;
-//        }
-
-
     }
 
     /*
      * 一般Get请求是调用*/
-    public void resultGetCommonModel(Activity context, HashMap info, String methodName, OnRequestNewListener requestListener) {
+    public void resultGetCommonModel(Activity context, HashMap info, String
+            methodName, OnRequestNewListener requestListener) {
         Request<String> request = NoHttp.createStringRequest(methodName, RequestMethod.GET);
         request.addHeader("Authorization", "APPCODE aff9b2bc697f4ec6b26a7525caf2c07e");
         request.add(info);
@@ -79,7 +82,8 @@ public class CommonModel {
 
     /*
      * 自定义URL的model*/
-    public void resultCustomUrlModel(Activity context, HashMap info, String URL, OnRequestListener requestListener) {
+    public void resultCustomUrlModel(Activity context, HashMap info, String
+            URL, OnRequestListener requestListener) {
         Request<String> request = new FastJsonRequest(URL,
                 RequestMethod.POST, JSON.toJSONString(info));
         BeanJsonResult.execute(context, request, requestListener);
@@ -101,7 +105,8 @@ public class CommonModel {
      * @param request
      * @param requestListener
      */
-    public void execute(Activity context, Request<String> request, OnRequestListener requestListener) {
+    public void execute(Activity context, Request<String> request, OnRequestListener
+            requestListener) {
         BeanJsonResult.execute(context, request, requestListener);
     }
 }

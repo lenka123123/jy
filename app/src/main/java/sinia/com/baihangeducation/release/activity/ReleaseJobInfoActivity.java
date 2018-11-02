@@ -140,6 +140,7 @@ public class ReleaseJobInfoActivity extends BaseActivity implements IReleaseJobI
     private AlertViewContorller mBelongAlertViewContorller;
     private AlertViewContorller mInterviewAlertViewContorller;
     private ChangeISNOPicker changeISNOPicker;
+    private StringBuffer stringBuffer;
 
     @Override
     public int initLayoutResID() {
@@ -260,7 +261,7 @@ public class ReleaseJobInfoActivity extends BaseActivity implements IReleaseJobI
         changeISNOPicker.setAlertOnClickListener(new ChangeISNOPicker.AlertOnClickListener() {
             @Override
             public void alertClick(String age) {
-                android.widget.Toast.makeText(ReleaseJobInfoActivity.this, age, android.widget.Toast.LENGTH_LONG).show();
+//                android.widget.Toast.makeText(ReleaseJobInfoActivity.this, age, android.widget.Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -294,7 +295,9 @@ public class ReleaseJobInfoActivity extends BaseActivity implements IReleaseJobI
 //        return super.onKeyDown(keyCode, event);
 //    }
 
+
     @Override
+
     public void onClick(View v) {
         super.onClick(v);
         switch (v.getId()) {
@@ -345,10 +348,10 @@ public class ReleaseJobInfoActivity extends BaseActivity implements IReleaseJobI
             case R.id.releasejob_salarytype_layout:
                 hideEditTextInput();
                 String[] salarydata;
-                if ((mJobChoiceTextView.getText().toString()).equals("全职"))
-                    salarydata = new String[]{"月薪", "年薪"};
-                else
-                    salarydata = new String[]{"日结", "次日结", "周结", "月结"};
+//                if ((mJobChoiceTextView.getText().toString()).equals("全职"))
+//                    salarydata = new String[]{"月薪", "年薪"};
+//                else
+                salarydata = new String[]{"日结", "次日结", "周结", "月结"};
                 changeISNOPicker.showAlertDialog(Arrays.asList(salarydata), "薪资待遇", mSalaryTypeTextView);
 //                addAlerView(mSalaryTypeTextView, "薪资待遇", salarydata);
                 break;
@@ -418,7 +421,7 @@ public class ReleaseJobInfoActivity extends BaseActivity implements IReleaseJobI
                         }
                     }
                 }
-                releaseJobPresenter.releaseJob();
+                releaseJobPresenter.releaseJob("");
                 break;
         }
     }
@@ -429,7 +432,7 @@ public class ReleaseJobInfoActivity extends BaseActivity implements IReleaseJobI
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         //当requestCode,resultCode同时为0时,也就是处理特定的结果
 
-        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer = new StringBuffer();
         System.out.println("上班时间====" + requestCode + "resultCode" + resultCode);
         if (requestCode == 0 && resultCode == 200) {
 
@@ -438,15 +441,16 @@ public class ReleaseJobInfoActivity extends BaseActivity implements IReleaseJobI
                 return;
             }
             for (int i = 0; i < selectedDayList.size(); i++) {
-                stringBuffer.append(selectedDayList.get(i).month);
-                stringBuffer.append(".");
+                stringBuffer.append(selectedDayList.get(i).year);
+                stringBuffer.append("-");
+                stringBuffer.append(Integer.valueOf(selectedDayList.get(i).month) + 1 + "");
+                stringBuffer.append("-");
                 stringBuffer.append(selectedDayList.get(i).day);
-                stringBuffer.append("/");
-
+                stringBuffer.append(",");
             }
             stringBuffer.deleteCharAt(stringBuffer.length() - 1);
-            System.out.println("上班时间" + selectedDayList.toString());
-            mWorkTimeMaxTextView.setText(stringBuffer);
+            System.out.println("上班时间" + stringBuffer.toString());
+            mWorkTimeMaxTextView.setText("已设置");
         }
     }
 
@@ -505,7 +509,7 @@ public class ReleaseJobInfoActivity extends BaseActivity implements IReleaseJobI
             //岗位类型
             if (info.job_industry_list != null && info.job_industry_list.size() > 0) {
                 job_industry_list = info.job_industry_list;
-              //  mJobTypeTextView.setText(job_industry_list.get(0).industry_name);
+                //  mJobTypeTextiew.setText(job_industry_list.get(0).industry_name);
                 jobTypeID = job_industry_list.get(0).industry_id + "";
             }
             //薪资类型
@@ -565,7 +569,6 @@ public class ReleaseJobInfoActivity extends BaseActivity implements IReleaseJobI
     }
 
 
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -581,12 +584,12 @@ public class ReleaseJobInfoActivity extends BaseActivity implements IReleaseJobI
 
     @Override
     public String getReleaseType() {
-
-        if ((mJobChoiceTextView.getText().toString()).equals("全职")) {
-            return "1";
-        } else {
-            return "2";
-        }
+        return "2";
+//        if ((mJobChoiceTextView.getText().toString()).equals("全职")) {
+//            return "1";
+//        } else {
+//            return "2";
+//        }
     }
 
     @Override
@@ -655,9 +658,10 @@ public class ReleaseJobInfoActivity extends BaseActivity implements IReleaseJobI
         return moneyID;
     }
 
+
     @Override
     public String getMoneyLower() {
-        return "1";
+        return mSalaryMaxEditTextAllTime.getText().toString().trim();
     }
 
     @Override
@@ -749,12 +753,12 @@ public class ReleaseJobInfoActivity extends BaseActivity implements IReleaseJobI
     public String getAgeLower() {
         if (!mAgeLimitTextView.getText().toString().equals("")) {
             if (mAgeLimitTextView.getText().toString().equals("不限")) {
-                return "";
+                return "18";
             }
             String[] age = mAgeLimitTextView.getText().toString().split("-");
             return Integer.valueOf(age[0]) < Integer.valueOf(age[1]) ? age[0] : age[1];
         }
-        return "";
+        return "18";
     }
 
     public String getAgeUpper() {
@@ -780,7 +784,6 @@ public class ReleaseJobInfoActivity extends BaseActivity implements IReleaseJobI
     public String getIsInterview() {
         return mInterviewTextView.getText().toString().equals("是") ? "1" : "2";
     }
-
 
     public String getLinkType() {
         return mLinkerWayTextView.getText().toString();
@@ -808,6 +811,10 @@ public class ReleaseJobInfoActivity extends BaseActivity implements IReleaseJobI
 
     public String getContant() {
         return mContant.getText().toString();
+    }
+
+    public String getJobTime() {
+        return stringBuffer.toString().trim();
     }
 
     @Override

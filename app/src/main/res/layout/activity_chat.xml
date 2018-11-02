@@ -17,35 +17,35 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <RelativeLayout
+            <LinearLayout
                 android:id="@+id/jmui_menu_title_bar"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y80"
-                android:background="@color/white">
+                android:background="@color/white"
+                android:orientation="horizontal">
 
                 <ImageButton
                     android:id="@+id/jmui_return_btn"
                     android:layout_width="@dimen/x50"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/x20"
                     android:background="#00000000"
                     android:src="@drawable/back" />
 
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/jmui_return_btn"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/jmui_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:maxWidth="190dp"
                         android:singleLine="true"
-                        android:text="昵称"
                         android:textColor="#000"
                         android:textSize="18sp" />
 
@@ -55,7 +55,7 @@
                         android:layout_height="wrap_content"
                         android:singleLine="true"
                         android:textColor="#000"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
 
                 </LinearLayout>
 
@@ -64,9 +64,16 @@
                     android:layout_width="@dimen/x50"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/x20"
                     android:background="#00000000"
-                    android:src="@drawable/setting_home" />
-            </RelativeLayout>
+                    android:src="@drawable/chat_setting"
+                    android:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/img"
+                    android:layout_width="0.1dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
             <FrameLayout
                 android:layout_width="match_parent"

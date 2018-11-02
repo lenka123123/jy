@@ -44,7 +44,7 @@ public class ApplyClubListActivity extends BaseActivity implements ApplyClubList
     private String club_id;
 
     public int initLayoutResID() {
-        return R.layout.activity_club_apply;
+        return R.layout.activity_club_num;
     }
 
 

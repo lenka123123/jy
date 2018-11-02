@@ -43,6 +43,7 @@ public class SplashActivity extends BaseActivity implements IGetCommonInfoView {
     private int recLen = 3;
     Timer timer = new Timer();
     private GetCommonInfoPresenter presenter;
+    private boolean islogin;
 
     @Override
     public int initLayoutResID() {
@@ -57,7 +58,7 @@ public class SplashActivity extends BaseActivity implements IGetCommonInfoView {
 
     @Override
     protected void initView() {
-
+        islogin = (boolean) SpCommonUtils.get(context, AppConfig.IS_NEED_LOGIN, false);
         welcomeImg = $(R.id.welcome_img);
         btnJump = $(R.id.btn_jump);
         AppConfig.ISlOGINED = false;
@@ -108,6 +109,8 @@ public class SplashActivity extends BaseActivity implements IGetCommonInfoView {
     @Override
     protected void initData() {
         mCache = ACache.get(context);
+
+
     }
 
     public void onClickListener(View v) {
@@ -141,6 +144,19 @@ public class SplashActivity extends BaseActivity implements IGetCommonInfoView {
     };
 
     private void gotoActivity() {
+        System.out.println("ddddddd" + islogin);
+
+        if (!islogin) {
+            AppConfig.ISlOGINED = false;
+            AppConfig.TOKEN = "TOKEN";
+            AppConfig.USERID = "TOKEN";
+            Intent intent = new Intent(context, LoginActivity.class);
+            context.startActivity(intent);
+            SpCommonUtils.put(context, AppConfig.IS_NEED_LOGIN, true);
+            SplashActivity.this.finish();
+            return;
+        }
+
         Intent intent = new Intent(context, MainActivity.class);
         context.startActivity(intent);
         SplashActivity.this.finish();

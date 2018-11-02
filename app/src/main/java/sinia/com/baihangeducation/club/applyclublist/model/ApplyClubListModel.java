@@ -15,6 +15,7 @@ import java.util.HashMap;
 import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.club.applyclublist.interfaces.ApplyClubListListener;
 import sinia.com.baihangeducation.club.applyclublist.interfaces.GetPersonListener;
+import sinia.com.baihangeducation.club.club.interfaces.GetRequestListener;
 import sinia.com.baihangeducation.club.clubdetail.interfaces.JoinClubDetailListener;
 import sinia.com.baihangeducation.supplement.base.Goto;
 import sinia.com.baihangeducation.supplement.tool.BaseRequestInfo;
@@ -79,12 +80,12 @@ public class ApplyClubListModel extends BasePresenter {
             }).setNegativeButton("取消", null).show();
             return;
         }
-        HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "setClubApply", "club", true);
+        HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "setApplyCheck", "club", true);
 
         info.put("user_id", AppConfig.USERID);
         info.put("token", AppConfig.TOKEN);
-        info.put("club_id", club_id);
-        info.put("member_id", member_id);
+        info.put("check_type", "1");
+        info.put("category_id", member_id);
 
         post(info, new OnRequestListener() {
             @Override
@@ -109,7 +110,7 @@ public class ApplyClubListModel extends BasePresenter {
     }
 
 
-    public void ignoreClub(String member_id ) {
+    public void ignoreClub(String member_id) {
         if (!AppConfig.ISlOGINED) {
             new AlertDialog.Builder(activity).setTitle("提示！").setMessage("您尚未登录，请先登录。").setPositiveButton("登录", new DialogInterface.OnClickListener() {
                 @Override
@@ -190,4 +191,35 @@ public class ApplyClubListModel extends BasePresenter {
         });
 
     }
+
+
+    public void dropCrew(String member_id, GetRequestListener listener) {
+        HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "dropCrew", "club", true);
+
+        info.put("user_id", AppConfig.USERID);
+        info.put("token", AppConfig.TOKEN);
+        info.put("member_id", member_id);
+
+        post(info, new OnRequestListener() {
+            @Override
+            public void requestSuccess(BaseResponseBean bean) {
+                Toast.getInstance().showSuccessToast(activity, "移除成功");
+                listener.setRequestSuccess("");
+            }
+
+            @Override
+            public void requestFailed(String error) {
+                Toast.getInstance().showErrorToast(activity, error);
+                listener.setRequestFail();
+
+            }
+
+            @Override
+            public void requestFinish() {
+
+            }
+        });
+
+    }
+
 }

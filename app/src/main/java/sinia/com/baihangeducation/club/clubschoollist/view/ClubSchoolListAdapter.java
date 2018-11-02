@@ -1,5 +1,6 @@
 package sinia.com.baihangeducation.club.clubschoollist.view;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +10,7 @@ import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.mcxtzhang.swipemenulib.customview.GlideLoadUtils;
 
@@ -16,6 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sinia.com.baihangeducation.R;
+import sinia.com.baihangeducation.club.club.interfaces.GetRequestListener;
+import sinia.com.baihangeducation.club.club.model.ClubHomeModel;
 import sinia.com.baihangeducation.club.clubschoollist.model.ClubSchoolList;
 import sinia.com.baihangeducation.supplement.base.Goto;
 
@@ -24,16 +28,20 @@ import sinia.com.baihangeducation.supplement.base.Goto;
  * 描述:
  * 作者:yuxd Administrator
  */
-public class ClubSchoolListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
+public class ClubSchoolListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
+        implements View.OnClickListener {
 
 
     private String text = "";
     private List<ClubSchoolList.School> mInviteListInfo = new ArrayList<>();
 
     private Context context;
+    private final ClubHomeModel clubHomeModel;
+    private ClubSchoolListHolder vh;
 
-    public ClubSchoolListAdapter(Context context) {
+    public ClubSchoolListAdapter(Activity context) {
         this.context = context;
+        clubHomeModel = new ClubHomeModel(context);
     }
 
 
@@ -59,8 +67,9 @@ public class ClubSchoolListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
-        ClubSchoolListHolder vh = (ClubSchoolListHolder) holder;
+        vh = (ClubSchoolListHolder) holder;
         vh.itemView.setTag(position);
+        vh.ranking_money.setTag(position);
 
 //        if (position == 0) {
 //            vh.view_line.setVisibility(View.INVISIBLE);
@@ -99,7 +108,44 @@ public class ClubSchoolListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             }
         }
         vh.ranking_school_number.setText(mInviteListInfo.get(position).member_num + "人");
-        vh.ranking_money.setText(mInviteListInfo.get(position).income);
+
+        //   ( 0：已申请 1：未申请 2：社员 )
+
+        if (mInviteListInfo.get(position).is_apply.equals("3")) {
+            vh.ranking_money.setText("");
+        } else if (mInviteListInfo.get(position).is_apply.equals("2")) {
+            vh.ranking_money.setText("已加入");
+        } else if (mInviteListInfo.get(position).is_apply.equals("1")) {
+            vh.ranking_money.setText("加入");
+        } else {
+            vh.ranking_money.setText("已申请");
+        }
+
+
+        vh.ranking_money.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mInviteListInfo.get(position).is_apply.equals("1"))
+                    clubHomeModel.applyClub(mInviteListInfo.get(position).id, "", new GetRequestListener() {
+                        @Override
+                        public void setRequestSuccess(String msg) {
+
+                            ((ClubSchoolListHolder) holder).ranking_money.setText("已申请");
+
+                            System.out.println("======setRequestSuccess===" + msg);
+//                            if (vh.ranking_money.getTag().equals(position))
+//                                vh.ranking_money.setText("已申请");
+                        }
+
+                        @Override
+                        public void setRequestFail() {
+                            System.out.println("======setRequestSuccess=2==");
+                        }
+                    });
+            }
+        });
+
+
         GlideLoadUtils.getInstance().glideLoad(context, mInviteListInfo.get(position).logo, vh.ranking_logo, R.drawable.logo);
 
 
@@ -119,7 +165,10 @@ public class ClubSchoolListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     @Override
     public void onClick(View v) {
         int potion = (Integer) v.getTag();
-        Goto.toClubDetailActivity(context, mInviteListInfo.get(potion).id);
+        if (v.getId() == R.id.ranking_money) {
+        } else {
+            Goto.toClubDetailActivity(context, mInviteListInfo.get(potion).id);
+        }
     }
 }
 

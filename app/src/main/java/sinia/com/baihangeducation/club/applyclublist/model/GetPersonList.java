@@ -14,8 +14,11 @@ public class GetPersonList {
 
     public class PersonList {
         public String id;
+        public String club_id;
+        public String user_id;
         public String nickname;
         public String role_name ;
+        public String type ;
         public String avatar  ;
         public String income  ;
 

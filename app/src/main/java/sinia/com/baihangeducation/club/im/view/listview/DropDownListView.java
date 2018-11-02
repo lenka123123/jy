@@ -34,7 +34,7 @@ public class DropDownListView extends ListView implements OnScrollListener {
      * header layout view
      **/
     private RelativeLayout headerLayout;
-    private ImageView loading;
+//    private ImageView loading;
     private LinearLayout loadingView;
 
     private OnDropDownListener onDropDownListener;
@@ -112,7 +112,7 @@ public class DropDownListView extends ListView implements OnScrollListener {
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         headerLayout = (RelativeLayout) inflater.inflate(R.layout.jmui_drop_down_list_header, this, false);
-        loading = (ImageView) headerLayout.findViewById(R.id.jmui_loading_img);
+//        loading = (ImageView) headerLayout.findViewById(R.id.jmui_loading_img);
         loadingView = (LinearLayout)headerLayout.findViewById(R.id.loading_view);
         addHeaderView(headerLayout);
 
@@ -323,8 +323,8 @@ public class DropDownListView extends ListView implements OnScrollListener {
         if (currentHeaderStatus != HEADER_STATUS_LOADING) {
             resetHeaderPadding();
             loadingView.setVisibility(View.VISIBLE);
-            AnimationDrawable drawable = (AnimationDrawable) loading.getDrawable();
-            drawable.start();
+//            AnimationDrawable drawable = (AnimationDrawable) loading.getDrawable();
+//             drawable.start();
             currentHeaderStatus = HEADER_STATUS_LOADING;
             setSelection(0);
         }

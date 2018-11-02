@@ -8,7 +8,7 @@ import java.util.List;
 
 public class HomeJobInfo {
     public int job_id;              //职位ID
-    public int job_type;            //职位类型 1全职 2兼职
+    public int job_type;            //职位类型 1全职 2兼职 3、社团兼职
     public String job_title;        //职位名称
     public String job_money;        //薪资
     public String job_company_name; //公司名称
@@ -26,6 +26,9 @@ public class HomeJobInfo {
     public String job_time_shaft;
     public String job_money_name;
     public String job_distance;
+
+    public int job_is_platform;
+    public String job_time_group;
 
 
 }

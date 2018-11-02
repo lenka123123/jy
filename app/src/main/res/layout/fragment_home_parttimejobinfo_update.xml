@@ -100,6 +100,24 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/potion_icon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/y10"
+                            android:drawableLeft="@drawable/potion_icon"
+                            android:drawablePadding="@dimen/y10"
+                            android:gravity="center_vertical"
+                            android:text="该职位就业邦为您保驾护航"
+                            android:textColor="#B3B3B3"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/y10"
@@ -467,7 +485,7 @@
                     <ImageView
                         android:id="@+id/online_contact"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="@dimen/x10"
                         android:src="@drawable/online_contact"

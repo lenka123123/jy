@@ -280,6 +280,7 @@ public class ChatItemController {
         }
     }
 
+    //发送文字
     public void handleTextMsg(final Message msg, final ViewHolder holder, int position) {
         final String content = ((TextContent) msg.getContent()).getText();
         SimpleCommonUtils.spannableEmoticonFilter(holder.txtContent, content);
@@ -341,7 +342,7 @@ public class ChatItemController {
         }
     }
 
-    // 处理图片
+    // 发送图片
     public void handleImgMsg(final Message msg, final ViewHolder holder, final int position) {
         final ImageContent imgContent = (ImageContent) msg.getContent();
         final String jiguang = imgContent.getStringExtra("jiguang");

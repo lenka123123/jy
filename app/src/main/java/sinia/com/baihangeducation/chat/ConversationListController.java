@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 
+import com.example.framwork.utils.SpCommonUtils;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -21,6 +24,7 @@ import sinia.com.baihangeducation.R;
 import sinia.com.baihangeducation.chat.view.ConversationListView;
 import sinia.com.baihangeducation.club.im.ChatActivity;
 import sinia.com.baihangeducation.club.im.utils.DialogCreator;
+import sinia.com.baihangeducation.supplement.base.Goto;
 import sinia.com.baihangeducation.supplement.tool.SortConvList;
 import sinia.com.baihangeducation.supplement.tool.SortTopConvList;
 
@@ -37,6 +41,7 @@ public class ConversationListController implements View.OnClickListener,
     private ConversationListAdapter mListAdapter;
     private List<Conversation> mDatas = new ArrayList<Conversation>();
     private Dialog mDialog;
+    private boolean isCreateSystem = false;
 
     public ConversationListController(ConversationListView listView, ChatFragment context,
                                       int width) {
@@ -51,6 +56,15 @@ public class ConversationListController implements View.OnClickListener,
     List<Conversation> delFeedBack = new ArrayList<>();
 
 
+    private void addData() {
+        if (isCreateSystem) {
+            return;
+        }
+        isCreateSystem = true;
+
+
+    }
+
     public void initConvListAdapter() {
         forCurrent.clear();
         topConv.clear();
@@ -58,12 +72,20 @@ public class ConversationListController implements View.OnClickListener,
         delFeedBack.clear();
         int i = 0;
         mDatas = JMessageClient.getConversationList();  //todo 为空
-
+        if (mDatas == null) return;
         if (mDatas != null && mDatas.size() > 0) {
+
             mConvListView.setNullConversation(true);
             SortConvList sortConvList = new SortConvList();
             Collections.sort(mDatas, sortConvList);
             for (Conversation con : mDatas) {
+                if (con.getTargetAppKey().equals("1712")) {
+                    isCreateSystem = true;
+                } else {
+                    isCreateSystem = false;
+
+
+                }
                 if (con.getTargetId().equals("feedback_Android")) {
                     delFeedBack.add(con);
                 }
@@ -71,6 +93,12 @@ public class ConversationListController implements View.OnClickListener,
                     forCurrent.add(con);
                 }
             }
+            if (!isCreateSystem) {
+                Conversation conversation = Conversation.createSingleConversation("系统提醒", "1712");
+                conversation.updateConversationExtra(0 + "");
+                mDatas.add(0, conversation);
+            }
+
             topConv.addAll(forCurrent);
             mDatas.removeAll(forCurrent);
             mDatas.removeAll(delFeedBack);
@@ -87,11 +115,12 @@ public class ConversationListController implements View.OnClickListener,
             }
         }
 
-
         mListAdapter = new ConversationListAdapter(mContext.getActivity(), mDatas, mConvListView);
+
         mConvListView.setConvListAdapter(mListAdapter);
 
     }
+
 
     public void updata() {
 //        mDatas.clear();
@@ -103,9 +132,11 @@ public class ConversationListController implements View.OnClickListener,
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.create_group_btn:
-                mContext.showPopWindow();
-                break;
+//            case R.id.create_group_btn:
+
+
+//                mContext.showPopWindow();
+//                break;
 //            case R.id.search_title:
 //                Intent intent = new Intent();
 //                intent.setClass(mContext.getActivity(), SearchContactsActivity.class);
@@ -114,22 +145,24 @@ public class ConversationListController implements View.OnClickListener,
         }
     }
 
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
-        System.out.println(" 点击位置" + position + "mDatas==");
-//        2mDatas==3
         mDatas = getAdapter().getData();
-
         //点击会话条目
         Intent intent = new Intent();
         if (position > 0) {
             //这里-2是减掉添加的两个headView
-
-
             Conversation conv = mDatas.get(position - 2);
+            System.out.println(" 点击位置1111" + position + "mDatas==" + conv.getTitle());
             intent.putExtra(MyApplication.CONV_TITLE, conv.getTitle());
+
+            if (conv.getTitle().equals("系统提醒")) {
+                Goto.toSystemMeaage(mContext.getContext());
+                return;
+            }
             //群聊
             if (conv.getType() == ConversationType.group) {
                 if (mListAdapter.includeAtMsg(conv)) {

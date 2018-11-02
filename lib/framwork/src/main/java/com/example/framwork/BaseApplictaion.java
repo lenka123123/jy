@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.util.SparseLongArray;
 
+import com.activeandroid.ActiveAndroid;
 import com.example.framwork.baseapp.BaseAppConfig;
 import com.yanzhenjie.nohttp.InitializationConfig;
 import com.yanzhenjie.nohttp.NoHttp;
@@ -25,6 +26,9 @@ public class BaseApplictaion extends Application {
     public void onCreate() {
         super.onCreate();
         _instance = this;
+        //初始化ActivityAndroid
+        ActiveAndroid.initialize(this);
+
         initNohttp();
         BaseAppConfig.init(this, "ethereum");
     }
@@ -52,5 +56,12 @@ public class BaseApplictaion extends Application {
         NoHttp.initialize(config);
 
 
+    }
+
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+        //清理
+        ActiveAndroid.dispose();
     }
 }

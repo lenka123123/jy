@@ -15,6 +15,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -24,10 +26,14 @@ import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.mcxtzhang.swipemenulib.utils.BitmapSave;
 import com.sj.emoji.EmojiBean;
 
 import java.io.File;
@@ -62,6 +68,8 @@ import sinia.com.baihangeducation.R;
 import sinia.com.baihangeducation.chat.chatsetting.ChatDetailActivity;
 import sinia.com.baihangeducation.chat.view.PickImageActivity;
 import sinia.com.baihangeducation.chat.view.SendImageHelper;
+import sinia.com.baihangeducation.club.ClubPermissModel;
+import sinia.com.baihangeducation.club.club.interfaces.GetRequestListener;
 import sinia.com.baihangeducation.club.im.app.ImBaseActivity;
 import sinia.com.baihangeducation.club.im.bean.ImageItem;
 import sinia.com.baihangeducation.club.im.chat.EmoticonEntity;
@@ -106,6 +114,7 @@ public class ChatActivity extends ImBaseActivity implements
 
     private String mTitle;
     private boolean mLongClick = false;
+    private boolean isImg = false;
 
     private static final String MEMBERS_COUNT = "membersCount";
     private static final String GROUP_NAME = "groupName";
@@ -144,15 +153,19 @@ public class ChatActivity extends ImBaseActivity implements
     InputMethodManager mImm;
     private final UIHandler mUIHandler = new UIHandler(this);
     private boolean mAtAll = false;
-
+    private String needSavePath;
     Object o;
+    private String groupLogo;
+    private ImageView img;
+    private ClubPermissModel clubPermissModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
-
+        clubPermissModel = new ClubPermissModel(this);
         setContentView(R.layout.activity_chat);
+        img = (ImageView) findViewById(R.id.img);
         mChatView = (ChatView) findViewById(R.id.chat_view);
         mChatView.initModule(mDensity, mDensityDpi);
         lvChat = (DropDownListView) findViewById(R.id.lv_chat);
@@ -177,6 +190,7 @@ public class ChatActivity extends ImBaseActivity implements
         mMyInfo = JMessageClient.getMyInfo();
         if (!TextUtils.isEmpty(mTargetId)) {
             //单聊
+            mChatView.dismissRightBtn();
             System.out.println(" 打开的是  单聊");
             mIsSingle = true;
             mChatView.setChatTitle(mTitle);
@@ -201,7 +215,7 @@ public class ChatActivity extends ImBaseActivity implements
                 mAtMsgId = intent.getIntExtra("atMsgId", -1);
                 mAtAllMsgId = intent.getIntExtra("atAllMsgId", -1);
 
-                System.out.println(" 打开的是  群聊2== "+mAtMsgId );
+                System.out.println(" 打开的是  群聊2== " + mAtMsgId);
 
 
                 mConv = JMessageClient.getGroupConversation(mGroupId);
@@ -351,15 +365,11 @@ public class ChatActivity extends ImBaseActivity implements
                 //设置需要已读回执
                 MessageSendingOptions options = new MessageSendingOptions();
                 options.setNeedReadReceipt(true);
-                JMessageClient.sendMessage(msg, options);
-                mChatAdapter.addMsgFromReceiptToList(msg);
-                ekBar.getEtChat().setText("");
-                if (mAtList != null) {
-                    mAtList.clear();
-                }
-                if (forDel != null) {
-                    forDel.clear();
-                }
+
+                System.out.println("vmcgContent===" + mcgContent);
+                checkText(mcgContent, msg, options, ekBar);
+
+
             }
         });
         //切换语音输入
@@ -375,6 +385,29 @@ public class ChatActivity extends ImBaseActivity implements
 //        });
 
     }
+
+    private void checkText(String mcgContent, Message message, MessageSendingOptions options, XhsEmoticonsKeyBoard ekBar) {
+        clubPermissModel.checkText(mcgContent, new GetRequestListener() {
+            @Override
+            public void setRequestSuccess(String msg) {
+                JMessageClient.sendMessage(message, options);
+                mChatAdapter.addMsgFromReceiptToList(message);
+                ekBar.getEtChat().setText("");
+                if (mAtList != null) {
+                    mAtList.clear();
+                }
+                if (forDel != null) {
+                    forDel.clear();
+                }
+            }
+
+            @Override
+            public void setRequestFail() {
+
+            }
+        });
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -532,11 +565,39 @@ public class ChatActivity extends ImBaseActivity implements
         ekBar.reset();
     }
 
+    private void upDateGroupInfo(long groupId) {
+        JMessageClient.getGroupInfo(groupId, new GetGroupInfoCallback() {
+            @Override
+            public void gotResult(int i, String s, GroupInfo groupInfo) {
+                if (groupLogo != null && groupLogo.length() > 1)
+                    setPhoto(groupLogo, groupInfo);
+
+            }
+        });
+    }
+
+    public void setPhoto(String avatar, GroupInfo groupInfo) {
+        Glide.with(mContext).load(avatar).asBitmap().error(R.drawable.new_eorrlogo).centerCrop().into(new BitmapImageViewTarget(img) {
+            @Override
+            protected void setResource(Bitmap resource) {
+                needSavePath = BitmapSave.saveBitmap(mContext, resource);
+                groupInfo.updateAvatar(new File(needSavePath), groupInfo.getGroupName(), new BasicCallback() {
+                    @Override
+                    public void gotResult(int i, String s) {
+                    }
+                });
+
+            }
+        });
+    }
+
     @Override
     protected void onResume() {
         String targetId = getIntent().getStringExtra(TARGET_ID);
         if (!mIsSingle) {
             long groupId = getIntent().getLongExtra(GROUP_ID, 0);
+            groupLogo = getIntent().getStringExtra("logo");
+//            upDateGroupInfo(groupId);
             if (groupId != 0) {
                 MyApplication.isAtMe.put(groupId, false);
                 MyApplication.isAtall.put(groupId, false);
@@ -726,7 +787,7 @@ public class ChatActivity extends ImBaseActivity implements
                     float OldListX = (float) location[0];
                     new TipView.Builder(ChatActivity.this, mChatView, (int) OldListX + view.getWidth() / 2, (int) OldListY + view.getHeight())
                             .addItem(new TipItem("复制"))
-                            .addItem(new TipItem("转发"))
+//                            .addItem(new TipItem("转发"))
                             .addItem(new TipItem("删除"))
                             .setOnItemClickListener(new TipView.OnItemClickListener() {
                                 @Override
@@ -751,6 +812,8 @@ public class ChatActivity extends ImBaseActivity implements
                                             Toast.makeText(ChatActivity.this, "只支持复制文字", Toast.LENGTH_SHORT).show();
                                         }
                                     } else if (position == 1) {
+                                        mConv.deleteMessage(msg.getId());
+                                        mChatAdapter.removeMessage(msg);
 //                                        Intent intent = new Intent(ChatActivity.this, ForwardMsgActivity.class);
 //                                        MyApplication.forwardMsg.clear();
 //                                        MyApplication.forwardMsg.add(msg);
@@ -777,7 +840,7 @@ public class ChatActivity extends ImBaseActivity implements
                     new TipView.Builder(ChatActivity.this, mChatView,
                             (int) OldListX + view.getWidth() / 2, (int) OldListY + view.getHeight())
                             .addItem(new TipItem("复制"))
-                            .addItem(new TipItem("转发"))
+//                            .addItem(new TipItem("转发"))
                             .addItem(new TipItem("撤回"))
                             .addItem(new TipItem("删除"))
                             .setOnItemClickListener(new TipView.OnItemClickListener() {
@@ -802,18 +865,20 @@ public class ChatActivity extends ImBaseActivity implements
                                         } else {
                                             Toast.makeText(ChatActivity.this, "只支持复制文字", Toast.LENGTH_SHORT).show();
                                         }
-                                    } else if (position == 1) {
-                                        //转发
-                                        if (msg.getContentType() == ContentType.text || msg.getContentType() == ContentType.image ||
-                                                (msg.getContentType() == ContentType.file && (msg.getContent()).getStringExtra("video") != null)) {
-//                                            Intent intent = new Intent(ChatActivity.this, ForwardMsgActivity.class);
-//                                            MyApplication.forwardMsg.clear();
-//                                            MyApplication.forwardMsg.add(msg);
-//                                            startActivity(intent);
-                                        } else {
-                                            Toast.makeText(ChatActivity.this, "只支持转发文本,图片,小视频", Toast.LENGTH_SHORT).show();
-                                        }
-                                    } else if (position == 2) {
+                                    }
+//                                    else if  (position == 1) {
+//                                        //转发
+//                                        if (msg.getContentType() == ContentType.text || msg.getContentType() == ContentType.image ||
+//                                                (msg.getContentType() == ContentType.file && (msg.getContent()).getStringExtra("video") != null)) {
+////                                            Intent intent = new Intent(ChatActivity.this, ForwardMsgActivity.class);
+////                                            MyApplication.forwardMsg.clear();
+////                                            MyApplication.forwardMsg.add(msg);
+////                                            startActivity(intent);
+//                                        } else {
+//                                            Toast.makeText(ChatActivity.this, "只支持转发文本,图片,小视频", Toast.LENGTH_SHORT).show();
+//                                        }
+//                                    }
+                                    else if (position == 1) {
                                         //撤回
                                         mConv.retractMessage(msg, new BasicCallback() {
                                             @Override
@@ -878,13 +943,13 @@ public class ChatActivity extends ImBaseActivity implements
                     float OldListY = (float) location[1];
                     float OldListX = (float) location[0];
                     new TipView.Builder(ChatActivity.this, mChatView, (int) OldListX + view.getWidth() / 2, (int) OldListY + view.getHeight())
-                            .addItem(new TipItem("转发"))
+//                            .addItem(new TipItem("转发"))
                             .addItem(new TipItem("撤回"))
                             .addItem(new TipItem("删除"))
                             .setOnItemClickListener(new TipView.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(String str, final int position) {
-                                    if (position == 1) {
+                                    if (position == 0) {
                                         //撤回
                                         mConv.retractMessage(msg, new BasicCallback() {
                                             @Override
@@ -896,7 +961,10 @@ public class ChatActivity extends ImBaseActivity implements
                                                 }
                                             }
                                         });
-                                    } else if (position == 0) {
+                                    } else if (position == 1) {
+                                        //删除
+                                        mConv.deleteMessage(msg.getId());
+                                        mChatAdapter.removeMessage(msg);
 //                                        Intent intent = new Intent(ChatActivity.this, ForwardMsgActivity.class);
 //                                        MyApplication.forwardMsg.clear();
 //                                        MyApplication.forwardMsg.add(msg);
@@ -1142,6 +1210,8 @@ public class ChatActivity extends ImBaseActivity implements
         boolean local = data.getBooleanExtra(Extras.EXTRA_FROM_LOCAL, false);
         if (local) {
             // 本地相册
+
+
             sendImageAfterSelfImagePicker(data);
         }
     }
@@ -1154,17 +1224,26 @@ public class ChatActivity extends ImBaseActivity implements
             @Override
             public void sendImage(final File file, boolean isOrig) {
 
-                //所有图片都在这里拿到
-                ImageContent.createImageContentAsync(file, new ImageContent.CreateImageContentCallback() {
+                clubPermissModel.checkImg(file, new GetRequestListener() {
                     @Override
-                    public void gotResult(int responseCode, String responseMessage, ImageContent imageContent) {
-                        if (responseCode == 0) {
-                            Message msg = mConv.createSendMessage(imageContent);
-                            handleSendMsg(msg.getId());
-                        }
+                    public void setRequestSuccess(String msg) {
+                        //所有图片都在这里拿到
+                        ImageContent.createImageContentAsync(file, new ImageContent.CreateImageContentCallback() {
+                            @Override
+                            public void gotResult(int responseCode, String responseMessage, ImageContent imageContent) {
+                                if (responseCode == 0) {
+                                    Message msg = mConv.createSendMessage(imageContent);
+                                    handleSendMsg(msg.getId());
+                                }
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void setRequestFail() {
+
                     }
                 });
-
             }
         });
     }

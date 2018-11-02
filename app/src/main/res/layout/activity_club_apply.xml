@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -17,7 +17,7 @@
             android:layout_width="@dimen/x120"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:padding="@dimen/x26"
+            android:padding="@dimen/y26"
             android:src="@drawable/back" />
 
         <LinearLayout
@@ -68,9 +68,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
-                android:visibility="gone"
                 android:gravity="center"
-                android:text="发布"
+                android:text="职位管理"
                 android:textColor="@color/black" />
         </RelativeLayout>
 
@@ -81,10 +80,69 @@
         android:id="@+id/view_line"
         android:layout_width="match_parent"
         android:layout_height="@dimen/space_0.5"
+        android:layout_below="@+id/nanjing"
         android:background="#DDDDDD" />
 
+    <com.mcxtzhang.swipemenulib.customview.recycleitemdeltet.view.YRecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/view_line" />
 
-    <include layout="@layout/activity_recyclerview_refresh" />
+
+    <LinearLayout
+        android:id="@+id/dim"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/dim_img"
+        android:clickable="true"
+        android:gravity="right"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="@dimen/x60"
+            android:layout_marginTop="@dimen/y390"
+            android:src="@drawable/dim_msg" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/y10"
+            android:src="@drawable/dim_arrow" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y30"
+            android:gravity="right">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/dim_title" />
+        </LinearLayout>
 
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/dim_ok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/y200"
+            android:src="@drawable/dim_ok" />
+
+    </LinearLayout>
+
+
+    <!--<include layout="@layout/activity_recyclerview_refresh" />-->
+
+
+</RelativeLayout>

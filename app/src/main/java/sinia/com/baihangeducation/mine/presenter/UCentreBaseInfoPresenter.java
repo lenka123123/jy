@@ -90,7 +90,6 @@ public class UCentreBaseInfoPresenter extends BasePresenter {
             post(info, new OnRequestListener() {
                 @Override
                 public void requestSuccess(BaseResponseBean bean) {
-                    Log.i("编辑基本资料", bean.toString() + "no图片");
                     loginSuccessBack(bean);
                     view.upDataUCentreBaseInfoSuccess();
                 }
@@ -114,7 +113,7 @@ public class UCentreBaseInfoPresenter extends BasePresenter {
      * @param bean
      */
     private void loginSuccessBack(BaseResponseBean bean) {
-        SPUtils.getInstance().saveObject(activity, Constants.USER_INFO, bean.parseObject(UserInfo.class));
+//        SPUtils.getInstance().saveObject(activity, Constants.USER_INFO, bean.parseObject(UserInfo.class));
         AccountManger.getUserInfo(activity);
         EventBus.getDefault().post(Constants.EB_LOGIN_SUCCESS);
     }

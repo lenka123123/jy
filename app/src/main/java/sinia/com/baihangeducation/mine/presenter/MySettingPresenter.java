@@ -10,6 +10,7 @@ import com.example.framwork.utils.Toast;
 
 import java.util.HashMap;
 
+import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.mine.view.IMySettingView;
 import sinia.com.baihangeducation.supplement.tool.BaseRequestInfo;
 
@@ -24,22 +25,26 @@ public class MySettingPresenter extends BasePresenter {
     }
 
     public void logout() {
-        HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "loginOut", "default", false);
+        HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "loginOut", "default", true);
+        info.put("user_id", AppConfig.USERID);
+        info.put("token", AppConfig.TOKEN);
         view.showLoading();
         post(info, new OnRequestListener() {
             @Override
             public void requestSuccess(BaseResponseBean bean) {
-                Log.i("退出登录", bean.toString());
+                System.out.println("logoutSuccess  ");
                 view.logoutSuccess();
             }
 
             @Override
             public void requestFailed(String error) {
+                System.out.println("logoutSuccess  ");
                 Toast.getInstance().showErrorToast(activity, error);
             }
 
             @Override
             public void requestFinish() {
+                System.out.println("logoutSuccess  ");
                 view.hideLoading();
             }
         });

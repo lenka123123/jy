@@ -170,6 +170,9 @@ public class DialogCreator {
     }
 
     public static Dialog createResendDialog(Context context, View.OnClickListener listener) {
+        if (IdHelper.getLayout(context, "jmui_dialog_base_with_button") == 0) {
+         return null;
+        }
         Dialog dialog = new Dialog(context, IdHelper.getStyle(context, "jmui_default_dialog_style"));
         View view = LayoutInflater.from(context).inflate(
                 IdHelper.getLayout(context, "jmui_dialog_base_with_button"), null);

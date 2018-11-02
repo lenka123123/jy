@@ -26,6 +26,7 @@ import cn.jpush.android.api.JPushInterface;
 import cn.jpush.im.android.api.JMessageClient;
 import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.MyApplication;
+import sinia.com.baihangeducation.club.club.interfaces.GetRequestListener;
 import sinia.com.baihangeducation.mine.activity.LoginActivity;
 import sinia.com.baihangeducation.mine.model.AccountManger;
 
@@ -72,7 +73,7 @@ public class LoginPresenter extends BasePresenter {
     /**
      * 登录方法
      */
-    public void login(  ) {
+    public void login(GetRequestListener listener) {
         if (!AccountManger.checkupLogin(activity, view.getPhoneNum(), view.getPassword())) {
             return;
         }
@@ -139,12 +140,14 @@ public class LoginPresenter extends BasePresenter {
                 myAsyncTask.execute(userInfo.avatar);
                 view.showLoginSuccress();
 //                loginActivity.finish();
+                listener.setRequestSuccess("");
             }
 
             @Override
             public void requestFailed(String error) {
                 Log.i("登录", error.toString());
                 Toast.getInstance().showErrorToast(activity, error);
+                listener.setRequestFail();
             }
 
             @Override

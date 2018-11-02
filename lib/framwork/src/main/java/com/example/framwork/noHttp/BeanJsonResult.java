@@ -75,14 +75,19 @@ public class BeanJsonResult<T> extends RestRequest<T> {
                 if (activity.isFinishing()) {
                     return;
                 }
+                System.out.println("===========start============");
+                System.out.println("start_response==" + response + "===" + what);
+                System.out.println("===========end============");
+
+
                 if (!TextUtils.isEmpty(response.trim()) && !response.contains("403 Forbidden")) {
                     BaseResponseBean bean = null;
                     try {
 
                         bean = BaseResponseBean.parseObj(EncryptUtil.getInstance().decodeValue(response), BaseResponseBean.class);
-//                        System.out.println("===========start============");
-//                        System.out.println(bean.toString());
-//                        System.out.println("===========end============");
+                        System.out.println("===========start============");
+                        System.out.println(bean.toString());
+                        System.out.println("===========end============");
 
 
                         if (!TextUtils.isEmpty(bean.getCode()) && bean.getCode().equals("300001")) {
@@ -90,20 +95,23 @@ public class BeanJsonResult<T> extends RestRequest<T> {
 //                                loginRestLinstener.loginRest(activity);
 //                            }
 //                            gotoLogin(activity);
-                            requestListener.requestFailed("尚未登录，请登录");
+                            if (towMin("300001"))
+                                requestListener.requestFailed("尚未登录，请登录");
                         } else if (bean.getData() == null || TextUtils.isEmpty(bean.getData())) {
                             requestListener.requestFailed(bean.getMessage());
                         } else if (!bean.isSuccess()) {
                             IsLoginInfo loginInfo = bean.parseObject(IsLoginInfo.class);
                             if (loginInfo != null && loginInfo.is_need_jump_login == 1) {
+//                                requestListener.requestFailed("尚未登录，请登录");
 
-                                if (bean.getCode().equals("90000")){
-
-                                }else {
+                                if (towMin("300001"))
                                     gotoLogin(activity);
-                                    requestListener.requestFailed("尚未登录，请登录");
-//
-                                }
+
+//                                if (bean.getCode().equals("90000")){
+//                                }else {
+//                                    gotoLogin(activity);
+//                                }
+
 //                                if (loginRestLinstener != null) {
 //                                    loginRestLinstener.loginRest(activity);
 //                                }
@@ -121,7 +129,6 @@ public class BeanJsonResult<T> extends RestRequest<T> {
                     }
                 } else {
                     requestListener.requestFailed("操作失败,请稍后再试");
-
                 }
             }
 
@@ -198,6 +205,11 @@ public class BeanJsonResult<T> extends RestRequest<T> {
         CallServer.getRequestInstance().add(activity, request, new HttpCallBack<String>() {
             @Override
             public void onSucceed(int what, String response) {
+                System.out.println("===========start==1==========");
+                System.out.println("start_response1==" + response + "===" + what);
+                System.out.println("===========end1============");
+
+
                 if (activity.isFinishing()) {
                     return;
                 }
@@ -233,6 +245,7 @@ public class BeanJsonResult<T> extends RestRequest<T> {
 
             @Override
             public void onFinish() {
+
                 if (activity.isFinishing()) {
                     return;
                 }
@@ -242,12 +255,38 @@ public class BeanJsonResult<T> extends RestRequest<T> {
         }, 0, false);
     }
 
-    private static void gotoLogin(Context context) {
-        Intent intent = new Intent();
-        intent.setAction("sinia.com.baihangeducation.login.action");
-        intent.addCategory("android.intent.category.DEFAULT");
-        context.startActivity(intent);
+    private static void gotoLogin(final Context context) {
+        new AlertDialog.Builder(context).setTitle("提示！").setMessage("您尚未登录，请先登录。")
+                .setPositiveButton("登录", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent();
+                        intent.setAction("sinia.com.baihangeducation.login.action");
+                        intent.addCategory("android.intent.category.DEFAULT");
+                        context.startActivity(intent);
+                    }
+                }).setNegativeButton("取消", null).show();
 
+
+    }
+
+
+    //退出时间
+    private static long exitTime = 0;
+    private static String exitString = "";
+
+    private static boolean towMin(String message) {
+        if ((System.currentTimeMillis() - exitTime) > 2000)  //System.currentTimeMillis()无论何时调用，肯定大于2000
+        {
+            exitString = message;
+            exitTime = System.currentTimeMillis();
+            return true;
+        } else {
+            if (exitString.equals(message)) {
+                return false;
+            }
+            return true;
+        }
 
     }
 }

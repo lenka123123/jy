@@ -21,7 +21,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="20dp"
-                zhy:max_select="5"></com.zhy.view.flowlayout.TagFlowLayout>
+                zhy:max_select="5"/>
 
             <TextView
                 android:id="@+id/confirm"

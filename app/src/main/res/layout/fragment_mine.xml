@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_eeeeee_gray"
     android:orientation="vertical">
 
     <ScrollView
@@ -54,9 +55,10 @@
                         android:layout_alignParentTop="true"
                         android:background="@drawable/dialog_red_shape"
                         android:gravity="center"
-                        android:text="123"
+                        android:text=""
                         android:textColor="@color/white"
-                        android:textSize="8sp" />
+                        android:textSize="8sp"
+                        android:visibility="invisible" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -198,9 +200,9 @@
                         <ImageView
                             android:id="@+id/fragment_mine_gender"
                             android:layout_width="@dimen/space_13"
-                            android:textColor="#B3B3B3"
                             android:layout_height="@dimen/y40"
                             android:background="@drawable/new_male"
+                            android:textColor="#B3B3B3"
                             android:visibility="gone" />
                     </LinearLayout>
                 </LinearLayout>
@@ -530,6 +532,7 @@
             </LinearLayout>
 
             <include
+                android:id="@+id/graw"
                 layout="@layout/include_line_gray"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/space_20" />
@@ -564,8 +567,9 @@
                     android:text="@string/mine_setting" />
 
                 <TextView style="@style/TextView_Mine_right" />
-            </LinearLayout>
 
+
+            </LinearLayout>
 
         </LinearLayout>
 

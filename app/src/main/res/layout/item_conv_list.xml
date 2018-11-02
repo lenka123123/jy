@@ -52,10 +52,8 @@
 
                     <ImageView
                         android:id="@+id/msg_item_head_icon"
-                        android:layout_width="@dimen/x90"
-                        android:layout_height="@dimen/y90"
-
-                        android:scaleType="centerCrop" />
+                        android:layout_width="@dimen/x101"
+                        android:layout_height="@dimen/y101" />
                 </LinearLayout>
 
             </FrameLayout>

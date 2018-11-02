@@ -1,5 +1,6 @@
 package sinia.com.baihangeducation.club.searchschool.view;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sinia.com.baihangeducation.R;
+import sinia.com.baihangeducation.club.club.interfaces.GetRequestListener;
+import sinia.com.baihangeducation.club.club.model.ClubHomeModel;
 import sinia.com.baihangeducation.club.searchschool.model.ClubSchoolList;
 import sinia.com.baihangeducation.supplement.base.Goto;
 
@@ -31,9 +34,12 @@ public class SearchSchoolAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private List<ClubSchoolList.School> mInviteListInfo = new ArrayList<>();
 
     private Context context;
+    private final ClubHomeModel clubHomeModel;
+    private SearchSchoolHolder vh;
 
-    public SearchSchoolAdapter(Context context) {
+    public SearchSchoolAdapter(Activity context) {
         this.context = context;
+        clubHomeModel = new ClubHomeModel(context);
     }
 
 
@@ -59,9 +65,9 @@ public class SearchSchoolAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
-        SearchSchoolHolder vh = (SearchSchoolHolder) holder;
+        vh = (SearchSchoolHolder) holder;
         vh.itemView.setTag(position);
-
+        vh.ranking_money.setTag(position);
 //        if (position == 0) {
 //            vh.view_line.setVisibility(View.INVISIBLE);
 //        }
@@ -99,7 +105,38 @@ public class SearchSchoolAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             }
         }
         vh.ranking_school_number.setText(mInviteListInfo.get(position).member_num);
-        vh.ranking_money.setText(mInviteListInfo.get(position).income);
+//        vh.ranking_money.setText(mInviteListInfo.get(position).income);
+
+        //   ( 0：已申请 1：未申请 2：社员 )
+        if (mInviteListInfo.get(position).is_apply.equals("3")) {
+            vh.ranking_money.setText("");
+        } else if (mInviteListInfo.get(position).is_apply.equals("2")) {
+            vh.ranking_money.setText("已加入");
+        } else if (mInviteListInfo.get(position).is_apply.equals("1")) {
+            vh.ranking_money.setText("加入");
+        } else {
+            vh.ranking_money.setText("已申请");
+        }
+
+
+        vh.ranking_money.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clubHomeModel.applyClub(mInviteListInfo.get(position).id, "", new GetRequestListener() {
+                    @Override
+                    public void setRequestSuccess(String msg) {
+                        ((SearchSchoolHolder) holder).ranking_money.setText("已申请");
+                    }
+
+                    @Override
+                    public void setRequestFail() {
+
+                    }
+                });
+            }
+        });
+
+
         GlideLoadUtils.getInstance().glideLoad(context, mInviteListInfo.get(position).logo, vh.ranking_logo, R.drawable.logo);
 
 
@@ -122,7 +159,13 @@ public class SearchSchoolAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public void onClick(View v) {
         int potion = (Integer) v.getTag();
-        Goto.toClubDetailActivity(context, mInviteListInfo.get(potion).id);
+
+        if (v.getId() == R.id.ranking_money) {
+
+
+        } else {
+            Goto.toClubDetailActivity(context, mInviteListInfo.get(potion).id);
+        }
     }
 }
 

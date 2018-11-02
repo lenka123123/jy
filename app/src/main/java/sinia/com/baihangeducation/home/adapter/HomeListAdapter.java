@@ -46,15 +46,28 @@ public class HomeListAdapter extends SuperBaseAdapter<HomeJobInfo> {
             holder.setInVisible(R.id.fragment_home_down_item_data, true);
             holder.setInVisible(R.id.fragment_home_down_item_salary, true);
             holder.setInVisible(R.id.fragment_home_down_item_nodata, false);
-            //    holder.setRoundImageUrl(R.id.fragment_home_down_item_img, item.job_company_logo, R.drawable.new_eorrlogo);
-            holder.setLoadalImageUrl(R.id.fragment_home_down_item_img, getDrawable(item.job_industry_id), R.drawable.new_eorrlogo);
+            holder.setRoundImageUrl(R.id.fragment_home_down_item_img, item.job_company_logo, R.drawable.select_0);
+//            holder.setLoadalImageUrl(R.id.fragment_home_down_item_img, getDrawable(item.job_industry_id), R.drawable.new_eorrlogo);
+            holder.setText(R.id.job_time, item.job_time_group);
+            // 发布平台 1:非平台发布; 2:平台发布
+            String address = item.job_city_name + "  " + item.job_distance + "  " + item.job_money_name;
+            if (item.job_is_platform == 2) {
+                address = item.job_city_name + "  " + item.job_distance + "  " + item.job_money_name + "  平台";
+            }
 
 
             holder.setText(R.id.fragment_home_down_item_title, item.job_title);
-            holder.setText(R.id.fragment_home_down_item_adressandtime, item.job_city_name + " " + item.job_distance + " " + item.job_money_name);//+ " " + item.job_add_date
+            holder.setText(R.id.fragment_home_down_item_adressandtime, address);//+ " " + item.job_add_date
             holder.setText(R.id.lock_person_number, "浏览" + item.job_look_num + "人");//+ " " + item.job_add_date
             holder.setText(R.id.apply_person_number, "申请" + item.job_apply_num + "人");//+ " " + item.job_add_date
             holder.setText(R.id.ago, item.job_time_shaft);
+
+            if (item.job_type == 3) {
+                holder.setVisible(R.id.show_club_job, true);
+            } else {
+                holder.setVisible(R.id.show_club_job, false);
+            }
+
 
             List<HomeJobTagInfo> mHomeJobTagInfo = item.job_tag_list;
             if (mHomeJobTagInfo.size() != 0 || !mHomeJobTagInfo.isEmpty()) {
@@ -79,15 +92,17 @@ public class HomeListAdapter extends SuperBaseAdapter<HomeJobInfo> {
             holder.setOnClickListener(R.id.fragment_home_down_item, new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    switch (item.job_type) {
-                        case 1:
-                            Goto.toAllJobDetailActivity(context, item.job_id);
-                            break;
-
-                        case 2:
-                            Goto.toPartTimeJobDetailActivity(context, item.job_id);
-                            break;
-                    }
+                    Goto.toPartTimeJobDetailActivityForHome(context, item.job_id, item.job_type);
+                    System.out.println("aaaa--" + item.job_type);
+//                    switch (item.job_type) {
+//                        case 1:
+//                            Goto.toAllJobDetailActivity(context, item.job_id);
+//                            break;
+//
+//                        case 2:
+//                            Goto.toPartTimeJobDetailActivity(context, item.job_id);
+//                            break;
+//                    }
                 }
             });
         }

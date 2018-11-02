@@ -28,12 +28,15 @@ public class ClubHomeModel extends BasePresenter {
         this.activity = activity;
     }
 
-    public void getClubHomeInfo(final SetClubHomeListener clubHomeListener) {
+    public void getClubHomeInfo(String school_id, String center_flag, final SetClubHomeListener clubHomeListener) {
         HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "getClubHome", "club", true);
         info.put("user_id", AppConfig.USERID);
         info.put("token", AppConfig.TOKEN);
-        if (!AppConfig.SCHOOLNAMEID.equals("")) {
-            info.put("school_id", AppConfig.SCHOOLNAMEID);
+        if (!school_id.equals("")) {
+            info.put("school_id", school_id);
+        }
+        if (!center_flag.equals("")) {
+            info.put("center_flag", center_flag);
         }
 
         post(info, new OnRequestListener() {
@@ -59,7 +62,7 @@ public class ClubHomeModel extends BasePresenter {
 
 
     //设置选择学校
-    public void setSelectSchool() {
+    public void setSelectSchool(GetRequestListener getRequestListener) {
         if (AppConfig.SCHOOLNAMEID.equals("")) return;
         HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "setChooseSchool", "clubUcenter", true);
         info.put("user_id", AppConfig.USERID);
@@ -69,8 +72,7 @@ public class ClubHomeModel extends BasePresenter {
             @Override
             public void requestSuccess(BaseResponseBean bean) {
                 System.out.println("设置选择学校===" + bean.getData());
-
-
+                getRequestListener.setRequestSuccess("");
 //                ClubHomeInfo clubSchoolList = bean.parseObject(ClubHomeInfo.class);
 //                clubHomeListener.setClubHomeSuccess(clubSchoolList);
             }
@@ -79,6 +81,7 @@ public class ClubHomeModel extends BasePresenter {
             public void requestFailed(String error) {
                 Toast.getInstance().showErrorToast(activity, error);
 //                clubHomeListener.setClubHomeFail(error);
+                getRequestListener.setRequestFail();
             }
 
             @Override
@@ -136,6 +139,7 @@ public class ClubHomeModel extends BasePresenter {
             @Override
             public void requestSuccess(BaseResponseBean bean) {
                 System.out.println("getDatagetData===" + bean.getData());
+                Toast.getInstance().showSuccessToast(activity, "申请成功，等待审核");
                 listener.setRequestSuccess("");
 //                ClubHomeInfo clubSchoolList = bean.parseObject(ClubHomeInfo.class);
 //                clubHomeListener.setClubHomeSuccess(clubSchoolList);

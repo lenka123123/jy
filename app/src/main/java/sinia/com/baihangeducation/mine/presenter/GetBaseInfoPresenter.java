@@ -53,6 +53,9 @@ public class GetBaseInfoPresenter extends BasePresenter {
 
 
     public void getBaseInfoLoginAfter() {
+        if (AppConfig.TOKEN.equals("USERID") || AppConfig.TOKEN.equals("")) {
+            return;
+        }
         HashMap mGetBaseInfoData = BaseRequestInfo.getInstance().getRequestInfo(activity, "getMyInfo", "ucenter", true);
         mGetBaseInfoData.put("token", AppConfig.TOKEN);
         mGetBaseInfoData.put("user_id", AppConfig.USERID);
@@ -72,7 +75,6 @@ public class GetBaseInfoPresenter extends BasePresenter {
 
                 UserInfo userInfo = bean.parseObject(UserInfo.class);
                 view.showUserInfoSuccess(userInfo);
-
 
 
             }

@@ -72,7 +72,10 @@ dependencies {
 
     // 加载大图库
     api 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
+    api 'com.squareup.picasso:picasso:2.5.2'
 
+    api 'com.lzy.widget:imagepicker:0.6.1'  //指定版本
+//    api 'com.lzy.widget:imagepicker:+'  //指定版本
 
 
 }

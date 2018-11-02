@@ -19,6 +19,7 @@ public class ClubSchoolList {
         public String name;
         public String logo;
         public String member_num;
+        public String is_apply;
         public String income;
         public String new_order;
         public String fluctuate;//( 正数：上升，负数：下降，0：无变化 )

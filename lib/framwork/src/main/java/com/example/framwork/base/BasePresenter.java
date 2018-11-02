@@ -50,7 +50,6 @@ public abstract class BasePresenter {
      */
     public void post(HashMap info, OnRequestListener requestListener) {
 
-
         if ((info.get("act")).equals("login")){
             model.resultPostModel(activity, info, requestListener,1);
         }else {

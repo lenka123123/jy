@@ -101,6 +101,34 @@ public class PickerUtils {
         return pvTime;
     }
 
+
+
+    public static TimePickerView initTimePickerAllFor(final Context context, final TextView view,TimePickerView.OnTimeSelectListener onTimeSelectListener) {
+        TimePickerView pvTime = new TimePickerView(context, TimePickerView.Type.ALL);
+        //控制时间范围
+        Calendar calendar = Calendar.getInstance();
+        pvTime.setRange(calendar.get(Calendar.YEAR) - 56, calendar.get(Calendar.YEAR));
+        pvTime.setTime(new Date());
+        pvTime.setCyclic(false);
+        pvTime.setCancelable(true);
+        //时间选择后回调
+        pvTime.setOnTimeSelectListener(onTimeSelectListener);
+//        pvTime.setOnTimeSelectListener(new TimePickerView.OnTimeSelectListener() {
+//
+//            @Override
+//            public void onTimeSelect(Date date) {
+//                view.setText(DateUtil.getInstance().getHHmm(date));
+////                if (DateUtil.getInstance().compareDate(DateUtil.getInstance().getTime(date))) {
+////                    Toast.getInstance().showWarningToast(context, "生日不能大于今天");
+////                } else {
+////
+////                }
+//            }
+//        });
+        return pvTime;
+    }
+
+
     public static TimePickerView initTimeHoursPicker(final Context context, final TextView view) {
         TimePickerView pvTime = new TimePickerView(context, TimePickerView.Type.HOURS_MINS);
         //控制时间范围
@@ -184,7 +212,7 @@ public class PickerUtils {
         void onCityClick(String provinceId, String cityId, String districtId);
     }
 
-    public static String getLocationNameByID(final Context context,String provinceiD, String cityID, String distrId) {
+    public static String getLocationNameByID(final Context context, String provinceiD, String cityID, String distrId) {
         String locationName = null;
         StringBuilder stringBuilder = new StringBuilder();
         try {
@@ -201,7 +229,7 @@ public class PickerUtils {
 
             //通过省ID循环查找 得到省份名字
             for (int i = 0; i < options1Items.size(); i++) {
-                if (provinceiD==options1Items.get(i).province_id||provinceiD.equals(options1Items.get(i).province_id)){
+                if (provinceiD == options1Items.get(i).province_id || provinceiD.equals(options1Items.get(i).province_id)) {
                     locationName = options1Items.get(i).province_name;
                     if (options1Items.get(i).city_list != null)
                         options2Items = options1Items.get(i).city_list;
@@ -210,8 +238,8 @@ public class PickerUtils {
 
             //通过城市ID循环查找 得到城市名字
             for (int i = 0; i < options2Items.size(); i++) {
-                if (cityID==options2Items.get(i).city_id||cityID.equals(options2Items.get(i).city_id)){
-                    locationName = locationName+" "+options2Items.get(i).city_name;
+                if (cityID == options2Items.get(i).city_id || cityID.equals(options2Items.get(i).city_id)) {
+                    locationName = locationName + " " + options2Items.get(i).city_name;
                     if (options2Items.get(i).district_list != null)
                         options3Items = options2Items.get(i).district_list;
                 }
@@ -219,14 +247,13 @@ public class PickerUtils {
 
             //通过区ID循环查找 得到区名字
             for (int i = 0; i < options3Items.size(); i++) {
-                if (distrId==options3Items.get(i).district_id||distrId.equals(options3Items.get(i).district_id)){
-                    locationName = locationName+" "+options3Items.get(i).district_name;
+                if (distrId == options3Items.get(i).district_id || distrId.equals(options3Items.get(i).district_id)) {
+                    locationName = locationName + " " + options3Items.get(i).district_name;
                 }
             }
 
 
-
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

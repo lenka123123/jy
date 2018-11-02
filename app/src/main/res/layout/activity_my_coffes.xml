@@ -50,7 +50,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="1233"
                 android:textColor="#000"
                 android:textSize="39sp" />
 
@@ -79,7 +78,6 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/y30"
             android:gravity="center"
-            android:text="123"
             android:textColor="#333"
             android:textSize="15sp" />
 

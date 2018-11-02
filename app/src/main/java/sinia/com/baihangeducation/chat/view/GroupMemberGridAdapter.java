@@ -2,6 +2,8 @@ package sinia.com.baihangeducation.chat.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +12,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -130,21 +135,57 @@ public class GroupMemberGridAdapter extends BaseAdapter {
                     if (file != null && file.isFile()) {
                         Bitmap bitmap = BitmapLoader.getBitmapFromFile(file.getAbsolutePath(),
                                 mAvatarSize, mAvatarSize);
-                        viewTag.icon.setImageBitmap(bitmap);
+//                        viewTag.icon.setImageBitmap(bitmap);
+
+                        RoundedBitmapDrawable circularBitmapDrawable =
+                                RoundedBitmapDrawableFactory.create(mContext.getResources(), bitmap);
+                        circularBitmapDrawable.setCircular(true);
+                        viewTag.icon.setImageDrawable(circularBitmapDrawable);
+
+//                        Glide.with(mContext).load(file).asBitmap().error(R.drawable.jmui_head_icon).centerCrop().into(new BitmapImageViewTarget( viewTag.icon) {
+//                            @Override
+//                            protected void setResource(Bitmap resource) {
+//
+//                            }
+//                        });
+
                     } else {
                         userInfo.getAvatarBitmap(new GetAvatarBitmapCallback() {
                             @Override
                             public void gotResult(int status, String desc, Bitmap bitmap) {
                                 if (status == 0) {
-                                    viewTag.icon.setImageBitmap(bitmap);
+                                    RoundedBitmapDrawable circularBitmapDrawable =
+                                            RoundedBitmapDrawableFactory.create(mContext.getResources(), bitmap);
+                                    circularBitmapDrawable.setCircular(true);
+                                    viewTag.icon.setImageDrawable(circularBitmapDrawable);
+//                                    viewTag.icon.setImageBitmap(bitmap);
                                 } else {
-                                    viewTag.icon.setImageResource(R.drawable.jmui_head_icon);
+                                    Glide.with(mContext).load(R.drawable.jmui_head_icon).asBitmap().error(R.drawable.jmui_head_icon).centerCrop().into(new BitmapImageViewTarget(viewTag.icon) {
+                                        @Override
+                                        protected void setResource(Bitmap resource) {
+                                            RoundedBitmapDrawable circularBitmapDrawable =
+                                                    RoundedBitmapDrawableFactory.create(mContext.getResources(), resource);
+                                            circularBitmapDrawable.setCircular(true);
+                                            viewTag.icon.setImageDrawable(circularBitmapDrawable);
+                                        }
+                                    });
+
+//                                    viewTag.icon.setImageResource(R.drawable.jmui_head_icon);
                                 }
                             }
                         });
                     }
                 } else {
-                    viewTag.icon.setImageResource(R.drawable.jmui_head_icon);
+                    Glide.with(mContext).load(R.drawable.jmui_head_icon).asBitmap().error(R.drawable.jmui_head_icon).centerCrop().into(new BitmapImageViewTarget(viewTag.icon) {
+                        @Override
+                        protected void setResource(Bitmap resource) {
+                            RoundedBitmapDrawable circularBitmapDrawable =
+                                    RoundedBitmapDrawableFactory.create(mContext.getResources(), resource);
+                            circularBitmapDrawable.setCircular(true);
+                            viewTag.icon.setImageDrawable(circularBitmapDrawable);
+                        }
+                    });
+//                    viewTag.icon.setImageResource(R.drawable.jmui_head_icon);
                 }
                 String displayName = userInfo.getDisplayName();
                 viewTag.name.setText(displayName);

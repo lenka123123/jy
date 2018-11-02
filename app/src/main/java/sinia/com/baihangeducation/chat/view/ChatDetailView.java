@@ -109,7 +109,7 @@ public class ChatDetailView extends LinearLayout {
     }
 
     public void setItemListener(AdapterView.OnItemClickListener listener) {
-//        mGridView.setOnItemClickListener(listener);
+        mGridView.setOnItemClickListener(listener);
     }
 
     public void setTitle(String title) {

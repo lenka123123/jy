@@ -11,6 +11,7 @@ public class ClubDetailBean {
     public Club info;
 
     public class Club {
+        public String type;
         public String id;
         public String name;
         public String logo;
@@ -24,6 +25,7 @@ public class ClubDetailBean {
         //   public String power;//
         public String is_apply;//是否申请过该俱乐部    ( 0：已申请 1：未申请 2：社员 )
         public String jmessage_group_id; // 群聊id
+        public String is_chairman; // 1：是 0：否
     }
 
 //    public AdminInfo admin_info;
@@ -47,6 +49,8 @@ public class ClubDetailBean {
 
         public class Notice {
             public String id;
+            // 公告类型ID    ( 1：社团公告 2：学校公告 3：系统公告 )
+            public String type;
             public String title;//
             public String add_time;//
         }

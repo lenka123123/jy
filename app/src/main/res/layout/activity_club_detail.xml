@@ -79,9 +79,9 @@
                 <TextView
                     android:id="@+id/join_club"
                     android:layout_width="@dimen/x146"
-                    android:layout_height="@dimen/y70"
+                    android:layout_height="@dimen/y90"
                     android:layout_gravity="center"
-                    android:background="@drawable/join_bg"
+                    android:background="@drawable/kuang"
                     android:gravity="center"
                     android:text="已加入"
                     android:textColor="@color/black"
@@ -107,45 +107,60 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/y100"
             android:layout_marginTop="@dimen/y60"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="@dimen/x178"
-                android:layout_height="match_parent"
-                android:background="@drawable/kuang"
+                android:id="@+id/club_active"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x20"
+                android:layout_marginRight="@dimen/x20"
+                android:layout_weight="1"
+                android:background="@drawable/join_club_padding"
                 android:gravity="center"
                 android:text="活动"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="15sp" />
 
 
             <TextView
-                android:layout_width="@dimen/x178"
-                android:layout_height="match_parent"
-                android:background="@drawable/kuang"
+                android:id="@+id/club_part_list"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x20"
+                android:layout_marginRight="@dimen/x20"
+                android:layout_weight="1"
+                android:background="@drawable/join_club_padding"
                 android:gravity="center"
                 android:text="兼职"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/club_person_list"
-                android:layout_width="@dimen/x178"
-                android:layout_height="match_parent"
-                android:background="@drawable/kuang"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x20"
+                android:layout_marginRight="@dimen/x20"
+                android:layout_weight="1"
+                android:background="@drawable/join_club_padding"
                 android:gravity="center"
                 android:text="成员"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/im_chat"
-                android:layout_width="@dimen/x178"
-                android:layout_height="match_parent"
-                android:background="@drawable/kuang"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x20"
+                android:layout_marginRight="@dimen/x20"
+                android:layout_weight="1"
+                android:background="@drawable/join_club_padding"
                 android:gravity="center"
                 android:text="群聊"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="15sp" />
 
 

@@ -188,4 +188,7 @@ public interface ISendReleaseJobView extends BaseView {
     String getContant();
 
     String getIsInterview();
+
+
+    String getJobTime();
 }

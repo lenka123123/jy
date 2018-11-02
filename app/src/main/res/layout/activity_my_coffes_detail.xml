@@ -12,11 +12,12 @@
 
 
     <com.androidkun.xtablayout.XTabLayout
-        android:paddingTop="@dimen/y30"
         android:id="@+id/xTablayout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y80"
+        android:layout_height="@dimen/y120"
         android:background="@color/white"
+        android:paddingBottom="@dimen/y30"
+        android:paddingTop="@dimen/y30"
 
         app:xTabDisplayNum="3"
         app:xTabDividerColor="#333"
@@ -31,7 +32,6 @@
         app:xTabTextColor="#333"
         app:xTabTextSelectedBold="false"
         app:xTabTextSize="15sp" />
-
 
 
     <android.support.v4.view.ViewPager

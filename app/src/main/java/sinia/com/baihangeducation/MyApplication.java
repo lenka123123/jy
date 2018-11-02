@@ -26,6 +26,8 @@ import com.fm.openinstall.listener.AppInstallAdapter;
 import com.fm.openinstall.model.AppData;
 import com.imnjh.imagepicker.PickerConfig;
 import com.imnjh.imagepicker.SImagePicker;
+import com.lzy.imagepicker.ImagePicker;
+import com.lzy.imagepicker.view.CropImageView;
 import com.lzy.ninegrid.NineGridView;
 import com.mcxtzhang.swipemenulib.utils.CrashHandler;
 import com.umeng.commonsdk.UMConfigure;
@@ -50,6 +52,7 @@ import sinia.com.baihangeducation.supplement.loader.GlideImageLoader;
 import com.mcxtzhang.swipemenulib.info.bean.MyResumInfo;
 
 import sinia.com.baihangeducation.supplement.tool.NineGridGlideLoader;
+import sinia.com.baihangeducation.supplement.tool.PicassoImageLoader;
 
 import com.mcxtzhang.swipemenulib.utils.ACache;
 import com.mcxtzhang.swipemenulib.utils.Constants;
@@ -64,7 +67,6 @@ import java.util.Map;
  */
 
 public class MyApplication extends BaseApplictaion {
-
 
     public static final String CONV_TITLE = "conv_title";
     public static final int IMAGE_MESSAGE = 1;
@@ -237,6 +239,7 @@ public class MyApplication extends BaseApplictaion {
         initShare();
         StatService.autoTrace(this, true, false);//开启自动埋点    https://mtj.baidu.com/static/userguide/book/android/adconfig/circle/circle.html
     }
+
 
     private void initImagePicker() {
         SImagePicker.init(new PickerConfig.Builder().setAppContext(this)

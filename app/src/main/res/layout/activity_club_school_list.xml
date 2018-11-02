@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/aaaa"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="#F0F0F0"
     android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/nanjing"
         android:layout_width="match_parent"
         android:layout_height="@dimen/y88"
-        android:layout_marginRight="@dimen/x40"
+        android:background="@color/white"
         android:orientation="horizontal">
 
         <ImageView
@@ -17,7 +18,7 @@
             android:layout_width="@dimen/x120"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:padding="@dimen/x26"
+            android:padding="@dimen/y26"
             android:src="@drawable/back" />
 
         <LinearLayout
@@ -36,7 +37,7 @@
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="1"
-                android:text="收入排行"
+                android:text="热门社团"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
@@ -54,16 +55,17 @@
         <RelativeLayout
             android:id="@+id/home_search_layout"
             android:layout_width="82dp"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/white">
 
             <ImageView
                 android:id="@+id/home_search"
                 android:layout_width="@dimen/x30"
-
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="@dimen/y30"
-                android:src="@drawable/black_search" />
+                android:src="@drawable/black_search"
+                android:visibility="gone" />
         </RelativeLayout>
 
 

@@ -13,10 +13,14 @@ public class ClubHomeContract {
         void showError(String errorMessage);
 
         void showLoading();
+
         void hideLoading();
+
+        void showSelectSchool();
+
     }
 
     public interface Presenter {
-        void getClubHomeInfo();
+        void getClubHomeInfo(String school_id);
     }
 }

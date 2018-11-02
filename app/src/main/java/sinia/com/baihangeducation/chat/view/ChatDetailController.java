@@ -40,6 +40,7 @@ import cn.jpush.im.api.BasicCallback;
 import sinia.com.baihangeducation.MyApplication;
 import sinia.com.baihangeducation.R;
 import sinia.com.baihangeducation.chat.chatsetting.ChatDetailActivity;
+import sinia.com.baihangeducation.club.im.ChatActivity;
 import sinia.com.baihangeducation.club.im.entity.Event;
 import sinia.com.baihangeducation.club.im.entity.EventType;
 import sinia.com.baihangeducation.club.im.utils.DialogCreator;
@@ -521,21 +522,22 @@ public class ChatDetailController implements OnClickListener, OnItemClickListene
         if (mIsGroup) {
             // 点击群成员项时
             if (position < mCurrentNum) {
-                if (mMemberInfoList.get(position).getUserName().equals(mMyUsername)) {
-//                    intent.setClass(mContext, PersonalActivity.class);
-                } else {
-                    UserInfo userInfo = mMemberInfoList.get(position);
-                    //是否是好友
-                    if (userInfo.isFriend()) {
+//                if (mMemberInfoList.get(position).getUserName().equals(mMyUsername)) {
+////                    intent.setClass(mContext, PersonalActivity.class);
+//                } else {
+                UserInfo userInfo = mMemberInfoList.get(position);
+                //是否是好友
+                if (userInfo.isFriend()) {
 //                        intent.setClass(mContext, FriendInfoActivity.class);
-                        intent.putExtra("group_grid", true);
-                    } else {
+                    intent.putExtra("group_grid", true);
+                } else {
 //                        intent.setClass(mContext, GroupNotFriendActivity.class);
-                    }
-                    intent.putExtra(MyApplication.TARGET_ID, userInfo.getUserName());
-                    intent.putExtra(MyApplication.TARGET_APP_KEY, userInfo.getAppKey());
-                    intent.putExtra(MyApplication.GROUP_ID, mGroupId);
                 }
+                intent.putExtra(MyApplication.TARGET_ID, userInfo.getUserName());
+                intent.putExtra(MyApplication.CONV_TITLE, userInfo.getNickname());
+                intent.putExtra(MyApplication.TARGET_APP_KEY, userInfo.getAppKey());
+                intent.putExtra(MyApplication.GROUP_ID, mGroupId);
+                intent.setClass(mContext, ChatActivity.class);
                 mContext.startActivity(intent);
                 // 点击添加成员按钮
             } else if (position == mCurrentNum) {

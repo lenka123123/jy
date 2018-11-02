@@ -107,12 +107,12 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/x120"
             android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/ranking_money"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical|right"
                 android:text="加入"

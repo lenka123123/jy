@@ -43,8 +43,11 @@ public abstract class BaseRequestActivity extends BaseLifeCycleActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);// 隐藏标题
+
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);  //去掉标题栏（一定要在setContentView()之后）
         setContentView(setContentID());
+
+
         StatService.start(this);////埋点二个
         mContext = this;
         StatusBarCompat.setStatusBarColor(this, Color.WHITE, true);
@@ -65,6 +68,18 @@ public abstract class BaseRequestActivity extends BaseLifeCycleActivity {
         initView();
         initData();
         initAct();
+    }
+
+    /**
+     * 获取状态栏高度
+     *
+     * @param context context
+     * @return 状态栏高度
+     */
+    private static int getStatusBarHeight(Context context) {
+        // 获得状态栏高度
+        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        return context.getResources().getDimensionPixelSize(resourceId);
     }
 
     @Override

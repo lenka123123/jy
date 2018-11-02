@@ -63,6 +63,17 @@ public class CalendarView extends LinearLayout implements OnClickListener {
         initView();
     }
 
+    public void setNextMonth(boolean b) {
+        if (!b) {
+            nextMonth.setClickable(b);
+            nextMonth.setImageResource(R.drawable.arrow_right_grew);
+        } else {
+            nextMonth.setClickable(b);
+            nextMonth.setImageResource(R.drawable.new_sign_liftarrow);
+        }
+
+    }
+
     private void initView() {
         View view = View.inflate(mContext, R.layout.calen_calendar, this);
         currentMonth = (TextView) view.findViewById(R.id.currentMonth);
@@ -184,8 +195,20 @@ public class CalendarView extends LinearLayout implements OnClickListener {
         StringBuffer textDate = new StringBuffer();
         // draw = getResources().getDrawable(R.drawable.top_day);
         // view.setBackgroundDrawable(draw);
-        textDate.append(calV.getShowYear()).append(".")
-                .append(calV.getShowMonth()).append(".").append("\t");
+
+        if (Integer.valueOf(calV.getShowYear()) > year_c) {
+            setNextMonth(false);
+        } else {
+            if (Integer.valueOf(calV.getShowMonth()) >= month_c) {
+                setNextMonth(false);
+            } else {
+                setNextMonth(true);
+            }
+        }
+
+
+        textDate.append(calV.getShowYear()).append("年")
+                .append(calV.getShowMonth()).append("月");
         view.setText(textDate);
     }
 
@@ -245,6 +268,7 @@ public class CalendarView extends LinearLayout implements OnClickListener {
         });
         gridView.setLayoutParams(params);
     }
+
 
     @Override
     public void onClick(View v) {

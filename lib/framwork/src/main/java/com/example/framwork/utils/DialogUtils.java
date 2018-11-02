@@ -71,14 +71,21 @@ public class DialogUtils {
      * @return
      */
     public Dialog getCenterCancelDialog(Context context, int id) {
-        Dialog dialog = new Dialog(context, R.style.custom_cancel_dialog);
+        final Dialog dialog = new Dialog(context, R.style.custom_cancel_dialog);
         dialog.setContentView(id);
 
         Window dialogWindow = dialog.getWindow();
+        dialogWindow.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.cancel();
+            }
+        });
         //dialogWindow.setWindowAnimations(R.style.mystyle);
         WindowManager.LayoutParams lp = dialogWindow.getAttributes();
         lp.width = context.getResources().getDisplayMetrics().widthPixels;
-        lp.alpha = 1.0f;  dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        lp.alpha = 1.0f;
+        dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         dialogWindow.setAttributes(lp);
         dialogWindow.setGravity(Gravity.CENTER);
         dialog.setCanceledOnTouchOutside(true);
@@ -101,7 +108,8 @@ public class DialogUtils {
         //dialogWindow.setWindowAnimations(R.style.mystyle);
         WindowManager.LayoutParams lp = dialogWindow.getAttributes();
         lp.width = (int) ((context.getResources().getDisplayMetrics().widthPixels) * width);
-        lp.alpha = 1.0f;  dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        lp.alpha = 1.0f;
+        dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         dialogWindow.setAttributes(lp);
         dialogWindow.setGravity(Gravity.CENTER);
         dialog.setCanceledOnTouchOutside(false);
@@ -124,7 +132,8 @@ public class DialogUtils {
         dialogWindow.setWindowAnimations(R.style.Dialog);//Dialog_Bottom
         WindowManager.LayoutParams lp = dialogWindow.getAttributes();
         lp.width = context.getResources().getDisplayMetrics().widthPixels;
-        lp.alpha = 1.0f;  dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        lp.alpha = 1.0f;
+        dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         dialogWindow.setAttributes(lp);
         dialogWindow.setGravity(Gravity.BOTTOM);
         dialog.setCanceledOnTouchOutside(true);

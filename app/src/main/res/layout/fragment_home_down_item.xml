@@ -57,10 +57,10 @@
                     android:textSize="16sp" />
 
                 <LinearLayout
-                    android:layout_marginLeft="@dimen/x4"
                     android:layout_width="@dimen/x62"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/x4"
                     android:gravity="center">
 
                     <ImageView
@@ -93,6 +93,37 @@
                 android:text="南京市 秦淮区"
                 android:textColor="#A7A7A7"
                 android:textSize="13sp" />
+
+
+            <LinearLayout
+                android:id="@+id/job_time_line"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y40"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/y3"
+                    android:src="@drawable/part_time_icon" />
+
+                <TextView
+                    android:id="@+id/job_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:paddingLeft="@dimen/x10"
+                    android:text=""
+                    android:textColor="#A7A7A7"
+                    android:textSize="13sp" />
+
+
+            </LinearLayout>
 
 
             <LinearLayout

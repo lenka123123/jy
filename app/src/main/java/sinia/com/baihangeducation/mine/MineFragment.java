@@ -236,7 +236,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
         no_read_num_es = num + "";
         if (no_read_num != null) {
             if (no_read_num_es.equals("0")) {
-                no_read_num.setVisibility(View.GONE);
+                no_read_num.setVisibility(View.INVISIBLE);
             } else {
                 no_read_num.setText(" " + no_read_num_es + " ");
                 no_read_num.setVisibility(View.VISIBLE);

@@ -6,6 +6,7 @@ import android.content.Intent;
 import com.example.framwork.utils.BaseGoto;
 
 import sinia.com.baihangeducation.MainActivity;
+import sinia.com.baihangeducation.club.addclub.AddCLubActivity;
 import sinia.com.baihangeducation.club.applyclublist.ApplyClubListActivity;
 import sinia.com.baihangeducation.club.applyclublist.ClubPersonClubListActivity;
 import sinia.com.baihangeducation.club.clubactive.ClubActiveDetailActivity;
@@ -15,11 +16,23 @@ import sinia.com.baihangeducation.club.clubdetail.ClubDetailActivity;
 import sinia.com.baihangeducation.club.clubpaint.ClubPaintActivity;
 import sinia.com.baihangeducation.club.clubschoollist.ClubSchoolListActivity;
 import sinia.com.baihangeducation.club.clubsendannounce.ClubSendAnnounceActivity;
+import sinia.com.baihangeducation.club.editorclubactive.ClubEditorActiveActivity;
 import sinia.com.baihangeducation.club.editorclubactive.ClubShowActiveActivity;
+import sinia.com.baihangeducation.club.editorclubactive.power.SettingPowerActivity;
+import sinia.com.baihangeducation.club.mangerpower.MangerPowerActivity;
+import sinia.com.baihangeducation.club.myclub.help.ClubApplyHelpActivity;
+import sinia.com.baihangeducation.club.myclub.help.ClubHelpActivity;
+import sinia.com.baihangeducation.club.myclub.myactive.ClubMyActiveActivity;
+import sinia.com.baihangeducation.club.myclub.myclub.ClubMyClubActivity;
+import sinia.com.baihangeducation.club.myclub.myparttime.ClubMyPartTimeActivity;
 import sinia.com.baihangeducation.club.notice.ClubNoticeActivity;
+import sinia.com.baihangeducation.club.personcenter.PersonCenterActivity;
 import sinia.com.baihangeducation.club.searchschool.SearchListActivity;
+import sinia.com.baihangeducation.club.systemmessage.ClubSystemListActivity;
 import sinia.com.baihangeducation.find.activity.JobBangPayDetailActivity;
 import sinia.com.baihangeducation.home.activity.CompleteMajorStageActivity;
+import sinia.com.baihangeducation.home.activity.PartTimeJobCLubDetailActivity;
+import sinia.com.baihangeducation.home.activity.PortionActivity;
 import sinia.com.baihangeducation.mine.activity.MySendCommentActivity;
 import sinia.com.baihangeducation.newcampus.activity.CommentPageActivity;
 import sinia.com.baihangeducation.newcampus.activity.HomePageActivity;
@@ -121,6 +134,9 @@ import sinia.com.baihangeducation.mine.activity.UserRuleActivity;
 import sinia.com.baihangeducation.mine.activity.WantJobActivity;
 
 import com.mcxtzhang.swipemenulib.info.bean.FragmentMessageInfo;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Administrator on 2018.03.09.
@@ -762,8 +778,45 @@ public class Goto extends BaseGoto {
     /**
      * 兼职详情
      */
+    public static void toPartTimeJobDetailActivityForHome(Context context, int id, int type) {
+        Intent intent = new Intent(context, PartTimeJobDetailActivity.class);
+        intent.putExtra("JOBID", id + "");
+        intent.putExtra("phone", "123");
+        if (type == 3) {
+            intent.putExtra("club", "club");
+        } else {
+            intent.putExtra("club", "");
+        }
+
+        context.startActivity(intent);
+    }
+
+    /**
+     * 兼职详情
+     */
     public static void toPartTimeJobDetailActivity(Context context, int id) {
         Intent intent = new Intent(context, PartTimeJobDetailActivity.class);
+        intent.putExtra("JOBID", id + "");
+        intent.putExtra("club", "");
+        context.startActivity(intent);
+    }
+
+    /**
+     * club  兼职详情
+     */
+    public static void toPartTimeJobDetailActivityForClub(Context context, int id, String phone) {
+        Intent intent = new Intent(context, PartTimeJobDetailActivity.class);
+        intent.putExtra("JOBID", id + "");
+        intent.putExtra("club", "club");
+        intent.putExtra("phone", phone);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 兼职俱乐部详情
+     */
+    public static void toPartTimeJobClubDetailActivity(Context context, int id) {
+        Intent intent = new Intent(context, PartTimeJobCLubDetailActivity.class);
         intent.putExtra("JOBID", id + "");
         context.startActivity(intent);
     }
@@ -891,7 +944,7 @@ public class Goto extends BaseGoto {
     }
 
     /**
-     * 首页跳转完善资料专业二页面
+     * 发布职位  发布兼职
      */
     public static void toReleaseJobInfoActivity(Context context) {
         Intent intent = new Intent(context, ReleaseJobInfoActivity.class);
@@ -1076,7 +1129,7 @@ public class Goto extends BaseGoto {
         context.startActivity(intent);
     }
 
-    //club 收入排行
+    //club 热门社团
     public static void toClubSchoolListActivity(Context context) {
         Intent intent = new Intent(context, ClubSchoolListActivity.class);
         context.startActivity(intent);
@@ -1090,9 +1143,12 @@ public class Goto extends BaseGoto {
     }
 
     //club 成员列表
-    public static void toClubPersonClubListActivity(Context context, String clubId) {
+    public static void toClubPersonClubListActivity(Context context, String clubId, boolean drop, boolean setClubApply, String is_chairman) {
         Intent intent = new Intent(context, ClubPersonClubListActivity.class);
+        intent.putExtra("is_chairman", is_chairman);
         intent.putExtra("club_id", clubId);
+        intent.putExtra("drop", drop);
+        intent.putExtra("setClubApply", setClubApply);
         context.startActivity(intent);
     }
 
@@ -1109,11 +1165,13 @@ public class Goto extends BaseGoto {
     }
 
     //club 公告详情
-    public static void toClubAnnounceDetailActivity(Context context, String clubid, String notice_id, String power) {
+    public static void toClubAnnounceDetailActivity(Context context, String type, String clubid, String notice_id, boolean dropNotice, boolean editNotice) {
         Intent intent = new Intent(context, ClubAnnounceDetailActivity.class);
+        intent.putExtra("type", type);
         intent.putExtra("club_id", clubid);
         intent.putExtra("notice_id", notice_id);
-        intent.putExtra("power", power);
+        intent.putExtra("dropNotice", dropNotice);
+        intent.putExtra("editNotice", editNotice);
         context.startActivity(intent);
     }
 
@@ -1138,21 +1196,101 @@ public class Goto extends BaseGoto {
 
 
     //club 热门活动
-    public static void toHotActive(Context context) {
+    public static void toHotActive(Context context, String type, String clubid) {
         Intent intent = new Intent(context, ClubActiveDetailActivity.class);
+        intent.putExtra("type", type);
+        intent.putExtra("clubid", clubid);
         context.startActivity(intent);
     }
 
-    //club 编辑热门活动
-    public static void toEditorHotActive(Context context, String activity_id) {
+    //club  热门活动
+    public static void toShowHotActive(Context context, String activity_id) {
         Intent intent = new Intent(context, ClubShowActiveActivity.class);
         intent.putExtra("activity_id", activity_id);
         context.startActivity(intent);
     }
 
+    //club 编辑热门活动
+    public static void toEditorActive(Context context, String clubid) {
+        Intent intent = new Intent(context, ClubEditorActiveActivity.class);
+        intent.putExtra("clubid", clubid);
+        context.startActivity(intent);
+    }
+
     //club 社团兼职
-    public static void toClubPart(Context context) {
+    public static void toClubPart(Context context, boolean pushJob) {
         Intent intent = new Intent(context, ClubPaintActivity.class);
+        intent.putExtra("pushJob", pushJob);
+        context.startActivity(intent);
+    }
+
+    //club 权限任命
+    public static void toClubPower(Context context, String id) {
+        Intent intent = new Intent(context, SettingPowerActivity.class);
+        intent.putExtra("id", id);
+        context.startActivity(intent);
+    }
+
+    //club 添加俱乐部
+    public static void addClub(Context context) {
+        Intent intent = new Intent(context, AddCLubActivity.class);
+
+        context.startActivity(intent);
+    }
+
+    //club 职位管理
+    public static void toMangerPower(Context context, String club_id) {
+        Intent intent = new Intent(context, MangerPowerActivity.class);
+        intent.putExtra("club_id", club_id);
+        context.startActivity(intent);
+    }
+
+    //club 社团个人中心
+    public static void toPersonScenter(Context context) {
+        Intent intent = new Intent(context, PersonCenterActivity.class);
+        context.startActivity(intent);
+    }
+
+    //club 社团-我的兼职
+    public static void toMyPartTime(Context context) {
+        Intent intent = new Intent(context, ClubMyPartTimeActivity.class);
+        context.startActivity(intent);
+    }
+
+    //club 社团-我的兼职
+    public static void toMyClub(Context context) {
+        Intent intent = new Intent(context, ClubMyClubActivity.class);
+        context.startActivity(intent);
+    }
+
+    //club 社团-我的兼职活动
+    public static void toMyClubActivity(Context context) {
+        Intent intent = new Intent(context, ClubMyActiveActivity.class);
+        context.startActivity(intent);
+    }
+
+    //club 社团-我的兼职活动
+    public static void toMyHelpActivity(Context context) {
+        Intent intent = new Intent(context, ClubHelpActivity.class);
+        context.startActivity(intent);
+    }
+
+    //club 社团-申请赞助
+    public static void toApplyHelp(Context context) {
+        Intent intent = new Intent(context, ClubApplyHelpActivity.class);
+        context.startActivity(intent);
+    }
+
+    //club 社团-申请赞助
+    public static void toSystemMeaage(Context context) {
+        Intent intent = new Intent(context, ClubSystemListActivity.class);
+        context.startActivity(intent);
+    }
+
+    //club  保险申明链接
+    public static void toSystemMeaagePotion(Context context, String url) {
+        Intent intent = new Intent(context, PortionActivity.class);
+        intent.putExtra("url", url);
         context.startActivity(intent);
     }
 

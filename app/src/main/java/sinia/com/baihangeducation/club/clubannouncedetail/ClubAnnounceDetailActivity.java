@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +29,10 @@ public class ClubAnnounceDetailActivity extends BaseActivity {
     private TextView announce_name;
     private TextView announce_time;
     private TextView announce_content;
-    private String power;
     private TextView edit_announce;
+    private boolean dropNotice;
+    private boolean editNotice;
+    private String type;
 
 
     public int initLayoutResID() {
@@ -38,12 +41,20 @@ public class ClubAnnounceDetailActivity extends BaseActivity {
 
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+        if (clubSendAnnounceModel != null)
+            clubSendAnnounceModel.getAnnounceInfo(notice_id);
+    }
+
+    @Override
     protected void initView() {
         Intent intent = getIntent();
         club_id = intent.getStringExtra("club_id");
         notice_id = intent.getStringExtra("notice_id");
-        power = intent.getStringExtra("power");
-
+        type = intent.getStringExtra("type");
+        dropNotice = intent.getBooleanExtra("dropNotice", false);
+        editNotice = intent.getBooleanExtra("editNotice", false);
 
         announce_name = findViewById(R.id.announce_name);
         announce_time = findViewById(R.id.announce_time);
@@ -59,20 +70,23 @@ public class ClubAnnounceDetailActivity extends BaseActivity {
 
         editor = findViewById(R.id.editor);
 
-        System.out.println("powerpower========"+power);
-
-        if (power.equals("2")) {// 管理员可以编辑
+        editor.setVisibility(dropNotice ? View.VISIBLE : View.GONE);
+        edit_announce.setVisibility(editNotice ? View.VISIBLE : View.GONE);
+        if (type.equals("1")) {
             editor.setVisibility(View.VISIBLE);
-            edit_announce.setVisibility(View.VISIBLE);
         } else {
-            editor.setVisibility(View.GONE);
-            edit_announce.setVisibility(View.GONE);
+            editor.setVisibility(View.INVISIBLE);
         }
 
         editor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { //删除
-                clubSendAnnounceModel.detailAnnounce(notice_id);
+                if (type.equals("1")) {
+                    clubSendAnnounceModel.detailAnnounce(notice_id);
+                } else {
+
+                }
+
 
             }
         });

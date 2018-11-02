@@ -543,87 +543,93 @@ public class AccountManger {
                                               String getLinkPerson,
                                               String getLinkType,
                                               String getReleaseContent,
-                                              String getContant
+                                              String getJobTime
     ) {
         if (TextUtils.isEmpty(jobChoice)) {
             Toast.getInstance().showToastView(context, "请选择职位类型");
             return false;
-        } else if (TextUtils.isEmpty(compangName)) {
+        }
+        if (TextUtils.isEmpty(compangName)) {
             Toast.getInstance().showToastView(context, "请输入招聘名称");
             return false;
-        } else if (TextUtils.isEmpty(adress)) {
+        }
+        if (TextUtils.isEmpty(adress)) {
             Toast.getInstance().showToastView(context, "请选择工作地址");
             return false;
-        } else if (TextUtils.isEmpty(adressDetail)) {
+        }
+        if (TextUtils.isEmpty(adressDetail)) {
             Toast.getInstance().showToastView(context, "请输入你的详细地址");
             return false;
-        } else if (TextUtils.isEmpty(needPeopleMax)) {
+        }
+        if (TextUtils.isEmpty(needPeopleMax)) {
             Toast.getInstance().showToastView(context, "请输入招聘人数");
             return false;
-        } else if (TextUtils.isEmpty(ageLower)) {
-            Toast.getInstance().showToastView(context, "请输入招聘年龄限制");
-            return false;
+//        } else if (TextUtils.isEmpty(ageLower)) {
+//            Toast.getInstance().showToastView(context, "请输入招聘年龄限制");
+//            return false;
 //        } else if (TextUtils.isEmpty(getGender)) {
 //            Toast.getInstance().showToastView(context, "请选择性别限制");
 //            return false;
-        } else if (TextUtils.isEmpty(getExp)) {
+        }
+        if (TextUtils.isEmpty(getExp)) {
             Toast.getInstance().showToastView(context, "请选择经验要求");
             return false;
-        } else if (TextUtils.isEmpty(getSalaryType)) {
+        }
+        if (TextUtils.isEmpty(getSalaryType)) {
             Toast.getInstance().showToastView(context, "请选择薪资类型");
             return false;
-        } else if (TextUtils.isEmpty(getMoneyUpper)) {
-            Toast.getInstance().showToastView(context, "请输入薪资待遇");
-            return false;
-        } else if (TextUtils.isEmpty(getJobTag)) {
+//        } else if (TextUtils.isEmpty(getMoneyUpper)) {
+//            Toast.getInstance().showToastView(context, "请输入薪资待遇");
+//            return false;
+        }
+        if (TextUtils.isEmpty(getJobTag)) {
             Toast.getInstance().showToastView(context, "请选择岗位类型");
             return false;
-        } else if (TextUtils.isEmpty(getJobType)) {
+        }
+        if (TextUtils.isEmpty(getJobType)) {
             Toast.getInstance().showToastView(context, "请选择所属行业");
             return false;
-        } else if (TextUtils.isEmpty(getTimeEnd)) {
+        }
+        if (TextUtils.isEmpty(getTimeEnd)) {
             Toast.getInstance().showToastView(context, "请选上班时间");
             return false;
-        } else if (TextUtils.isEmpty(getIsContinue)) {
+        }
+        if (TextUtils.isEmpty(getIsContinue)) {
             Toast.getInstance().showToastView(context, "请选择是否连做");
             return false;
-        } else if (TextUtils.isEmpty(getIsInterview)) {
+        }
+        if (TextUtils.isEmpty(getIsInterview)) {
             Toast.getInstance().showToastView(context, "请选择是否需要面试");
             return false;
-        } else if (TextUtils.isEmpty(getLinkPerson)) {
+        }
+        if (TextUtils.isEmpty(getLinkPerson)) {
             Toast.getInstance().showToastView(context, "请填写联系人");
             return false;
-        } else if (TextUtils.isEmpty(getLinkType)) {
+        }
+        if (TextUtils.isEmpty(getLinkType)) {
             Toast.getInstance().showToastView(context, "请填写联系方式");
 
             return false;
-        } else if (TextUtils.isEmpty(getReleaseContent)) {
-            Toast.getInstance().showToastView(context, "请填写联系人电话");
+        }
+        if (TextUtils.isEmpty(getJobTime)) {
+            Toast.getInstance().showToastView(context, "请选择上班时间");
+            return false;
+
+        }
+        if (getLinkType.equals("手机号")) {
+            if (!AccountManger.isTel(getReleaseContent))
+                Toast.getInstance().showToastView(context, "请填写正确联系人号码");
+            return false;
+
+        }
+        if (getReleaseContent.length() > 16) {
+            Toast.getInstance().showToastView(context, "请填写正确联系人方式号码");
             return false;
         }
-//        else if (TextUtils.isEmpty(getContant)) {
-//            Toast.getInstance().showToastView(context, "请填写职位描述");
-//            return false;
-//        }
-//        if (!jobChoice.equals("1")) {
-//            if (TextUtils.isEmpty(moneyPart)) {
-//                Toast.getInstance().showToastView(context, "请填写薪资待遇");
-//                return false;
-//            } else if (TextUtils.isEmpty(genderPart)) {
-//                Toast.getInstance().showToastView(context, "请选择性别要求");
-//                return false;
-//            } else if (TextUtils.isEmpty(workDateMinPart)) {
-//                Toast.getInstance().showToastView(context, "请选择起始上班日期");
-//                return false;
-//            } else if (TextUtils.isEmpty(workDateMaxPart)) {
-//                Toast.getInstance().showToastView(context, "请选择结束上班日期");
-//                return false;
-//            }
-//        } else {
-//            if (TextUtils.isEmpty(moneyAllMin) || TextUtils.isEmpty(moneyAllMax)) {
-//                Toast.getInstance().showToastView(context, "请填写薪资待遇范围");
-//                return false;
-//            }
+        if (TextUtils.isEmpty(getReleaseContent)) {
+            Toast.getInstance().showToastView(context, "请填写联系人号码");
+            return false;
+        }
 
         return true;
     }

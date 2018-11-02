@@ -7,6 +7,7 @@ import sinia.com.baihangeducation.club.applyclublist.interfaces.GetPersonListene
 import sinia.com.baihangeducation.club.applyclublist.model.ApplyClubListBean;
 import sinia.com.baihangeducation.club.applyclublist.model.ApplyClubListModel;
 import sinia.com.baihangeducation.club.applyclublist.model.GetPersonList;
+import sinia.com.baihangeducation.club.club.interfaces.GetRequestListener;
 import sinia.com.baihangeducation.club.clubdetail.interfaces.JoinClubDetailListener;
 
 public class ApplyClubListPresenter implements ApplyClubListContract.Presenter {
@@ -62,6 +63,19 @@ public class ApplyClubListPresenter implements ApplyClubListContract.Presenter {
             @Override
             public void showGetPersonFail(String msg) {
 
+            }
+        });
+    }
+    public void dropCrew(String member_id , GetRequestListener listener ) {
+        searchSchoolModel.dropCrew(member_id, new GetRequestListener() {
+            @Override
+            public void setRequestSuccess(String msg) {
+                listener.setRequestSuccess(msg);
+            }
+
+            @Override
+            public void setRequestFail() {
+              listener.setRequestFail();
             }
         });
     }
