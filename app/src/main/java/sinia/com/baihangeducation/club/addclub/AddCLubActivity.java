@@ -1,6 +1,7 @@
 package sinia.com.baihangeducation.club.addclub;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -8,7 +9,10 @@ import android.provider.MediaStore;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -34,14 +38,19 @@ import java.util.List;
 
 import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.R;
+import sinia.com.baihangeducation.club.club.interfaces.GetRequestForSchoolListener;
 import sinia.com.baihangeducation.club.club.interfaces.GetRequestListener;
 import sinia.com.baihangeducation.club.editorclubactive.ClubEditorActiveActivity;
 import sinia.com.baihangeducation.club.editorclubactive.ClubEditorModel;
+import sinia.com.baihangeducation.home.adapter.PhoneGlideImageLoader;
 import sinia.com.baihangeducation.mine.activity.UCentreBaseInfoActivity;
 import sinia.com.baihangeducation.supplement.alertview.AlertViewContorller;
 import sinia.com.baihangeducation.supplement.alertview.OnItemClickListener;
 import sinia.com.baihangeducation.supplement.base.BaseActivity;
+import sinia.com.baihangeducation.supplement.base.Goto;
 import sinia.com.baihangeducation.supplement.tool.PicassoImageLoader;
+
+import static io.github.changjiashuai.ImagePicker.REQUEST_CODE_PICK;
 
 public class AddCLubActivity extends BaseActivity implements GetAddOptionRequestListener, OnItemClickListener {
 
@@ -69,6 +78,7 @@ public class AddCLubActivity extends BaseActivity implements GetAddOptionRequest
     private EditText introduce;
     private String url;
     private String media_id;
+    private io.github.changjiashuai.ImagePicker.Config mPhoneConfig1;
 
     @Override
     public int initLayoutResID() {
@@ -78,6 +88,20 @@ public class AddCLubActivity extends BaseActivity implements GetAddOptionRequest
 
     @Override
     protected void initData() {
+
+        mPhoneConfig1 = new io.github.changjiashuai.ImagePicker.Config(new PhoneGlideImageLoader());
+        mPhoneConfig1.multiMode(false);
+//        config.selectLimit(1);
+        mPhoneConfig1.showCamera(true);
+//        mPhoneConfig.crop(true);
+//        mPhoneConfig.cropStyle(CropImageView.CIRCLE);
+//        mPhoneConfig.saveRectangle(false);//裁剪后是否矩形保存图片
+        mPhoneConfig1.focusWidth(800);
+        mPhoneConfig1.focusHeight(800);
+//        mPhoneConfig1.outPutX(800);
+//        mPhoneConfig1.outPutY(800);
+
+
         ImagePicker imagePicker = ImagePicker.getInstance();
         imagePicker.setImageLoader(new PicassoImageLoader());   //设置图片加载器
         imagePicker.setShowCamera(false);  //显示拍照按钮
@@ -85,10 +109,10 @@ public class AddCLubActivity extends BaseActivity implements GetAddOptionRequest
         imagePicker.setSaveRectangle(true); //是否按矩形区域保存
         imagePicker.setSelectLimit(1);    //选中数量限制
         imagePicker.setStyle(CropImageView.Style.RECTANGLE);  //裁剪框的形状
-        imagePicker.setFocusWidth(800);   //裁剪框的宽度。单位像素（圆形自动取宽高最小值）
-        imagePicker.setFocusHeight(800);  //裁剪框的高度。单位像素（圆形自动取宽高最小值）
-        imagePicker.setOutPutX(1000);//保存文件的宽度。单位像素
-        imagePicker.setOutPutY(1000);//保存文件的高度。单位像素
+        imagePicker.setFocusWidth(1200);   //裁剪框的宽度。单位像素（圆形自动取宽高最小值）
+        imagePicker.setFocusHeight(1200);  //裁剪框的高度。单位像素（圆形自动取宽高最小值）
+//        imagePicker.setOutPutX(1000);//保存文件的宽度。单位像素
+//        imagePicker.setOutPutY(1000);//保存文件的高度。单位像素
 
 //        Glide.with(context).load(R.drawable.new_eorrlogo).asBitmap().error(R.drawable.new_eorrlogo).centerCrop().into(new BitmapImageViewTarget(logo) {
 //            @Override
@@ -160,10 +184,14 @@ public class AddCLubActivity extends BaseActivity implements GetAddOptionRequest
                 break;
             case R.id.exit:
                 hideEditTextInput();
-
+                exit.setEnabled(false);
+                exit.setClickable(false);
                 if (createClub()) {
                     showProgress();
-                    toCreate();
+                    toCreate("0");
+                } else {
+                    exit.setEnabled(true);
+                    exit.setClickable(true);
                 }
                 break;
             case R.id.logo:
@@ -181,14 +209,23 @@ public class AddCLubActivity extends BaseActivity implements GetAddOptionRequest
                 mClubType.setCancelable(true).show();
                 break;
             case R.id.bellow_school:
-
-                hideEditTextInput();
-                clickType = "school";
-                mSchoolOption = new AlertViewContorller(bellow_school_text,
-                        "所属大学", null, "取消", null, school_list,
-                        context, AlertViewContorller.Style.ActionSheet, this);
-                mSchoolOption.setCancelable(true).show();
+                Goto.toEditMyResumeEducationExpChoiceSchool(context, "club");
+//                hideEditTextInput();
+//                clickType = "school";
+//                mSchoolOption = new AlertViewContorller(bellow_school_text,
+//                        "所属大学", null, "取消", null, school_list,
+//                        context, AlertViewContorller.Style.ActionSheet, this);
+//                mSchoolOption.setCancelable(true).show();
                 break;
+        }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if (bellow_school_text != null && !AppConfig.SCHOOLNAME.equals("")) {
+            bellow_school_text.setText(AppConfig.SCHOOLNAME);
+            mSchoolId = AppConfig.SCHOOLNAMEID;
         }
     }
 
@@ -227,6 +264,7 @@ public class AddCLubActivity extends BaseActivity implements GetAddOptionRequest
 
     }
 
+
     public void upPhone() {
         clubEditorModel.updataPhone(img, "1", new GetRequestListener() {
             @Override
@@ -234,7 +272,7 @@ public class AddCLubActivity extends BaseActivity implements GetAddOptionRequest
                 JsonObject jsonObject = (JsonObject) new JsonParser().parse(msg);
                 url = jsonObject.get("url").getAsString();
                 media_id = jsonObject.get("media_id").getAsString();
-                System.out.println();
+
             }
 
             @Override
@@ -244,10 +282,11 @@ public class AddCLubActivity extends BaseActivity implements GetAddOptionRequest
         });
     }
 
-    public void toCreate() {
-        addClubModel.pushClub(nick_name.getText().toString().trim(), phone.getText().toString().trim(),
+    //  Toast.getInstance().showErrorToast(activity, error);
+    public void toCreate(String force_quit) {
+        addClubModel.pushClub(force_quit, nick_name.getText().toString().trim(), phone.getText().toString().trim(),
                 club_name.getText().toString().trim(), mClubTypeId, mSchoolId,
-                introduce.getText().toString().trim(), url, media_id, new GetRequestListener() {
+                introduce.getText().toString().trim(), url, media_id, new GetRequestForSchoolListener() {
 
                     @Override
                     public void setRequestSuccess(String msg) {
@@ -256,7 +295,12 @@ public class AddCLubActivity extends BaseActivity implements GetAddOptionRequest
                     }
 
                     @Override
-                    public void setRequestFail() {
+                    public void setRequestFail(String msg) {
+                        if (msg.equals("9108")) {
+                            getCenterCancelDialogShow();
+                        }
+                        exit.setEnabled(true);
+                        exit.setClickable(true);
                         AddCLubActivity.this.hideProgress();
                     }
                 });
@@ -266,8 +310,12 @@ public class AddCLubActivity extends BaseActivity implements GetAddOptionRequest
     private final int IMAGE_PICKER = 9090;
 
     private void takePhoto(int type) {
-        Intent intent = new Intent(this, ImageGridActivity.class);
-        startActivityForResult(intent, IMAGE_PICKER);
+
+        io.github.changjiashuai.ImagePicker.getInstance().pickImageForResult(this, mPhoneConfig1);
+        io.github.changjiashuai.ImagePicker.RESULT_CODE_BACK_CLICK = 0;
+
+//        Intent intent = new Intent(this, ImageGridActivity.class);
+//        startActivityForResult(intent, IMAGE_PICKER);
 //        SImagePicker.from(AddCLubActivity.this)
 //                .pickMode(SImagePicker.MODE_IMAGE)
 //                .showCamera(true).rowCount(3)
@@ -279,6 +327,41 @@ public class AddCLubActivity extends BaseActivity implements GetAddOptionRequest
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CODE_PICK && io.github.changjiashuai.ImagePicker.RESULT_CODE_BACK_CLICK == 0) {
+            if (data != null) {
+                if (resultCode == io.github.changjiashuai.ImagePicker.RESULT_CODE_ITEMS) {
+                    boolean isOrigin = data.getBooleanExtra(io.github.changjiashuai.ImagePicker.EXTRA_IS_ORIGIN, false);
+                    if (!isOrigin) {
+                        ArrayList<io.github.changjiashuai.bean.ImageItem> imageItems = io.github.changjiashuai.ImagePicker.getInstance().getSelectedImages();
+                        if (imageItems.size() > 0) {
+                            io.github.changjiashuai.bean.ImageItem imageItem = imageItems.get(0);
+                            img = imageItems.get(0).path;
+                            upPhone();
+                            setPhoto(img);
+                            File appDir = new File(img);
+                            try {
+                                MediaStore.Images.Media.insertImage(AddCLubActivity.this.getContentResolver(), appDir.getAbsolutePath().toString(), appDir.getName(), "");
+                                sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + "/sdcard/namecard/")));
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
+
+                            ArrayList<String> paths = new ArrayList<>();
+                            for (io.github.changjiashuai.bean.ImageItem imageItem1 : imageItems) {
+                                paths.add(imageItem1.path);
+                            }
+                        }
+                    } else {
+                        //遍历做压缩处理
+                        Toast.makeText(this, "稍后压缩", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }
+    }
+
+
+    protected void onActivityResultForWorld(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
             if (data != null && requestCode == IMAGE_PICKER) {
@@ -326,7 +409,7 @@ public class AddCLubActivity extends BaseActivity implements GetAddOptionRequest
             protected void setResource(Bitmap resource) {
                 RoundedBitmapDrawable circularBitmapDrawable =
                         RoundedBitmapDrawableFactory.create(context.getResources(), resource);
-                circularBitmapDrawable.setCircular(true);
+//                circularBitmapDrawable.setCircular(true);
                 logo.setImageDrawable(circularBitmapDrawable);
             }
         });
@@ -361,4 +444,35 @@ public class AddCLubActivity extends BaseActivity implements GetAddOptionRequest
             }
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AppConfig.SCHOOLNAME = "";
+    }
+
+    public void getCenterCancelDialogShow() {
+        final Dialog dialog = new Dialog(AddCLubActivity.this, com.example.framwork.R.style.custom_cancel_dialog);
+        dialog.setContentView(R.layout.clcub_join_dialog_apply_update_school);
+        Window dialogWindow = dialog.getWindow();
+
+        dialogWindow.findViewById(R.id.club_join).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toCreate("1");
+                dialog.cancel();
+            }
+        });
+        //dialogWindow.setWindowAnimations(R.style.mystyle);
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+        lp.width = AddCLubActivity.this.getResources().getDisplayMetrics().widthPixels;
+        lp.alpha = 1.0f;
+        dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        dialogWindow.setAttributes(lp);
+        dialogWindow.setGravity(Gravity.CENTER);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.show();
+
+    }
+
 }

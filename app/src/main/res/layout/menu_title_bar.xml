@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/menu_title_bar"
     android:layout_width="match_parent"
     android:layout_height="@dimen/y80"
     android:background="@color/white"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
     <ImageButton
         android:id="@+id/return_btn"
-        android:layout_width="@dimen/x50"
+        android:layout_width="50dp"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:background="#00000000"
@@ -16,10 +16,11 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@id/return_btn"
+        android:layout_weight="1"
         android:gravity="center"
 
         android:singleLine="true"
@@ -32,8 +33,8 @@
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:src="@drawable/jmui_chat_detail"
         android:background="#00000000"
+        android:src="@drawable/jmui_chat_detail"
         android:visibility="invisible" />
 
-</RelativeLayout>
+</LinearLayout>

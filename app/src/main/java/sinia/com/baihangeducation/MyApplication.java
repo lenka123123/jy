@@ -179,7 +179,7 @@ public class MyApplication extends BaseApplictaion {
         context = getApplicationContext();
         StorageUtil.init(context, null);
         JMessageClient.init(context, true);// 是否启用消息漫游，true - 启用，false - 关闭。
-        JMessageClient.setDebugMode(false);
+        JMessageClient.setDebugMode(true);
         SharePreferenceManager.init(getApplicationContext(), JCHAT_CONFIGS);
         //设置Notification的模式
         JMessageClient.setNotificationFlag(JMessageClient.FLAG_NOTIFY_WITH_SOUND | JMessageClient.FLAG_NOTIFY_WITH_LED | JMessageClient.FLAG_NOTIFY_WITH_VIBRATE);
@@ -211,7 +211,7 @@ public class MyApplication extends BaseApplictaion {
             StrictMode.setVmPolicy(builder.build());
         }
 
-        JPushInterface.setDebugMode(false);    // 设置开启日志,发布时请关闭日志
+        JPushInterface.setDebugMode(true);    // 设置开启日志,发布时请关闭日志
         JPushInterface.init(sContext);            // 初始化 JPush
 
         mCache = ACache.get(this);

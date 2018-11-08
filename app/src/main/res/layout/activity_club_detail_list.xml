@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#F5F7F9">
 
 
     <LinearLayout
@@ -10,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/y88"
         android:layout_marginRight="@dimen/x40"
+        android:background="@color/white"
         android:orientation="horizontal">
 
         <ImageView
@@ -81,7 +83,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/nanjing"
-        android:layout_marginBottom="@dimen/space_60">
+        android:layout_marginBottom="@dimen/space_60"
+        android:background="#F5F7F9">
         <!--加载条-->
         <com.example.framwork.widget.ProgressActivity
             android:id="@+id/progressActivity"
@@ -118,7 +121,6 @@
         android:gravity="center"
         android:text="发布公告"
         android:textColor="@color/white"
-        android:textSize="@dimen/font_size_18"
-        android:visibility="invisible" />
+        android:textSize="@dimen/font_size_18" />
 
 </RelativeLayout>

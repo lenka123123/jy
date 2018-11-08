@@ -6,7 +6,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.donkingliang.imageselector.entry.Image;
 
 import sinia.com.baihangeducation.R;
 

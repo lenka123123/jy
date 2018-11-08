@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.baidu.mobstat.StatService;
 import com.bumptech.glide.Glide;
-import com.donkingliang.imageselector.entry.Image;
 import com.scwang.smartrefresh.header.MaterialHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;

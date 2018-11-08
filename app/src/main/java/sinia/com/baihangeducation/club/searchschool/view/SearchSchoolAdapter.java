@@ -19,6 +19,7 @@ import java.util.List;
 import sinia.com.baihangeducation.R;
 import sinia.com.baihangeducation.club.club.interfaces.GetRequestListener;
 import sinia.com.baihangeducation.club.club.model.ClubHomeModel;
+import sinia.com.baihangeducation.club.searchschool.SearchListActivity;
 import sinia.com.baihangeducation.club.searchschool.model.ClubSchoolList;
 import sinia.com.baihangeducation.supplement.base.Goto;
 
@@ -33,11 +34,11 @@ public class SearchSchoolAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private String text = "";
     private List<ClubSchoolList.School> mInviteListInfo = new ArrayList<>();
 
-    private Context context;
+    private SearchListActivity context;
     private final ClubHomeModel clubHomeModel;
     private SearchSchoolHolder vh;
 
-    public SearchSchoolAdapter(Activity context) {
+    public SearchSchoolAdapter(SearchListActivity context) {
         this.context = context;
         clubHomeModel = new ClubHomeModel(context);
     }
@@ -164,7 +165,9 @@ public class SearchSchoolAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
 
         } else {
+            context.addName(mInviteListInfo.get(potion).name);
             Goto.toClubDetailActivity(context, mInviteListInfo.get(potion).id);
+
         }
     }
 }

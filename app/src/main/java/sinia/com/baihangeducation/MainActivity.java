@@ -172,8 +172,8 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
                             System.out.println("JMessageClient dong" + i + "===" + s + "====" + list.size());
                     }
                 });
-//                System.out.println("JMessageClient dong" + i + "===" + s);
-//                JMessageClient.getUserInfo("19951770207", new GetUserInfoCallback() {
+                System.out.println("JMessageClient dong" + i + "===" + s);
+//                JMessageClient.getUserInfo("18851032658", new GetUserInfoCallback() {
 //                    @Override
 //                    public void gotResult(int i, String s, cn.jpush.im.android.api.model.UserInfo userInfo) {
 //                        System.out.println("JMessageClient dong1" + i + "===" + s + "===" + userInfo.getAppKey());
@@ -186,18 +186,18 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
         });
     }
 
-//
-//    public void chat(cn.jpush.im.android.api.model.UserInfo userInfo) {
-//        Intent intent = new Intent();
-//        intent.putExtra(MyApplication.CONV_TITLE, "聊天");
-//        String targetId = userInfo.getUserName();
-//        intent.putExtra(MyApplication.TARGET_ID, targetId);
-//        intent.putExtra(MyApplication.TARGET_APP_KEY, userInfo.getAppKey());
-//        intent.putExtra(MyApplication.DRAFT, "***");
-//
-//        intent.setClass(mContext, ChatActivity.class);
-//        startActivity(intent);
-//    }
+
+    public void chat(cn.jpush.im.android.api.model.UserInfo userInfo) {
+        Intent intent = new Intent();
+        intent.putExtra(MyApplication.CONV_TITLE, "聊天");
+        String targetId = userInfo.getUserName();
+        intent.putExtra(MyApplication.TARGET_ID, targetId);
+        intent.putExtra(MyApplication.TARGET_APP_KEY, userInfo.getAppKey());
+        intent.putExtra(MyApplication.DRAFT, "***");
+
+        intent.setClass(mContext, ChatActivity.class);
+        startActivity(intent);
+    }
 
 
     @Override

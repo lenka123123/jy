@@ -21,6 +21,7 @@ public class GetPersonList {
         public String type ;
         public String avatar  ;
         public String income  ;
+        public String mobile  ;
 
     }
 }

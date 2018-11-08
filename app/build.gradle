@@ -71,7 +71,6 @@ dependencies {
     compile(name: 'pickerview-release', ext: 'aar')
     implementation files('libs/pinyin4j-2.5.0.jar')
     implementation files('libs/AMap2DMap_5.2.0_AMapSearch_5.7.0_AMapLocation_3.7.0_20171229.jar')
-    implementation project(':imageselector')
     implementation files('libs/alipaySdk-20180601.jar')
     implementation files('libs/libammsdk.jar')
     implementation 'cn.jiguang.sdk:jpush:3.1.1'
@@ -83,6 +82,7 @@ dependencies {
     implementation 'cn.jiguang.sdk:jmessage:2.7.0'
     implementation 'com.jakewharton:butterknife:7.0.1'
     implementation 'com.github.w446108264:AndroidEmoji:1.0.0'
+    implementation project(':imagepicker')
 }
 repositories {
     flatDir {

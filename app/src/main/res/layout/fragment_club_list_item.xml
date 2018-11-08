@@ -90,7 +90,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="东南大学"
-                android:textColor="#333"
+                android:textColor="#000"
                 android:textSize="16sp" />
 
 

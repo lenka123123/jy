@@ -4,7 +4,7 @@
     android:id="@+id/picker_image_preview_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <sinia.com.baihangeducation.chat.fragment.ViewPagerFixed
@@ -22,11 +22,11 @@
 
         <ImageButton
             android:id="@+id/picker_image_preview_orignal_image"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/x60"
             android:layout_height="fill_parent"
             android:layout_marginLeft="10dp"
             android:background="@null"
-            android:src="@drawable/picker_orignal_normal" />
+            android:src="@drawable/round_check_box_normal" />
 
         <TextView
             android:id="@+id/picker_image_preview_orignal_image_tip"
@@ -64,6 +64,7 @@
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:background="@color/white"
         android:theme="@style/AppTheme.AppBarOverlay"
         app:elevation="0dp">
 
@@ -71,8 +72,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-       >
+            android:background="@color/white">
 
             <include layout="@layout/action_bar_right_picker_preview" />
 

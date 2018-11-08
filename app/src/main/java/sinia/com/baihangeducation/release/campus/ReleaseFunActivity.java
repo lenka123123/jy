@@ -18,7 +18,6 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.donkingliang.imageselector.utils.ImageSelectorUtils;
 
 
 import java.util.ArrayList;
@@ -62,6 +61,8 @@ public class ReleaseFunActivity extends BaseActivity implements IReleaseFunView 
     private ImageView mSendTopic;
     private String mTopicID;
     private boolean one = false;
+    private LinearLayout dispark_layout;
+    private TextView dispark;
 
     @Override
     public int initLayoutResID() {
@@ -126,6 +127,8 @@ public class ReleaseFunActivity extends BaseActivity implements IReleaseFunView 
         mBack = $(R.id.releasemoment_back);
         mSendImg = $(R.id.send_img);
         mSendTopic = $(R.id.send_topic);
+        dispark_layout = $(R.id.dispark_layout);
+        dispark = $(R.id.dispark);
 
         mGridView = $(R.id.releasemoment_gridView);
 
@@ -133,12 +136,17 @@ public class ReleaseFunActivity extends BaseActivity implements IReleaseFunView 
         mBack.setOnClickListener(this);
         mSendImg.setOnClickListener(this);
         mSendTopic.setOnClickListener(this);
+        dispark_layout.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         super.onClick(v);
         switch (v.getId()) {
+            case R.id.dispark_layout:
+
+                Goto.toSendFunDispark(context);
+                break;
             case R.id.releasemoment_back:
                 finish();
                 break;
@@ -164,7 +172,9 @@ public class ReleaseFunActivity extends BaseActivity implements IReleaseFunView 
 //                for (int i = 0; i < mPicList.size(); i++) {
 //                presenter.releaseImages(mPicList.get(0), 1);
 //                }
-                presenter.releaseFun();
+                mRelease.setClickable(false);
+                mRelease.setEnabled(false);
+                presenter.releaseFun(open);
                 break;
         }
     }
@@ -174,9 +184,9 @@ public class ReleaseFunActivity extends BaseActivity implements IReleaseFunView 
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == Activity.RESULT_OK && requestCode == 1712) {
-            final ArrayList<String> pathList =   data.getStringArrayListExtra(PhotoPickerActivity.EXTRA_RESULT_SELECTION);
+            final ArrayList<String> pathList = data.getStringArrayListExtra(PhotoPickerActivity.EXTRA_RESULT_SELECTION);
 
-            final boolean original =  data.getBooleanExtra(PhotoPickerActivity.EXTRA_RESULT_ORIGINAL, false);
+            final boolean original = data.getBooleanExtra(PhotoPickerActivity.EXTRA_RESULT_ORIGINAL, false);
             mAdapter.setData(pathList);
         }
 
@@ -215,14 +225,14 @@ public class ReleaseFunActivity extends BaseActivity implements IReleaseFunView 
 
 
         System.out.println(requestCode + "toDeletePicList================" + resultCode);
-
-        if (requestCode == REQUEST_CODE && data != null) {
-            ArrayList<String> images = data.getStringArrayListExtra(ImageSelectorUtils.SELECT_RESULT);
-
-            System.out.println(images.size() + "toDeletePicList================");
-            if (images.size() >= 1) System.out.println(images.get(0));
-            mAdapter.setData(images);
-        }
+// TODO: 2018/11/3 0003  
+//        if (requestCode == REQUEST_CODE && data != null) {
+//            ArrayList<String> images = data.getStringArrayListExtra(ImageSelectorUtils.SELECT_RESULT);
+//
+//            System.out.println(images.size() + "toDeletePicList================");
+//            if (images.size() >= 1) System.out.println(images.get(0));
+//            mAdapter.setData(images);
+//        }
         if (requestCode == Constants.REQUEST_CODE_MAIN && resultCode == Constants.RESULT_CODE_VIEW_IMG) {
             //查看大图页面删除了图片
             ArrayList<String> toDeletePicList = data.getStringArrayListExtra(Constants.IMG_LIST); //要删除的图片的集合
@@ -287,12 +297,36 @@ public class ReleaseFunActivity extends BaseActivity implements IReleaseFunView 
         Log.i("发布参数flag", j + "参数I");
         Log.i("发布参数flag", mPicList.size() + "参数大小");
         if (mPicList.size() == j) {
-            presenter.releaseFun();
+            presenter.releaseFun(open);
         }
     }
 
     @Override
     public void releaseFunSuccess() {
         finish();
+    }
+
+    public void releaseFunFail() {
+        mRelease.setClickable(true);
+        mRelease.setEnabled(true);
+    }
+
+    private int open = 1;
+
+    // 可见级 1：公开可见 2：学校可见 3：社团可见
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if (AppConfig.SEND_FUN_FOR_ALL.equals("公开")) {
+            open = 1;
+            dispark.setText("全部可见");
+        } else if (AppConfig.SEND_FUN_FOR_ALL.equals("大学")) {
+            open = 2;
+            dispark.setText("学校可见");
+        } else if (AppConfig.SEND_FUN_FOR_ALL.equals("社团")) {
+            open = 3;
+            dispark.setText("社团可见");
+        }
+
     }
 }

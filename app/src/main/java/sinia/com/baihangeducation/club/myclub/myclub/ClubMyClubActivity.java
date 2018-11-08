@@ -1,5 +1,6 @@
 package sinia.com.baihangeducation.club.myclub.myclub;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
@@ -37,6 +38,7 @@ public class ClubMyClubActivity extends BaseActivity implements
     private TextView tab_two;
     private View left;
     private View right;
+    private String other_id;
 
     public int initLayoutResID() {
         return R.layout.activity_club_my_club;
@@ -44,8 +46,10 @@ public class ClubMyClubActivity extends BaseActivity implements
 
     @Override
     protected void initData() {
+        Intent intent = getIntent();
+        other_id = intent.getStringExtra("other_id");
         myPartTimeModel = new MyClubModel(context);
-        myPartTimeModel.getMyClubSchool("1", this);
+        myPartTimeModel.getMyClubSchool(other_id, "1", this);
         mCommonTitle.setBackgroundColor(Color.WHITE);
         mCommonTitle.setCenterText("我的社团");
     }
@@ -60,8 +64,8 @@ public class ClubMyClubActivity extends BaseActivity implements
         left = $(R.id.left);
         right = $(R.id.right);
 
-        tab_first.setText("我创建的");
-        tab_two.setText("我加入的");
+        tab_first.setText("创建的");
+        tab_two.setText("加入的");
 
         tab_first.setOnClickListener(this);
         tab_two.setOnClickListener(this);
@@ -88,7 +92,7 @@ public class ClubMyClubActivity extends BaseActivity implements
                 tab_first.setTextColor(context.getResources().getColor(R.color.red_fa3e3e));
                 tab_two.setTextColor(context.getResources().getColor(R.color.light_black));
                 countpage = 1;
-                myPartTimeModel.getMyClubSchool("1", this);
+                myPartTimeModel.getMyClubSchool(other_id, "1", this);
 
                 break;
             case R.id.tab_two:
@@ -98,7 +102,7 @@ public class ClubMyClubActivity extends BaseActivity implements
                 tab_first.setTextColor(context.getResources().getColor(R.color.light_black));
                 tab_two.setTextColor(context.getResources().getColor(R.color.red_fa3e3e));
                 countpage = 1;
-                myPartTimeModel.getMyClubSchool("2", this);
+                myPartTimeModel.getMyClubSchool(other_id, "2", this);
                 break;
             case R.id.right_txt:
                 if (pushActivity) {
@@ -117,7 +121,7 @@ public class ClubMyClubActivity extends BaseActivity implements
         System.out.println("是否有数据" + successMessage.size() + "code" + myIndex);
 
         if (successMessage.size() == 0) {
-            progressActivityUtils.showEmptry("暂无数据");
+            progressActivityUtils.showEmptry("目前暂无相关信息哦");
         } else {
             progressActivityUtils.showContent();
             countpage++;

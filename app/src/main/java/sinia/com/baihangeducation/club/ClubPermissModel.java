@@ -15,9 +15,11 @@ import java.util.HashMap;
 
 import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.club.club.interfaces.GetRequestListener;
+import sinia.com.baihangeducation.club.club.interfaces.GetSearchRequestListener;
 import sinia.com.baihangeducation.club.clubdetail.interfaces.ClubDetailListener;
 import sinia.com.baihangeducation.club.clubdetail.interfaces.JoinClubDetailListener;
 import sinia.com.baihangeducation.club.clubdetail.model.ClubDetailBean;
+import sinia.com.baihangeducation.find.info.bean.SearchRecommend;
 import sinia.com.baihangeducation.supplement.tool.BaseRequestInfo;
 
 /**
@@ -32,6 +34,35 @@ public class ClubPermissModel extends BasePresenter {
     public ClubPermissModel(Activity activity) {
         super(activity);
         this.activity = activity;
+
+    }
+
+    // 获取搜索推荐
+    public void getRecommend(  GetSearchRequestListener getRequestListener) {
+        HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "getRecommend", "club", true);
+        post(info, new OnRequestListener() {
+            @Override
+            public void requestSuccess(BaseResponseBean bean) {
+                System.out.println("getDatagetData===" + bean.getData());
+                SearchRecommend mInfo = bean.parseObject(SearchRecommend.class);
+                getRequestListener.setRequestSuccess(mInfo);
+
+//                ClubHomeInfo clubSchoolList = bean.parseObject(ClubHomeInfo.class);
+//                clubHomeListener.setClubHomeSuccess(clubSchoolList);
+            }
+
+            @Override
+            public void requestFailed(String error) {
+                Toast.getInstance().showErrorToast(activity, error);
+                getRequestListener.setRequestFail();
+//                clubHomeListener.setClubHomeFail(error);
+            }
+
+            @Override
+            public void requestFinish() {
+
+            }
+        });
 
     }
 
@@ -150,9 +181,6 @@ public class ClubPermissModel extends BasePresenter {
         });
 
     }
-
-
-
 
 
     public void setMessageRead(String message_id) {

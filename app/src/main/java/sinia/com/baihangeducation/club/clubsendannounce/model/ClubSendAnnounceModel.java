@@ -30,7 +30,7 @@ public class ClubSendAnnounceModel extends BasePresenter {
 
     }
 
-    public void getClubListList(String club_id, String notice_id, String title, String content) {
+    public void getClubListList(boolean isShoolType, String club_id, String notice_id, String title, String content) {
         if (!AppConfig.ISlOGINED) {
             new AlertDialog.Builder(activity).setTitle("提示！").setMessage("您尚未登录，请先登录。").setPositiveButton("登录", new DialogInterface.OnClickListener() {
                 @Override
@@ -47,6 +47,7 @@ public class ClubSendAnnounceModel extends BasePresenter {
         info.put("token", AppConfig.TOKEN);
 
         info.put("club_id", club_id);
+        info.put("type", isShoolType ? "2" : "1");
 
         if (!notice_id.equals(""))
             info.put("notice_id", notice_id);  ///公告ID    ( 非必传（修改时传） )

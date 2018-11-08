@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar_layout"
@@ -16,9 +16,11 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#FF2DD0CF"
+            android:background="@color/white"
             android:titleTextColor="#fff"
-          >
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp"
+            app:contentInsetStartWithNavigation="0dp">
 
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
@@ -33,13 +35,13 @@
             android:id="@+id/picker_album_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="visible"/>
+            android:visibility="visible" />
 
         <FrameLayout
             android:id="@+id/picker_photos_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"/>
+            android:visibility="gone" />
     </FrameLayout>
 
     <RelativeLayout
@@ -47,7 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:background="#e6e6e6"
+        android:background="@color/white"
         android:visibility="visible">
 
         <TextView
@@ -66,7 +68,7 @@
             android:text="@string/picker_image_preview"
             android:textColor="@color/color_picker_preview_selector"
             android:textSize="14.0sp"
-            android:visibility="visible"/>
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/picker_bottombar_select"
@@ -84,7 +86,7 @@
             android:text="@string/btn_send"
             android:textColor="@drawable/blue_text_selector"
             android:textSize="14.0sp"
-            android:visibility="visible"/>
+            android:visibility="invisible" />
     </RelativeLayout>
 
 </RelativeLayout>

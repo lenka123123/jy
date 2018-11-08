@@ -14,6 +14,7 @@ public class ActiveInfoData {
     public String begin_time;
     public String end_time;
     public String addr;
+    public String city_name;
     public String prov_id;
     public String city_id;
     public String dist_id;
@@ -33,6 +34,9 @@ public class ActiveInfoData {
     public String human_type_name;
     public String human_num;
     public String human_type;
+    public String share_url;
+    public String share_title;
+    public String share_introduce;
 
 //    	"human_num": "1,2",
 //      "human_type": "4",

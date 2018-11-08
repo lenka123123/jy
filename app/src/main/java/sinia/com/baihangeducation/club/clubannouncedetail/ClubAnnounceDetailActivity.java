@@ -33,6 +33,9 @@ public class ClubAnnounceDetailActivity extends BaseActivity {
     private boolean dropNotice;
     private boolean editNotice;
     private String type;
+    private boolean dropSchoolNotice;
+    private boolean editSchoolNotice;
+    private boolean pushSchoolNotice;
 
 
     public int initLayoutResID() {
@@ -52,10 +55,17 @@ public class ClubAnnounceDetailActivity extends BaseActivity {
         Intent intent = getIntent();
         club_id = intent.getStringExtra("club_id");
         notice_id = intent.getStringExtra("notice_id");
+        // 公告类型ID    ( 1：社团公告 2：学校公告 3：系统公告 )
         type = intent.getStringExtra("type");
         dropNotice = intent.getBooleanExtra("dropNotice", false);
         editNotice = intent.getBooleanExtra("editNotice", false);
 
+        dropSchoolNotice = intent.getBooleanExtra("dropSchoolNotice", false);
+        editSchoolNotice = intent.getBooleanExtra("editSchoolNotice", false);
+        pushSchoolNotice = intent.getBooleanExtra("pushSchoolNotice", false);
+//                power.contains("dropSchoolNotice")
+//                power.contains("editSchoolNotice")
+//                power.contains("pushSchoolNotice")
         announce_name = findViewById(R.id.announce_name);
         announce_time = findViewById(R.id.announce_time);
         announce_content = findViewById(R.id.announce_content);
@@ -71,7 +81,11 @@ public class ClubAnnounceDetailActivity extends BaseActivity {
         editor = findViewById(R.id.editor);
 
         editor.setVisibility(dropNotice ? View.VISIBLE : View.GONE);
-        edit_announce.setVisibility(editNotice ? View.VISIBLE : View.GONE);
+        if (type.equals("3")) {
+            edit_announce.setVisibility(View.INVISIBLE);
+        } else {
+            edit_announce.setVisibility(editNotice ? View.VISIBLE : View.GONE);
+        }
         if (type.equals("1")) {
             editor.setVisibility(View.VISIBLE);
         } else {
@@ -94,7 +108,11 @@ public class ClubAnnounceDetailActivity extends BaseActivity {
         edit_announce.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { //编辑
-                Goto.toClubSendAnnounceActivity(context, club_id, notice_id, announce_name.getText().toString(), announce_content.getText().toString());
+                Goto.toClubSendAnnounceActivity(context, "编辑公告", club_id, notice_id, announce_name.getText().toString(), announce_content.getText().toString(),
+                        dropSchoolNotice,
+                        editSchoolNotice,
+                        pushSchoolNotice
+                );
             }
         });
     }

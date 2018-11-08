@@ -79,9 +79,13 @@ public class ClubDetailListAdapter extends SuperBaseAdapter<ClubDetailBean.Notic
 //                }
 //                if (mPermissionList.get(i).equals("editNotice")) {
 
-
-                Goto.toClubAnnounceDetailActivity(context, mInviteListInfo.type, clubid, mInviteListInfo.id, power.contains("dropNotice"),
-                        power.contains("editNotice"));
+                Goto.toClubAnnounceDetailActivity(context, mInviteListInfo.type, clubid, mInviteListInfo.id,
+                        power.contains("dropNotice"),
+                        power.contains("editNotice"),
+                        power.contains("dropSchoolNotice"),
+                        power.contains("editSchoolNotice"),
+                        power.contains("pushSchoolNotice")
+                );
             }
         });
     }

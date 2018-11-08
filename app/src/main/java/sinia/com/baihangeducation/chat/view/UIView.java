@@ -17,6 +17,8 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 
+import com.githang.statusbar.StatusBarCompat;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +41,7 @@ public abstract class UIView extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        StatusBarCompat.setStatusBarColor(this, Color.WHITE, true);
 
     }
 
@@ -77,7 +80,7 @@ public abstract class UIView extends AppCompatActivity {
 
     public void setToolBar(int toolBarId, ToolBarOptions options) {
         toolbar = (Toolbar) findViewById(toolBarId);
-        toolbar.setTitleTextColor(Color.WHITE);
+        toolbar.setTitleTextColor(Color.BLACK);
         if (options.titleId != 0) {
             toolbar.setTitle(options.titleId);
         }

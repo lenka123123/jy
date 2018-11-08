@@ -814,6 +814,8 @@ public class ReleaseJobInfoActivity extends BaseActivity implements IReleaseJobI
     }
 
     public String getJobTime() {
+        if (stringBuffer == null)
+            return "";
         return stringBuffer.toString().trim();
     }
 

@@ -1,5 +1,6 @@
 package sinia.com.baihangeducation.club.myclub.myactive;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
@@ -38,6 +39,7 @@ public class ClubMyActiveActivity extends BaseActivity implements
     private TextView tab_two;
     private View left;
     private View right;
+    private String other_id;
 
     public int initLayoutResID() {
         return R.layout.activity_club_my_club;
@@ -45,8 +47,10 @@ public class ClubMyActiveActivity extends BaseActivity implements
 
     @Override
     protected void initData() {
+        Intent intent=getIntent();
+        other_id = intent.getStringExtra("other_id" );
         myPartTimeModel = new MyClubModel(context);
-        myPartTimeModel.getMyActivity("1", "1", "20", this);
+        myPartTimeModel.getMyActivity(other_id,"1", "1", "20", this);
         mCommonTitle.setBackgroundColor(Color.WHITE);
         mCommonTitle.setCenterText("我的活动");
     }
@@ -61,8 +65,8 @@ public class ClubMyActiveActivity extends BaseActivity implements
         left = $(R.id.left);
         right = $(R.id.right);
 
-        tab_first.setText("我创建的");
-        tab_two.setText("我加入的");
+        tab_first.setText("创建的");
+        tab_two.setText("加入的");
         tab_first.setOnClickListener(this);
         tab_two.setOnClickListener(this);
 
@@ -86,7 +90,7 @@ public class ClubMyActiveActivity extends BaseActivity implements
                 right.setVisibility(View.INVISIBLE);
                 tab_first.setTextColor(context.getResources().getColor(R.color.red_fa3e3e));
                 tab_two.setTextColor(context.getResources().getColor(R.color.light_black));
-                myPartTimeModel.getMyActivity("1", "1", "20", this);
+                myPartTimeModel.getMyActivity(other_id,"1", "1", "20", this);
 
                 break;
             case R.id.tab_two:
@@ -95,7 +99,7 @@ public class ClubMyActiveActivity extends BaseActivity implements
                 right.setVisibility(View.VISIBLE);
                 tab_first.setTextColor(context.getResources().getColor(R.color.light_black));
                 tab_two.setTextColor(context.getResources().getColor(R.color.red_fa3e3e));
-                myPartTimeModel.getMyActivity("2", "1", "20", this);
+                myPartTimeModel.getMyActivity(other_id,"2", "1", "20", this);
                 break;
             case R.id.right_txt:
                 if (pushActivity) {

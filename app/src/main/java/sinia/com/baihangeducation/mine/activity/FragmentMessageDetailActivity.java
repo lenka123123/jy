@@ -6,6 +6,8 @@ import android.widget.TextView;
 import sinia.com.baihangeducation.R;
 import sinia.com.baihangeducation.mine.presenter.FragmentMessagePresenter;
 import sinia.com.baihangeducation.supplement.base.BaseActivity;
+
+import com.lzy.imagepicker.ImagePicker;
 import com.mcxtzhang.swipemenulib.info.bean.FragmentMessageInfo;
 
 /**
@@ -28,6 +30,7 @@ public class FragmentMessageDetailActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+//        ImagePicker.Config config = new ImagePicker.Config(new GlideImageLoader());
         mCommonTitle.setCenterText(R.string.messagedetail);
         mCommonTitle.setBackground(getResources().getDrawable(R.color.white));
         FragmentMessagePresenter  mFragmentMessagePresenter = new FragmentMessagePresenter(this);

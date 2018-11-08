@@ -33,16 +33,26 @@ public class MyHelpAdapter extends SuperBaseAdapter<MyHelplList.Help> {
         holder.setText(R.id.name, item.club_name);
         holder.setText(R.id.school, item.school_name);
         holder.setText(R.id.type, item.status);
+        holder.setText(R.id.money, item.money);
+        if (item.status.equals("审核成功")) {
+            holder.setVisible(R.id.apply_success, true);
+            holder.setVisible(R.id.type_cope, false);
+            holder.setVisible(R.id.type, false);
+        } else {
+            holder.setVisible(R.id.apply_success, false);
+            holder.setVisible(R.id.type_cope, true);
+            holder.setVisible(R.id.type, true);
+        }
 
 //        holder.setText(R.id.ranking_school_number, item.member_num + "人");
 //        holder.setText(R.id.ranking_money, item.role_name);
 //
-//        holder.setOnClickListener(R.id.club_item_view, new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Goto.toPartTimeJobDetailActivityForClub(context, Integer.valueOf(item.id), item.member_num);
-//            }
-//        });
+        holder.setOnClickListener(R.id.club_item_view, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Goto.toApplyHelpShow(context, item.support_id);
+            }
+        });
     }
 
     @Override

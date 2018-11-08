@@ -44,7 +44,7 @@ public class MyClubModel extends BasePresenter {
     }
 
 
-    public void getMyClubPartTime(String page, String perpage, GetMyPartTiemListener getMyPartTiemListener) {
+    public void getMyClubPartTime(String other_id, String page, String perpage, GetMyPartTiemListener getMyPartTiemListener) {
 
         HashMap<String, Object> mCityData = new HashMap<>();
         mCityData.put("act", "getMyJob");
@@ -52,7 +52,8 @@ public class MyClubModel extends BasePresenter {
 
         mCityData.put("user_id", AppConfig.USERID);
         mCityData.put("token", AppConfig.TOKEN);
-
+        if (!other_id.equals(""))
+            mCityData.put("other_id ", other_id);
         mCityData.put("page", page);
         mCityData.put("perpage", perpage);
         post(mCityData, new OnRequestListener() {
@@ -111,11 +112,14 @@ public class MyClubModel extends BasePresenter {
     }
 
     // 我加入、创建的社团
-    public void getMyClubSchool(String type, GetMyClubListener getRequestListener) {
+    public void getMyClubSchool(String other_id, String type, GetMyClubListener getRequestListener) {
         HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "getMyClub", "clubUcenter", true);
         info.put("user_id", AppConfig.USERID);
         info.put("token", AppConfig.TOKEN);
         info.put("type", type);
+        if (!other_id.equals(""))
+            info.put("other_id", other_id);
+
 
         post(info, new OnRequestListener() {
             @Override
@@ -144,13 +148,15 @@ public class MyClubModel extends BasePresenter {
 
 
     // 我加入、创建的社团
-    public void getMyActivity(String type, String page, String perpage, GetMyActiveListener getMyActiveListener) {
+    public void getMyActivity(String other_id, String type, String page, String perpage, GetMyActiveListener getMyActiveListener) {
         HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "getMyActivity", "clubUcenter", true);
         info.put("user_id", AppConfig.USERID);
         info.put("token", AppConfig.TOKEN);
         info.put("type", type);
         info.put("page", page);
         info.put("perpage", perpage);
+        if (!other_id.equals(""))
+            info.put("other_id", other_id);
 
         post(info, new OnRequestListener() {
             @Override
@@ -206,15 +212,12 @@ public class MyClubModel extends BasePresenter {
 
             @Override
             public void requestFinish() {
-
             }
         });
-
     }
 
-
     //  赞助列表
-    public void getSupportList(String status, String page, String perpage, GetHelpListener getHelpListener) {
+    public void getSupportList(String other_id, String status, String page, String perpage, GetHelpListener getHelpListener) {
         HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "getSupportList", "clubSupport", true);
         info.put("user_id", AppConfig.USERID);
         info.put("token", AppConfig.TOKEN);
@@ -222,6 +225,8 @@ public class MyClubModel extends BasePresenter {
         info.put("status", status);
         info.put("page", page);
         info.put("perpage", perpage);
+        if (!other_id.equals(""))
+            info.put("other_id", other_id);
 
 
         post(info, new OnRequestListener() {

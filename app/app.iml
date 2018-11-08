@@ -207,6 +207,6 @@
     <orderEntry type="library" name="Gradle: com.baidu.mobstat:mtj-sdk-circle:3.9.2.5@jar" level="project" />
     <orderEntry type="module" module-name="framwork" />
     <orderEntry type="module" module-name="commonlib" />
-    <orderEntry type="module" module-name="imageselector" />
+    <orderEntry type="module" module-name="imagepicker" />
   </component>
 </module>

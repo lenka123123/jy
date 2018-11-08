@@ -537,9 +537,9 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="@dimen/x20"
                         android:background="@color/white"
-                        android:inputType="number"
                         android:gravity="center_vertical|right"
                         android:hint="请填写 "
+                        android:inputType="number"
                         android:textColor="@color/black"
                         android:textSize="@dimen/space_14" />
 
@@ -878,8 +878,6 @@
                 </LinearLayout>
             </RelativeLayout>
 
-            <include layout="@layout/include_line_half_gray" />
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y10"
@@ -896,6 +894,8 @@
                 android:paddingLeft="@dimen/x20"
                 android:paddingRight="@dimen/x20"
                 android:textSize="@dimen/font_size_14" />
+
+            <include layout="@layout/include_line_half_gray" />
 
             <EditText
                 android:id="@+id/releasejob_memo_edittext"

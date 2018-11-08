@@ -7,6 +7,7 @@
 
     <LinearLayout
         android:id="@+id/nanjing"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="@dimen/y88"
         android:layout_marginRight="@dimen/x40"

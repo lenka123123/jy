@@ -35,11 +35,12 @@ public class GroupMemberGridAdapter extends BaseAdapter {
     //群成员列表
     private List<UserInfo> mMemberList = new ArrayList<UserInfo>();
     private boolean mIsCreator = false;
+    private boolean mIsMore = false;
     //群成员个数
     private int mCurrentNum;
     //用群成员项数余4得到，作为下标查找mRestArray，得到空白项
     private int mRestNum;
-    private static final int MAX_GRID_ITEM = 40;
+    //    private static int MAX_GRID_ITEM = 40;
     private boolean mIsGroup;
     private String mTargetId;
     private Context mContext;
@@ -59,7 +60,9 @@ public class GroupMemberGridAdapter extends BaseAdapter {
         mCurrentNum = mMemberList.size();
         this.mIsCreator = isCreator;
         this.mAvatarSize = size;
-        initBlankItem(mCurrentNum);
+        mIsMore = false;
+//        initBlankItem(mCurrentNum);
+        refreshMemberListForMore();
     }
 
     //单聊
@@ -70,21 +73,32 @@ public class GroupMemberGridAdapter extends BaseAdapter {
         this.mTargetAppKey = appKey;
     }
 
-    public void initBlankItem(int size) {
-        if (mMemberList.size() > MAX_GRID_ITEM) {
-            mCurrentNum = MAX_GRID_ITEM - 1;
-        } else {
-            mCurrentNum = mMemberList.size();
-        }
+    public void initBlankItem(int size) {  //第一次
+        mIsMore = false;
+//        if (mMemberList.size() > MAX_GRID_ITEM) {
+//            mCurrentNum = MAX_GRID_ITEM - 1;
+//        } else {
+        mCurrentNum = mMemberList.size();
+//        }
         mRestNum = mRestArray[mCurrentNum % 5];
     }
 
     public void refreshMemberList() {
-        if (mMemberList.size() > MAX_GRID_ITEM) {
-            mCurrentNum = MAX_GRID_ITEM - 1;
-        } else {
-            mCurrentNum = mMemberList.size();
-        }
+//        if (mMemberList.size() > MAX_GRID_ITEM) {
+//            mCurrentNum = MAX_GRID_ITEM - 1;
+//        } else {
+        mCurrentNum = mMemberList.size();
+//        }
+        mRestNum = mRestArray[mCurrentNum % 5];
+        notifyDataSetChanged();
+    }
+
+    public void refreshMemberListForMore() {
+//        if (mMemberList.size() > MAX_GRID_ITEM) {
+//            mCurrentNum = MAX_GRID_ITEM - 1;
+//        } else {
+        mCurrentNum = mMemberList.size();
+        mIsMore = true;
         mRestNum = mRestArray[mCurrentNum % 5];
         notifyDataSetChanged();
     }
@@ -93,11 +107,26 @@ public class GroupMemberGridAdapter extends BaseAdapter {
     public int getCount() {
         //如果是普通成员，并且群组成员余4等于3，特殊处理，隐藏下面一栏空白
         if (mCurrentNum % 5 == 4 && !mIsCreator) {
-            return mCurrentNum > 14 ? 15 : mCurrentNum + 1;
+            return mCurrentNum > 14 ? mCurrentNum + mRestNum + 2 : mCurrentNum + 1;
         } else {
-            return mCurrentNum > 13 ? 15 : mCurrentNum + mRestNum + 2;
+            return mCurrentNum > 13 ? mCurrentNum + mRestNum + 2 : mCurrentNum + mRestNum + 2;
+//            return mCurrentNum > 13 ? 15 : mCurrentNum + mRestNum + 2;
         }
     }
+
+
+//    @Override
+//    public int getCount() {
+//        //如果是普通成员，并且群组成员余4等于3，特殊处理，隐藏下面一栏空白
+//        if (mCurrentNum % 5 == 4 && !mIsCreator) {
+//            return mCurrentNum > 14 ? 15 : mCurrentNum + 1;
+//        } else {
+//            if (mIsMore)
+//                return mCurrentNum > 13 ? mCurrentNum + mRestNum + 2 : mCurrentNum + mRestNum + 2;
+//            return mCurrentNum > 13 ? 15 : mCurrentNum + mRestNum + 2;
+//        }
+//    }
+
 
     @Override
     public Object getItem(int position) {

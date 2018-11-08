@@ -94,6 +94,10 @@
         <activity
             android:name=".mine.activity.UCentreBaseInfoActivity"
             android:screenOrientation="portrait" />
+        <!--  cese   -->
+        <activity
+            android:name=".mine.activity.AppCompatActivityPhone"
+            android:screenOrientation="portrait" />
 
 
         <!-- 趣事主页 -->
@@ -263,6 +267,7 @@
         <!--发现  搜索结果-->
         <activity
             android:name=".find.activity.SearchReasultActivity"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <!--发现  搜索-->
         <activity
@@ -676,6 +681,11 @@
             android:name=".club.myclub.help.ClubApplyHelpActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
+        <!-- club  申请赞助详情-->
+        <activity
+            android:name=".club.myclub.help.ClubApplyHelpShowActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
 
         <!-- club 社团个人中心-->
         <activity
@@ -693,11 +703,31 @@
             android:name=".home.activity.PortionActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
+        <!-- club 保险信息-->
+        <activity
+            android:name=".club.selectmember.ChooseAtMemberActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <!-- club 朋友圈-->
+        <activity
+            android:name=".newcampus.tabs.fun.FunCampusForActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <!-- club 发布朋友圈公开选项-->
+        <activity
+            android:name=".club.clubschoollist.ClubDisparkActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <!-- club 个人中心-->
+        <activity
+            android:name=".club.personcenter.PersonCenterForFirendActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
 
         <!-- 极光聊天IM -->
         <activity
             android:name=".club.im.ChatActivity"
-            android:launchMode="singleTask"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
 

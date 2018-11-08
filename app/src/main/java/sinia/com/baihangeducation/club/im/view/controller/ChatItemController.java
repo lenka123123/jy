@@ -1,7 +1,6 @@
 package sinia.com.baihangeducation.club.im.view.controller;
 
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +13,6 @@ import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Environment;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
@@ -27,8 +25,6 @@ import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.BitmapDecoder;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.squareup.picasso.Picasso;
 
@@ -81,7 +77,6 @@ import sinia.com.baihangeducation.club.im.view.adapter.ChattingListAdapter.ViewH
 
 
 public class ChatItemController {
-
 
     private ChattingListAdapter mAdapter;
     private Activity mContext;
@@ -138,7 +133,7 @@ public class ChatItemController {
         });
     }
 
-    public void handleBusinessCard(final Message msg, ViewHolder holder, int position) {
+    public void handleBusinessCard(final Message msg, final  ViewHolder holder, int position) {
         final TextContent[] textContent = {(TextContent) msg.getContent()};
         final String[] mUserName = {textContent[0].getStringExtra("userName")};
         final String mAppKey = textContent[0].getStringExtra("appKey");
@@ -261,16 +256,16 @@ public class ChatItemController {
                     public void gotResult(int i, String s, UserInfo userInfo) {
                         Intent intent = new Intent();
                         if (i == 0) {
-                            if (userInfo.isFriend()) {
+//                            if (userInfo.isFriend()) {
 //                                intent.setClass(mContext, FriendInfoActivity.class);
-                            } else {
+//                            } else {
 //                                intent.setClass(mContext, GroupNotFriendActivity.class);
-                            }
+//                            }
                             intent.putExtra(MyApplication.TARGET_APP_KEY, appKey);
                             intent.putExtra(MyApplication.TARGET_ID, userName);
                             intent.putExtra("fromSearch", true);
                             mContext.startActivity(intent);
-                        } else {
+                        }else {
                             ToastUtil.shortToast(mContext, "获取信息失败,稍后重试");
                         }
                     }
@@ -280,7 +275,6 @@ public class ChatItemController {
         }
     }
 
-    //发送文字
     public void handleTextMsg(final Message msg, final ViewHolder holder, int position) {
         final String content = ((TextContent) msg.getContent()).getText();
         SimpleCommonUtils.spannableEmoticonFilter(holder.txtContent, content);
@@ -342,7 +336,7 @@ public class ChatItemController {
         }
     }
 
-    // 发送图片
+    // 处理图片
     public void handleImgMsg(final Message msg, final ViewHolder holder, final int position) {
         final ImageContent imgContent = (ImageContent) msg.getContent();
         final String jiguang = imgContent.getStringExtra("jiguang");
@@ -362,8 +356,6 @@ public class ChatItemController {
         } else {
             ImageView imageView = setPictureScale(jiguang, msg, path, holder.picture);
             Picasso.with(mContext).load(new File(path)).into(imageView);
-//            Glide.with(mContext).load(path).into(imageView);
-
         }
 
         // 接收图片
@@ -670,8 +662,7 @@ public class ChatItemController {
                 try {
                     File file = new File(path);
                     if (file.exists() && file.isFile()) {
-//                        Picasso.with(mContext).load(file).into(holder.picture);
-                        Glide.with(mContext).load(file).into(holder.picture);
+                        Picasso.with(mContext).load(file).into(holder.picture);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -707,7 +698,7 @@ public class ChatItemController {
         }
         if (holder.picture != null) {
             holder.picture.setOnClickListener(new BtnOrTxtListener(position, holder));
-
+            holder.picture.setTag(position);
             holder.picture.setOnLongClickListener(mLongClickListener);
 
         }
@@ -778,7 +769,7 @@ public class ChatItemController {
         }
     }
 
-//    //小视频
+    //小视频
 //    public void handleVideo(final Message msg, final ViewHolder holder, int position) {
 //        FileContent fileContent = (FileContent) msg.getContent();
 //        String videoPath = fileContent.getLocalPath();
@@ -885,7 +876,7 @@ public class ChatItemController {
 //        holder.picture.setOnLongClickListener(mLongClickListener);
 //    }
 
-
+//
 //    public void handleFileMsg(final Message msg, final ViewHolder holder, int position) {
 //        final FileContent content = (FileContent) msg.getContent();
 //        if (holder.txtContent != null) {
@@ -1064,7 +1055,7 @@ public class ChatItemController {
 //        holder.contentLl.setOnLongClickListener(mLongClickListener);
 //        holder.contentLl.setOnClickListener(new BtnOrTxtListener(position, holder));
 //    }
-//
+
 
     public void handleGroupChangeMsg(Message msg, ViewHolder holder) {
         String content = ((EventNotificationContent) msg.getContent()).getEventText();
@@ -1124,70 +1115,70 @@ public class ChatItemController {
             Message msg = mMsgList.get(position);
             MessageDirect msgDirect = msg.getDirect();
             switch (msg.getContentType()) {
-//                case voice:
-//                    if (!FileHelper.isSdCardExist()) {
-//                        Toast.makeText(mContext, R.string.jmui_sdcard_not_exist_toast,
-//                                Toast.LENGTH_SHORT).show();
-//                        return;
-//                    }
-//                    // 如果之前存在播放动画，无论这次点击触发的是暂停还是播放，停止上次播放的动画
-//                    if (mVoiceAnimation != null) {
-//                        mVoiceAnimation.stop();
-//                    }
-//                    // 播放中点击了正在播放的Item 则暂停播放
-//                    if (mp.isPlaying() && mPosition == position) {
-//                        if (msgDirect == MessageDirect.send) {
-//                            holder.voice.setImageResource(R.drawable.jmui_voice_send);
-//                        } else {
-//                            holder.voice.setImageResource(R.drawable.jmui_voice_receive);
-//                        }
-//                        mVoiceAnimation = (AnimationDrawable) holder.voice.getDrawable();
-//                        pauseVoice(msgDirect, holder.voice);
-//                        // 开始播放录音
-//                    } else if (msgDirect == MessageDirect.send) {
-//                        holder.voice.setImageResource(R.drawable.jmui_voice_send);
-//                        mVoiceAnimation = (AnimationDrawable) holder.voice.getDrawable();
-//
-//                        // 继续播放之前暂停的录音
-//                        if (mSetData && mPosition == position) {
-//                            mVoiceAnimation.start();
-//                            mp.start();
-//                            // 否则重新播放该录音或者其他录音
-//                        } else {
-//                            playVoice(position, holder, true);
-//                        }
-//                        // 语音接收方特殊处理，自动连续播放未读语音
-//                    } else {
-//                        try {
-//                            // 继续播放之前暂停的录音
-//                            if (mSetData && mPosition == position) {
-//                                if (mVoiceAnimation != null) {
-//                                    mVoiceAnimation.start();
-//                                }
-//                                mp.start();
-//                                // 否则开始播放另一条录音
-//                            } else {
-//                                // 选中的录音是否已经播放过，如果未播放，自动连续播放这条语音之后未播放的语音
-//                                if (msg.getContent().getBooleanExtra("isRead") == null
-//                                        || !msg.getContent().getBooleanExtra("isRead")) {
-//                                    autoPlay = true;
-//                                    playVoice(position, holder, false);
-//                                    // 否则直接播放选中的语音
-//                                } else {
-//                                    holder.voice.setImageResource(R.drawable.jmui_voice_receive);
-//                                    mVoiceAnimation = (AnimationDrawable) holder.voice.getDrawable();
-//                                    playVoice(position, holder, false);
-//                                }
-//                            }
-//                        } catch (IllegalArgumentException e) {
-//                            e.printStackTrace();
-//                        } catch (SecurityException e) {
-//                            e.printStackTrace();
-//                        } catch (IllegalStateException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                    break;
+                case voice:
+                    if (!FileHelper.isSdCardExist()) {
+                        Toast.makeText(mContext, R.string.jmui_sdcard_not_exist_toast,
+                                Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    // 如果之前存在播放动画，无论这次点击触发的是暂停还是播放，停止上次播放的动画
+                    if (mVoiceAnimation != null) {
+                        mVoiceAnimation.stop();
+                    }
+                    // 播放中点击了正在播放的Item 则暂停播放
+                    if (mp.isPlaying() && mPosition == position) {
+                        if (msgDirect == MessageDirect.send) {
+                            holder.voice.setImageResource(R.drawable.jmui_voice_send);
+                        } else {
+                            holder.voice.setImageResource(R.drawable.jmui_voice_receive);
+                        }
+                        mVoiceAnimation = (AnimationDrawable) holder.voice.getDrawable();
+                        pauseVoice(msgDirect, holder.voice);
+                        // 开始播放录音
+                    } else if (msgDirect == MessageDirect.send) {
+                        holder.voice.setImageResource(R.drawable.jmui_voice_send);
+                        mVoiceAnimation = (AnimationDrawable) holder.voice.getDrawable();
+
+                        // 继续播放之前暂停的录音
+                        if (mSetData && mPosition == position) {
+                            mVoiceAnimation.start();
+                            mp.start();
+                            // 否则重新播放该录音或者其他录音
+                        } else {
+                            playVoice(position, holder, true);
+                        }
+                        // 语音接收方特殊处理，自动连续播放未读语音
+                    } else {
+                        try {
+                            // 继续播放之前暂停的录音
+                            if (mSetData && mPosition == position) {
+                                if (mVoiceAnimation != null) {
+                                    mVoiceAnimation.start();
+                                }
+                                mp.start();
+                                // 否则开始播放另一条录音
+                            } else {
+                                // 选中的录音是否已经播放过，如果未播放，自动连续播放这条语音之后未播放的语音
+                                if (msg.getContent().getBooleanExtra("isRead") == null
+                                        || !msg.getContent().getBooleanExtra("isRead")) {
+                                    autoPlay = true;
+                                    playVoice(position, holder, false);
+                                    // 否则直接播放选中的语音
+                                } else {
+                                    holder.voice.setImageResource(R.drawable.jmui_voice_receive);
+                                    mVoiceAnimation = (AnimationDrawable) holder.voice.getDrawable();
+                                    playVoice(position, holder, false);
+                                }
+                            }
+                        } catch (IllegalArgumentException e) {
+                            e.printStackTrace();
+                        } catch (SecurityException e) {
+                            e.printStackTrace();
+                        } catch (IllegalStateException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    break;
                 case image:
                     if (holder.picture != null && v.getId() == holder.picture.getId()) {
                         Intent intent = new Intent();
@@ -1205,7 +1196,7 @@ public class ChatItemController {
                         mContext.startActivity(intent);
                     }
                     break;
-//                case location:
+                case location:
 //                    if (holder.picture != null && v.getId() == holder.picture.getId()) {
 //                        Intent intent = new Intent(mContext, MapPickerActivity.class);
 //                        LocationContent locationContent = (LocationContent) msg.getContent();
@@ -1215,8 +1206,8 @@ public class ChatItemController {
 //                        intent.putExtra("sendLocation", false);
 //                        mContext.startActivity(intent);
 //                    }
-//                    break;
-//                case file:
+                    break;
+                case file:
 //                    FileContent content = (FileContent) msg.getContent();
 //                    String fileName = content.getFileName();
 //                    String extra = content.getStringExtra("video");
@@ -1244,94 +1235,95 @@ public class ChatItemController {
 //                        Intent intent = new Intent(mContext, DownLoadActivity.class);
 //                        mContext.startActivity(intent);
 //                    }
-//                    break;
+                    break;
             }
+
         }
     }
 
 
     public void playVoice(final int position, final ViewHolder holder, final boolean isSender) {
-//        // 记录播放录音的位置
-//        mPosition = position;
-//        Message msg = mMsgList.get(position);
-//        if (autoPlay) {
-//            mConv.updateMessageExtra(msg, "isRead", true);
-//            holder.readStatus.setVisibility(View.GONE);
-//            if (mVoiceAnimation != null) {
-//                mVoiceAnimation.stop();
-//                mVoiceAnimation = null;
-//            }
-//            holder.voice.setImageResource(R.drawable.jmui_voice_receive);
-//            mVoiceAnimation = (AnimationDrawable) holder.voice.getDrawable();
-//        }
-//        try {
-//            mp.reset();
-//            VoiceContent vc = (VoiceContent) msg.getContent();
-//            mFIS = new FileInputStream(vc.getLocalPath());
-//            mFD = mFIS.getFD();
-//            mp.setDataSource(mFD);
-//            if (mIsEarPhoneOn) {
-//                mp.setAudioStreamType(AudioManager.STREAM_VOICE_CALL);
-//            } else {
-//                mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
-//            }
-//            mp.prepare();
-//            mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-//                @Override
-//                public void onPrepared(MediaPlayer mp) {
-//                    mVoiceAnimation.start();
-//                    mp.start();
-//                }
-//            });
-//            mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-//                @Override
-//                public void onCompletion(MediaPlayer mp) {
-//                    mVoiceAnimation.stop();
-//                    mp.reset();
-//                    mSetData = false;
-//                    if (isSender) {
-//                        holder.voice.setImageResource(R.drawable.send_3);
-//                    } else {
-//                        holder.voice.setImageResource(R.drawable.jmui_receive_3);
-//                    }
-//                    if (autoPlay) {
-//                        int curCount = mIndexList.indexOf(position);
-//                        if (curCount + 1 >= mIndexList.size()) {
-//                            nextPlayPosition = -1;
-//                            autoPlay = false;
-//                        } else {
-//                            nextPlayPosition = mIndexList.get(curCount + 1);
-//                            mAdapter.notifyDataSetChanged();
-//                        }
-//                        mIndexList.remove(curCount);
-//                    }
-//                }
-//            });
-//        } catch (Exception e) {
-//            Toast.makeText(mContext, R.string.jmui_file_not_found_toast,
-//                    Toast.LENGTH_SHORT).show();
-//            VoiceContent vc = (VoiceContent) msg.getContent();
-//            vc.downloadVoiceFile(msg, new DownloadCompletionCallback() {
-//                @Override
-//                public void onComplete(int status, String desc, File file) {
-//                    if (status == 0) {
-//                        Toast.makeText(mContext, R.string.download_completed_toast,
-//                                Toast.LENGTH_SHORT).show();
-//                    } else {
-//                        Toast.makeText(mContext, R.string.file_fetch_failed,
-//                                Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            });
-//        } finally {
-//            try {
-//                if (mFIS != null) {
-//                    mFIS.close();
-//                }
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
+        // 记录播放录音的位置
+        mPosition = position;
+        Message msg = mMsgList.get(position);
+        if (autoPlay) {
+            mConv.updateMessageExtra(msg, "isRead", true);
+            holder.readStatus.setVisibility(View.GONE);
+            if (mVoiceAnimation != null) {
+                mVoiceAnimation.stop();
+                mVoiceAnimation = null;
+            }
+            holder.voice.setImageResource(R.drawable.jmui_voice_receive);
+            mVoiceAnimation = (AnimationDrawable) holder.voice.getDrawable();
+        }
+        try {
+            mp.reset();
+            VoiceContent vc = (VoiceContent) msg.getContent();
+            mFIS = new FileInputStream(vc.getLocalPath());
+            mFD = mFIS.getFD();
+            mp.setDataSource(mFD);
+            if (mIsEarPhoneOn) {
+                mp.setAudioStreamType(AudioManager.STREAM_VOICE_CALL);
+            } else {
+                mp.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            }
+            mp.prepare();
+            mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mp) {
+                    mVoiceAnimation.start();
+                    mp.start();
+                }
+            });
+            mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mVoiceAnimation.stop();
+                    mp.reset();
+                    mSetData = false;
+                    if (isSender) {
+                        holder.voice.setImageResource(R.drawable.send_3);
+                    } else {
+                        holder.voice.setImageResource(R.drawable.jmui_receive_3);
+                    }
+                    if (autoPlay) {
+                        int curCount = mIndexList.indexOf(position);
+                        if (curCount + 1 >= mIndexList.size()) {
+                            nextPlayPosition = -1;
+                            autoPlay = false;
+                        } else {
+                            nextPlayPosition = mIndexList.get(curCount + 1);
+                            mAdapter.notifyDataSetChanged();
+                        }
+                        mIndexList.remove(curCount);
+                    }
+                }
+            });
+        } catch (Exception e) {
+            Toast.makeText(mContext, R.string.jmui_file_not_found_toast,
+                    Toast.LENGTH_SHORT).show();
+            VoiceContent vc = (VoiceContent) msg.getContent();
+            vc.downloadVoiceFile(msg, new DownloadCompletionCallback() {
+                @Override
+                public void onComplete(int status, String desc, File file) {
+                    if (status == 0) {
+                        Toast.makeText(mContext, R.string.download_completed_toast,
+                                Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(mContext, R.string.file_fetch_failed,
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        } finally {
+            try {
+                if (mFIS != null) {
+                    mFIS.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
     }
 

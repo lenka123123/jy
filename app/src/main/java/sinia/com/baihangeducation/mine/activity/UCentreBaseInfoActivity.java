@@ -3,11 +3,17 @@ package sinia.com.baihangeducation.mine.activity;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.AlertDialog;
+
+import io.github.changjiashuai.widget.CropImageView;
+
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.DialogInterface;
+
+import io.github.changjiashuai.ImagePicker;
+
+import io.github.changjiashuai.ImagePicker;
+
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -20,6 +26,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -30,17 +37,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
-import com.example.framwork.utils.FileUtil;
 import com.example.framwork.utils.SpCommonUtils;
-import com.imnjh.imagepicker.SImagePicker;
 import com.imnjh.imagepicker.activity.PhotoPickerActivity;
-import com.lzy.imagepicker.ImagePicker;
-import com.lzy.imagepicker.bean.ImageItem;
-import com.lzy.imagepicker.ui.ImageGridActivity;
-import com.lzy.imagepicker.view.CropImageView;
-import com.mcxtzhang.swipemenulib.customview.listdialog.MyAdapter;
 import com.mcxtzhang.swipemenulib.utils.BitmapSave;
-import com.yanzhenjie.nohttp.Logger;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -53,6 +52,8 @@ import java.util.List;
 import cn.jpush.im.android.api.JMessageClient;
 import cn.jpush.im.api.BasicCallback;
 import sinia.com.baihangeducation.R;
+import sinia.com.baihangeducation.home.adapter.GlideImageLoader;
+import sinia.com.baihangeducation.home.adapter.PhoneGlideImageLoader;
 import sinia.com.baihangeducation.supplement.alertview.AlertViewContorller;
 import sinia.com.baihangeducation.supplement.alertview.OnItemClickListener;
 import sinia.com.baihangeducation.supplement.base.BaseActivity;
@@ -60,8 +61,8 @@ import sinia.com.baihangeducation.MyApplication;
 import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.mine.presenter.UCentreBaseInfoPresenter;
 import sinia.com.baihangeducation.mine.view.IUCentreBaseInfoView;
-import sinia.com.baihangeducation.supplement.base.Goto;
-import sinia.com.baihangeducation.supplement.tool.PicassoImageLoader;
+
+import static io.github.changjiashuai.ImagePicker.REQUEST_CODE_PICK;
 
 /**
  * 个人中心编辑资料页面
@@ -97,6 +98,7 @@ public class UCentreBaseInfoActivity extends BaseActivity implements OnItemClick
     private Context activity;
     private File file;
     private String needSavePath;
+    private ImagePicker.Config mPhoneConfig1;
 
     @Override
     public int initLayoutResID() {
@@ -119,17 +121,6 @@ public class UCentreBaseInfoActivity extends BaseActivity implements OnItemClick
 
         initBaseInfo();
 
-
-        ImagePicker imagePicker = ImagePicker.getInstance();
-        imagePicker.setImageLoader(new PicassoImageLoader());   //设置图片加载器
-        imagePicker.setMultiMode(false); //设置多状态
-        imagePicker.setShowCamera(true);  //显示拍照按钮
-        imagePicker.setCrop(true);        //允许裁剪（单选才有效）
-        imagePicker.setSaveRectangle(false); //是否按矩形区域保存
-//        imagePicker.setSelectLimit(1);    //选中数量限制
-        imagePicker.setStyle(CropImageView.Style.RECTANGLE);  //裁剪框的形状
-        imagePicker.setFocusWidth(800);   //裁剪框的宽度。单位像素（圆形自动取宽高最小值）
-        imagePicker.setFocusHeight(800);  //裁剪框的高度。单位像素（圆形自动取宽高最小值）
 
     }
 
@@ -188,6 +179,19 @@ public class UCentreBaseInfoActivity extends BaseActivity implements OnItemClick
         mUCentreGender.setOnClickListener(this);
         mUCentreEmail.setOnClickListener(this);
         mUCentreConfirm.setOnClickListener(this);
+
+
+        mPhoneConfig1 = new ImagePicker.Config(new PhoneGlideImageLoader());
+        mPhoneConfig1.multiMode(false);
+//        config.selectLimit(1);
+        mPhoneConfig1.showCamera(true);
+        mPhoneConfig1.crop(true);
+        mPhoneConfig1.cropStyle(CropImageView.CIRCLE);
+//        mPhoneConfig.saveRectangle(false);//裁剪后是否矩形保存图片
+        mPhoneConfig1.focusWidth(800);
+        mPhoneConfig1.focusHeight(800);
+//        mPhoneConfig.outPutX(800);
+//        mPhoneConfig.outPutY(800);
     }
 
     @Override
@@ -196,6 +200,10 @@ public class UCentreBaseInfoActivity extends BaseActivity implements OnItemClick
         switch (v.getId()) {
             case R.id.ucentre_img:
                 //头像
+
+//                startActivity(new Intent(context, AppCompatActivityPhone.class));
+
+
                 takePhoto(COMPANY_LOGO);
                 break;
             case R.id.ucentre_nickname:
@@ -259,9 +267,9 @@ public class UCentreBaseInfoActivity extends BaseActivity implements OnItemClick
     private final int IMAGE_PICKER = 9090;
 
     private void takePhoto(int type) {
-        Intent intent = new Intent(this, ImageGridActivity.class);
-        startActivityForResult(intent, IMAGE_PICKER);
 
+        ImagePicker.getInstance().pickImageForResult(this, mPhoneConfig1);
+        ImagePicker.RESULT_CODE_BACK_CLICK = 0;
 
 //        SImagePicker
 //                .from(UCentreBaseInfoActivity.this)
@@ -273,28 +281,62 @@ public class UCentreBaseInfoActivity extends BaseActivity implements OnItemClick
 
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
-            if (data != null && requestCode == IMAGE_PICKER) {
-                ArrayList<ImageItem> images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
-                if (images == null || images.size() < 1) return;
-                img = images.get(0).path;
-                setPhoto(img);
-                File appDir = new File(img);
-                try {
-                    MediaStore.Images.Media.insertImage(UCentreBaseInfoActivity.this.getContentResolver(), appDir.getAbsolutePath().toString(), appDir.getName(), "");
-                    sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + "/sdcard/namecard/")));
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
+        System.out.println("requestCode==" + requestCode + "resultCode==" + resultCode);
+// requestCode==1000resultCode==1004
+        if (requestCode == REQUEST_CODE_PICK && ImagePicker.RESULT_CODE_BACK_CLICK == 0) {
+            if (data != null) {
+                if (resultCode == io.github.changjiashuai.ImagePicker.RESULT_CODE_ITEMS) {
+                    boolean isOrigin = data.getBooleanExtra(io.github.changjiashuai.ImagePicker.EXTRA_IS_ORIGIN, false);
+                    if (!isOrigin) {
+                        ArrayList<io.github.changjiashuai.bean.ImageItem> imageItems = io.github.changjiashuai.ImagePicker.getInstance().getSelectedImages();
+                        if (imageItems.size() > 0) {
+                            io.github.changjiashuai.bean.ImageItem imageItem = imageItems.get(0);
+                            img = imageItems.get(0).path;
+                            setPhoto(img);
+                            File appDir = new File(img);
+                            try {
+                                MediaStore.Images.Media.insertImage(UCentreBaseInfoActivity.this.getContentResolver(), appDir.getAbsolutePath().toString(), appDir.getName(), "");
+                                sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + "/sdcard/namecard/")));
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
+
+                            ArrayList<String> paths = new ArrayList<>();
+                            for (io.github.changjiashuai.bean.ImageItem imageItem1 : imageItems) {
+                                paths.add(imageItem1.path);
+                            }
+                        }
+                    } else {
+                        //遍历做压缩处理
+                        Toast.makeText(this, "稍后压缩", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            } else {
-                Toast.makeText(this, "没有数据", Toast.LENGTH_SHORT).show();
             }
         }
     }
+
+//    protected void onActivityResultaaa(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
+//            if (data != null && requestCode == IMAGE_PICKER) {
+//                ArrayList<ImageItem> images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
+//                if (images == null || images.size() < 1) return;
+//                img = images.get(0).path;
+//                setPhoto(img);
+//                File appDir = new File(img);
+//                try {
+//                    MediaStore.Images.Media.insertImage(UCentreBaseInfoActivity.this.getContentResolver(), appDir.getAbsolutePath().toString(), appDir.getName(), "");
+//                    sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + "/sdcard/namecard/")));
+//                } catch (FileNotFoundException e) {
+//                    e.printStackTrace();
+//                }
+//            } else {
+//                Toast.makeText(this, "没有数据", Toast.LENGTH_SHORT).show();
+//            }
+//        }
+//    }
 
 
     protected void onActivityResulsdfst(int requestCode, int resultCode, Intent data) {

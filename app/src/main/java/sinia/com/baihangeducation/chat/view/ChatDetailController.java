@@ -69,7 +69,7 @@ public class ChatDetailController implements OnClickListener, OnItemClickListene
     private Dialog mLoadingDialog = null;
     private static final int ADD_MEMBERS_TO_GRIDVIEW = 2048;
     private static final int ADD_A_MEMBER_TO_GRIDVIEW = 2049;
-    private static final int MAX_GRID_ITEM = 40;
+    //    private static final int MAX_GRID_ITEM = 40;
     private String mGroupName;
     private String mGroupDesc;
     private final MyHandler myHandler = new MyHandler(this);
@@ -254,7 +254,7 @@ public class ChatDetailController implements OnClickListener, OnItemClickListene
         mMyUsername = myInfo.getUserName();
         // 是群组
         if (mGroupId != 0) {
-            mChatDetailView.setTitle("群组信息");
+            // TODO: 2018/11/6 0006     mChatDetailView.setTitle("群组信息");
             mIsGroup = true;
             //获得群组基本信息：群主ID、群组名、群组人数
             mGroupInfoData = JMessageClient.getGroupConversation(mGroupId);
@@ -302,7 +302,7 @@ public class ChatDetailController implements OnClickListener, OnItemClickListene
             }
             // 是单聊
         } else {
-            mChatDetailView.setTitle("聊天设置");
+//            mChatDetailView.setTitle("聊天设置");
             mSingleInfoData = JMessageClient.getSingleConversation(mTargetId, mTargetAppKey);
             mUserInfo = (UserInfo) mSingleInfoData.getTargetInfo();
             initNoDisturb(mUserInfo.getNoDisturb());
@@ -340,11 +340,11 @@ public class ChatDetailController implements OnClickListener, OnItemClickListene
     private void initAdapter() {
         // 初始化头像
         mGridAdapter = new GroupMemberGridAdapter(mContext, mMemberInfoList, mIsCreator, mAvatarSize);
-        if (mMemberInfoList.size() > MAX_GRID_ITEM) {
-            mCurrentNum = MAX_GRID_ITEM - 1;
-        } else {
-            mCurrentNum = mMemberInfoList.size();
-        }
+//        if (mMemberInfoList.size() > MAX_GRID_ITEM) {
+//            mCurrentNum = MAX_GRID_ITEM - 1;
+//        } else {
+        mCurrentNum = mMemberInfoList.size();
+
         mChatDetailView.setAdapter(mGridAdapter);
         mChatDetailView.getGridView().setFocusable(false);
     }
@@ -409,6 +409,9 @@ public class ChatDetailController implements OnClickListener, OnItemClickListene
             //删除好友或群组
 
             case R.id.tv_moreGroup:
+                mChatDetailView.isLoadMoreShow(false);
+
+                refreshMemberList();
 //                intent.setClass(mContext, GroupGridViewActivity.class);
 //                intent.putExtra(MyApplication.GROUP_ID, mGroupId);
 //                intent.putExtra(MyApplication.DELETE_MODE, false);
@@ -643,8 +646,8 @@ public class ChatDetailController implements OnClickListener, OnItemClickListene
 
     //添加或者删除成员后重新获得MemberInfoList
     public void refreshMemberList() {
-        mCurrentNum = mMemberInfoList.size() > MAX_GRID_ITEM ? MAX_GRID_ITEM - 1 : mMemberInfoList.size();
-        mGridAdapter.refreshMemberList();
+        mCurrentNum = mMemberInfoList.size();// > MAX_GRID_ITEM ? MAX_GRID_ITEM - 1 : mMemberInfoList.size();
+        mGridAdapter.refreshMemberListForMore();
     }
 
     public void refreshGroupName(String newName) {

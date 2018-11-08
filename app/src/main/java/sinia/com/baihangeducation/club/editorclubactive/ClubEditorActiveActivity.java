@@ -47,12 +47,15 @@ import sinia.com.baihangeducation.club.ClubPermissModel;
 import sinia.com.baihangeducation.club.club.interfaces.GetRequestListener;
 import sinia.com.baihangeducation.club.editorclubactive.model.GetActiveOptionListener;
 import sinia.com.baihangeducation.club.editorclubactive.model.GetClubActiveOption;
+import sinia.com.baihangeducation.home.adapter.PhoneGlideImageLoader;
 import sinia.com.baihangeducation.mine.activity.UCentreBaseInfoActivity;
 import sinia.com.baihangeducation.supplement.alertview.AlertViewContorller;
 import sinia.com.baihangeducation.supplement.alertview.OnItemClickListener;
 import sinia.com.baihangeducation.supplement.base.BaseActivity;
 import sinia.com.baihangeducation.supplement.tool.PicassoImageLoader;
 import sinia.com.baihangeducation.supplement.tool.PickerUtils;
+
+import static io.github.changjiashuai.ImagePicker.REQUEST_CODE_PICK;
 
 public class ClubEditorActiveActivity extends BaseActivity implements GetRequestListener, GetActiveOptionListener, OnItemClickListener {
 
@@ -125,17 +128,31 @@ public class ClubEditorActiveActivity extends BaseActivity implements GetRequest
         clubPermissModel.getClubPermission(clubid, this);
 
         clubEditorModel.getActivityOption(this);
-        ImagePicker imagePicker = ImagePicker.getInstance();
-        imagePicker.setImageLoader(new PicassoImageLoader());   //设置图片加载器
-        imagePicker.setShowCamera(false);  //显示拍照按钮
-        imagePicker.setCrop(true);        //允许裁剪（单选才有效）
-        imagePicker.setSaveRectangle(true); //是否按矩形区域保存
-        imagePicker.setSelectLimit(1);    //选中数量限制
-        imagePicker.setStyle(CropImageView.Style.RECTANGLE);  //裁剪框的形状
-        imagePicker.setFocusWidth(800);   //裁剪框的宽度。单位像素（圆形自动取宽高最小值）
-        imagePicker.setFocusHeight(800);  //裁剪框的高度。单位像素（圆形自动取宽高最小值）
-        imagePicker.setOutPutX(1000);//保存文件的宽度。单位像素
-        imagePicker.setOutPutY(1000);//保存文件的高度。单位像素
+
+
+        mPhoneConfig1 = new io.github.changjiashuai.ImagePicker.Config(new PhoneGlideImageLoader());
+        mPhoneConfig1.multiMode(false);
+//        config.selectLimit(1);
+        mPhoneConfig1.showCamera(true);
+        mPhoneConfig1.crop(true);
+        mPhoneConfig1.cropStyle(io.github.changjiashuai.widget.CropImageView.RECTANGLE);
+        mPhoneConfig1.saveRectangle(false);//裁剪后是否矩形保存图片
+        mPhoneConfig1.focusWidth(1200);
+        mPhoneConfig1.focusHeight(1200);
+        mPhoneConfig1.outPutX(1200);
+        mPhoneConfig1.outPutY(1200);
+
+//        ImagePicker imagePicker = ImagePicker.getInstance();
+//        imagePicker.setImageLoader(new PicassoImageLoader());   //设置图片加载器
+//        imagePicker.setShowCamera(false);  //显示拍照按钮
+//        imagePicker.setCrop(true);        //允许裁剪（单选才有效）
+//        imagePicker.setSaveRectangle(true); //是否按矩形区域保存
+//        imagePicker.setSelectLimit(1);    //选中数量限制
+//        imagePicker.setStyle(CropImageView.Style.RECTANGLE);  //裁剪框的形状
+//        imagePicker.setFocusWidth(800);   //裁剪框的宽度。单位像素（圆形自动取宽高最小值）
+//        imagePicker.setFocusHeight(800);  //裁剪框的高度。单位像素（圆形自动取宽高最小值）
+//        imagePicker.setOutPutX(1000);//保存文件的宽度。单位像素
+//        imagePicker.setOutPutY(1000);//保存文件的高度。单位像素
     }
 
     @Override
@@ -259,11 +276,13 @@ public class ClubEditorActiveActivity extends BaseActivity implements GetRequest
     }
 
     private final int IMAGE_PICKER = 9090;
+    private io.github.changjiashuai.ImagePicker.Config mPhoneConfig1;
 
     private void takePhoto(int type) {
-
-        Intent intent = new Intent(this, ImageGridActivity.class);
-        startActivityForResult(intent, IMAGE_PICKER);
+        io.github.changjiashuai.ImagePicker.getInstance().pickImageForResult(this, mPhoneConfig1);
+        io.github.changjiashuai.ImagePicker.RESULT_CODE_BACK_CLICK = 0;
+//        Intent intent = new Intent(this, ImageGridActivity.class);
+//        startActivityForResult(intent, IMAGE_PICKER);
 //        SImagePicker.from(ClubEditorActiveActivity.this)
 //                .pickMode(SImagePicker.MODE_IMAGE)
 //                .showCamera(true).rowCount(3)
@@ -276,12 +295,47 @@ public class ClubEditorActiveActivity extends BaseActivity implements GetRequest
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CODE_PICK && io.github.changjiashuai.ImagePicker.RESULT_CODE_BACK_CLICK == 0) {
+            if (data != null) {
+                if (resultCode == io.github.changjiashuai.ImagePicker.RESULT_CODE_ITEMS) {
+                    boolean isOrigin = data.getBooleanExtra(io.github.changjiashuai.ImagePicker.EXTRA_IS_ORIGIN, false);
+                    if (!isOrigin) {
+                        ArrayList<io.github.changjiashuai.bean.ImageItem> imageItems = io.github.changjiashuai.ImagePicker.getInstance().getSelectedImages();
+                        if (imageItems.size() > 0) {
+                            io.github.changjiashuai.bean.ImageItem imageItem = imageItems.get(0);
+                            img = imageItems.get(0).path;
+                            upPhone();
+                            setPhoto(img);
+                            File appDir = new File(img);
+                            try {
+                                MediaStore.Images.Media.insertImage(ClubEditorActiveActivity.this.getContentResolver(), appDir.getAbsolutePath().toString(), appDir.getName(), "");
+                                sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + "/sdcard/namecard/")));
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
+
+                            ArrayList<String> paths = new ArrayList<>();
+                            for (io.github.changjiashuai.bean.ImageItem imageItem1 : imageItems) {
+                                paths.add(imageItem1.path);
+                            }
+                        }
+                    } else {
+                        //遍历做压缩处理
+                        android.widget.Toast.makeText(this, "稍后压缩", android.widget.Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }
+    }
+
+
+    protected void onActivityResultFor(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == ImagePicker.RESULT_CODE_ITEMS) {
             if (data != null && requestCode == IMAGE_PICKER) {
                 ArrayList<ImageItem> images = (ArrayList<ImageItem>) data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS);
                 img = images.get(0).path;
-                upPhone();
+
                 setPhoto(img);
             } else {
                 android.widget.Toast.makeText(this, "没有数据", android.widget.Toast.LENGTH_SHORT).show();
@@ -297,7 +351,7 @@ public class ClubEditorActiveActivity extends BaseActivity implements GetRequest
             if (pathList != null && pathList.size() != 0) {
                 img = pathList.get(0);
                 Log.i("图片地址", pathList.get(0));
-                upPhone();
+
                 setPhoto(img);
 //                File appDir = new File(img);
 //                try {

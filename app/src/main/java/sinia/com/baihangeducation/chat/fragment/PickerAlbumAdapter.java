@@ -19,59 +19,66 @@ import sinia.com.baihangeducation.supplement.tool.ThumbnailsUtil;
 
 
 public class PickerAlbumAdapter extends BaseAdapter {
-	
-	private LayoutInflater mInflater;
-	private List<AlbumInfo> mList;
-	private Context mContext;
-	
-	public PickerAlbumAdapter(Context context, List<AlbumInfo> list){
-		mContext = context;
-		mInflater = LayoutInflater.from(context);
-		this.mList = list;
-	}
 
-	@Override
-	public int getCount() {
-		return mList.size();
-	}
+    private LayoutInflater mInflater;
+    private List<AlbumInfo> mList;
+    private Context mContext;
 
-	@Override
-	public Object getItem(int arg0) {
-		return mList.get(arg0);
-	}
+    public PickerAlbumAdapter(Context context, List<AlbumInfo> list) {
+        mContext = context;
+        mInflater = LayoutInflater.from(context);
+        this.mList = list;
+    }
 
-	@Override
-	public long getItemId(int position) {
-		return position;
-	}
+    @Override
+    public int getCount() {
+        return mList.size();
+    }
 
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
-		ViewHolder viewHolder;
-		if (convertView == null) {
-			viewHolder = new ViewHolder();
-			convertView = mInflater.inflate(R.layout.picker_photofolder_item, null);
-			viewHolder.folderCover = (ImageView)convertView.findViewById(R.id.picker_photofolder_cover);
-			viewHolder.folderName = (TextView)convertView.findViewById(R.id.picker_photofolder_info);
-			viewHolder.folderFileNum = (TextView)convertView.findViewById(R.id.picker_photofolder_num);
-			convertView.setTag(viewHolder);
-		} else {
-			viewHolder = (ViewHolder) convertView.getTag();
-		}
-		
-		final AlbumInfo albumInfo = mList.get(position);
-		String thumbPath = ThumbnailsUtil.getThumbnailWithImageID(albumInfo.getImageId(), albumInfo.getFilePath());
-		PickerImageLoadTool.disPlay(thumbPath, new RotateImageViewAware(viewHolder.folderCover, albumInfo.getAbsolutePath()),
-				R.drawable.logo);
-		viewHolder.folderName.setText(albumInfo.getAlbumName());
-		viewHolder.folderFileNum.setText(String.format(mContext.getResources().getString(
-				R.string.picker_image_folder_info), mList.get(position).getList().size()));
-		return convertView;
-	}
-	
-	public class ViewHolder{
-		public ImageView folderCover;
-		public TextView folderName;
-		public TextView folderFileNum;
-	}
+    @Override
+    public Object getItem(int arg0) {
+        return mList.get(arg0);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder viewHolder;
+        if (convertView == null) {
+            viewHolder = new ViewHolder();
+            convertView = mInflater.inflate(R.layout.picker_photofolder_item, null);
+            viewHolder.folderCover = (ImageView) convertView.findViewById(R.id.picker_photofolder_cover);
+            viewHolder.folderName = (TextView) convertView.findViewById(R.id.picker_photofolder_info);
+            viewHolder.folderFileNum = (TextView) convertView.findViewById(R.id.picker_photofolder_num);
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
+
+        final AlbumInfo albumInfo = mList.get(position);
+        String thumbPath = ThumbnailsUtil.getThumbnailWithImageID(albumInfo.getImageId(), albumInfo.getFilePath());
+        PickerImageLoadTool.disPlay(thumbPath, new RotateImageViewAware(viewHolder.folderCover, albumInfo.getAbsolutePath()),
+                R.drawable.logo);
+        viewHolder.folderName.setText(albumInfo.getAlbumName());
+        if (albumInfo.getAlbumName().equals("camera") || albumInfo.getAlbumName().equals("Camera"))
+            viewHolder.folderName.setText("相机");
+        if (albumInfo.getAlbumName().equals("Screenshots"))
+            viewHolder.folderName.setText("截屏");
+        if (albumInfo.getAlbumName().equals("Pictures"))
+            viewHolder.folderName.setText("照片");
+
+        viewHolder.folderFileNum.setText(String.format(mContext.getResources().getString(
+                R.string.picker_image_folder_info), mList.get(position).getList().size()));
+        return convertView;
+    }
+
+    public class ViewHolder {
+        public ImageView folderCover;
+        public TextView folderName;
+        public TextView folderFileNum;
+    }
 }

@@ -43,7 +43,7 @@ public class ClubActiveDetailActivity extends BaseActivity implements GetRequest
     @Override
     protected void initData() {
         mCommonTitle.setBackgroundColor(Color.WHITE);
-        mCommonTitle.setCenterText("社团活动");
+        mCommonTitle.setCenterText("校园活动");
     }
 
     @Override

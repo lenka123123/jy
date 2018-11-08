@@ -97,8 +97,8 @@ public class SideBar extends View {
 						listener.onTouchingLetterChanged(b[c]);
 					}
 					if (mTextDialog != null) {
-						mTextDialog.setText(b[c]);
-						mTextDialog.setVisibility(View.VISIBLE);
+//						mTextDialog.setText(b[c]);
+//						mTextDialog.setVisibility(View.VISIBLE);
 					}
 					
 					choose = c;

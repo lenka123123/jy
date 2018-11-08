@@ -160,9 +160,9 @@ public class PickerAlbumPreviewActivity extends UIView implements OnClickListene
 
         PhotoInfo photo = photoLists.get(index);
         if (photo.isChoose()) {
-            previewSelectBtn.setImageResource(R.drawable.selected);
+            previewSelectBtn.setImageResource(R.drawable.setting_power);
         } else {
-            previewSelectBtn.setImageResource(R.drawable.picker_preview_unselected);
+            previewSelectBtn.setImageResource(R.drawable.bean_unselect);
         }
     }
 
@@ -250,9 +250,9 @@ public class PickerAlbumPreviewActivity extends UIView implements OnClickListene
 
     private void updatePreviewSelectBtnStatus(boolean isChoose) {
         if (isChoose) {
-            previewSelectBtn.setImageResource(R.drawable.picker_image_selected);
+            previewSelectBtn.setImageResource(R.drawable.setting_power);
         } else {
-            previewSelectBtn.setImageResource(R.drawable.picker_preview_unselected);
+            previewSelectBtn.setImageResource(R.drawable.bean_unselect);
         }
     }
 
@@ -267,10 +267,10 @@ public class PickerAlbumPreviewActivity extends UIView implements OnClickListene
             }
             originalImageSizeTip.setText(String.format(this.getResources().getString(
                     R.string.picker_image_preview_original_select), PickerUtil.getFileSizeString(totalSize)));
-            originalImage.setImageResource(R.drawable.picker_orignal_checked);
+            originalImage.setImageResource(R.drawable.round_check_box_checked);
         } else {
             originalImageSizeTip.setText(R.string.picker_image_preview_original);
-            originalImage.setImageResource(R.drawable.picker_orignal_normal);
+            originalImage.setImageResource(R.drawable.round_check_box_normal);
         }
     }
 
@@ -354,7 +354,7 @@ public class PickerAlbumPreviewActivity extends UIView implements OnClickListene
                 current.setChoose(true);
                 selectPhotoList.add(current);
                 ToastUtil.shortToast(PickerAlbumPreviewActivity.this, "请至少选择一张发送");
-            }else {
+            } else {
                 setResult(RESULT_OK, PickerContract.makeDataIntent(selectPhotoList, isSendOriginalImage));
                 finish();
             }

@@ -68,7 +68,7 @@ public class AppConfig extends BaseAppConfig {
     public static String CHATMESSAGE = "";
     public static String CHATMESSAGENUM = "";
     public static String API_VERSION = "4.1.8";
-    public static String HTML_LV = "1.1.1";
+    public static String SEND_FUN_FOR_ALL = "公开";
 
     public static String SCHOOLNAME = "";
     public static String SCHOOLNAMEID = "";

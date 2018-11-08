@@ -127,7 +127,7 @@ public class DialogCreator {
         final LinearLayout top = (LinearLayout) v.findViewById(IdHelper
                 .getViewID(context, "jmui_top_conv_ll"));
         TextView text = (TextView) v.findViewById(IdHelper.getViewID(context, "tv_conv_top"));
-        text.setText("转发");
+//        text.setText("转发");
 
         TextView textView = (TextView) v.findViewById(IdHelper.getViewID(context, "tv_dialogText"));
         textView.setText("保存到手机");

@@ -28,16 +28,20 @@ public class ClubHomeModel extends BasePresenter {
         this.activity = activity;
     }
 
-    public void getClubHomeInfo(String school_id, String center_flag, final SetClubHomeListener clubHomeListener) {
+    public void getClubHomeInfo(String school_id, String center_flag, String other_id, final SetClubHomeListener clubHomeListener) {
         HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "getClubHome", "club", true);
         info.put("user_id", AppConfig.USERID);
         info.put("token", AppConfig.TOKEN);
         if (!school_id.equals("")) {
             info.put("school_id", school_id);
         }
-        if (!center_flag.equals("")) {
-            info.put("center_flag", center_flag);
-        }
+
+        info.put("center_flag", "1");
+
+        if (!other_id.equals(""))
+            info.put("other_id", other_id);
+
+        System.out.println("other_id==" + other_id);
 
         post(info, new OnRequestListener() {
             @Override

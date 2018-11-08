@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.example.framwork.utils.SpCommonUtils;
 import com.example.framwork.utils.Toast;
 
 import java.util.ArrayList;
@@ -196,7 +197,8 @@ public class GetPeronListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public void onClick(View v) {
         int potion = (Integer) v.getTag();
-//        Goto.toJobBangPayDetailActivity(context, mInviteListInfo.get(potion).order_raiders_id, "", 5, 3);
+        Goto.toPersonScenter(context,
+                mInviteListInfo.get(potion).mobile,mInviteListInfo.get(potion).nickname ,mInviteListInfo.get(potion).avatar );
     }
 }
 

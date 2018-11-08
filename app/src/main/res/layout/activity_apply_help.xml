@@ -4,7 +4,7 @@
     android:id="@+id/newcampany"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="#F5F7F9"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
@@ -63,10 +63,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y80"
-                android:layout_marginLeft="@dimen/x40"
-                android:layout_marginRight="@dimen/x40"
                 android:background="@color/white"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/x40"
+                android:paddingRight="@dimen/x40">
 
                 <TextView
                     android:layout_width="0dp"
@@ -107,8 +107,8 @@
                 android:id="@+id/active_type_linear"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y80"
-                android:layout_marginLeft="@dimen/x40"
-                android:layout_marginRight="@dimen/x40"
+                android:paddingLeft="@dimen/x40"
+                android:paddingRight="@dimen/x40"
                 android:background="@color/white"
                 android:orientation="horizontal">
 
@@ -152,8 +152,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y80"
-                android:layout_marginLeft="@dimen/x40"
-                android:layout_marginRight="@dimen/x40"
+                android:paddingLeft="@dimen/x40"
+                android:paddingRight="@dimen/x40"
                 android:background="@color/white"
                 android:orientation="horizontal">
 
@@ -194,8 +194,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y80"
-                android:layout_marginLeft="@dimen/x40"
-                android:layout_marginRight="@dimen/x40"
+                android:paddingLeft="@dimen/x40"
+                android:paddingRight="@dimen/x40"
                 android:background="@color/white"
                 android:orientation="horizontal">
 
@@ -238,8 +238,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y80"
-                android:layout_marginLeft="@dimen/x40"
-                android:layout_marginRight="@dimen/x40"
+                android:paddingLeft="@dimen/x40"
+                android:paddingRight="@dimen/x40"
                 android:background="@color/white"
                 android:orientation="horizontal">
 
@@ -283,7 +283,7 @@
                 android:id="@+id/googs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@null"
+                android:background="@color/white"
                 android:gravity="left"
                 android:hint="如有物品需要，输入您所需要的物品"
                 android:minHeight="@dimen/y200"
@@ -306,7 +306,7 @@
                 android:id="@+id/cause"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@null"
+                android:background="@color/white"
                 android:gravity="left"
                 android:hint="请输入详细的申请原因"
                 android:minHeight="@dimen/y200"
@@ -315,26 +315,34 @@
                 android:paddingTop="@dimen/y10"
                 android:textSize="14sp" />
 
-
-            <TextView
-                android:id="@+id/apply"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/space_50"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="@dimen/space_10"
-                android:layout_marginLeft="@dimen/x40"
-                android:layout_marginRight="@dimen/x40"
-                android:background="@drawable/textview_round2"
-                android:gravity="center"
-                android:text="申请"
-                android:textColor="@color/white"
-                android:textSize="@dimen/font_size_18" />
-
-
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/y20"
+                android:layout_height="@dimen/y1"
                 android:background="#F5F7F9" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:background="#F5F7F9">
+
+                <TextView
+                    android:id="@+id/apply"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_50"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="@dimen/space_10"
+                    android:layout_marginLeft="@dimen/x40"
+                    android:layout_marginRight="@dimen/x40"
+                    android:layout_marginTop="@dimen/y60"
+                    android:background="@drawable/textview_round2"
+                    android:gravity="center"
+                    android:text="申请"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_18" />
+
+
+            </LinearLayout>
 
 
         </LinearLayout>

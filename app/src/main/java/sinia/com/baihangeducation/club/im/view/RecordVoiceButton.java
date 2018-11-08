@@ -4,6 +4,7 @@ package sinia.com.baihangeducation.club.im.view;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
@@ -12,13 +13,23 @@ import android.os.SystemClock;
 import android.text.format.DateFormat;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MotionEvent;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.mcxtzhang.swipemenulib.utils.PermissionsUitls;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -102,7 +113,7 @@ public class RecordVoiceButton extends Button {
     private void init() {
         mVolumeHandler = new ShowVolumeHandler(this);
         //如果需要跳动的麦克图 将五张相同的图片替换即可
-        res = new int[] {IdHelper.getDrawable(mContext, "jmui_mic"), IdHelper.getDrawable(mContext, "jmui_mic"),
+        res = new int[]{IdHelper.getDrawable(mContext, "jmui_mic"), IdHelper.getDrawable(mContext, "jmui_mic"),
                 IdHelper.getDrawable(mContext, "jmui_mic"), IdHelper.getDrawable(mContext, "jmui_mic"),
                 IdHelper.getDrawable(mContext, "jmui_mic"), IdHelper.getDrawable(mContext, "jmui_cancel_record")};
     }
@@ -254,7 +265,19 @@ public class RecordVoiceButton extends Button {
 
         mRecordHintTv.setText("手指上滑，取消发送");
         startRecording();
+        // TODO: 2018/11/7 0007    rotateAnim();
         recordIndicator.show();
+    }
+
+    public void rotateAnim() {
+        if (mVolumeIv == null) return;
+        Animation anim = new RotateAnimation(0f, 10 * 360f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        anim.setRepeatMode(Animation.RESTART);
+        anim.setRepeatCount(Animation.INFINITE);
+        anim.setDuration(3000 * 10); // 设置动画时间
+        anim.setInterpolator(new AccelerateInterpolator()); // 设置插入器
+        mVolumeIv.startAnimation(anim);  //mImageView.clearAnimation();
+
     }
 
     //录音完毕加载 ListView item
@@ -263,6 +286,8 @@ public class RecordVoiceButton extends Button {
         stopRecording();
 
         if (recordIndicator != null) {
+            if (mVolumeIv != null)
+                mVolumeIv.clearAnimation();
             recordIndicator.dismiss();
         }
 
@@ -316,7 +341,7 @@ public class RecordVoiceButton extends Button {
                         e.printStackTrace();
                     }
                 } else {
-                    Toast.makeText(mContext,"若要使用语音功能，请选择允许录音", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "若要使用语音功能，请选择允许录音", Toast.LENGTH_SHORT).show();
                 }
             }
         }
@@ -333,6 +358,8 @@ public class RecordVoiceButton extends Button {
         cancelTimer();
         stopRecording();
         if (recordIndicator != null) {
+            if (mVolumeIv != null)
+                mVolumeIv.clearAnimation();
             recordIndicator.dismiss();
         }
         if (myRecAudioFile != null) {
@@ -391,7 +418,8 @@ public class RecordVoiceButton extends Button {
             recorder.release();
             recorder = null;
         } catch (RuntimeException e) {
-            HandleResponseCode.onHandle(mContext, RECORD_DENIED_STATUS, false);
+            getCenterCancelDialogShow();
+//           HandleResponseCode.onHandle(mContext, RECORD_DENIED_STATUS, false);
             cancelTimer();
             dismissDialog();
             if (mThread != null) {
@@ -479,6 +507,8 @@ public class RecordVoiceButton extends Button {
 
     public void dismissDialog() {
         if (recordIndicator != null) {
+            if (mVolumeIv != null)
+                mVolumeIv.clearAnimation();
             recordIndicator.dismiss();
         }
         this.setText("按住 说话");
@@ -516,7 +546,7 @@ public class RecordVoiceButton extends Button {
 //                            .getString(controller.mContext, "jmui_rest_record_time_hint")), restTime));
                     controller.mMicShow.setVisibility(GONE);
                     controller.mTimeDown.setVisibility(VISIBLE);
-                    controller.mTimeDown.setText(restTime+"");
+                    controller.mTimeDown.setText(restTime + "");
 
                     // 倒计时结束，发送语音, 重置状态
                 } else if (restTime == 0) {
@@ -544,7 +574,7 @@ public class RecordVoiceButton extends Button {
                             }
                         }
                     }
-                    controller.mVolumeIv.setImageResource(res[msg.what]);
+                    // TODO: 2018/11/7 0007        controller.mVolumeIv.setImageResource(res[msg.what]);
                 }
             }
         }
@@ -572,4 +602,32 @@ public class RecordVoiceButton extends Button {
             }
         }
     }
+
+
+    public void getCenterCancelDialogShow() {
+        final Dialog dialog = new Dialog(getContext(), com.example.framwork.R.style.custom_cancel_dialog);
+        dialog.setContentView(R.layout.clcub_join_dialog_open_permiss);
+        Window dialogWindow = dialog.getWindow();
+
+        dialogWindow.findViewById(R.id.club_join).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PermissionsUitls permissionsUitls = new PermissionsUitls();
+                permissionsUitls.gotoMiuiPermission(getContext());
+                dialog.cancel();
+            }
+        });
+        //dialogWindow.setWindowAnimations(R.style.mystyle);
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+        lp.width = getContext().getResources().getDisplayMetrics().widthPixels;
+        lp.alpha = 1.0f;
+        dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        dialogWindow.setAttributes(lp);
+        dialogWindow.setGravity(Gravity.CENTER);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.show();
+
+    }
+
+
 }

@@ -4,19 +4,24 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.TimePickerView;
@@ -26,6 +31,10 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.imnjh.imagepicker.SImagePicker;
 import com.imnjh.imagepicker.activity.PhotoPickerActivity;
+import com.umeng.socialize.ShareAction;
+import com.umeng.socialize.UMShareListener;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.media.UMWeb;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -38,8 +47,10 @@ import sinia.com.baihangeducation.club.ClubPermissModel;
 import sinia.com.baihangeducation.club.club.interfaces.GetRequestListener;
 import sinia.com.baihangeducation.club.editorclubactive.model.ActiveInfoData;
 import sinia.com.baihangeducation.club.editorclubactive.model.ObtainActiveInfoListener;
+import sinia.com.baihangeducation.home.activity.PartTimeJobDetailActivity;
 import sinia.com.baihangeducation.supplement.base.BaseActivity;
 import sinia.com.baihangeducation.supplement.base.Goto;
+import sinia.com.baihangeducation.supplement.tool.BaseUtil;
 import sinia.com.baihangeducation.supplement.tool.PickerUtils;
 
 public class ClubShowActiveActivity extends BaseActivity implements GetRequestListener {
@@ -73,6 +84,8 @@ public class ClubShowActiveActivity extends BaseActivity implements GetRequestLi
     private TextView sex_option_text;
     private TextView man_text;
     private TextView woman_text;
+    private ImageView home_search;
+    private LinearLayout join_layout;
 
 
     @Override
@@ -110,6 +123,8 @@ public class ClubShowActiveActivity extends BaseActivity implements GetRequestLi
 
     @Override
     protected void initView() {
+        home_search = findViewById(R.id.home_search);
+        join_layout = findViewById(R.id.join_layout);
         photo = findViewById(R.id.photo);
         title = findViewById(R.id.title);
         type = findViewById(R.id.type);
@@ -144,9 +159,13 @@ public class ClubShowActiveActivity extends BaseActivity implements GetRequestLi
 //        active_address.setOnClickListener(this);
         join.setOnClickListener(this);
         exit.setOnClickListener(this);
+        home_search.setOnClickListener(this);
     }
 
+    private ActiveInfoData activeInfoData;
+
     private void showInfo(ActiveInfoData activeInfoData) {
+        this.activeInfoData = activeInfoData;
         if (activeInfoData.is_apply.equals("1")) {
 //            1：已参加
             join.setText("已报名");
@@ -198,7 +217,7 @@ public class ClubShowActiveActivity extends BaseActivity implements GetRequestLi
 
         free.setText(activeInfoData.expenditure);
         info.setText(activeInfoData.introduce);
-        active_address_text.setText(activeInfoData.addr);
+        active_address_text.setText(activeInfoData.city_name + "" + activeInfoData.addr);
     }
 
     @Override
@@ -248,9 +267,109 @@ public class ClubShowActiveActivity extends BaseActivity implements GetRequestLi
                 hideEditTextInput();
                 takePhoto(COMPANY_LOGO);
                 break;
+            case R.id.home_search:
+                if (!BaseUtil.isLogin(context, null)) {
+                    return;
+                }
+//                if (jobInfo != null)
+                addShareMeun();
+                break;
+
+            case R.id.sharemeun_qqfriend:
+                //QQ好友
+                doShare(SHARE_MEDIA.QQ);
+                break;
+            case R.id.sharemeun_qqzone:
+                //QQ空间
+                doShare(SHARE_MEDIA.QZONE);
+                Toast.makeText(context, "QQ空间", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.sharemeun_wechatfriend:
+                //微信好友
+                doShare(SHARE_MEDIA.WEIXIN);
+                Toast.makeText(context, "微信好友", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.sharemeun_moment:
+                //朋友圈
+                doShare(SHARE_MEDIA.WEIXIN_CIRCLE);
+                Toast.makeText(context, "朋友圈", Toast.LENGTH_SHORT).show();
+                break;
 
 
         }
+    }
+
+
+    private void doShare(SHARE_MEDIA media) {
+        if (activeInfoData == null) return;
+
+        UMWeb web = new UMWeb(activeInfoData.share_url);
+        web.setTitle(activeInfoData.share_title);//标题
+        web.setDescription(activeInfoData.share_introduce);
+//        web.setThumb(thumb);  //缩略图
+        new ShareAction(ClubShowActiveActivity.this)
+                .setPlatform(media)
+                .withMedia(web)
+                .setCallback(new UMShareListener() {
+                    @Override
+                    public void onStart(SHARE_MEDIA platform) {
+                    }
+
+                    /**
+                     * @descrption 分享成功的回调
+                     * @param platform 平台类型
+                     */
+                    @Override
+                    public void onResult(SHARE_MEDIA platform) {
+//                        Toast.makeText(context, "分享成功", Toast.LENGTH_LONG).show();
+                    }
+
+                    /**
+                     * @descrption 分享失败的回调
+                     * @param platform 平台类型
+                     * @param t 错误原因
+                     */
+                    @Override
+                    public void onError(SHARE_MEDIA platform, Throwable t) {
+                        Toast.makeText(context, "分享失败" + t.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+
+                    /**
+                     * @descrption 分享取消的回调
+                     * @param platform 平台类型
+                     */
+                    @Override
+                    public void onCancel(SHARE_MEDIA platform) {
+                        Toast.makeText(context, "分享取消了", Toast.LENGTH_LONG).show();
+                    }
+                })
+                .share();
+    }
+
+    /**
+     * 分享popwindow
+     */
+    private void addShareMeun() {
+        View contentView = LayoutInflater.from(this).inflate(R.layout.sharemenu, null);
+        // 创建PopupWindow对象
+        PopupWindow popupWindow = new PopupWindow(contentView, ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT, false);
+        // 需要设置一下此参数，点击外边可消失
+        TextView qq = contentView.findViewById(R.id.sharemeun_qqfriend);
+        TextView qqZone = contentView.findViewById(R.id.sharemeun_qqzone);
+        TextView wechat = contentView.findViewById(R.id.sharemeun_wechatfriend);
+        TextView moment = contentView.findViewById(R.id.sharemeun_moment);
+        qq.setOnClickListener(this);
+        qqZone.setOnClickListener(this);
+        wechat.setOnClickListener(this);
+        moment.setOnClickListener(this);
+        popupWindow.setBackgroundDrawable(new ColorDrawable());
+        // 设置点击窗口外边窗口消失
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setAnimationStyle(R.style.pop_anim);
+        // 设置此参数获得焦点，否则无法点击
+        popupWindow.setFocusable(true);
+        popupWindow.showAtLocation(join_layout.getRootView(), Gravity.BOTTOM, 0, 0);
     }
 
     private String img = "";

@@ -1,5 +1,6 @@
 package sinia.com.baihangeducation.club.myclub.help;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
@@ -38,6 +39,7 @@ public class ClubHelpActivity extends BaseActivity implements
     private TextView tab_two;
     private View left;
     private View right;
+    private String other_id;
 
     public int initLayoutResID() {
         return R.layout.activity_club_my_club;
@@ -45,9 +47,12 @@ public class ClubHelpActivity extends BaseActivity implements
 
     @Override
     protected void initData() {
+        Intent intent=getIntent();
+        other_id = intent.getStringExtra("other_id");
+
         myPartTimeModel = new MyClubModel(context);
         // 审核状态    ( 1：待审核 2：通过审核 3：审核失败；23：已审核（含通过、不通过） )
-        myPartTimeModel.getSupportList("1", countpage + "", "20", this);
+        myPartTimeModel.getSupportList(other_id,"1", countpage + "", "20", this);
         mCommonTitle.setBackgroundColor(Color.WHITE);
         mCommonTitle.setCenterText("赞助列表");
         mCommonTitle.setRightText("申请");
@@ -88,7 +93,7 @@ public class ClubHelpActivity extends BaseActivity implements
 
         if (myPartTimeModel != null) {
             mList.clear();
-            myPartTimeModel.getSupportList(type, "1", "20", this);
+            myPartTimeModel.getSupportList(other_id,type, "1", "20", this);
         }
 
     }
@@ -108,7 +113,7 @@ public class ClubHelpActivity extends BaseActivity implements
                 // 审核状态    ( 1：待审核 2：通过审核 3：审核失败；23：已审核（含通过、不通过） )
                 type = "1";
                 countpage = 1;
-                myPartTimeModel.getSupportList(type, countpage + "", "20", this);
+                myPartTimeModel.getSupportList(other_id,type, countpage + "", "20", this);
 
                 break;
             case R.id.tab_two:
@@ -121,7 +126,7 @@ public class ClubHelpActivity extends BaseActivity implements
                 // 审核状态    ( 1：待审核 2：通过审核 3：审核失败；23：已审核（含通过、不通过） )
                 type = "2";
                 countpage = 1;
-                myPartTimeModel.getSupportList(type, countpage + "", "20", this);
+                myPartTimeModel.getSupportList(other_id,type, countpage + "", "20", this);
                 break;
             case R.id.right_txt:
                 Goto.toApplyHelp(context);
@@ -185,14 +190,14 @@ public class ClubHelpActivity extends BaseActivity implements
         isLoadMore = false;
         hideLoading();
         mList.clear();
-        myPartTimeModel.getSupportList(type, "1", "20", this);
+        myPartTimeModel.getSupportList(other_id,type, "1", "20", this);
     }
 
     @Override
     public void onLoadMore() {
         isLoadMore = true;
         hideLoading();
-        myPartTimeModel.getSupportList(type, countpage + "", "20", this);
+        myPartTimeModel.getSupportList(other_id,type, countpage + "", "20", this);
     }
 
 

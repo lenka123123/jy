@@ -58,6 +58,7 @@ import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.MainActivity;
 import sinia.com.baihangeducation.MyApplication;
 import sinia.com.baihangeducation.R;
+import sinia.com.baihangeducation.club.addclub.AddCLubActivity;
 import sinia.com.baihangeducation.club.club.interfaces.ClubGetRequestListener;
 import sinia.com.baihangeducation.club.club.interfaces.GetRequestListener;
 import sinia.com.baihangeducation.club.club.presenter.ClubHomePresenter;
@@ -138,7 +139,7 @@ public class ClubDetailActivity extends BaseActivity implements
     @Override
     protected void onRestart() {
         super.onRestart();
-
+        hideEditTextInput();
         onRestart = true;
         if (clubDetailPresenter != null) {
             onTime = 1;
@@ -264,6 +265,15 @@ public class ClubDetailActivity extends BaseActivity implements
 //            mClubListAdapter.setData(successMessage.notice_list.list, true, successMessage.info.power, successMessage.info.id);
         }
 
+        /**
+         * 删除学校公告
+         dropSchoolNotice
+         学校公告编辑
+         editSchoolNotice
+         学校公告发布
+         pushSchoolNotice
+         */
+
         if (mPermissionList != null) {
             send_ad.setVisibility(mPermissionList.contains("pushNotice") ? View.VISIBLE : View.GONE); //发布公告
         }
@@ -377,6 +387,11 @@ public class ClubDetailActivity extends BaseActivity implements
                     return;
                 }
 
+                if (is_apply_permiss.equals("3")) {
+                    getCenterCancelDialogShowCancel();
+                    return;
+                }
+
                 JMessageClient.enterGroupConversation(Long.valueOf(jmessage_group_id));
                 JMessageClient.getGroupInfo(Long.valueOf(jmessage_group_id), new GetGroupInfoCallback() {
                     @Override
@@ -409,6 +424,10 @@ public class ClubDetailActivity extends BaseActivity implements
                     getCenterCancelDialog();
                     return;
                 }
+                if (is_apply_permiss.equals("3")) {
+                    getCenterCancelDialogShowCancel();
+                    return;
+                }
                 Goto.toClubPart(context, mPermissionList.contains("pushJob"));
                 break;
             case R.id.exit:
@@ -437,6 +456,10 @@ public class ClubDetailActivity extends BaseActivity implements
                     getCenterCancelDialog();
                     return;
                 }
+                if (is_apply_permiss.equals("3")) {
+                    getCenterCancelDialogShowCancel();
+                    return;
+                }
                 if (isNeetLogin()) return;
                 Goto.toClubPersonClubListActivity(ClubDetailActivity.this, clubId,
                         mPermissionList.contains("dropCrew"), mPermissionList.contains("setClubApply"), is_chairman);
@@ -445,7 +468,11 @@ public class ClubDetailActivity extends BaseActivity implements
             case R.id.send_ad:
                 //发布公告
                 if (isNeetLogin()) return;
-                Goto.toClubSendAnnounceActivity(ClubDetailActivity.this, clubId, "", "", "");
+                Goto.toClubSendAnnounceActivity(ClubDetailActivity.this, "发布公告", clubId, "", "", "",
+                        mPermissionList.contains("dropSchoolNotice"),
+                        mPermissionList.contains("editSchoolNotice"),
+                        mPermissionList.contains("pushSchoolNotice")
+                );
                 break;
             case R.id.club_active:
                 if (is_apply_permiss.equals("0")) {
@@ -454,6 +481,10 @@ public class ClubDetailActivity extends BaseActivity implements
                 }
                 if (is_apply_permiss.equals("1")) {
                     getCenterCancelDialog();
+                    return;
+                }
+                if (is_apply_permiss.equals("3")) {
+                    getCenterCancelDialogShowCancel();
                     return;
                 }
                 //社团活动
@@ -612,6 +643,39 @@ public class ClubDetailActivity extends BaseActivity implements
         dialogWindow.setGravity(Gravity.CENTER);
         dialog.setCanceledOnTouchOutside(true);
         dialog.show();
+
+    }
+
+    public void getCenterCancelDialogShowCancel() {
+        final Dialog dialog = new Dialog(context, com.example.framwork.R.style.custom_cancel_dialog);
+        dialog.setContentView(R.layout.clcub_join_dialog_apply_cancel);
+        Window dialogWindow = dialog.getWindow();
+
+        dialogWindow.findViewById(R.id.club_join).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.cancel();
+            }
+        });
+        //dialogWindow.setWindowAnimations(R.style.mystyle);
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+        lp.width = context.getResources().getDisplayMetrics().widthPixels;
+        lp.alpha = 1.0f;
+        dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        dialogWindow.setAttributes(lp);
+        dialogWindow.setGravity(Gravity.CENTER);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.show();
+
+    }
+
+    /**
+     * 隐藏软键盘
+     */
+    protected void hideEditTextInput() {
+        //隐藏键盘
+        ((InputMethodManager) context.getSystemService(INPUT_METHOD_SERVICE))
+                .hideSoftInputFromWindow((ClubDetailActivity.this).getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
     }
 }

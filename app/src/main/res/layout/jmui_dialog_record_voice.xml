@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout style="@style/jmui_record_voice_dialog"
-              xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_gravity="center_vertical|center_horizontal"
-              android:orientation="vertical">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/jmui_record_voice_dialog"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical|center_horizontal"
+    android:orientation="vertical">
 
     <FrameLayout
-        android:layout_width="136dp"
-        android:layout_height="136dp"
+        android:layout_width="@dimen/y400"
+        android:layout_height="@dimen/y400"
         android:alpha="0.5"
-        android:background="#000000">
+        android:background="@drawable/chat_voice_bg">
 
 
         <TextView
@@ -22,7 +22,7 @@
             android:text="10"
             android:textColor="#2DD0CF"
             android:textSize="60sp"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <LinearLayout
             android:id="@+id/time_short"
@@ -36,14 +36,14 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="22.67dp"
-                android:background="#2DD0CF"/>
+                android:background="#2DD0CF" />
 
             <TextView
                 android:layout_width="4.33dp"
                 android:layout_height="4dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="5dp"
-                android:background="#2DD0CF"/>
+                android:background="#2DD0CF" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -52,7 +52,7 @@
                 android:layout_marginTop="21dp"
                 android:text="说话时间太短"
                 android:textColor="#fff"
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
 
         </LinearLayout>
 
@@ -68,21 +68,22 @@
                 android:layout_height="59dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="5dp"
-                android:layout_marginTop="21.67dp"
-                android:src="@drawable/logo"/>
+                android:layout_marginTop="@dimen/y100"
+                android:src="@drawable/chat_voice_sand" />
 
             <LinearLayout
+                android:layout_marginTop="@dimen/y20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|bottom"
-                android:layout_marginBottom="34dp">
+            >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="•••••• "
                     android:textColor="#2DD0CF"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp" />
 
                 <Chronometer
                     android:id="@+id/voice_time"
@@ -91,14 +92,14 @@
                     android:layout_gravity="center_horizontal|bottom"
                     android:format="%s"
                     android:textColor="#2DD0CF"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" ••••••"
                     android:textColor="#2DD0CF"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp" />
 
             </LinearLayout>
         </LinearLayout>
@@ -109,10 +110,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="@dimen/y60"
             android:text="手指上滑,取消发送"
             android:textColor="#FFFFFF"
-            android:textSize="12sp"/>
+            android:textSize="12sp" />
 
     </FrameLayout>
 

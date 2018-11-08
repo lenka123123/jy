@@ -33,14 +33,13 @@ public class ImBaseActivity extends SwipeBackActivity {
     protected int mHeight;
     protected float mDensity;
     protected int mDensityDpi;
-//    private TextView mJmui_title_tv
+    //    private TextView mJmui_title_tv
 //    private ImageButton mReturn_btn;
 //    private TextView mJmui_title_left;
 //    public Button mJmui_commit_btn;
     protected int mAvatarSize;
     protected float mRatio;
     private Dialog dialog;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,10 +62,10 @@ public class ImBaseActivity extends SwipeBackActivity {
 
     //初始化各个activity的title
     public void initTitle(boolean returnBtn, boolean titleLeftDesc, String titleLeft, String title, boolean save, String desc) {
-//        mReturn_btn = (ImageButton) findViewById(R.id.return_btn);
-//        mJmui_title_left = (TextView) findViewById(R.id.jmui_title_left);
-//        mJmui_title_tv = (TextView) findViewById(R.id.jmui_title_tv);
-//        mJmui_commit_btn = (Button) findViewById(R.id.jmui_commit_btn);
+//        ImageButton mReturn_btn = (ImageButton) findViewById(R.id.return_btn);
+//        TextView mJmui_title_left = (TextView) findViewById(R.id.jmui_title_left);
+//        TextView mJmui_title_tv = (TextView) findViewById(R.id.jmui_title_tv);
+//        Button mJmui_commit_btn = (Button) findViewById(R.id.jmui_commit_btn);
 //
 //        if (returnBtn) {
 //            mReturn_btn.setVisibility(View.VISIBLE);

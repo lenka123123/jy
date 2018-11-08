@@ -106,6 +106,24 @@ public class ClubFragment extends MyBaseFragment implements SuperRecyclerView.Lo
         if (isCreated) {
             getClubPermission("");
             getServerData();
+            setPhone();
+        }
+    }
+
+
+    private void setPhone() {
+        String phone = (String) SpCommonUtils.get(getActivity(), AppConfig.FINAL_SAVE_PHOTO_PATH, "");
+        if (!phone.equals("") && AppConfig.ISlOGINED && AppConfig.LOGINPHOTOTPATH.length() > 1) {
+            Glide.with(getActivity()).load(AppConfig.LOGINPHOTOTPATH).asBitmap().error(R.drawable.new_eorrlogo).centerCrop()
+                    .into(new BitmapImageViewTarget(user_photo) {
+                        @Override
+                        protected void setResource(Bitmap resource) {
+                            RoundedBitmapDrawable circularBitmapDrawable =
+                                    RoundedBitmapDrawableFactory.create(getActivity().getResources(), resource);
+                            circularBitmapDrawable.setCircular(true);
+                            user_photo.setImageDrawable(circularBitmapDrawable);
+                        }
+                    });
         }
     }
 
@@ -117,7 +135,6 @@ public class ClubFragment extends MyBaseFragment implements SuperRecyclerView.Lo
             System.out.println("暂未选择====" + AppConfig.SCHOOLNAME);
             System.out.println("暂未选择id====" + AppConfig.SCHOOLNAMEID);
             if (school_name != null && !AppConfig.SCHOOLNAME.equals("")) {
-
                 clubHomePresenter.setSelectSchool();
             }
         }
@@ -222,10 +239,10 @@ public class ClubFragment extends MyBaseFragment implements SuperRecyclerView.Lo
 
         switch (v.getId()) {
             case R.id.apply_help:
-                Goto.toMyHelpActivity(context);
+                Goto.toMyHelpActivity(context, "");
                 break;
             case R.id.drawable:
-                Goto.toPersonScenter(context);
+                Goto.toPersonScenter(context, "", "", "");
                 break;
             case R.id.club_add:
                 Goto.addClub(context);
@@ -237,11 +254,14 @@ public class ClubFragment extends MyBaseFragment implements SuperRecyclerView.Lo
                 Goto.toHotActive(context, "main", "");
                 break;
             case R.id.hot_part:
-                if (mPermissionList == null) {
-                    Goto.toClubPart(context, false);
-                } else {
-                    Goto.toClubPart(context, mPermissionList.contains("pushJob"));
-                }
+                Goto.toFriend(context);
+
+                //兼职不显示
+//                if (mPermissionList == null) {
+//                    Goto.toClubPart(context, false);
+//                } else {
+//                    Goto.toClubPart(context, mPermissionList.contains("pushJob"));
+//                }
 
                 break;
             case R.id.hot_club:

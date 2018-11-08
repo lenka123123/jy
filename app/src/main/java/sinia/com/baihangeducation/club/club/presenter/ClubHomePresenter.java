@@ -20,7 +20,7 @@ public class ClubHomePresenter implements ClubHomeContract.Presenter {
 
     @Override
     public void getClubHomeInfo(String school_id) {
-        clubHomeModel.getClubHomeInfo(school_id,"",new SetClubHomeListener() {
+        clubHomeModel.getClubHomeInfo(school_id, "", "", new SetClubHomeListener() {
             @Override
             public void setClubHomeSuccess(ClubHomeInfo clubSchoolList) {
                 clubFragment.showClubList(clubSchoolList);
@@ -68,7 +68,7 @@ public class ClubHomePresenter implements ClubHomeContract.Presenter {
         clubHomeModel.setSelectSchool(new GetRequestListener() {
             @Override
             public void setRequestSuccess(String msg) {
-           clubFragment.showSelectSchool();
+                clubFragment.showSelectSchool();
             }
 
             @Override

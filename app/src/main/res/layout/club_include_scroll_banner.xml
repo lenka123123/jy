@@ -100,14 +100,14 @@
             <ImageView
                 android:layout_width="@dimen/x68"
                 android:layout_height="@dimen/y68"
-                android:src="@drawable/hot_part" />
+                android:src="@drawable/club_fun" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/y10"
                 android:gravity="center"
-                android:text="热门兼职"
+                android:text="校内圈"
                 android:textColor="#333"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -139,6 +139,7 @@
     </LinearLayout>
 
     <View
+        android:layout_marginTop="@dimen/y30"
         android:layout_width="match_parent"
         android:layout_height="@dimen/y1"
         android:background="#EDEDED" />
@@ -148,7 +149,7 @@
         android:id="@+id/rinking"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/y30"
+        android:layout_marginBottom="@dimen/y42"
         android:layout_marginLeft="@dimen/x40"
         android:layout_marginTop="@dimen/y30"
         android:text="社团推荐"

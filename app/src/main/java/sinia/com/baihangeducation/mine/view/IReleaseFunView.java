@@ -23,5 +23,6 @@ public interface IReleaseFunView extends BaseView{
     void releaseSingleImageSuccess(SingleImageBean imgbean,int i);
 
     void releaseFunSuccess();
+    void releaseFunFail();
 
 }

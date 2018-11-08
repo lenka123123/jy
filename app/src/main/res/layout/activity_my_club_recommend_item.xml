@@ -17,9 +17,9 @@
         <ImageView
             android:id="@+id/img"
             android:layout_width="@dimen/x260"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/y258"
             android:scaleType="centerCrop"
-            android:src="@drawable/logo" />
+          />
 
         <!--中间内容-->
         <LinearLayout
@@ -34,6 +34,8 @@
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
                 android:text="南大话剧社聚会"
                 android:textColor="#000"
                 android:textSize="15sp" />
@@ -56,6 +58,8 @@
                 android:layout_marginTop="@dimen/y10"
                 android:drawableLeft="@drawable/hot_active_address"
                 android:drawablePadding="@dimen/x16"
+                android:ellipsize="end"
+                android:singleLine="true"
                 android:text="周二 10/09 17:30"
                 android:textColor="#999"
                 android:textSize="14sp" />

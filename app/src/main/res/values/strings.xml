@@ -629,7 +629,7 @@
     <string name="sdcard_not_enough_error">存储空间不足</string>
     <string name="picker_image_error">获取图片出错</string>
     <string name="picker_image_preview">预览</string>
-    <string name="picker_image_folder">相机胶卷</string>
+    <string name="picker_image_folder">选择照片</string>
     <string name="picker_image_preview_original">发送原图</string>
     <string name="picker_image_album_loading">相册加载中…</string>
     <string name="picker_image_album_empty">相册中没有图片！</string>

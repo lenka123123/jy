@@ -13,8 +13,6 @@ import java.util.List;
 
 import sinia.com.baihangeducation.R;
 
-import com.mcxtzhang.swipemenulib.customview.ZoomImageView;
-
 /**
  * 图片浏览的适配器
  * <p>
@@ -53,10 +51,10 @@ public class ViewPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         View itemView = getItemView(R.layout.view_pager_img);
-        ZoomImageView imageView = itemView.findViewById(R.id.img_iv);
-
-        Glide.with(context).load(imgList.get(position)).placeholder(R.drawable.ic_de_list)
-                .diskCacheStrategy(DiskCacheStrategy.NONE).into(imageView);
+//        ZoomImageView imageView = itemView.findViewById(R.id.img_iv);
+//
+//        Glide.with(context).load(imgList.get(position)).placeholder(R.drawable.ic_de_list)
+//                .diskCacheStrategy(DiskCacheStrategy.NONE).into(imageView);
 
 //        Glide.with(context).load(imgList.get(position)).into(imageView);
         container.addView(itemView);

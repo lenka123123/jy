@@ -5,7 +5,11 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <include layout="@layout/ic_spitview_horizontal" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x1"
+        android:background="@color/white" />
 
     <sinia.com.baihangeducation.club.im.view.EmoticonsFuncView
         android:id="@+id/view_epv"

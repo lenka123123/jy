@@ -1,5 +1,6 @@
 package sinia.com.baihangeducation.club.myclub.myparttime;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
@@ -32,6 +33,7 @@ public class ClubMyPartTimeActivity extends BaseActivity implements GetMyPartTie
     private boolean isLoadMore = false;
     private View left;
     private View right;
+    private String other_id;
 
     public int initLayoutResID() {
         return R.layout.activity_club_my_club;
@@ -40,8 +42,10 @@ public class ClubMyPartTimeActivity extends BaseActivity implements GetMyPartTie
 
     @Override
     protected void initData() {
+        Intent intent = getIntent();
+        other_id = intent.getStringExtra("other_id");
         myPartTimeModel = new MyClubModel(context);
-        myPartTimeModel.getMyClubPartTime("1", "20", this);
+        myPartTimeModel.getMyClubPartTime(other_id, "1", "20", this);
         mCommonTitle.setBackgroundColor(Color.WHITE);
         mCommonTitle.setCenterText("我的兼职");
     }
@@ -122,14 +126,14 @@ public class ClubMyPartTimeActivity extends BaseActivity implements GetMyPartTie
         countpage = 1;
         mList.clear();
         hideProgress();
-        myPartTimeModel.getMyClubPartTime(countpage + "", "20", this);
+        myPartTimeModel.getMyClubPartTime(other_id, countpage + "", "20", this);
     }
 
     @Override
     public void onLoadMore() {
         isLoadMore = true;
         hideProgress();
-        myPartTimeModel.getMyClubPartTime(countpage + "", "20", this);
+        myPartTimeModel.getMyClubPartTime(other_id, countpage + "", "20", this);
     }
 
 

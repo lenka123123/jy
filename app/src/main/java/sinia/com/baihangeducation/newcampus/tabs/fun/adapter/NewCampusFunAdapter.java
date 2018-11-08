@@ -187,12 +187,21 @@ public class NewCampusFunAdapter extends SuperBaseAdapter<FunContantInfo> {
         String content = item.content;
         String topic_title = item.topic_title;
         int index = content.indexOf(topic_title);
+        System.out.println(content.length() + "==add_time==" + topic_title.length() + "==add_time==" + index);
+        //  12==add_time==14==add_time==-1
+
         //发布时间
         holder.setText(R.id.newcampayfunitem_time, item.add_time);
 //        //文本内容
-        SpannableString spannableString = new SpannableString(content);
-        spannableString.setSpan(new ForegroundColorSpan(context.getResources().getColor(R.color.title_color)), index, topic_title.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        holder.setText(R.id.newcampayfunitem_caontant, spannableString);
+        if (topic_title != null && topic_title.length() > 2 && index >= 0) {
+            SpannableString spannableString = new SpannableString(content);
+            spannableString.setSpan(new ForegroundColorSpan(context.getResources().getColor(R.color.title_color)), index, topic_title.length(),
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            holder.setText(R.id.newcampayfunitem_caontant, spannableString);
+        } else {
+            if (content != null && content.length() > 0)
+                holder.setText(R.id.newcampayfunitem_caontant, content);
+        }
 
 
         if (item.thumbnail_list != null && item.thumbnail_list.get(0) != null && item.thumbnail_list.get(0).url != null && item.thumbnail_list.get(0).url.length() > 1) {

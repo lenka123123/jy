@@ -157,6 +157,16 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <style name="jmui_chat_content_style">
+        <item name="android:gravity">left|center</item>
+        <item name="android:textColor">#373334</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:background">#bfbfbf</item>
+    </style>
+
     <style name="jmui_chat_item_send_layout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>

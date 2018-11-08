@@ -58,5 +58,6 @@ public class ClubHomeInfo {
         public String club_num;
         public String activity_num;
         public String job_num;
+        public String support_num;
     }
 }

@@ -412,6 +412,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@null"
+                        android:clickable="false"
+                        android:focusable="false"
                         android:hint="请选择"
                         android:inputType="number"
                         android:textColor="#999"
@@ -432,17 +434,16 @@
                 android:background="#F5F7F9" />
 
 
-
             <!--男女比例-->
             <LinearLayout
                 android:id="@+id/man_woman_linear"
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y80"
                 android:layout_marginLeft="@dimen/x40"
                 android:layout_marginRight="@dimen/x40"
                 android:background="@color/white"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="0dp"
@@ -504,6 +505,7 @@
 
                 </LinearLayout>
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/y1"

@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import java.io.File;
 import java.lang.ref.WeakReference;
@@ -35,7 +36,7 @@ import sinia.com.baihangeducation.club.im.app.ImBaseActivity;
 import sinia.com.baihangeducation.club.im.utils.ToastUtil;
 
 /**
- * **
+ * 群设置
  */
 
 public class ChatDetailActivity extends ImBaseActivity {
@@ -64,15 +65,23 @@ public class ChatDetailActivity extends ImBaseActivity {
     private String mGroupDesc;
     private Switch messageSwitch;
     private Switch mTopSwitch;
+    private String title;
+    private String num;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_detail);
+        Intent intent = getIntent();
+        title = intent.getStringExtra("title");
+        num = intent.getStringExtra("num");
         mContext = this;
         mChatDetailView = (ChatDetailView) findViewById(R.id.chat_detail_view);
+
+
         mChatDetailView.initModule();
         mChatDetailController = new ChatDetailController(mChatDetailView, this, mAvatarSize, mWidth);
+        mChatDetailView.setTitle(title + "(" + num + ")");
         mChatDetailView.setListeners(mChatDetailController);
         mChatDetailView.setOnChangeListener(mChatDetailController);
         mChatDetailView.setItemListener(mChatDetailController);

@@ -96,6 +96,7 @@ import sinia.com.baihangeducation.club.im.view.XhsEmoticonsKeyBoard;
 import sinia.com.baihangeducation.club.im.view.adapter.ChattingListAdapter;
 import sinia.com.baihangeducation.club.im.view.listview.DropDownListView;
 import sinia.com.baihangeducation.club.im.widget.FuncLayout;
+import sinia.com.baihangeducation.club.selectmember.ChooseAtMemberActivity;
 import sinia.com.baihangeducation.supplement.tool.Extras;
 
 
@@ -158,13 +159,15 @@ public class ChatActivity extends ImBaseActivity implements
     private String groupLogo;
     private ImageView img;
     private ClubPermissModel clubPermissModel;
+    private int mGroupMembers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_chat);
         mContext = this;
         clubPermissModel = new ClubPermissModel(this);
-        setContentView(R.layout.activity_chat);
+
         img = (ImageView) findViewById(R.id.img);
         mChatView = (ChatView) findViewById(R.id.chat_view);
         mChatView.initModule(mDensity, mDensityDpi);
@@ -221,6 +224,7 @@ public class ChatActivity extends ImBaseActivity implements
                 mConv = JMessageClient.getGroupConversation(mGroupId);
                 if (mConv != null) {
                     GroupInfo groupInfo = (GroupInfo) mConv.getTargetInfo();
+                    mGroupMembers = groupInfo.getGroupMembers().size();
                     UserInfo userInfo = groupInfo.getGroupMemberInfo(mMyInfo.getUserName(), mMyInfo.getAppKey());
                     //如果自己在群聊中，聊天标题显示群人数
                     if (userInfo != null) {
@@ -321,10 +325,11 @@ public class ChatActivity extends ImBaseActivity implements
 
             @Override
             public void onTextChanged(CharSequence s, int start, int count, int after) {
+                System.out.println("CharSequence===" + s.toString() + "after==" + after);
                 temp = s;
                 if (s.length() > 0 && after >= 1 && s.subSequence(start, start + 1).charAt(0) == '@' && !mLongClick) {
                     if (null != mConv && mConv.getType() == ConversationType.group) {
-//                        ChooseAtMemberActivity.show(ChatActivity.this, ekBar.getEtChat(), mConv.getTargetId());
+                        ChooseAtMemberActivity.show(ChatActivity.this, ekBar.getEtChat(), mConv.getTargetId());
                     }
                 }
             }
@@ -373,16 +378,16 @@ public class ChatActivity extends ImBaseActivity implements
             }
         });
         //切换语音输入
-//        ekBar.getVoiceOrText().setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                int i = v.getId();
-//                if (i == R.id.btn_voice_or_text) {
-//                    ekBar.setVideoText();
-//                    ekBar.getBtnVoice().initConv(mConv, mChatAdapter, mChatView);
-//                }
-//            }
-//        });
+        ekBar.getVoiceOrText().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int i = v.getId();
+                if (i == R.id.btn_voice_or_text) {
+                    ekBar.setVideoText();
+                    ekBar.getBtnVoice().initConv(mConv, mChatAdapter, mChatView);
+                }
+            }
+        });
 
     }
 
@@ -463,11 +468,18 @@ public class ChatActivity extends ImBaseActivity implements
         }
     }
 
+    /*
+     intent.putExtra("title", mTitle);
+            intent.putExtra("num", mGroupMembers);
+     */
     public void startChatDetailActivity(String targetId, String appKey, long groupId) {
         Intent intent = new Intent();
         intent.putExtra(TARGET_ID, targetId);
         intent.putExtra(TARGET_APP_KEY, appKey);
         intent.putExtra(GROUP_ID, groupId);
+        // mTitle, intent.getIntExtra(MEMBERS_COUNT, 0)
+        intent.putExtra("title", mTitle);
+        intent.putExtra("num", mGroupMembers + "");
         intent.setClass(this, ChatDetailActivity.class);
         startActivityForResult(intent, MyApplication.REQUEST_CODE_CHAT_DETAIL);
     }
@@ -913,7 +925,8 @@ public class ChatActivity extends ImBaseActivity implements
                     float OldListY = (float) location[1];
                     float OldListX = (float) location[0];
                     new TipView.Builder(ChatActivity.this, mChatView, (int) OldListX + view.getWidth() / 2, (int) OldListY + view.getHeight())
-                            .addItem(new TipItem("转发"))
+//                            .addItem(new TipItem("转发"))
+                            .addItem(new TipItem(""))
                             .addItem(new TipItem("删除"))
                             .setOnItemClickListener(new TipView.OnItemClickListener() {
                                 @Override

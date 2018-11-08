@@ -83,7 +83,7 @@ public class PickerAlbumActivity extends UIView implements PickerAlbumFragment.O
     }
 
     private void initActionBar() {
-        setTitle(R.string.picker_image_folder);
+        setTitle("相册");
     }
 
     private void initUI() {
@@ -222,10 +222,12 @@ public class PickerAlbumActivity extends UIView implements PickerAlbumFragment.O
         int selectSize = hasSelectList.size();
         if (selectSize > 0) {
             pickerPreview.setEnabled(true);
+            pickerSend.setVisibility(View.VISIBLE);
             pickerSend.setEnabled(true);
             pickerSend.setText(String.format(this.getResources().getString(
                     R.string.picker_image_send_select), selectSize));
         } else {
+            pickerSend.setVisibility(View.INVISIBLE);
             pickerPreview.setEnabled(false);
             pickerSend.setEnabled(false);
             pickerSend.setText(R.string.btn_send);

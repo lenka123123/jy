@@ -73,7 +73,7 @@ public abstract class BaseActivity extends CheckPermissionsActivity implements V
     private CommonFilterPop mPopupWindow;
     protected FragmentManager mFragmentManager;
     protected int layoutResID;
-    protected static Activity context;
+    protected static   Activity context;
     protected KProgressHUD progressHUD;
     protected static CommonTitle mCommonTitle;   //头部布局
     protected String lng;
@@ -502,6 +502,7 @@ public abstract class BaseActivity extends CheckPermissionsActivity implements V
             hidePopListView();
         }
     }
+
 
 
     /**

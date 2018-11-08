@@ -74,7 +74,7 @@ public class ProgressActivityUtils {
 
     public void showEmptry(String title) {
         if (progressActivity != null) {
-            progressActivity.showEmpty(ContextCompat.getDrawable(context, R.drawable.no_info), title, "");
+            progressActivity.showEmpty(ContextCompat.getDrawable(context, R.drawable.empty_img), title, "");
         }
     }
 

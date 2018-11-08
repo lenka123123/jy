@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zhy="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_50"
+
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/search_back"
+            android:layout_width="@dimen/space_10"
+            android:layout_height="@dimen/space_20"
+            android:layout_marginLeft="@dimen/space_20"
+            android:background="@drawable/back" />
+
+        <EditText
+            android:id="@+id/search_searchhistory_searched"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/space_10"
+            android:layout_marginLeft="@dimen/space_20"
+            android:imeOptions="actionSearch"
+            android:layout_marginRight="@dimen/space_40"
+            android:singleLine="true"
+            android:layout_marginTop="@dimen/space_10"
+            android:background="@color/white"
+            android:drawableLeft="@drawable/black_search"
+            android:drawablePadding="@dimen/space_20"
+            android:gravity="center|left"
+            android:textSize="@dimen/font_size_12"
+            android:hint="搜索关键字"
+            android:paddingLeft="@dimen/space_10" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/search_searchhistory_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/space_20"
+            android:paddingTop="@dimen/space_10"
+            android:text="搜索记录"
+            android:textColor="@color/color_3a3a3a_black"
+            android:textSize="@dimen/font_size_16" />
+
+        <com.zhy.view.flowlayout.TagFlowLayout
+            android:id="@+id/search_searchhistory"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/space_10"
+            android:paddingLeft="@dimen/space_20"
+            android:paddingRight="@dimen/space_20"
+            android:paddingTop="@dimen/space_10"
+            zhy:max_select="5"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/space_20"
+            android:paddingTop="@dimen/space_10"
+            android:text="热门推荐"
+            android:textColor="@color/color_3a3a3a_black"
+            android:textSize="@dimen/font_size_16" />
+
+        <com.zhy.view.flowlayout.TagFlowLayout
+            android:id="@+id/search_hottalk"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/space_10"
+            android:paddingLeft="@dimen/space_20"
+            android:paddingRight="@dimen/space_20"
+            android:paddingTop="@dimen/space_10"
+            zhy:max_select="5"/>
+    </LinearLayout>
+
+</LinearLayout>

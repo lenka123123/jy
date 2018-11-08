@@ -22,6 +22,7 @@ import sinia.com.baihangeducation.supplement.base.Goto;
 
 /**
  * Created by Administrator on 2018.02.24.
+
  */
 
 public class NewCampusFragment extends Fragment implements View.OnClickListener {

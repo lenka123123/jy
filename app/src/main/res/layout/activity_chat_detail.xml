@@ -45,13 +45,15 @@
                     android:id="@+id/tv_moreGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:descendantFocusability="blocksDescendants"
                     android:gravity="center_horizontal"
                     android:paddingBottom="19dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:clickable="true"
+                        android:clickable="false"
+                        android:focusable="false"
                         android:text="查看更多群成员"
                         android:textColor="#999999"
                         android:textSize="14sp" />
@@ -61,7 +63,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="6dp"
-                        android:background="@drawable/arrow_right" />
+                        android:background="@drawable/arrow_right"
+                        android:clickable="false"
+                        android:focusable="false" />
                 </LinearLayout>
 
             </LinearLayout>

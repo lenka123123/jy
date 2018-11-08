@@ -11,7 +11,7 @@
         android:id="@+id/nanjing"
         android:layout_width="match_parent"
         android:layout_height="@dimen/y88"
-        android:layout_marginRight="@dimen/x40"
+        android:background="@color/white"
         android:orientation="horizontal">
 
         <ImageView
@@ -24,15 +24,15 @@
 
         <LinearLayout
             android:id="@+id/fragment_home_adress"
-            android:layout_width="@dimen/x200"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/x220"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/fragment_home_adressName"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
                 android:ellipsize="end"
@@ -54,7 +54,7 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:layout_width="82dp"
+            android:layout_width="@dimen/x120"
             android:layout_height="match_parent">
 
             <ImageView
@@ -76,6 +76,10 @@
         </RelativeLayout>
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:background="#EDEDED"
+        android:layout_height="@dimen/y1" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -147,7 +151,8 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="12"
-                android:textColor="@color/red_fa3e3e" />
+                android:textColor="@color/red_fa3e3e"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -176,7 +181,8 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="12"
-                android:textColor="@color/red_fa3e3e" />
+                android:textColor="@color/red_fa3e3e"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -187,6 +193,42 @@
                 android:textColor="#8C8C8C"
                 android:textSize="15sp" />
         </LinearLayout>
+
+
+
+
+        <!-- 赞助   -->
+        <LinearLayout
+            android:id="@+id/my_apply_help_layout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/my_apply_help_num"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="12"
+                android:textColor="@color/red_fa3e3e"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal|top"
+                android:text="赞助"
+                android:textColor="#8C8C8C"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+
+
         <!-- 兼职   -->
         <LinearLayout
             android:id="@+id/my_part_time_layout"
@@ -204,7 +246,8 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="12"
-                android:textColor="@color/red_fa3e3e" />
+                android:textColor="@color/red_fa3e3e"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -254,10 +297,6 @@
                 android:background="@color/line_color" />
         </com.example.framwork.widget.ProgressActivity>
     </android.support.v4.widget.SwipeRefreshLayout>
-
-
-
-
 
 
 </LinearLayout>

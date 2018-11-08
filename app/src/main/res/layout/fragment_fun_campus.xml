@@ -7,6 +7,50 @@
     android:orientation="vertical">
 
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_51"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/releasemoment_back"
+            android:layout_width="@dimen/space_50"
+            android:layout_height="@dimen/space_50"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="@dimen/space_10"
+                android:layout_height="@dimen/space_20"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/space_10"
+                android:src="@drawable/back" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="发布趣事"
+            android:textColor="@color/black"
+            android:textSize="@dimen/space_18" />
+
+        <TextView
+            android:id="@+id/releasemoment_release"
+            android:layout_width="@dimen/space_60"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/space_20"
+            android:gravity="center"
+            android:text="发表"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_16" />
+    </RelativeLayout>
+
+
+
+
+
     <include layout="@layout/activity_recyclerview_refresh" />
 
     <com.mcxtzhang.swipemenulib.customview.BackEditText

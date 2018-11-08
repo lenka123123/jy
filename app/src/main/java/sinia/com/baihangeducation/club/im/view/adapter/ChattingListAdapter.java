@@ -54,6 +54,8 @@ import sinia.com.baihangeducation.club.im.utils.DialogCreator;
 import sinia.com.baihangeducation.club.im.utils.HandleResponseCode;
 import sinia.com.baihangeducation.club.im.utils.TimeFormat;
 import sinia.com.baihangeducation.club.im.view.controller.ChatItemController;
+import sinia.com.baihangeducation.club.personcenter.PersonCenterForFirendActivity;
+import sinia.com.baihangeducation.supplement.base.Goto;
 
 public class ChattingListAdapter extends BaseAdapter {
 
@@ -405,6 +407,7 @@ public class ChattingListAdapter extends BaseAdapter {
     private View createViewByType(Message msg, int position) {
         // 会话类型
         switch (msg.getContentType()) {
+
             case text:
                 return getItemViewType(position) == TYPE_SEND_TXT ?
                         mInflater.inflate(R.layout.jmui_chat_item_send_text, null) :
@@ -424,10 +427,10 @@ public class ChattingListAdapter extends BaseAdapter {
 //                            mInflater.inflate(R.layout.jmui_chat_item_send_file, null) :
 //                            mInflater.inflate(R.layout.jmui_chat_item_receive_file, null);
 //                }
-//            case voice:
-//                return getItemViewType(position) == TYPE_SEND_VOICE ?
-//                        mInflater.inflate(R.layout.jmui_chat_item_send_voice, null) :
-//                        mInflater.inflate(R.layout.jmui_chat_item_receive_voice, null);
+            case voice:
+                return getItemViewType(position) == TYPE_SEND_VOICE ?
+                        mInflater.inflate(R.layout.jmui_chat_item_send_voice, null) :
+                        mInflater.inflate(R.layout.jmui_chat_item_receive_voice, null);
 //            case location:
 //                return getItemViewType(position) == TYPE_SEND_LOCATION ?
 //                        mInflater.inflate(R.layout.jmui_chat_item_send_location, null) :
@@ -507,11 +510,11 @@ public class ChattingListAdapter extends BaseAdapter {
 //                        holder.fileLoad = (TextView) convertView.findViewById(R.id.jmui_send_file_load);
 //                    }
 //                    break;
-//                case voice:
-//                    holder.voice = (ImageView) convertView.findViewById(R.id.jmui_voice_iv);
-//                    holder.voiceLength = (TextView) convertView.findViewById(R.id.jmui_voice_length_tv);
-//                    holder.readStatus = (ImageView) convertView.findViewById(R.id.jmui_read_status_iv);
-//                    break;
+                case voice:
+                    holder.voice = (ImageView) convertView.findViewById(R.id.jmui_voice_iv);
+                    holder.voiceLength = (TextView) convertView.findViewById(R.id.jmui_voice_length_tv);
+                    holder.readStatus = (ImageView) convertView.findViewById(R.id.jmui_read_status_iv);
+                    break;
 //                case location:
 //                    holder.location = (TextView) convertView.findViewById(R.id.jmui_loc_desc);
 //                    holder.picture = (ImageView) convertView.findViewById(R.id.jmui_picture_iv);
@@ -613,21 +616,42 @@ public class ChattingListAdapter extends BaseAdapter {
                 public void onClick(View arg0) {
                     Intent intent = new Intent();
                     if (msg.getDirect() == MessageDirect.send) {
+                        Goto.toPersonScenter(mContext, "", "", "");
+//                        自己
 //                        intent.putExtra(MyApplication.TARGET_ID, JMessageClient.getMyInfo().getUserName());
-//                        intent.setClass(mContext, PersonalActivity.class);
+//                        intent.setClass(mContext, PersonCenterForFirendActivity.class);
 //                        mContext.startActivity(intent);
                     } else {
-//                        String targetID = userInfo.getUserName();
-//                        intent.putExtra(MyApplication.TARGET_ID, targetID);
-//                        intent.putExtra(MyApplication.TARGET_APP_KEY, userInfo.getAppKey());
-//                        intent.putExtra(MyApplication.GROUP_ID, mGroupId);
-//                        if (userInfo.isFriend()) {
-//                            intent.setClass(mContext, FriendInfoActivity.class);
-//                        } else {
-//                            intent.setClass(mContext, GroupNotFriendActivity.class);
-//                        }
-//                        ((Activity) mContext).startActivityForResult(intent,
-//                                MyApplication.REQUEST_CODE_FRIEND_INFO);
+                        String targetID = userInfo.getUserName();
+                        intent.putExtra(MyApplication.TARGET_ID, targetID);
+                        intent.putExtra(MyApplication.TARGET_APP_KEY, userInfo.getAppKey());
+                        intent.putExtra(MyApplication.GROUP_ID, mGroupId);
+                        System.out.println("userInfo==" + userInfo.getUserName());
+                        System.out.println("userInfo==" + userInfo.getNotename());
+                        System.out.println("userInfo==" + userInfo.getDisplayName());
+                        System.out.println("getAvatar==" + userInfo.getAvatar());
+
+                        System.out.println("getAvatar==" + userInfo.getAvatarFile().getAbsolutePath());
+                        System.out.println("getAvatar==" + userInfo.getDisplayName());
+                        System.out.println("getAvatar==" + userInfo.getAvatar());
+
+                        intent.putExtra("other_id", userInfo.getUserName());
+                        intent.putExtra("name", userInfo.getDisplayName());
+                        intent.putExtra("phone", userInfo.getAvatarFile().getAbsolutePath());
+
+                        /**
+                         * 11-08 14:04:24.645 27184-27184/sinia.com.baihangeducation I/System.out: userInfo==13000000001
+                         11-08 14:04:24.649 27184-27184/sinia.com.baihangeducation I/System.out: userInfo==
+                         userInfo==陈青
+                         */
+
+                        if (userInfo.isFriend()) {
+                            intent.setClass(mContext, PersonCenterForFirendActivity.class);
+                        } else {
+                            intent.setClass(mContext, PersonCenterForFirendActivity.class);
+                        }
+                        ((Activity) mContext).startActivityForResult(intent,
+                                MyApplication.REQUEST_CODE_FRIEND_INFO);
                     }
                 }
             });
@@ -665,9 +689,9 @@ public class ChattingListAdapter extends BaseAdapter {
 //                    mController.handleFileMsg(msg, holder, position);
 //                }
 //                break;
-//            case voice:
-//                mController.handleVoiceMsg(msg, holder, position);
-//                break;
+            case voice:
+                mController.handleVoiceMsg(msg, holder, position);
+                break;
 //            case location:
 //                mController.handleLocationMsg(msg, holder, position);
 //                break;

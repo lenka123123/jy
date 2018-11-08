@@ -87,7 +87,8 @@ public class ReleaseFunPresenter extends BasePresenter {
         });
     }
 
-    public void releaseFun() {
+
+    public void releaseFun(int open) {
         HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "pushDynamic", "publish", true);
         info.put("user_id", AppConfig.USERID);
         info.put("token", AppConfig.TOKEN);
@@ -95,6 +96,7 @@ public class ReleaseFunPresenter extends BasePresenter {
         info.put("lng", view.getReleaseFunLng());
         info.put("lat", view.getReleaseFunLat());
         info.put("adcode", view.getReleaseFunAdcode());
+        info.put("visible", open);
         Log.i("发布趣事参数", view.getReleaseFunContent() + "内容");
         Log.i("发布趣事参数", view.getReleaseFunLng() + "经度");
         Log.i("发布趣事参数", view.getReleaseFunLat() + "纬度");
@@ -119,6 +121,7 @@ public class ReleaseFunPresenter extends BasePresenter {
             @Override
             public void requestFailed(String error) {
                 Toast.getInstance().showErrorToast(activity, error);
+                view.releaseFunFail();
             }
 
             @Override
@@ -127,4 +130,6 @@ public class ReleaseFunPresenter extends BasePresenter {
             }
         });
     }
+
+
 }

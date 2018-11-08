@@ -99,6 +99,7 @@ public class ChatFragment extends ChatBaseFragment implements GetRequestListener
 //            Conversation conv = JMessageClient.getSingleConversation(targetId, userInfo.getAppKey());
 //            mBackgroundHandler.sendMessage(mBackgroundHandler.obtainMessage(REFRESH_CONVERSATION_LIST, conv));
             sortConvList();
+            setReSatart();
         }
     }
 

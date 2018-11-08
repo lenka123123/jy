@@ -98,7 +98,12 @@ public class BeanJsonResult<T> extends RestRequest<T> {
                             if (towMin("300001"))
                                 requestListener.requestFailed("尚未登录，请登录");
                         } else if (bean.getData() == null || TextUtils.isEmpty(bean.getData())) {
-                            requestListener.requestFailed(bean.getMessage());
+                            if (bean.getCode().equals("9108")) {
+                                requestListener.requestFailed(bean.getCode());
+                            } else {
+                                requestListener.requestFailed(bean.getMessage());
+                            }
+
                         } else if (!bean.isSuccess()) {
                             IsLoginInfo loginInfo = bean.parseObject(IsLoginInfo.class);
                             if (loginInfo != null && loginInfo.is_need_jump_login == 1) {
@@ -137,7 +142,11 @@ public class BeanJsonResult<T> extends RestRequest<T> {
                 if (activity.isFinishing()) {
                     return;
                 }
-                requestListener.requestFailed(exception);
+                if (exception.equals("9108")) {
+                    requestListener.requestFailed(exception);
+                } else {
+                    requestListener.requestFailed(exception);
+                }
             }
 
             @Override
@@ -187,6 +196,7 @@ public class BeanJsonResult<T> extends RestRequest<T> {
                 if (activity.isFinishing()) {
                     return;
                 }
+
                 requestListener.requestFailed(exception);
             }
 

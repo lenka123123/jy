@@ -63,8 +63,7 @@
                 android:layout_width="@dimen/x40"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/black_search"
-                android:visibility="gone" />
+                android:src="@drawable/new_find_unshare" />
 
             <TextView
                 android:id="@+id/exit"
@@ -74,7 +73,7 @@
                 android:gravity="center"
                 android:text="删除"
                 android:textColor="@color/black"
-                android:visibility="invisible" />
+                android:visibility="gone" />
         </RelativeLayout>
 
 
@@ -449,7 +448,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
-                    android:text="男女比例"
+                    android:text="活动人数"
                     android:textColor="#000"
                     android:textSize="14sp" />
 
@@ -572,28 +571,42 @@
                 android:layout_marginLeft="@dimen/x40"
                 android:layout_marginRight="@dimen/x40"
                 android:layout_marginTop="@dimen/y10"
-                android:background="@null"
+                android:background="@color/white"
                 android:gravity="left"
                 android:hint="请输入活动介绍"
                 android:minLines="3"
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/join"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/space_50"
-                android:layout_marginLeft="@dimen/space_20"
-                android:layout_marginRight="@dimen/space_20"
-                android:layout_marginTop="@dimen/space_10"
-                android:background="@drawable/textview_round2"
-                android:gravity="center"
-                android:text="报名"
-                android:textColor="@color/white"
-                android:textSize="@dimen/font_size_18" />
+                android:layout_height="@dimen/y1"
+                android:background="#F5F7F9" />
 
-            <TextView
+            <LinearLayout
+                android:id="@+id/join_layout"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/y80"
+                android:layout_height="match_parent"
+
+                android:background="#F5F7F9">
+
+                <TextView
+                    android:id="@+id/join"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_50"
+                    android:layout_marginLeft="@dimen/space_20"
+                    android:layout_marginRight="@dimen/space_20"
+                    android:layout_marginTop="@dimen/y60"
+                    android:background="@drawable/textview_round2"
+                    android:gravity="center"
+                    android:text="报名"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font_size_18" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y60"
                 android:background="#F5F7F9" />
 
 

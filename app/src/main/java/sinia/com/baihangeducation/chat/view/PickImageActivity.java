@@ -76,6 +76,7 @@ public class PickImageActivity extends UIView {
     @Override
     protected void onResume() {
         super.onResume();
+        initActionBar();
         if (!inited) {
             processIntent();
             inited = true;
@@ -145,6 +146,11 @@ public class PickImageActivity extends UIView {
             finish();
         }
     }
+
+    private void initActionBar() {
+        setTitle("选择照片");
+    }
+
 
     private Intent pickIntent() {
         Intent intent = getIntent();

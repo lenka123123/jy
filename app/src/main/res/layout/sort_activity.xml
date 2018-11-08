@@ -11,13 +11,14 @@
     <sinia.com.baihangeducation.supplement.sortrecycleview.ClearEditText
         android:id="@+id/filter_edit"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y66"
+        android:layout_height="@dimen/y80"
         android:background="@color/white"
-        android:drawableLeft="@drawable/new_search"
+        android:drawableLeft="@drawable/search"
+        android:drawablePadding="@dimen/x20"
         android:hint="请输入关键字"
         android:maxLines="1"
         android:paddingLeft="10dp"
-        android:textSize="15dp" />
+        android:textSize="14sp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -37,13 +38,15 @@
             android:gravity="center"
             android:textColor="#ffffffff"
             android:textSize="30dp"
-            android:visibility="invisible" />
+            android:visibility="gone" />
 
         <sinia.com.baihangeducation.supplement.sortrecycleview.SideBar
             android:id="@+id/sideBar"
             android:layout_width="30dp"
             android:layout_height="match_parent"
-            android:layout_alignParentRight="true" />
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="@dimen/y140"
+            android:layout_marginTop="@dimen/y140" />
 
 
         <RelativeLayout

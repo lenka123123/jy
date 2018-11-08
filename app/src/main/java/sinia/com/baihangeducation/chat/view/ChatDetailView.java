@@ -80,7 +80,7 @@ public class ChatDetailView extends LinearLayout {
 //        mClear_rl = (RelativeLayout) findViewById(R.id.clear_rl);
 
 
-        mTitle.setText(mContext.getString(R.string.chat_detail_title));
+        // TODO: 2018/11/6 0006         mTitle.setText(mContext.getString(R.string.chat_detail_title));
 //        mMenuBtn.setVisibility(View.GONE);
         //自定义GridView点击背景为透明色
         mGridView.setSelector(new ColorDrawable(Color.TRANSPARENT));
@@ -182,7 +182,7 @@ public class ChatDetailView extends LinearLayout {
 
     public void isLoadMoreShow(boolean isLoad) {
         if (isLoad) {
-            mTv_moreGroup.setVisibility(VISIBLE);
+            mTv_moreGroup.setVisibility(GONE);
         } else {
             mTv_moreGroup.setVisibility(GONE);
         }

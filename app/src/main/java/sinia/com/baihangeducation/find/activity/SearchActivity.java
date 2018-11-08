@@ -21,10 +21,13 @@ import java.util.List;
 
 import sinia.com.baihangeducation.R;
 import sinia.com.baihangeducation.supplement.base.BaseActivity;
+
 import com.mcxtzhang.swipemenulib.info.GetKeyWorldInfo;
+
 import sinia.com.baihangeducation.find.presenter.GetKeyWorldPresenter;
 import sinia.com.baihangeducation.find.view.GetKeyWorldView;
 import sinia.com.baihangeducation.supplement.base.Goto;
+
 import com.mcxtzhang.swipemenulib.utils.ACache;
 
 /**
@@ -50,6 +53,89 @@ public class SearchActivity extends BaseActivity implements GetKeyWorldView {
         return R.layout.search;
     }
 
+    private boolean doNone = true;
+
+    @Override
+    protected void initView() {
+        mSearchHistrory = $(R.id.search_searchhistory);
+        mHotTalk = $(R.id.search_hottalk);
+        mSearchHistroyLayout = $(R.id.search_searchhistory_layout);
+        mSearch = $(R.id.search_searchhistory_searched);
+        mBack = $(R.id.search_back);
+        mBack.setOnClickListener(this);
+
+
+        // EditText 编写搜索框 而是在我们编辑完之后点击软键盘上的回车键才会触发
+        mSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (!(v.getText().toString().trim()).isEmpty()) {
+                    mACache = ACache.get(context);
+                    //去除缓存中的搜索历史对象
+                    Object searchdata = mACache.getAsObject("SEARCHDATA");
+                    //将对象转成需要的数据类型
+                    if (searchdata != null) {
+                        mCacheList = (List<String>) JSONObject.parse(searchdata.toString());
+                    }
+                    if (mCacheList != null && !mCacheList.isEmpty() && mCacheList.size() > 0) {
+                        if (mCacheList.size() >= 8) {
+                            if (!mCacheList.contains(v.getText().toString().trim())) {
+                                //如果list的长度大于8，则移除最早放如的
+                                mCacheList.remove(mCacheList.size() - 1);
+                                //将数据添加进list中
+
+                                mCacheList.add(0, v.getText().toString().trim());
+                                //将list转成jsonarry
+                                JSONArray array = JSONArray.parseArray(JSON.toJSONString(mCacheList));
+                                //将数据存入缓存中
+                                mACache.put("SEARCHDATA", array);
+                            }
+
+                        } else {
+                            if (!mCacheList.contains(v.getText().toString().trim())) {
+                                mCacheList.add(0, v.getText().toString().trim());
+                                //将list转成jsonarry
+                                JSONArray array = JSONArray.parseArray(JSON.toJSONString(mCacheList));
+                                //将数据存入缓存中
+                                mACache.put("SEARCHDATA", array);
+                            }
+                        }
+                    } else {
+
+                        mCacheList.add(0, v.getText().toString().trim());
+                        //将list转成jsonarry
+                        JSONArray array = JSONArray.parseArray(JSON.toJSONString(mCacheList));
+                        //将数据存入缓存中
+                        mACache.put("SEARCHDATA", array);
+                    }
+                    Goto.toSearchReasultActivity(context, v.getText().toString().trim());
+
+                }
+                return false;
+            }
+        });
+
+        mACache = ACache.get(context);
+
+        mSearch.setOnClickListener(this);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        //历史搜索加载数据
+        if (mSearchHistrory != null && mCacheList != null)
+            mSearchHistrory.setAdapter(new TagAdapter(mCacheList) {
+                @Override
+                public View getView(FlowLayout parent, int position, Object o) {
+                    TextView textView = (TextView) LayoutInflater.from(context).inflate(R.layout.keyworlditem, mHotTalk,
+                            false);
+                    textView.setText(mCacheList.get(position));
+                    return textView;
+                }
+            });
+    }
+
     @Override
     protected void initData() {
         mCacheList = new ArrayList<>();
@@ -64,11 +150,13 @@ public class SearchActivity extends BaseActivity implements GetKeyWorldView {
             mSearchHistroyLayout.setVisibility(View.VISIBLE);
             //将对象转成需要的数据类型
             mCacheList = (List<String>) JSONObject.parse(searchdata.toString());
-            //为历史搜索加载数据
+
+            //历史搜索加载数据
             mSearchHistrory.setAdapter(new TagAdapter(mCacheList) {
                 @Override
                 public View getView(FlowLayout parent, int position, Object o) {
-                    TextView textView = (TextView) LayoutInflater.from(context).inflate(R.layout.keyworlditem, mHotTalk, false);
+                    TextView textView = (TextView) LayoutInflater.from(context).inflate(R.layout.keyworlditem, mHotTalk,
+                            false);
                     textView.setText(mCacheList.get(position));
                     return textView;
                 }
@@ -95,13 +183,13 @@ public class SearchActivity extends BaseActivity implements GetKeyWorldView {
                 String clickitem = mCacheList.get(position);
                 Goto.toSearchReasultActivity(context, clickitem);
 //                finish();
-              //  Toast.makeText(context, clickitem, Toast.LENGTH_SHORT).show();
+                //  Toast.makeText(context, clickitem, Toast.LENGTH_SHORT).show();
 
                 return true;
             }
         });
 
-        //历史搜索点击item之后放入缓存操作
+        //热门话点击   历史搜索点击item之后放入缓存操作
         mHotTalk.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
             @Override
             public boolean onTagClick(View view, int position, FlowLayout parent) {
@@ -115,21 +203,24 @@ public class SearchActivity extends BaseActivity implements GetKeyWorldView {
 
                 if (mCacheList != null && !mCacheList.isEmpty() && mCacheList.size() > 0) {
                     if (mCacheList.size() >= 8) {
-
-                        //如果list的长度大于8，则移除最早放如的
-                        mCacheList.remove(0);
-                        //将数据添加进list中
-                        mCacheList.add(mList.get(position).key_name);
-                        //将list转成jsonarry
-                        JSONArray array = JSONArray.parseArray(JSON.toJSONString(mCacheList));
-                        //将数据存入缓存中
-                        mACache.put("SEARCHDATA", array);
+                        if (!mCacheList.contains(mList.get(position).key_name)) {
+                            //如果list的长度大于8，则移除最早放如的
+                            mCacheList.remove(mCacheList.size() - 1);
+                            //将数据添加进list中
+                            mCacheList.add(0, mList.get(position).key_name);
+                            //将list转成jsonarry
+                            JSONArray array = JSONArray.parseArray(JSON.toJSONString(mCacheList));
+                            //将数据存入缓存中
+                            mACache.put("SEARCHDATA", array);
+                        }
                     } else {
-                        mCacheList.add(mList.get(position).key_name);
-                        //将list转成jsonarry
-                        JSONArray array = JSONArray.parseArray(JSON.toJSONString(mCacheList));
-                        //将数据存入缓存中
-                        mACache.put("SEARCHDATA", array);
+                        if (!mCacheList.contains(mList.get(position).key_name)) {
+                            mCacheList.add(0, mList.get(position).key_name);
+                            //将list转成jsonarry
+                            JSONArray array = JSONArray.parseArray(JSON.toJSONString(mCacheList));
+                            //将数据存入缓存中
+                            mACache.put("SEARCHDATA", array);
+                        }
                     }
                 } else {
                     mCacheList.add(mList.get(position).key_name);
@@ -144,63 +235,6 @@ public class SearchActivity extends BaseActivity implements GetKeyWorldView {
         });
     }
 
-    @Override
-    protected void initView() {
-        mSearchHistrory = $(R.id.search_searchhistory);
-        mHotTalk = $(R.id.search_hottalk);
-        mSearchHistroyLayout = $(R.id.search_searchhistory_layout);
-        mSearch = $(R.id.search_searchhistory_searched);
-        mBack = $(R.id.search_back);
-        mBack.setOnClickListener(this);
-
-        mSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-
-                if (!(v.getText().toString().trim()).isEmpty()) {
-                    mACache = ACache.get(context);
-                    //去除缓存中的搜索历史对象
-                    Object searchdata = mACache.getAsObject("SEARCHDATA");
-                    //将对象转成需要的数据类型
-                    if (searchdata != null) {
-                        mCacheList = (List<String>) JSONObject.parse(searchdata.toString());
-                    }
-                    if (mCacheList != null && !mCacheList.isEmpty() && mCacheList.size() > 0) {
-                        if (mCacheList.size() >= 8) {
-                            //如果list的长度大于8，则移除最早放如的
-                            mCacheList.remove(0);
-                            //将数据添加进list中
-                            mCacheList.add(v.getText().toString().trim());
-                            //将list转成jsonarry
-                            JSONArray array = JSONArray.parseArray(JSON.toJSONString(mCacheList));
-                            //将数据存入缓存中
-                            mACache.put("SEARCHDATA", array);
-                        } else {
-                            mCacheList.add(v.getText().toString().trim());
-                            //将list转成jsonarry
-                            JSONArray array = JSONArray.parseArray(JSON.toJSONString(mCacheList));
-                            //将数据存入缓存中
-                            mACache.put("SEARCHDATA", array);
-                        }
-                    } else {
-
-                        mCacheList.add(v.getText().toString().trim());
-                        //将list转成jsonarry
-                        JSONArray array = JSONArray.parseArray(JSON.toJSONString(mCacheList));
-                        //将数据存入缓存中
-                        mACache.put("SEARCHDATA", array);
-                    }
-                    Goto.toSearchReasultActivity(context, v.getText().toString().trim());
-                    finish();
-                }
-                return false;
-            }
-        });
-
-        mACache = ACache.get(context);
-
-        mSearch.setOnClickListener(this);
-    }
 
     @Override
     public void onClick(View v) {
@@ -237,4 +271,16 @@ public class SearchActivity extends BaseActivity implements GetKeyWorldView {
             }
         });
     }
+
+
+    public List removeDuplicate(List list) {
+        List listTemp = new ArrayList();
+        for (int i = 0; i < list.size(); i++) {
+            if (!listTemp.contains(list.get(i))) {
+                listTemp.add(list.get(i));
+            }
+        }
+        return listTemp;
+    }
+
 }

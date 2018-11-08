@@ -20,17 +20,18 @@
 
         <LinearLayout
             android:id="@+id/fragment_home_adress"
-            android:layout_width="@dimen/x200"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/x220"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/fragment_home_adressName"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
+                android:layout_gravity="center_vertical"
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxLines="1"
@@ -50,7 +51,7 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:layout_width="82dp"
+            android:layout_width="@dimen/x80"
             android:layout_height="match_parent">
 
             <ImageView
@@ -79,7 +80,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/space_0.5"
         android:layout_below="@+id/nanjing"
-        android:background="#DDDDDD" />
+        android:background="#EDEDED" />
 
     <LinearLayout
         android:id="@+id/name"
@@ -116,7 +117,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/space_0.5"
         android:layout_below="@id/name"
-        android:background="#DDDDDD" />
+        android:background="#EDEDED" />
 
     <TextView
         android:id="@+id/announce_content"
@@ -134,7 +135,7 @@
     <TextView
         android:id="@+id/edit_announce"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/space_50"
+        android:layout_height="45dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="@dimen/space_10"
         android:layout_marginLeft="@dimen/x40"

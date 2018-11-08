@@ -34,8 +34,8 @@ public class XhsEmoticonsKeyBoard extends AutoHeightLayout implements View.OnCli
 
     protected LayoutInflater mInflater;
 
-    //    protected ImageView mBtnVoiceOrText;
-    //    protected RecordVoiceButton mBtnVoice;
+    protected ImageView mBtnVoiceOrText;
+    protected RecordVoiceButton mBtnVoice;
     protected EmoticonsEditText mEtChat;
     protected ImageView mBtnFace;
     protected RelativeLayout mRlInput;
@@ -67,8 +67,8 @@ public class XhsEmoticonsKeyBoard extends AutoHeightLayout implements View.OnCli
     }
 
     protected void initView() {
-//        mBtnVoiceOrText = ((ImageView) findViewById(R.id.btn_voice_or_text));
-//        mBtnVoice = ((RecordVoiceButton) findViewById(R.id.btn_voice));
+        mBtnVoiceOrText = ((ImageView) findViewById(R.id.btn_voice_or_text));
+        mBtnVoice = ((RecordVoiceButton) findViewById(R.id.btn_voice));
         btn_send_img = ((LinearLayout) findViewById(R.id.btn_send_img));
         mEtChat = ((EmoticonsEditText) findViewById(R.id.et_chat));
         mBtnFace = ((ImageView) findViewById(R.id.btn_face));
@@ -77,7 +77,7 @@ public class XhsEmoticonsKeyBoard extends AutoHeightLayout implements View.OnCli
         mBtnSend = ((Button) findViewById(R.id.btn_send));
         mLyKvml = ((FuncLayout) findViewById(R.id.ly_kvml));
 
-//        mBtnVoiceOrText.setOnClickListener(this);
+        mBtnVoiceOrText.setOnClickListener(this);
         mBtnFace.setOnClickListener(this);
         mBtnMultimedia.setOnClickListener(this);
         mEtChat.setOnBackKeyClickListener(this);
@@ -166,21 +166,21 @@ public class XhsEmoticonsKeyBoard extends AutoHeightLayout implements View.OnCli
 
     protected void showVoice() {
         mRlInput.setVisibility(GONE);
-//        mBtnVoice.setVisibility(VISIBLE);
+        mBtnVoice.setVisibility(VISIBLE);
         reset();
     }
 
     protected void checkVoice() {
-//        if (mBtnVoice.isShown()) {
-//            mBtnVoiceOrText.setImageResource(R.drawable.btn_voice_or_text_keyboard);
-//        } else {
-//            mBtnVoiceOrText.setImageResource(R.drawable.btn_voice_or_text);
-//        }
+        if (mBtnVoice.isShown()) {
+            mBtnVoiceOrText.setImageResource(R.drawable.btn_voice_or_text_keyboard);
+        } else {
+            mBtnVoiceOrText.setImageResource(R.drawable.btn_voice_or_text);
+        }
     }
 
     protected void showText() {
         mRlInput.setVisibility(VISIBLE);
-//        mBtnVoice.setVisibility(GONE);
+        mBtnVoice.setVisibility(GONE);
     }
 
     protected void toggleFuncView(int key) {
@@ -248,7 +248,7 @@ public class XhsEmoticonsKeyBoard extends AutoHeightLayout implements View.OnCli
     @Override
     public void onClick(View v) {
         int i = v.getId();
-        /*if (i == R.id.btn_voice_or_text) {
+       /* if (i == R.id.btn_voice_or_text) {
             if (mRlInput.isShown()) {
                 mBtnVoiceOrText.setImageResource(R.drawable.btn_voice_or_text_keyboard);
                 showVoice();
@@ -257,7 +257,8 @@ public class XhsEmoticonsKeyBoard extends AutoHeightLayout implements View.OnCli
                 mBtnVoiceOrText.setImageResource(R.drawable.btn_voice_or_text);
                 EmoticonsKeyboardUtils.openSoftKeyboard(mEtChat);
             }
-        } else*/
+        }
+*/
         if (i == R.id.btn_face) {
             toggleFuncView(FUNC_TYPE_EMOTION);
         }
@@ -273,18 +274,18 @@ public class XhsEmoticonsKeyBoard extends AutoHeightLayout implements View.OnCli
 
     public void setVideoText() {
         if (mRlInput.isShown()) {
-//            mBtnVoiceOrText.setImageResource(R.drawable.btn_voice_or_text_keyboard);
+            mBtnVoiceOrText.setImageResource(R.drawable.btn_voice_or_text_keyboard);
             showVoice();
         } else {
             showText();
-//            mBtnVoiceOrText.setImageResource(R.drawable.btn_voice_or_text);
+            mBtnVoiceOrText.setImageResource(R.drawable.btn_voice_or_text);
             EmoticonsKeyboardUtils.openSoftKeyboard(mEtChat);
         }
     }
 
     public ImageView getVoiceOrText() {
-//        return mBtnVoiceOrText;
-        return null;
+        return mBtnVoiceOrText;
+
     }
 
     @Override
@@ -365,8 +366,8 @@ public class XhsEmoticonsKeyBoard extends AutoHeightLayout implements View.OnCli
     }
 
     public RecordVoiceButton getBtnVoice() {
-//        return mBtnVoice;
-        return null;
+        return mBtnVoice;
+
     }
 
     public Button getBtnSend() {

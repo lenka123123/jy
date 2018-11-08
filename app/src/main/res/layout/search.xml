@@ -8,7 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/space_50"
-        android:background="@drawable/new_realname_title_bg"
+
         android:gravity="center">
 
         <ImageView
@@ -16,7 +16,7 @@
             android:layout_width="@dimen/space_10"
             android:layout_height="@dimen/space_20"
             android:layout_marginLeft="@dimen/space_20"
-            android:background="@drawable/new_arrow_left" />
+            android:background="@drawable/back" />
 
         <EditText
             android:id="@+id/search_searchhistory_searched"
@@ -28,8 +28,8 @@
             android:layout_marginRight="@dimen/space_40"
             android:singleLine="true"
             android:layout_marginTop="@dimen/space_10"
-            android:background="@drawable/new_search_bg"
-            android:drawableLeft="@drawable/new_search"
+            android:background="@color/white"
+            android:drawableLeft="@drawable/black_search"
             android:drawablePadding="@dimen/space_20"
             android:gravity="center|left"
             android:textSize="@dimen/font_size_12"
@@ -60,7 +60,7 @@
             android:paddingLeft="@dimen/space_20"
             android:paddingRight="@dimen/space_20"
             android:paddingTop="@dimen/space_10"
-            zhy:max_select="5"></com.zhy.view.flowlayout.TagFlowLayout>
+            zhy:max_select="5"/>
     </LinearLayout>
 
     <LinearLayout
@@ -85,7 +85,7 @@
             android:paddingLeft="@dimen/space_20"
             android:paddingRight="@dimen/space_20"
             android:paddingTop="@dimen/space_10"
-            zhy:max_select="5"></com.zhy.view.flowlayout.TagFlowLayout>
+            zhy:max_select="5"/>
     </LinearLayout>
 
 </LinearLayout>

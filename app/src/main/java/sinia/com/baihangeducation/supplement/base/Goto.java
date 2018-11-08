@@ -14,6 +14,7 @@ import sinia.com.baihangeducation.club.clubannouncedetail.ClubAnnounceDetailActi
 import sinia.com.baihangeducation.club.clubcomment.CommentActivity;
 import sinia.com.baihangeducation.club.clubdetail.ClubDetailActivity;
 import sinia.com.baihangeducation.club.clubpaint.ClubPaintActivity;
+import sinia.com.baihangeducation.club.clubschoollist.ClubDisparkActivity;
 import sinia.com.baihangeducation.club.clubschoollist.ClubSchoolListActivity;
 import sinia.com.baihangeducation.club.clubsendannounce.ClubSendAnnounceActivity;
 import sinia.com.baihangeducation.club.editorclubactive.ClubEditorActiveActivity;
@@ -21,6 +22,7 @@ import sinia.com.baihangeducation.club.editorclubactive.ClubShowActiveActivity;
 import sinia.com.baihangeducation.club.editorclubactive.power.SettingPowerActivity;
 import sinia.com.baihangeducation.club.mangerpower.MangerPowerActivity;
 import sinia.com.baihangeducation.club.myclub.help.ClubApplyHelpActivity;
+import sinia.com.baihangeducation.club.myclub.help.ClubApplyHelpShowActivity;
 import sinia.com.baihangeducation.club.myclub.help.ClubHelpActivity;
 import sinia.com.baihangeducation.club.myclub.myactive.ClubMyActiveActivity;
 import sinia.com.baihangeducation.club.myclub.myclub.ClubMyClubActivity;
@@ -38,6 +40,7 @@ import sinia.com.baihangeducation.newcampus.activity.CommentPageActivity;
 import sinia.com.baihangeducation.newcampus.activity.HomePageActivity;
 import sinia.com.baihangeducation.newcampus.info.FunContantInfo;
 import sinia.com.baihangeducation.newcampus.tabs.addfriend.view.GetFriendListActivity;
+import sinia.com.baihangeducation.newcampus.tabs.fun.FunCampusForActivity;
 import sinia.com.baihangeducation.reconsitution.tabs.coffers.MyCoffers;
 import sinia.com.baihangeducation.reconsitution.tabs.pay.tab.PaiedListActivity;
 import sinia.com.baihangeducation.reconsitution.tabs.selectcity.SelectCityActivity;
@@ -976,7 +979,7 @@ public class Goto extends BaseGoto {
     }
 
     /**
-     * 首页跳转完善资料专业二页面
+     *
      */
     public static void toReleaseFunActivity(Context context) {
         Intent intent = new Intent(context, ReleaseFunActivity.class);
@@ -1153,25 +1156,43 @@ public class Goto extends BaseGoto {
     }
 
     //club 公告编辑
-    public static void toClubSendAnnounceActivity(Context context, String clubId, String notice_id, String title, String content) {
+    public static void toClubSendAnnounceActivity(Context context, String typeName, String clubId, String notice_id, String title, String content,
+                                                  boolean dropSchoolNotice, boolean editSchoolNotice, boolean pushSchoolNotice) {
         Intent intent = new Intent(context, ClubSendAnnounceActivity.class);
         intent.putExtra("club_id", clubId);
+        intent.putExtra("typeName", typeName);
         intent.putExtra("notice_id", notice_id);
 
         intent.putExtra("title", title);
         intent.putExtra("content", content);
 
+        intent.putExtra("dropSchoolNotice", dropSchoolNotice);
+        intent.putExtra("editSchoolNotice", editSchoolNotice);
+        intent.putExtra("pushSchoolNotice", pushSchoolNotice);
+
         context.startActivity(intent);
     }
 
     //club 公告详情
-    public static void toClubAnnounceDetailActivity(Context context, String type, String clubid, String notice_id, boolean dropNotice, boolean editNotice) {
+    public static void toClubAnnounceDetailActivity(Context context, String type, String clubid, String notice_id,
+                                                    boolean dropNotice, boolean editNotice, boolean dropSchoolNotice,
+                                                    boolean editSchoolNotice, boolean pushSchoolNotice) {
         Intent intent = new Intent(context, ClubAnnounceDetailActivity.class);
         intent.putExtra("type", type);
         intent.putExtra("club_id", clubid);
         intent.putExtra("notice_id", notice_id);
         intent.putExtra("dropNotice", dropNotice);
         intent.putExtra("editNotice", editNotice);
+
+        intent.putExtra("dropSchoolNotice", dropSchoolNotice);
+        intent.putExtra("editSchoolNotice", editSchoolNotice);
+        intent.putExtra("pushSchoolNotice", pushSchoolNotice);
+        /**
+         *
+         power.contains("dropSchoolNotice"),
+         power.contains("editSchoolNotice"),
+         power.contains("pushSchoolNotice")
+         */
         context.startActivity(intent);
     }
 
@@ -1246,38 +1267,52 @@ public class Goto extends BaseGoto {
     }
 
     //club 社团个人中心
-    public static void toPersonScenter(Context context) {
+    public static void toPersonScenter(Context context, String other_id, String name, String phone) {
         Intent intent = new Intent(context, PersonCenterActivity.class);
+        intent.putExtra("other_id", other_id);
+        intent.putExtra("name", name);
+        intent.putExtra("phone", phone);
         context.startActivity(intent);
     }
 
     //club 社团-我的兼职
-    public static void toMyPartTime(Context context) {
+    public static void toMyPartTime(Context context ,String other_id) {
         Intent intent = new Intent(context, ClubMyPartTimeActivity.class);
+        intent.putExtra("other_id", other_id);
         context.startActivity(intent);
     }
 
     //club 社团-我的兼职
-    public static void toMyClub(Context context) {
+    public static void toMyClub(Context context ,String other_id) {
         Intent intent = new Intent(context, ClubMyClubActivity.class);
+        intent.putExtra("other_id", other_id);
         context.startActivity(intent);
     }
 
     //club 社团-我的兼职活动
-    public static void toMyClubActivity(Context context) {
+    public static void toMyClubActivity(Context context,String other_id) {
         Intent intent = new Intent(context, ClubMyActiveActivity.class);
+        intent.putExtra("other_id", other_id);
         context.startActivity(intent);
     }
 
     //club 社团-我的兼职活动
-    public static void toMyHelpActivity(Context context) {
+    public static void toMyHelpActivity(Context context, String other_id) {
         Intent intent = new Intent(context, ClubHelpActivity.class);
+        intent.putExtra("other_id", other_id);
         context.startActivity(intent);
     }
 
     //club 社团-申请赞助
     public static void toApplyHelp(Context context) {
         Intent intent = new Intent(context, ClubApplyHelpActivity.class);
+        context.startActivity(intent);
+    }
+
+    //club 社团-申请赞助详情
+    public static void toApplyHelpShow(Context context, String support_id) {
+        Intent intent = new Intent(context, ClubApplyHelpShowActivity.class);
+        intent.putExtra("support_id", support_id);
         context.startActivity(intent);
     }
 
@@ -1291,6 +1326,18 @@ public class Goto extends BaseGoto {
     public static void toSystemMeaagePotion(Context context, String url) {
         Intent intent = new Intent(context, PortionActivity.class);
         intent.putExtra("url", url);
+        context.startActivity(intent);
+    }
+
+    //朋友圈
+    public static void toFriend(Context context) {
+        Intent intent = new Intent(context, FunCampusForActivity.class);
+        context.startActivity(intent);
+    }
+
+    //朋友圈
+    public static void toSendFunDispark(Context context) {
+        Intent intent = new Intent(context, ClubDisparkActivity.class);
         context.startActivity(intent);
     }
 

@@ -23,9 +23,11 @@ import java.util.HashMap;
 import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.club.club.interfaces.GetRequestListener;
 import sinia.com.baihangeducation.club.editorclubactive.model.ActiveInfoData;
+import sinia.com.baihangeducation.club.editorclubactive.model.ApplyData;
 import sinia.com.baihangeducation.club.editorclubactive.model.GetActiveOptionListener;
 import sinia.com.baihangeducation.club.editorclubactive.model.GetClubActiveOption;
 import sinia.com.baihangeducation.club.editorclubactive.model.ObtainActiveInfoListener;
+import sinia.com.baihangeducation.club.editorclubactive.model.ObtainApplyInfoListener;
 import sinia.com.baihangeducation.supplement.tool.BaseRequestInfo;
 
 /**
@@ -39,6 +41,36 @@ public class ClubEditorModel extends BasePresenter {
     public ClubEditorModel(Activity activity) {
         super(activity);
     }
+
+
+    public void getSupportInfo(String support_id, ObtainApplyInfoListener obtainApplyInfoListener) {
+        HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "getSupportInfo", "clubSupport", true);
+        info.put("user_id", AppConfig.USERID);
+        info.put("token", AppConfig.TOKEN);
+        info.put("support_id", support_id);//
+
+
+        post(info, new OnRequestListener() {
+            @Override
+            public void requestSuccess(BaseResponseBean bean) {
+                ApplyData info = bean.parseObject(ApplyData.class);
+                obtainApplyInfoListener.onSuccess(info);
+//
+
+            }
+
+            @Override
+            public void requestFailed(String error) {
+                Toast.getInstance().showErrorToast(activity, error);
+            }
+
+            @Override
+            public void requestFinish() {
+
+            }
+        });
+    }
+
 
     public void getActiveInfo(String activity_id, ObtainActiveInfoListener obtainRankingDataListener) {
         HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "getActivityInfo", "club", true);

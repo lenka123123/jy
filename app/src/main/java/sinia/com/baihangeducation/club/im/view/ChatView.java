@@ -98,7 +98,7 @@ public class ChatView extends RelativeLayout {
     }
 
     public void dismissRightBtn() {
-        mRightBtn.setVisibility(View.GONE);
+        mRightBtn.setVisibility(View.INVISIBLE);
     }
 
     public void showRightBtn() {
@@ -118,7 +118,6 @@ public class ChatView extends RelativeLayout {
     public void showAtMeButton() {
         mAtMeBtn.setVisibility(VISIBLE);
     }
-
 
     //设置群聊名字
     public void setChatTitle(String name, int count) {
