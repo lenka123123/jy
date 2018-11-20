@@ -32,6 +32,9 @@ public class AppConfig extends BaseAppConfig {
     public static boolean ISSELECTCLICK = false;
 
 
+    public static final String ACCESS_TOKEN = "ACCESS_TOKEN";
+    public static final String ACCESS_OPENID = "ACCESS_OPENID";
+
     public static final String USERTOKEN = "FINALUSERTOKEN";
     public static final String FINALUSERID = "FINALUSERID";
     public static final String FINALUAVATAR = "FINALUAVATAR";
@@ -62,7 +65,7 @@ public class AppConfig extends BaseAppConfig {
     public static final String COMMON_INFO_ABOUTREGISTRATION_PROTOCOL = "COMMON_INFO_ABOUTREGISTRATION_PROTOCOL";
     public static final String COMMON_INFO_HELP = "COMMON_INFO_HELP";
     public static final String IS_DIM = "IS_DIM";
-    public static final String IS_NEED_LOGIN = "IS_NEED_LOGIN";
+    public static final String WEICHAT_CODE = "WEICHAT_CODE";
 
 
     public static String CHATMESSAGE = "";
@@ -79,6 +82,7 @@ public class AppConfig extends BaseAppConfig {
     public static String educationtext = "";
     public static String educationtextID = "";
 
+    public static String WEICHATCODE = "";
     public static String SCHOOLEDUCTION = "";
     public static String AREAID = "areaId";
     public static String TOPIC_TITLE = "topic_title";

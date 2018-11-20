@@ -450,7 +450,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
-                    android:text="男女比例"
+                    android:text="活动人数"
                     android:textColor="#000"
                     android:textSize="14sp" />
 
@@ -461,7 +461,6 @@
                     android:orientation="horizontal">
 
                     <TextView
-
                         android:id="@+id/man_num_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -474,7 +473,7 @@
                         android:layout_width="@dimen/x120"
                         android:layout_height="match_parent"
                         android:background="@null"
-                        android:gravity="center"
+                        android:gravity="center_vertical"
                         android:hint="请输入"
                         android:inputType="number"
                         android:maxLength="3"
@@ -495,7 +494,7 @@
                         android:layout_width="@dimen/x120"
                         android:layout_height="match_parent"
                         android:background="@null"
-                        android:gravity="center"
+                        android:gravity="center_vertical"
                         android:hint="请输入"
                         android:inputType="number"
                         android:maxLength="3"
@@ -541,6 +540,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@null"
+                        android:gravity="right"
                         android:hint="请输入"
                         android:inputType="number"
                         android:textColor="#999"

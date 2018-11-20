@@ -315,7 +315,9 @@ public class FunCampusForActivity extends BaseActivity implements IGetFunView, I
         } else {
             mAddData = false;
         }
-        mList.addAll(info.list);
+        if (info.list.size() >= 1)
+            mList.addAll(info.list);
+
         mNewCampusFunAdapter.notifyDataSetChanged();
     }
 
@@ -400,11 +402,5 @@ public class FunCampusForActivity extends BaseActivity implements IGetFunView, I
     }
 
 
-    public void setVisibleToUser(boolean visibleToUser) {
 
-        if (isCreated && visibleToUser) {
-            if (mList.size() < 1)
-                fetchData();
-        }
-    }
 }

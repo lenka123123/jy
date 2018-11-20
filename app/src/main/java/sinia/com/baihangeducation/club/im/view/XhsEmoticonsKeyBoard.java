@@ -59,7 +59,7 @@ public class XhsEmoticonsKeyBoard extends AutoHeightLayout implements View.OnCli
     }
 
     protected void inflateKeyboardBar() {
-        mInflater.inflate(R.layout.view_keyboard_xhs, this);
+        mInflater.inflate(R.layout.view_keyboard_xhs, XhsEmoticonsKeyBoard.this);
     }
 
     protected View inflateFunc() {

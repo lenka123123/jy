@@ -32,6 +32,7 @@ import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
 import com.lzy.imagepicker.ui.ImageGridActivity;
 import com.lzy.imagepicker.view.CropImageView;
+import com.umeng.commonsdk.debug.I;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -56,6 +57,7 @@ import sinia.com.baihangeducation.supplement.tool.PicassoImageLoader;
 import sinia.com.baihangeducation.supplement.tool.PickerUtils;
 
 import static io.github.changjiashuai.ImagePicker.REQUEST_CODE_PICK;
+
 
 public class ClubEditorActiveActivity extends BaseActivity implements GetRequestListener, GetActiveOptionListener, OnItemClickListener {
 
@@ -185,6 +187,7 @@ public class ClubEditorActiveActivity extends BaseActivity implements GetRequest
 
         findViewById(R.id.back).setOnClickListener(this);
 
+        photo.setOnClickListener(this);
         sex_option.setOnClickListener(this);
         active_start_time.setOnClickListener(this);
         active_stop_time.setOnClickListener(this);
@@ -204,7 +207,15 @@ public class ClubEditorActiveActivity extends BaseActivity implements GetRequest
                 break;
             case R.id.exit:
                 hideEditTextInput();
-                check();
+                exit.setEnabled(false);
+                exit.setVisibility(View.INVISIBLE);
+                if (check()) {
+
+                } else {
+                    exit.setEnabled(true);
+                    exit.setVisibility(View.VISIBLE);
+                }
+
                 break;
             case R.id.active_start_time:
                 hideEditTextInput();
@@ -240,6 +251,7 @@ public class ClubEditorActiveActivity extends BaseActivity implements GetRequest
                 cityPicker.show();
                 break;
 
+            case R.id.photo:
             case R.id.editor_photo:
                 hideEditTextInput();
                 takePhoto(COMPANY_LOGO);
@@ -405,7 +417,7 @@ public class ClubEditorActiveActivity extends BaseActivity implements GetRequest
      */
     protected void hideEditTextInput() {
         //隐藏键盘
-        ((InputMethodManager) context.getSystemService(INPUT_METHOD_SERVICE))
+        ((InputMethodManager) ClubEditorActiveActivity.this.getSystemService(INPUT_METHOD_SERVICE))
                 .hideSoftInputFromWindow((ClubEditorActiveActivity.this).getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
     }
@@ -630,6 +642,11 @@ public class ClubEditorActiveActivity extends BaseActivity implements GetRequest
             }
         });
 
+    }
+
+    public void requestFailed() {
+        exit.setEnabled(true);
+        exit.setVisibility(View.VISIBLE);
     }
 
     /*

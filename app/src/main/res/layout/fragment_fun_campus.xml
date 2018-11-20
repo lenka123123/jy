@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="发布趣事"
+            android:text="校内圈"
             android:textColor="@color/black"
             android:textSize="@dimen/space_18" />
 
@@ -42,13 +42,10 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/space_20"
             android:gravity="center"
-            android:text="发表"
-            android:textColor="@color/black"
+            android:text="发布"
+            android:textColor="@color/red_btn_for_send"
             android:textSize="@dimen/font_size_16" />
     </RelativeLayout>
-
-
-
 
 
     <include layout="@layout/activity_recyclerview_refresh" />
@@ -61,7 +58,6 @@
         android:hint="请输入内容..."
         android:imeOptions="actionSend"
         android:inputType="text"
-        android:singleLine="true"
-      />
+        android:singleLine="true" />
 
 </LinearLayout>

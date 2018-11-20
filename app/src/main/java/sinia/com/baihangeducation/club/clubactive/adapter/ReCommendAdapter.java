@@ -65,6 +65,7 @@ public class ReCommendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         vh.active_item_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                System.out.println("activity_id=="+ mInviteListInfo.get(position).activity_id);
                 Goto.toShowHotActive(context, mInviteListInfo.get(position).activity_id);
             }
         });
@@ -92,8 +93,8 @@ public class ReCommendAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         System.out.println("后台数据" + pDatas.size() + "uuu" + mInviteListInfo.size());
 
         mInviteListInfo.clear();
-
         mInviteListInfo.addAll(pDatas);
+        notifyDataSetChanged();
     }
 
 

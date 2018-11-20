@@ -149,6 +149,7 @@ public class ImBaseActivity extends SwipeBackActivity {
                 break;
             case user_password_change:
                 Intent intent = new Intent(ImBaseActivity.this, LoginActivity.class);
+                intent.putExtra("type", "");
                 startActivity(intent);
                 break;
         }

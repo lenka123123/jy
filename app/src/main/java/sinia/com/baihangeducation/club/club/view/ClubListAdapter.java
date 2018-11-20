@@ -42,6 +42,8 @@ public class ClubListAdapter extends SuperBaseAdapter<ClubHomeInfo.School> {
         this.clubFragment = clubFragment;
     }
 
+
+
     @Override
     protected void convert(BaseViewHolder holder, final ClubHomeInfo.School mInviteListInfo, int position) {
         holder.setText(R.id.ranking_number, mInviteListInfo.new_order);

@@ -2,11 +2,13 @@ package sinia.com.baihangeducation.club.notice;
 
 import android.content.Intent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import sinia.com.baihangeducation.R;
+import sinia.com.baihangeducation.club.clubdetail.ClubDetailActivity;
 import sinia.com.baihangeducation.club.notice.model.ClubNoticeModel;
 import sinia.com.baihangeducation.supplement.base.BaseActivity;
 import sinia.com.baihangeducation.supplement.base.Goto;
@@ -45,6 +47,7 @@ public class ClubNoticeActivity extends BaseActivity {
         editor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { //发布
+                hideEditTextInput();
                 String content = edit_content.getText().toString();
                 if (content.length() < 10 || content.length() > 200) {
                     com.example.framwork.utils.Toast.getInstance().showErrorToast(context, "正文请输入10-200个字");
@@ -61,5 +64,15 @@ public class ClubNoticeActivity extends BaseActivity {
         clubNoticeModel = new ClubNoticeModel(this);
     }
 
+
+    /**
+     * 隐藏软键盘
+     */
+    protected void hideEditTextInput() {
+        //隐藏键盘
+        ((InputMethodManager) ClubNoticeActivity.this.getSystemService(INPUT_METHOD_SERVICE))
+                .hideSoftInputFromWindow((ClubNoticeActivity.this).getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
+    }
 
 }

@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import sinia.com.baihangeducation.R;
@@ -23,6 +24,7 @@ public class CommentHolder extends RecyclerView.ViewHolder {
     public TextView answer;
     public ImageView imageView;
     public AppNoScrollerListView commentList;
+    public LinearLayout digCommentBody;
 
 
     //实现的方法
@@ -35,6 +37,7 @@ public class CommentHolder extends RecyclerView.ViewHolder {
 
         answer = (TextView) itemView.findViewById(R.id.answer);
         commentList = (AppNoScrollerListView) itemView.findViewById(R.id.commentList);
+        digCommentBody = (LinearLayout) itemView.findViewById(R.id.digCommentBody);
 
     }
 }

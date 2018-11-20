@@ -504,7 +504,6 @@ public abstract class BaseActivity extends CheckPermissionsActivity implements V
     }
 
 
-
     /**
      * 自定义OnDismissListener
      */

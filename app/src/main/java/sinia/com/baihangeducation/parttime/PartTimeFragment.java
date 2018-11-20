@@ -80,7 +80,6 @@ public class PartTimeFragment extends MyBaseFragment implements HomePartTimeView
     private String sex_id = "0";
     private String pubtime_id = "0";
     private PartTimeDialog partTimeDialog;
-
     private boolean isCreated = false;
 
     @Override

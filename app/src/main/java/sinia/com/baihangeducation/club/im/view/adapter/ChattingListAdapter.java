@@ -54,6 +54,7 @@ import sinia.com.baihangeducation.club.im.utils.DialogCreator;
 import sinia.com.baihangeducation.club.im.utils.HandleResponseCode;
 import sinia.com.baihangeducation.club.im.utils.TimeFormat;
 import sinia.com.baihangeducation.club.im.view.controller.ChatItemController;
+import sinia.com.baihangeducation.club.personcenter.PersonCenterActivity;
 import sinia.com.baihangeducation.club.personcenter.PersonCenterForFirendActivity;
 import sinia.com.baihangeducation.supplement.base.Goto;
 
@@ -626,18 +627,16 @@ public class ChattingListAdapter extends BaseAdapter {
                         intent.putExtra(MyApplication.TARGET_ID, targetID);
                         intent.putExtra(MyApplication.TARGET_APP_KEY, userInfo.getAppKey());
                         intent.putExtra(MyApplication.GROUP_ID, mGroupId);
-                        System.out.println("userInfo==" + userInfo.getUserName());
-                        System.out.println("userInfo==" + userInfo.getNotename());
-                        System.out.println("userInfo==" + userInfo.getDisplayName());
-                        System.out.println("getAvatar==" + userInfo.getAvatar());
 
-                        System.out.println("getAvatar==" + userInfo.getAvatarFile().getAbsolutePath());
-                        System.out.println("getAvatar==" + userInfo.getDisplayName());
-                        System.out.println("getAvatar==" + userInfo.getAvatar());
 
                         intent.putExtra("other_id", userInfo.getUserName());
                         intent.putExtra("name", userInfo.getDisplayName());
-                        intent.putExtra("phone", userInfo.getAvatarFile().getAbsolutePath());
+                        if (userInfo.getAvatarFile().getAbsolutePath() == null && userInfo.getAvatarFile().getAbsolutePath().length() < 1) {
+                            intent.putExtra("phone", "");
+                        } else {
+                            intent.putExtra("phone", userInfo.getAvatarFile().getAbsolutePath());
+                        }
+
 
                         /**
                          * 11-08 14:04:24.645 27184-27184/sinia.com.baihangeducation I/System.out: userInfo==13000000001
@@ -646,9 +645,9 @@ public class ChattingListAdapter extends BaseAdapter {
                          */
 
                         if (userInfo.isFriend()) {
-                            intent.setClass(mContext, PersonCenterForFirendActivity.class);
+                            intent.setClass(mContext, PersonCenterActivity.class);
                         } else {
-                            intent.setClass(mContext, PersonCenterForFirendActivity.class);
+                            intent.setClass(mContext, PersonCenterActivity.class);
                         }
                         ((Activity) mContext).startActivityForResult(intent,
                                 MyApplication.REQUEST_CODE_FRIEND_INFO);
@@ -939,6 +938,10 @@ public class ChattingListAdapter extends BaseAdapter {
         }
 
         public abstract void onContentLongClick(int position, View view);
+    }
+
+    public void stopMediaPlayer() {
+        this.mController.stopMediaPlayer();
     }
 
 }

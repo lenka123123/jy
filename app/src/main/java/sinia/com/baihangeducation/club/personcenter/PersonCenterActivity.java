@@ -54,6 +54,7 @@ public class PersonCenterActivity extends BaseActivity implements SuperRecyclerV
     private String phoneImg;
     private TextView my_apply_help_num;
     private LinearLayout my_apply_help_layout;
+    private String phone;
 
 
     @Override
@@ -70,6 +71,9 @@ public class PersonCenterActivity extends BaseActivity implements SuperRecyclerV
         clubHomeModel = new ClubHomeModel(this);
         clubHomeModel.getClubHomeInfo("", "1", other_id, this);
         clubTitleChange();
+        phone = (String) SpCommonUtils.get(context, AppConfig.USERPHOTO, "");
+
+        System.out.println(phone + "== initData ==" + other_id);
     }
 
     public void clubTitleChange() {
@@ -155,16 +159,20 @@ public class PersonCenterActivity extends BaseActivity implements SuperRecyclerV
         super.onClick(v);
         switch (v.getId()) {
             case R.id.my_part_time_layout:
-                Goto.toMyPartTime(context, other_id);
+                if (other_id.equals(phone) || other_id.equals(""))
+                    Goto.toMyPartTime(context, other_id);
                 break;
             case R.id.my_active_layout:
-                Goto.toMyClubActivity(context, other_id);
+                if (other_id.equals(phone) || other_id.equals(""))
+                    Goto.toMyClubActivity(context, other_id);
                 break;
             case R.id.my_club_layout:
-                Goto.toMyClub(context, other_id);
+                if (other_id.equals(phone) || other_id.equals(""))
+                    Goto.toMyClub(context, other_id);
                 break;
             case R.id.my_apply_help_layout:
-                Goto.toMyHelpActivity(context, other_id);
+                if (other_id.equals(phone) || other_id.equals(""))
+                    Goto.toMyHelpActivity(context, other_id);
                 break;
         }
     }

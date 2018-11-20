@@ -5,8 +5,8 @@ android {
         applicationId "sinia.com.baihangeducation"
         minSdkVersion 17
         targetSdkVersion 26
-        versionCode 430
-        versionName "4.3.0"
+        versionCode 431
+        versionName "4.3.1"
 //        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         ndk {

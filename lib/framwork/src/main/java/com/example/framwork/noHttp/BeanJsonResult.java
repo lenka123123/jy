@@ -105,12 +105,12 @@ public class BeanJsonResult<T> extends RestRequest<T> {
                             }
 
                         } else if (!bean.isSuccess()) {
-                            IsLoginInfo loginInfo = bean.parseObject(IsLoginInfo.class);
-                            if (loginInfo != null && loginInfo.is_need_jump_login == 1) {
+                            if (bean.getData().length() > 2) {
+                                IsLoginInfo loginInfo = bean.parseObject(IsLoginInfo.class);
+                                if (loginInfo != null && loginInfo.is_need_jump_login == 1) {
 //                                requestListener.requestFailed("尚未登录，请登录");
-
-                                if (towMin("300001"))
-                                    gotoLogin(activity);
+                                    if (towMin("300001"))
+                                        gotoLogin(activity);
 
 //                                if (bean.getCode().equals("90000")){
 //                                }else {
@@ -120,9 +120,13 @@ public class BeanJsonResult<T> extends RestRequest<T> {
 //                                if (loginRestLinstener != null) {
 //                                    loginRestLinstener.loginRest(activity);
 //                                }
+                                } else {
+                                    requestListener.requestFailed(TextUtils.isEmpty(bean.getMessage()) ? "获取数据失败" : bean.getMessage());
+                                }
                             } else {
-                                requestListener.requestFailed(TextUtils.isEmpty(bean.getMessage()) ? "获取数据失败" : bean.getMessage());
+                                requestListener.requestFailed(bean.getMessage());
                             }
+
                         } else {
                             requestListener.requestSuccess(bean);
                         }

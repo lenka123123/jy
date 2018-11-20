@@ -105,6 +105,7 @@ public class BaseImActivity extends AppCompatActivity {
                 break;
             case user_password_change:
                 Intent intent = new Intent(mContext, LoginActivity.class);
+                intent.putExtra("type", "");
                 startActivity(intent);
                 break;
         }

@@ -12,12 +12,12 @@ import sinia.com.baihangeducation.mine.activity.LoginActivity;
 
 
 public class HandleResponseCode {
-    public static void onHandle(Context context, int status, boolean isCenter){
+    public static void onHandle(Context context, int status, boolean isCenter) {
         Toast toast = new Toast(context);
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(IdHelper.getLayout(context, "jmui_default_toast"), null);
         TextView content = (TextView) view.findViewById(IdHelper.getViewID(context, "jmui_toast_content_tv"));
-        switch (status){
+        switch (status) {
             case 0:
                 break;
             case 1000:
@@ -54,6 +54,7 @@ public class HandleResponseCode {
                 content.setText(IdHelper.getString(context, "jmui_server_800013"));
                 Intent intent = new Intent();
                 intent.setClass(context, LoginActivity.class);
+                intent.putExtra("type", "");
                 context.startActivity(intent);
                 break;
             case 800014:
@@ -223,7 +224,7 @@ public class HandleResponseCode {
                 content.setText("Response code: " + status);
                 break;
         }
-        if(isCenter){
+        if (isCenter) {
             toast.setGravity(Gravity.CENTER, 0, 0);
         }
         view.getBackground().setAlpha(150);

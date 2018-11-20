@@ -93,7 +93,7 @@ public class ClubFragment extends MyBaseFragment implements SuperRecyclerView.Lo
     private String is_edit;
     private List<String> mPermissionList;
     private LinearLayout apply_help;
-
+    private LinearLayout school_circle;
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
@@ -103,7 +103,9 @@ public class ClubFragment extends MyBaseFragment implements SuperRecyclerView.Lo
         AppConfig.CHAT = false;
         AppConfig.CLUB = true;
         AppConfig.ME = false;
-        if (isCreated) {
+        if (getActivity() == null || getActivity().isDestroyed() || getActivity().isFinishing())
+            return;
+        if (isCreated && AppConfig.CLUB) {
             getClubPermission("");
             getServerData();
             setPhone();
@@ -112,6 +114,8 @@ public class ClubFragment extends MyBaseFragment implements SuperRecyclerView.Lo
 
 
     private void setPhone() {
+        if (getActivity() == null || getActivity().isDestroyed() || getActivity().isFinishing())
+            return;
         String phone = (String) SpCommonUtils.get(getActivity(), AppConfig.FINAL_SAVE_PHOTO_PATH, "");
         if (!phone.equals("") && AppConfig.ISlOGINED && AppConfig.LOGINPHOTOTPATH.length() > 1) {
             Glide.with(getActivity()).load(AppConfig.LOGINPHOTOTPATH).asBitmap().error(R.drawable.new_eorrlogo).centerCrop()
@@ -135,7 +139,8 @@ public class ClubFragment extends MyBaseFragment implements SuperRecyclerView.Lo
             System.out.println("暂未选择====" + AppConfig.SCHOOLNAME);
             System.out.println("暂未选择id====" + AppConfig.SCHOOLNAMEID);
             if (school_name != null && !AppConfig.SCHOOLNAME.equals("")) {
-                clubHomePresenter.setSelectSchool();
+                if (onClickSchoolSelect)
+                    clubHomePresenter.setSelectSchool();
             }
         }
     }
@@ -254,15 +259,15 @@ public class ClubFragment extends MyBaseFragment implements SuperRecyclerView.Lo
                 Goto.toHotActive(context, "main", "");
                 break;
             case R.id.hot_part:
-                Goto.toFriend(context);
-
                 //兼职不显示
-//                if (mPermissionList == null) {
-//                    Goto.toClubPart(context, false);
-//                } else {
-//                    Goto.toClubPart(context, mPermissionList.contains("pushJob"));
-//                }
-
+                if (mPermissionList == null) {
+                    Goto.toClubPart(context, false);
+                } else {
+                    Goto.toClubPart(context, mPermissionList.contains("pushJob"));
+                }
+                break;
+            case R.id.school_circle:
+                Goto.toFriend(context);
                 break;
             case R.id.hot_club:
                 Goto.toClubSchoolListActivity(context);
@@ -350,7 +355,9 @@ public class ClubFragment extends MyBaseFragment implements SuperRecyclerView.Lo
         hot_part = header.findViewById(R.id.hot_part);
         hot_club = header.findViewById(R.id.hot_club);
         apply_help = header.findViewById(R.id.apply_help);
+        school_circle = header.findViewById(R.id.school_circle);
 
+        school_circle.setOnClickListener(this);
         hot_active.setOnClickListener(this);
         hot_part.setOnClickListener(this);
         hot_club.setOnClickListener(this);

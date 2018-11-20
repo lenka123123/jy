@@ -62,7 +62,6 @@ public class SearchListActivity extends BaseActivity implements SearchSchoolCont
     private TextView contact_me;
     private LinearLayout contact_admin;
 
-
     private ACache mACache;
 
     private TagFlowLayout mSearchHistrory;      //搜索历史
@@ -320,7 +319,7 @@ public class SearchListActivity extends BaseActivity implements SearchSchoolCont
                 }
                 mRows.clear();
                 searchEditText.setText(mList.get(position));
-                clubSchoolListPresenter.getSearchSchoolList("1", String.valueOf(perpage), mList.get(position));
+//                clubSchoolListPresenter.getSearchSchoolList("1", String.valueOf(perpage), mList.get(position));
                 return true;
             }
         });
@@ -385,7 +384,6 @@ public class SearchListActivity extends BaseActivity implements SearchSchoolCont
         }
         if (mSmartRefreshLayout != null)
             mSmartRefreshLayout.finishLoadMore(500);
-        mRows.addAll(successMessage);
 
 
         if (currentPage < maxpage) {
@@ -394,6 +392,11 @@ public class SearchListActivity extends BaseActivity implements SearchSchoolCont
         } else {
             addData = false;
         }
+
+        if (currentPage == 1)
+            mRows.clear();
+
+        mRows.addAll(successMessage);
 
         paiedListAdapter.setData(mRows, 1, text);
 

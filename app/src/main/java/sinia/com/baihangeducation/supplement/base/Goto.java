@@ -27,6 +27,7 @@ import sinia.com.baihangeducation.club.myclub.help.ClubHelpActivity;
 import sinia.com.baihangeducation.club.myclub.myactive.ClubMyActiveActivity;
 import sinia.com.baihangeducation.club.myclub.myclub.ClubMyClubActivity;
 import sinia.com.baihangeducation.club.myclub.myparttime.ClubMyPartTimeActivity;
+import sinia.com.baihangeducation.club.myparttimeapplylist.ClubMyCreatePartTimeActivity;
 import sinia.com.baihangeducation.club.notice.ClubNoticeActivity;
 import sinia.com.baihangeducation.club.personcenter.PersonCenterActivity;
 import sinia.com.baihangeducation.club.searchschool.SearchListActivity;
@@ -36,6 +37,7 @@ import sinia.com.baihangeducation.home.activity.CompleteMajorStageActivity;
 import sinia.com.baihangeducation.home.activity.PartTimeJobCLubDetailActivity;
 import sinia.com.baihangeducation.home.activity.PortionActivity;
 import sinia.com.baihangeducation.mine.activity.MySendCommentActivity;
+import sinia.com.baihangeducation.mine.activity.VerificationCodeActivity;
 import sinia.com.baihangeducation.newcampus.activity.CommentPageActivity;
 import sinia.com.baihangeducation.newcampus.activity.HomePageActivity;
 import sinia.com.baihangeducation.newcampus.info.FunContantInfo;
@@ -159,6 +161,18 @@ public class Goto extends BaseGoto {
      */
     public static void toLogin(Context context) {
         Intent intent = new Intent(context, LoginActivity.class);
+        intent.putExtra("type", "");
+        context.startActivity(intent);
+    }
+
+    /**
+     * 到登录页面
+     *
+     * @param context
+     */
+    public static void toLogin(Context context, String type) {
+        Intent intent = new Intent(context, LoginActivity.class);
+        intent.putExtra("type", type);
         context.startActivity(intent);
     }
 
@@ -198,8 +212,19 @@ public class Goto extends BaseGoto {
      *
      * @param context
      */
-    public static void toForgetPassword(Context context) {
+    public static void toForgetPassword(Context context, String type) {
         Intent intent = new Intent(context, ForgetPasswordActivity.class);
+        intent.putExtra("type", type);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 到忘记密码页面
+     *
+     * @param context
+     */
+    public static void toVerificationCodeLogin(Context context) {
+        Intent intent = new Intent(context, VerificationCodeActivity.class);
         context.startActivity(intent);
     }
 
@@ -781,10 +806,10 @@ public class Goto extends BaseGoto {
     /**
      * 兼职详情
      */
-    public static void toPartTimeJobDetailActivityForHome(Context context, int id, int type) {
+    public static void toPartTimeJobDetailActivityForHome(Context context, int id, int type, String phone) {
         Intent intent = new Intent(context, PartTimeJobDetailActivity.class);
         intent.putExtra("JOBID", id + "");
-        intent.putExtra("phone", "123");
+        intent.putExtra("phone", phone);
         if (type == 3) {
             intent.putExtra("club", "club");
         } else {
@@ -1126,6 +1151,7 @@ public class Goto extends BaseGoto {
         context.startActivity(intent);
     }
 
+
     //club 搜索
     public static void toClubSearchActivity(Context context) {
         Intent intent = new Intent(context, SearchListActivity.class);
@@ -1276,21 +1302,21 @@ public class Goto extends BaseGoto {
     }
 
     //club 社团-我的兼职
-    public static void toMyPartTime(Context context ,String other_id) {
+    public static void toMyPartTime(Context context, String other_id) {
         Intent intent = new Intent(context, ClubMyPartTimeActivity.class);
         intent.putExtra("other_id", other_id);
         context.startActivity(intent);
     }
 
     //club 社团-我的兼职
-    public static void toMyClub(Context context ,String other_id) {
+    public static void toMyClub(Context context, String other_id) {
         Intent intent = new Intent(context, ClubMyClubActivity.class);
         intent.putExtra("other_id", other_id);
         context.startActivity(intent);
     }
 
     //club 社团-我的兼职活动
-    public static void toMyClubActivity(Context context,String other_id) {
+    public static void toMyClubActivity(Context context, String other_id) {
         Intent intent = new Intent(context, ClubMyActiveActivity.class);
         intent.putExtra("other_id", other_id);
         context.startActivity(intent);
@@ -1338,6 +1364,13 @@ public class Goto extends BaseGoto {
     //朋友圈
     public static void toSendFunDispark(Context context) {
         Intent intent = new Intent(context, ClubDisparkActivity.class);
+        context.startActivity(intent);
+    }
+
+    // 我发布的兼职列表进行申请
+    public static void toMyCreatePartTimeApplyList(Context context, String job_id) {
+        Intent intent = new Intent(context, ClubMyCreatePartTimeActivity.class);
+        intent.putExtra("job_id", job_id);
         context.startActivity(intent);
     }
 

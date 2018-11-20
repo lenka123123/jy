@@ -412,6 +412,7 @@ public class ReleaseJobInfoActivity extends BaseActivity implements IReleaseJobI
 
                 break;
             case R.id.releasejob_release_textview:
+                mReleaseTextView.setVisibility(View.VISIBLE);
                 hideEditTextInput();
                 if (!TextUtils.isEmpty(mSalaryTypeTextView.getText().toString().trim())) {
                     for (int i = 0; i < job_money_type_list.size(); i++) {
@@ -753,23 +754,23 @@ public class ReleaseJobInfoActivity extends BaseActivity implements IReleaseJobI
     public String getAgeLower() {
         if (!mAgeLimitTextView.getText().toString().equals("")) {
             if (mAgeLimitTextView.getText().toString().equals("不限")) {
-                return "18";
+                return "16";
             }
             String[] age = mAgeLimitTextView.getText().toString().split("-");
             return Integer.valueOf(age[0]) < Integer.valueOf(age[1]) ? age[0] : age[1];
         }
-        return "18";
+        return "16";
     }
 
     public String getAgeUpper() {
         if (!mAgeLimitTextView.getText().toString().equals("")) {
             if (mAgeLimitTextView.getText().toString().equals("不限")) {
-                return "";
+                return "16";
             }
             String[] age = mAgeLimitTextView.getText().toString().split("-");
             return Integer.valueOf(age[0]) < Integer.valueOf(age[1]) ? age[1] : age[0];
         }
-        return "";
+        return "16";
     }
 
     public String getIsContinue() {
@@ -821,7 +822,13 @@ public class ReleaseJobInfoActivity extends BaseActivity implements IReleaseJobI
 
     @Override
     public void getReleaseSuccess() {
+        mReleaseTextView.setVisibility(View.VISIBLE);
         Toast.getInstance().showSuccessToast(context, "发布成功");
         finish();
+    }
+
+    @Override
+    public void getReleaseFail() {
+        mReleaseTextView.setVisibility(View.VISIBLE);
     }
 }

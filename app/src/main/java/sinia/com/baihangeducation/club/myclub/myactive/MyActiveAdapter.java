@@ -34,15 +34,28 @@ public class MyActiveAdapter extends SuperBaseAdapter<ActiveListData.ActiveList>
         holder.setText(R.id.title, item.club_name);
         holder.setText(R.id.time, item.start_time);
         holder.setText(R.id.address, item.addr);
-        holder.setText(R.id.free, item.expenditure);
+
         holder.setText(R.id.person, item.join_num);
+
+        System.out.println(" status=== " + item.status);
+        //  ( 1：待审核 2：审核通过 3：审核失败（2018/11/6迭代） )
+        if (item.status == 1) {
+            holder.setText(R.id.free, "待审核");
+        } else if (item.status == 2) {
+            holder.setText(R.id.free, item.expenditure);
+        } else if (item.status == 3) {
+            holder.setText(R.id.free, "审核失败");
+        }
+
 //        holder.setText(R.id.ranking_school_number, item.member_num + "人");
 //        holder.setText(R.id.ranking_money, item.role_name);
 
         holder.setOnClickListener(R.id.newcampany, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Goto.toShowHotActive(context, item.activity_id);
+                if (item.status == 2) {
+                    Goto.toShowHotActive(context, item.activity_id);
+                }
             }
         });
     }

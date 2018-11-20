@@ -14,6 +14,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ImageSpan;
@@ -23,6 +26,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -45,6 +49,7 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import cn.jpush.im.android.api.JMessageClient;
@@ -62,6 +67,9 @@ import sinia.com.baihangeducation.club.addclub.AddCLubActivity;
 import sinia.com.baihangeducation.club.club.interfaces.ClubGetRequestListener;
 import sinia.com.baihangeducation.club.club.interfaces.GetRequestListener;
 import sinia.com.baihangeducation.club.club.presenter.ClubHomePresenter;
+import sinia.com.baihangeducation.club.clubactive.adapter.ReCommendAdapter;
+import sinia.com.baihangeducation.club.clubactive.adapter.ReCommendForTestAdapter;
+import sinia.com.baihangeducation.club.clubactive.model.ActiveListData;
 import sinia.com.baihangeducation.club.clubdetail.interfaces.ClubDetailContract;
 import sinia.com.baihangeducation.club.clubdetail.model.ClubDetailBean;
 import sinia.com.baihangeducation.club.clubdetail.model.ClubDetailModel;
@@ -130,6 +138,11 @@ public class ClubDetailActivity extends BaseActivity implements
     private String updatLogUrl = "";
     private String type;
     private String is_chairman;
+    private EditText editText;
+    private RecyclerView foot_listview;
+    private ReCommendForTestAdapter mMemberManageAdapter;
+
+    private List<ActiveListData.ActiveList> mRows = new ArrayList<>();
 
     @Override
     public int initLayoutResID() {
@@ -139,7 +152,7 @@ public class ClubDetailActivity extends BaseActivity implements
     @Override
     protected void onRestart() {
         super.onRestart();
-        hideEditTextInput();
+
         onRestart = true;
         if (clubDetailPresenter != null) {
             onTime = 1;
@@ -152,25 +165,27 @@ public class ClubDetailActivity extends BaseActivity implements
     protected void initData() {
         Intent intent = getIntent();
         club_id = intent.getStringExtra("club_id");
-        phone = (String) SpCommonUtils.get(context, AppConfig.USERPHOTO, "");
+
+        phone = (String) SpCommonUtils.get(ClubDetailActivity.this, AppConfig.USERPHOTO, "");
 
         progressActivityUtils = new ProgressActivityUtils(ClubDetailActivity.this, progressActivity);
         initSwipeLayout(swipeContainer, this);
         clubDetailPresenter = new ClubDetailPresenter(new ClubDetailModel(ClubDetailActivity.this), this);
         getServerData();
-
-
     }
 
     @Override
     protected void initView() {
 
+        editText = findViewById(R.id.edittext);
         exit = findViewById(R.id.exit);
         back = findViewById(R.id.back);
         transparent = findViewById(R.id.transparent);
         progressActivity = findViewById(R.id.progressActivity);
         swipeContainer = findViewById(R.id.swipe_container);
         rvContainer = findViewById(R.id.rv_container);
+        rvContainer.setNoMore(false);
+
         send_ad = findViewById(R.id.send_ad);
         send_ad.setOnClickListener(this);
         exit.setOnClickListener(this);
@@ -178,7 +193,7 @@ public class ClubDetailActivity extends BaseActivity implements
         mClubListAdapter = new ClubDetailListAdapter(ClubDetailActivity.this, list);
         initRecyclerView(rvContainer, mClubListAdapter, this);
         addHeaderView();
-
+        addFeetView();
     }
 
     @Override
@@ -215,8 +230,25 @@ public class ClubDetailActivity extends BaseActivity implements
         visitor = header.findViewById(R.id.visitor);
         administrator = header.findViewById(R.id.administrator);
         mClubListAdapter.addHeaderView(header);
+    }
+
+    private void addFeetView() {
+        View foot = LayoutInflater.from(ClubDetailActivity.this).inflate(R.layout.foot_club_detail_list, null);
+        foot_listview = foot.findViewById(R.id.rv_container);
+        mMemberManageAdapter = new ReCommendForTestAdapter(ClubDetailActivity.this);
+        foot_listview.setAdapter(mMemberManageAdapter);
 
 
+        // 设置布局管理器
+        final GridLayoutManager manager = new GridLayoutManager(this, 1);
+        foot_listview.setLayoutManager(manager);
+        // 设置adapter
+        // 设置Item添加和移除的动画
+        foot_listview.setItemAnimator(new DefaultItemAnimator());
+        // 设置Item之间间隔样式
+
+//        mMemberManageAdapter.setData(mRows, currentPage);
+        mClubListAdapter.addFooterView(foot);
     }
 
     @Override
@@ -228,6 +260,9 @@ public class ClubDetailActivity extends BaseActivity implements
             progressActivityUtils.showContent();
             rvContainer.setLoadMoreEnabled(true);
         }
+// ActiveListData.ActiveList
+
+
         updatLogUrl = successMessage.info.logo;
         GlideLoadUtils.getInstance().glideLoad(ClubDetailActivity.this, successMessage.info.logo, logo_img, R.drawable.logo);
 //         GlideLoadUtils.getInstance().glideLoad(getApplicationClubDetailActivity.this(), successMessage.info.logo, logo, R.drawable.logo);
@@ -290,6 +325,9 @@ public class ClubDetailActivity extends BaseActivity implements
         } else if (successMessage.info.is_apply.equals("2")) {
             join_club.setClickable(true);
             join_club.setText("申请列表");
+            if (!mPermissionList.contains("setClubApply")) {
+                join_club.setText("已加入");
+            }
             exit.setText("退出");
             exit.setVisibility(View.VISIBLE);
         } else if (successMessage.info.is_apply.equals("1")) {
@@ -306,33 +344,9 @@ public class ClubDetailActivity extends BaseActivity implements
         visitor.setVisibility(View.GONE);
         administrator.setVisibility(View.VISIBLE);//任务
 
-
-//            if (successMessage.admin_info != null && successMessage.admin_info.id != null) {   //没有管理员
-        System.out.println("=======null===");
-//            if (successMessage.admin_info.nickname != null)
-//                administrator_name.setText(successMessage.admin_info.nickname);
-//            if (successMessage.admin_info.avatar != null) {
-//
-//                Glide.with(ClubDetailActivity.this).load(successMessage.admin_info.avatar).asBitmap().error(R.drawable.new_eorrlogo).centerCrop().into(new BitmapImageViewTarget(administrator_logo) {
-//                    @Override
-//                    protected void setResource(Bitmap resource) {
-//                        RoundedBitmapDrawable circularBitmapDrawable =
-//                                RoundedBitmapDrawableFactory.create(ClubDetailActivity.this.getResources(), resource);
-//                        circularBitmapDrawable.setCircular(true);
-//                        administrator_logo.setImageDrawable(circularBitmapDrawable);
-//                    }
-//                });
-//            } else {
-//                Glide.with(ClubDetailActivity.this).load(R.drawable.new_eorrlogo).asBitmap().error(R.drawable.new_eorrlogo).centerCrop().into(new BitmapImageViewTarget(administrator_logo) {
-//                    @Override
-//                    protected void setResource(Bitmap resource) {
-//                        RoundedBitmapDrawable circularBitmapDrawable =
-//                                RoundedBitmapDrawableFactory.create(ClubDetailActivity.this.getResources(), resource);
-//                        circularBitmapDrawable.setCircular(true);
-//                        administrator_logo.setImageDrawable(circularBitmapDrawable);
-//                    }
-//                });
-//            }
+        mRows.clear();
+        mRows.addAll(successMessage.activity_list);
+        mMemberManageAdapter.setData(mRows, currentPage);
     }
 
 
@@ -397,11 +411,11 @@ public class ClubDetailActivity extends BaseActivity implements
                     @Override
                     public void gotResult(int i, String s, GroupInfo groupInfo) {
                         if (groupInfo.getGroupMembers() == null || groupInfo.getGroupMembers().size() <= 0) {
-                            Toast.getInstance().showErrorToast(context, "聊天功能异常，请重新登录");
+                            Toast.getInstance().showErrorToast(ClubDetailActivity.this, "聊天功能异常，请重新登录");
                             return;
                         }
 
-                        final Intent intent = new Intent(context, ChatActivity.class);
+                        final Intent intent = new Intent(ClubDetailActivity.this, ChatActivity.class);
                         intent.putExtra(MyApplication.GROUP_ID, Long.valueOf(jmessage_group_id));
                         intent.putExtra("fromGroup", false);
 
@@ -428,7 +442,7 @@ public class ClubDetailActivity extends BaseActivity implements
                     getCenterCancelDialogShowCancel();
                     return;
                 }
-                Goto.toClubPart(context, mPermissionList.contains("pushJob"));
+                Goto.toClubPart(ClubDetailActivity.this, mPermissionList.contains("pushJob"));
                 break;
             case R.id.exit:
                 if (isNeetLogin()) return;
@@ -441,10 +455,18 @@ public class ClubDetailActivity extends BaseActivity implements
                     if (isNeetLogin()) return;
                     clubDetailPresenter.joinClub(clubId);
                 }
-
                 if (join_club.getText().equals("申请列表")) {
-                    if (isNeetLogin()) return;
-                    Goto.toApplyClubListActivity(ClubDetailActivity.this, clubId);
+                    if (mPermissionList.contains("setClubApply")) {
+                        join_club.setVisibility(View.VISIBLE);
+                        if (isNeetLogin()) return;
+                        Goto.toApplyClubListActivity(ClubDetailActivity.this, clubId);
+                    } else {
+//                        Toast.getInstance().showErrorToast(ClubDetailActivity.this, "权限限制");
+                        //已经加入   但是没有权限看申请列表   join_club.setVisibility(View.GONE);
+                        getCenterCancelDialogApply();
+                    }
+                } else {
+
                 }
                 break;
             case R.id.club_person_list:
@@ -489,7 +511,7 @@ public class ClubDetailActivity extends BaseActivity implements
                 }
                 //社团活动
                 if (isNeetLogin()) return;
-                Goto.toHotActive(context, "club", club_id);
+                Goto.toHotActive(ClubDetailActivity.this, "club", club_id);
                 break;
             case R.id.notice_tv:
                 //编辑简介
@@ -559,6 +581,7 @@ public class ClubDetailActivity extends BaseActivity implements
      * 获取数据
      */
     private void getServerData() {
+        hideEditTextInput(editText);
         if (clubDetailPresenter != null) {
 
             clubDetailPresenter.getClubPermission(club_id, this);
@@ -592,7 +615,7 @@ public class ClubDetailActivity extends BaseActivity implements
     }
 
     public void getCenterCancelDialog() {
-        final Dialog dialog = new Dialog(context, com.example.framwork.R.style.custom_cancel_dialog);
+        final Dialog dialog = new Dialog(ClubDetailActivity.this, com.example.framwork.R.style.custom_cancel_dialog);
         dialog.setContentView(R.layout.clcub_join_dialog);
         Window dialogWindow = dialog.getWindow();
         dialogWindow.findViewById(R.id.club_cancel).setOnClickListener(new View.OnClickListener() {
@@ -612,7 +635,7 @@ public class ClubDetailActivity extends BaseActivity implements
         });
         //dialogWindow.setWindowAnimations(R.style.mystyle);
         WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-        lp.width = context.getResources().getDisplayMetrics().widthPixels;
+        lp.width = ClubDetailActivity.this.getResources().getDisplayMetrics().widthPixels;
         lp.alpha = 1.0f;
         dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         dialogWindow.setAttributes(lp);
@@ -624,7 +647,7 @@ public class ClubDetailActivity extends BaseActivity implements
 
 
     public void getCenterCancelDialogShow() {
-        final Dialog dialog = new Dialog(context, com.example.framwork.R.style.custom_cancel_dialog);
+        final Dialog dialog = new Dialog(ClubDetailActivity.this, com.example.framwork.R.style.custom_cancel_dialog);
         dialog.setContentView(R.layout.clcub_join_dialog_apply);
         Window dialogWindow = dialog.getWindow();
 
@@ -636,7 +659,7 @@ public class ClubDetailActivity extends BaseActivity implements
         });
         //dialogWindow.setWindowAnimations(R.style.mystyle);
         WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-        lp.width = context.getResources().getDisplayMetrics().widthPixels;
+        lp.width = ClubDetailActivity.this.getResources().getDisplayMetrics().widthPixels;
         lp.alpha = 1.0f;
         dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         dialogWindow.setAttributes(lp);
@@ -647,7 +670,7 @@ public class ClubDetailActivity extends BaseActivity implements
     }
 
     public void getCenterCancelDialogShowCancel() {
-        final Dialog dialog = new Dialog(context, com.example.framwork.R.style.custom_cancel_dialog);
+        final Dialog dialog = new Dialog(ClubDetailActivity.this, com.example.framwork.R.style.custom_cancel_dialog);
         dialog.setContentView(R.layout.clcub_join_dialog_apply_cancel);
         Window dialogWindow = dialog.getWindow();
 
@@ -659,7 +682,31 @@ public class ClubDetailActivity extends BaseActivity implements
         });
         //dialogWindow.setWindowAnimations(R.style.mystyle);
         WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-        lp.width = context.getResources().getDisplayMetrics().widthPixels;
+        lp.width = ClubDetailActivity.this.getResources().getDisplayMetrics().widthPixels;
+        lp.alpha = 1.0f;
+        dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        dialogWindow.setAttributes(lp);
+        dialogWindow.setGravity(Gravity.CENTER);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.show();
+
+    }
+
+
+    public void getCenterCancelDialogApply() {
+        final Dialog dialog = new Dialog(ClubDetailActivity.this, com.example.framwork.R.style.custom_cancel_dialog);
+        dialog.setContentView(R.layout.clcub_join_dialog_apply_join_club);
+        Window dialogWindow = dialog.getWindow();
+
+        dialogWindow.findViewById(R.id.club_join).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.cancel();
+            }
+        });
+        //dialogWindow.setWindowAnimations(R.style.mystyle);
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+        lp.width = ClubDetailActivity.this.getResources().getDisplayMetrics().widthPixels;
         lp.alpha = 1.0f;
         dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         dialogWindow.setAttributes(lp);
@@ -671,11 +718,15 @@ public class ClubDetailActivity extends BaseActivity implements
 
     /**
      * 隐藏软键盘
+     *
+     * @param editText
      */
-    protected void hideEditTextInput() {
+    protected void hideEditTextInput(EditText editText) {
         //隐藏键盘
-        ((InputMethodManager) context.getSystemService(INPUT_METHOD_SERVICE))
-                .hideSoftInputFromWindow((ClubDetailActivity.this).getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        ((InputMethodManager) ClubDetailActivity.this.getSystemService(INPUT_METHOD_SERVICE))
+                .hideSoftInputFromWindow(editText.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
     }
+
+
 }

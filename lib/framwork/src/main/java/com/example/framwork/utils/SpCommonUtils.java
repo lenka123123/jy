@@ -9,16 +9,17 @@ import java.util.Map;
 
 public class SpCommonUtils {
 
-    public static final String LOGINSUCCESS="LOGINSUCCESS";
 
-    public static final String LOGINSUCCESS_NAME="LOGINSUCCESS_NAME";
-    public static final String LOGINSUCCESS_PSW="LOGINSUCCESS_PSW";
-    public static final String LOGINSUCCESS_LNG="LOGINSUCCESS_LNG";
-    public static final String LOGINSUCCESS_LAT="LOGINSUCCESS_LAT";
-    public static final String LOGINSUCCESS_DEVICE="LOGINSUCCESS_DEVICE";
+    private static SharedPreferences sp;
 
+    public static void init(Context context) {
+        sp = context.getSharedPreferences(FILE_NAME,
+                Context.MODE_PRIVATE);
+    }
 
-    public static final String LOGINSUCCESS_TYPE="LOGINSUCCESS_TYPE";
+    public static void SpCommonUtils(Context context) {
+
+    }
 
     /**
      * 保存在手机里面的文件名
@@ -34,8 +35,7 @@ public class SpCommonUtils {
      */
     public static void put(Context context, String key, Object object) {
 
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
-                Context.MODE_PRIVATE);
+
         SharedPreferences.Editor editor = sp.edit();
 
         if (object instanceof String) {
@@ -64,8 +64,6 @@ public class SpCommonUtils {
      * @return
      */
     public static Object get(Context context, String key, Object defaultObject) {
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
-                Context.MODE_PRIVATE);
 
         if (defaultObject instanceof String) {
             return sp.getString(key, (String) defaultObject);
@@ -89,8 +87,6 @@ public class SpCommonUtils {
      * @param key
      */
     public static void remove(Context context, String key) {
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
-                Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.remove(key);
         SharedPreferencesCompat.apply(editor);
@@ -102,8 +98,6 @@ public class SpCommonUtils {
      * @param context
      */
     public static void clear(Context context) {
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
-                Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.clear();
         SharedPreferencesCompat.apply(editor);
@@ -117,8 +111,6 @@ public class SpCommonUtils {
      * @return
      */
     public static boolean contains(Context context, String key) {
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
-                Context.MODE_PRIVATE);
         return sp.contains(key);
     }
 
@@ -129,8 +121,6 @@ public class SpCommonUtils {
      * @return
      */
     public static Map<String, ?> getAll(Context context) {
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME,
-                Context.MODE_PRIVATE);
         return sp.getAll();
     }
 

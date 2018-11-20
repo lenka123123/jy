@@ -2,6 +2,8 @@ package sinia.com.baihangeducation.club.clubdetail.model;
 
 import java.util.List;
 
+import sinia.com.baihangeducation.club.clubactive.model.ActiveListData;
+
 /**
  * Created by Administrator on 2018/4/25.
  */
@@ -9,6 +11,8 @@ import java.util.List;
 public class ClubDetailBean {
 
     public Club info;
+    public NoticeList notice_list;
+    public List<ActiveListData.ActiveList> activity_list;
 
     public class Club {
         public String type;
@@ -28,18 +32,6 @@ public class ClubDetailBean {
         public String is_chairman; // 1：是 0：否
     }
 
-//    public AdminInfo admin_info;
-//
-//    public class AdminInfo {
-//        public String id;
-//        public String nickname;
-//        public String avatar;
-//        public String role;   // role  角色    ( 1：成员 2：财务 3：副会长 4：会长 )
-//        public String role_name;//角色 ( 0：游客 1：成员 2：财务 3：副会长 4：会长 )
-//    }
-
-    public NoticeList notice_list;
-
     public class NoticeList {
         public String page;
         public String perpage;
@@ -54,7 +46,6 @@ public class ClubDetailBean {
             public String title;//
             public String add_time;//
         }
-
     }
 
 

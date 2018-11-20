@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y160"
+        android:layout_height="@dimen/y140"
         android:layout_marginLeft="@dimen/x40"
         android:layout_marginRight="@dimen/x40"
         android:orientation="horizontal">
@@ -89,7 +89,6 @@
                 android:id="@+id/ranking_school_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="东南大学"
                 android:textColor="#000"
                 android:textSize="16sp" />
 
@@ -99,7 +98,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/y9"
-                android:text="100人"
                 android:textColor="#999"
                 android:textSize="13sp" />
 

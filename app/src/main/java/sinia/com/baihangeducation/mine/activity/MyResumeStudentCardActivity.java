@@ -61,7 +61,7 @@ public class MyResumeStudentCardActivity extends BaseActivity {
         mStudentCardImage.setOnClickListener(this);
         mStudentCardConfirm.setOnClickListener(this);
 
-        GlideLoadUtils.getInstance().glideLoad(this, MyResumInfo.student_photo, mStudentCardImage, R.drawable.new_input_studentcard);
+//        GlideLoadUtils.getInstance().glideLoad(this, MyResumInfo.student_photo, mStudentCardImage, R.drawable.new_input_studentcard);
 
 
     }

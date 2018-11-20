@@ -12,6 +12,7 @@ public class FunContantInfo {
     public String topic_title;                  //趣事内容
     public int publish_user_id;             //发布者ID
     public String publish_user_avatar;      //发布者头像
+    public String publish_user_mobile;      //发布者手机号
     public String publish_user_nickname;    //发布者昵称
     public String content;                  //内容
     public String is_praise;                   //是否已点赞    ( 1是2否 改值需要登录状态，否则默认是2 )

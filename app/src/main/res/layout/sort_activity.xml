@@ -43,6 +43,7 @@
         <sinia.com.baihangeducation.supplement.sortrecycleview.SideBar
             android:id="@+id/sideBar"
             android:layout_width="30dp"
+            android:visibility="gone"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="@dimen/y140"

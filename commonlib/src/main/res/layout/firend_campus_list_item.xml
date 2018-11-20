@@ -76,6 +76,7 @@
                     android:background="@drawable/attention_add"
                     android:gravity="center"
                     android:text="＋关注"
+                    android:visibility="gone"
                     android:textColor="#F63F1A" />
             </RelativeLayout>
 

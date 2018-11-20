@@ -232,7 +232,7 @@
                         android:gravity="center"
                         android:text="0"
                         android:textColor="#333"
-                        android:textSize="@dimen/font_size_12" />
+                        android:textSize="17sp" />
 
 
                     <TextView
@@ -263,7 +263,7 @@
                         android:gravity="center"
                         android:text="0"
                         android:textColor="#333"
-                        android:textSize="@dimen/font_size_12" />
+                        android:textSize="17sp" />
 
 
                     <TextView
@@ -293,7 +293,7 @@
                         android:gravity="center"
                         android:text="0"
                         android:textColor="#333"
-                        android:textSize="@dimen/font_size_12" />
+                        android:textSize="17sp" />
 
 
                     <TextView
@@ -324,7 +324,7 @@
                         android:gravity="center"
                         android:text="0"
                         android:textColor="#333"
-                        android:textSize="@dimen/font_size_12" />
+                        android:textSize="17sp" />
 
 
                     <TextView
@@ -354,7 +354,7 @@
                         android:gravity="center"
                         android:text="0"
                         android:textColor="#333"
-                        android:textSize="@dimen/font_size_12" />
+                        android:textSize="17sp" />
 
 
                     <TextView

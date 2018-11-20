@@ -1,24 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <selector xmlns:android="http://schemas.android.com/apk/res/android">
-        <item android:state_checked="true" android:drawable="@drawable/button_select"/>
-        <!-- not selected -->
-        <item android:state_checked="false" android:drawable="@drawable/button_cancle"/>
-    </selector>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/white" android:drawable="@drawable/button_select" android:state_checked="true" />
+    <!-- not selected -->
+    <item android:color="@color/black" android:drawable="@drawable/button_cancle" android:state_checked="false" />
+
+</selector>
 
 
-    <!--&lt;!&ndash;按钮下压样式&ndash;&gt;-->
-    <!--<item android:state_pressed="true">-->
-        <!--<shape>-->
-            <!--<corners android:radius="10dp"></corners>-->
-            <!--<solid android:color="@color/white"></solid>-->
-            <!--<stroke android:width="8dp" android:color="@color/white"></stroke>-->
-        <!--</shape>-->
-    <!--</item>-->
-    <!--&lt;!&ndash;按钮默认样式&ndash;&gt;-->
-    <!--<item>-->
-        <!--<shape>-->
-            <!--<corners android:radius="10dp"></corners>-->
-            <!--<solid android:color="@color/red_fa3e3e"></solid>-->
-            <!--<stroke android:width="8dp" android:color="@color/red_fa3e3e"></stroke>-->
-        <!--</shape>-->
-    <!--</item>-->
+    <!--&lt;!&ndash;按钮下压样式&ndash;&gt;--><!--<item android:state_pressed="true">-->
+    <!--<shape>--><!--<corners android:radius="10dp"></corners>-->
+    <!--<solid android:color="@color/white"></solid>-->
+    <!--<stroke android:width="8dp" android:color="@color/white">
+    </stroke>--><!--</shape>--><!--</item>--><!--&lt;!&ndash;按钮默认样式&ndash;&gt;-->
+    <!--<item>--><!--<shape>--><!--<corners android:radius="10dp"></corners>--><!--<solid android:color="@color/red_fa3e3e"></solid>--><!--<stroke android:width="8dp" android:color="@color/red_fa3e3e"></stroke>--><!--</shape>--><!--</item>-->

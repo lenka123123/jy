@@ -15,7 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import sinia.com.baihangeducation.R;
+import sinia.com.baihangeducation.club.club.interfaces.GetRequestListener;
 import sinia.com.baihangeducation.club.clubpaint.ClubPartTimeAdapter;
+import sinia.com.baihangeducation.club.clubpaint.ClubPartTimeMySendAdapter;
 import sinia.com.baihangeducation.supplement.base.BaseActivity;
 
 public class ClubMyPartTimeActivity extends BaseActivity implements GetMyPartTiemListener,
@@ -27,16 +29,14 @@ public class ClubMyPartTimeActivity extends BaseActivity implements GetMyPartTie
     private SwipeRefreshLayout swipeContainer;
     private ProgressActivityUtils progressActivityUtils;
     private MyClubModel myPartTimeModel;
-    private ClubPartTimeAdapter mHomePartTimeAdapter;
+    private ClubPartTimeMySendAdapter mHomePartTimeAdapter;
     private int countpage = 1;
     private List<ClubPartTimeListInfo.ClubPartInfo> mList = new ArrayList<>();
     private boolean isLoadMore = false;
-    private View left;
-    private View right;
     private String other_id;
 
     public int initLayoutResID() {
-        return R.layout.activity_club_my_club;
+        return R.layout.activity_club_my_club_new;
     }
 
 
@@ -47,7 +47,7 @@ public class ClubMyPartTimeActivity extends BaseActivity implements GetMyPartTie
         myPartTimeModel = new MyClubModel(context);
         myPartTimeModel.getMyClubPartTime(other_id, "1", "20", this);
         mCommonTitle.setBackgroundColor(Color.WHITE);
-        mCommonTitle.setCenterText("我的兼职");
+        mCommonTitle.setCenterText("我发布的");
     }
 
     @Override
@@ -55,15 +55,9 @@ public class ClubMyPartTimeActivity extends BaseActivity implements GetMyPartTie
         rvContainer = $(R.id.rv_container);
         progressActivity = $(R.id.progressActivity);
         swipeContainer = $(R.id.swipe_container);
-        LinearLayout tab_select = $(R.id.tab_select);
-        tab_select.setVisibility(View.GONE);
-        left = $(R.id.left);
-        right = $(R.id.right);
 
-        left.setVisibility(View.INVISIBLE);
-        right.setVisibility(View.INVISIBLE);
         //首页职业适配器
-        mHomePartTimeAdapter = new ClubPartTimeAdapter(context, mList);
+        mHomePartTimeAdapter = new ClubPartTimeMySendAdapter(ClubMyPartTimeActivity.this, mList);
 
         //一下是下来刷新
         initSwipeLayout(swipeContainer, this);
@@ -145,6 +139,21 @@ public class ClubMyPartTimeActivity extends BaseActivity implements GetMyPartTie
         hideProgress();
         hideSwipeRefreshLayout(swipeContainer);
         rvContainer.completeLoadMore();
+    }
+
+
+    public void deleteJob(String job_id, GetRequestListener listener) {
+        myPartTimeModel.dealWithJob(job_id, new GetRequestListener() {
+            @Override
+            public void setRequestSuccess(String msg) {
+                listener.setRequestSuccess(msg);
+            }
+
+            @Override
+            public void setRequestFail() {
+                listener.setRequestFail();
+            }
+        });
     }
 
 

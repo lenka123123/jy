@@ -926,7 +926,6 @@ public class ChatActivity extends ImBaseActivity implements
                     float OldListX = (float) location[0];
                     new TipView.Builder(ChatActivity.this, mChatView, (int) OldListX + view.getWidth() / 2, (int) OldListY + view.getHeight())
 //                            .addItem(new TipItem("转发"))
-                            .addItem(new TipItem(""))
                             .addItem(new TipItem("删除"))
                             .setOnItemClickListener(new TipView.OnItemClickListener() {
                                 @Override
@@ -1355,4 +1354,20 @@ public class ChatActivity extends ImBaseActivity implements
         }
     }
 
+
+    @Override
+    protected void onStop() {
+        mChatAdapter.stopMediaPlayer();
+        super.onStop();
+
+    }
+
+    @Override
+    public void onDestroy() {
+
+        mChatAdapter.stopMediaPlayer();
+        super.onDestroy();
+
+
+    }
 }

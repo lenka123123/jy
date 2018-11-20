@@ -26,6 +26,8 @@ import sinia.com.baihangeducation.club.myclub.help.MyHelplList;
 import sinia.com.baihangeducation.club.myclub.myactive.GetMyActiveListener;
 import sinia.com.baihangeducation.club.myclub.myclub.GetMyClubListener;
 import sinia.com.baihangeducation.club.myclub.myclub.MyClubSchoolList;
+import sinia.com.baihangeducation.club.myparttimeapplylist.ClubCreateData;
+import sinia.com.baihangeducation.club.myparttimeapplylist.GetApplyPersonListener;
 import sinia.com.baihangeducation.supplement.tool.BaseRequestInfo;
 
 /**
@@ -251,5 +253,108 @@ public class MyClubModel extends BasePresenter {
         });
 
     }
+
+
+    // 我创建的兼职申请列表
+    public void getMyCreatePartTimeApplyList(String job_id, String type, int page, String perpage, GetApplyPersonListener getMyActiveListener) {
+        HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "getJobApplyList", "clubUcenter", true);
+        info.put("user_id", AppConfig.USERID);
+        info.put("token", AppConfig.TOKEN);
+
+//        类型 1：待处理 2：已通过 3：已拒绝    ( 必传 )
+        info.put("type", type);
+        info.put("job_id", job_id);
+
+        info.put("page", page);
+        info.put("perpage", perpage);
+
+
+        post(info, new OnRequestListener() {
+            @Override
+            public void requestSuccess(BaseResponseBean bean) {
+                ClubCreateData activeListData = bean.parseObject(ClubCreateData.class);
+                int maxpag = CommonUtil.getMaxPage(activeListData.count, activeListData.perpage);
+                getMyActiveListener.onSuccess(activeListData, maxpag);
+            }
+
+            @Override
+            public void requestFailed(String error) {
+                Toast.getInstance().showErrorToast(activity, error);
+                getMyActiveListener.onError("");
+            }
+
+            @Override
+            public void requestFinish() {
+
+            }
+        });
+
+    }
+
+
+    // 我创建的兼职申请列表
+    public void dealWithApply(String apply_id, String is_pass, GetRequestListener listener) {
+        HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "setJobApply", "clubUcenter", true);
+        info.put("user_id", AppConfig.USERID);
+        info.put("token", AppConfig.TOKEN);
+
+//      1：同意 2：拒绝    ( 必传 )
+        info.put("apply_id", apply_id);
+        info.put("is_pass", is_pass);
+
+
+        post(info, new OnRequestListener() {
+            @Override
+            public void requestSuccess(BaseResponseBean bean) {
+                Toast.getInstance().showSuccessToast(activity, "处理成功");
+                listener.setRequestSuccess("");
+            }
+
+            @Override
+            public void requestFailed(String error) {
+                Toast.getInstance().showErrorToast(activity, error);
+                listener.setRequestFail();
+            }
+
+            @Override
+            public void requestFinish() {
+
+            }
+        });
+
+    }
+
+
+    // 我创建的兼职申请列表
+    public void dealWithJob(String job_id, GetRequestListener listener) {
+        HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "dropMyJob", "clubUcenter", true);
+        info.put("user_id", AppConfig.USERID);
+        info.put("token", AppConfig.TOKEN);
+
+//      1：同意 2：拒绝    ( 必传 )
+        info.put("job_id", job_id);
+
+
+        post(info, new OnRequestListener() {
+            @Override
+            public void requestSuccess(BaseResponseBean bean) {
+                Toast.getInstance().showSuccessToast(activity, "删除成功");
+                listener.setRequestSuccess("");
+            }
+
+            @Override
+            public void requestFailed(String error) {
+                Toast.getInstance().showErrorToast(activity, error);
+                listener.setRequestFail();
+            }
+
+            @Override
+            public void requestFinish() {
+
+            }
+        });
+
+    }
+
 
 }

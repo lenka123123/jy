@@ -79,6 +79,7 @@ public class MyResumeEditEducationExpChoiceSchoolAcitvity extends BaseActivity i
         dialog = (TextView) findViewById(R.id.dialog);
         noData = findViewById(R.id.not_data);
         sideBar.setTextView(dialog);
+        sideBar.setVisibility(View.GONE);
         dialog.setVisibility(View.GONE);
         //设置右侧SideBar触摸监听
         sideBar.setOnTouchingLetterChangedListener(new SideBar.OnTouchingLetterChangedListener() {

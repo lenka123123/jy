@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -23,27 +24,37 @@ public class PickerAlbumAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
     private List<AlbumInfo> mList;
     private Context mContext;
+    private boolean isTemp = false;
+    private int tempNum = 0;
 
     public PickerAlbumAdapter(Context context, List<AlbumInfo> list) {
         mContext = context;
         mInflater = LayoutInflater.from(context);
+
+        this.mList = list;
+    }
+
+    public void setData(List<AlbumInfo> list) {
+        mList.clear();
         this.mList = list;
     }
 
     @Override
     public int getCount() {
+
         return mList.size();
     }
 
     @Override
-    public Object getItem(int arg0) {
-        return mList.get(arg0);
+    public Object getItem(int i) {
+        return null;
     }
 
     @Override
-    public long getItemId(int position) {
-        return position;
+    public long getItemId(int i) {
+        return 0;
     }
+
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -54,6 +65,7 @@ public class PickerAlbumAdapter extends BaseAdapter {
             viewHolder.folderCover = (ImageView) convertView.findViewById(R.id.picker_photofolder_cover);
             viewHolder.folderName = (TextView) convertView.findViewById(R.id.picker_photofolder_info);
             viewHolder.folderFileNum = (TextView) convertView.findViewById(R.id.picker_photofolder_num);
+            viewHolder.layout = (LinearLayout) convertView.findViewById(R.id.layout);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -71,6 +83,7 @@ public class PickerAlbumAdapter extends BaseAdapter {
         if (albumInfo.getAlbumName().equals("Pictures"))
             viewHolder.folderName.setText("照片");
 
+
         viewHolder.folderFileNum.setText(String.format(mContext.getResources().getString(
                 R.string.picker_image_folder_info), mList.get(position).getList().size()));
         return convertView;
@@ -80,5 +93,6 @@ public class PickerAlbumAdapter extends BaseAdapter {
         public ImageView folderCover;
         public TextView folderName;
         public TextView folderFileNum;
+        public LinearLayout layout;
     }
 }

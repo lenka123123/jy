@@ -97,7 +97,7 @@ public class ChatBaseFragment extends Fragment {
                 dialog.show();
                 break;
             case user_password_change:
-                Intent intent = new Intent(mContext, LoginActivity.class);
+                Intent intent = new Intent(mContext, LoginActivity.class);  intent.putExtra("type", "");
                 startActivity(intent);
                 break;
         }

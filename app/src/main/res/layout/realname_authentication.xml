@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <include layout="@layout/incluce_common_title" />
+    <include
+        android:id="@+id/layout"
+        layout="@layout/incluce_common_title" />
 
-    <com.mcxtzhang.swipemenulib.customview.MyScrollView
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/space_70"
-        android:layout_marginTop="@dimen/space_51"
-        android:scrollbars="none">
+        android:layout_height="wrap_content">
+
+        <!--<com.mcxtzhang.swipemenulib.customview.MyScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginBottom="@dimen/space_70"-->
+        <!--android:layout_marginTop="@dimen/space_51"-->
+        <!--android:scrollbars="none">-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -49,32 +57,39 @@
                 android:textColorHint="@color/color_afafaf_gray"
                 android:textSize="@dimen/font_size_14" />
 
+
             <ImageView
                 android:id="@+id/realname_on"
-                android:layout_width="@dimen/space_270"
-                android:layout_height="@dimen/space_200"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center_horizontal"
+                android:layout_width="@dimen/x400"
+                android:layout_height="@dimen/y200"
+                android:layout_gravity="center"
                 android:layout_marginTop="@dimen/y40"
-                android:src="@drawable/new_input_idcard_on" />
+                android:adjustViewBounds="true"
+                android:background="@drawable/new_input_idcard_on"
+                android:contentDescription="@string/app_name"
+                android:scaleType="fitXY" />
 
             <ImageView
                 android:id="@+id/realname_off"
-                android:layout_width="@dimen/space_270"
-                android:layout_height="@dimen/space_200"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center_horizontal"
+                android:layout_width="@dimen/x400"
+                android:layout_height="@dimen/y200"
+                android:layout_gravity="center"
                 android:layout_marginTop="@dimen/y40"
-                android:src="@drawable/new_input_idcard_off" />
+                android:adjustViewBounds="true"
+                android:background="@drawable/new_input_idcard_off"
+                android:contentDescription="@string/app_name"
+                android:scaleType="fitXY" />
 
             <ImageView
                 android:id="@+id/realname_onhand"
-                android:layout_width="@dimen/space_270"
-                android:layout_height="@dimen/space_200"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center_horizontal"
+                android:layout_width="@dimen/x400"
+                android:layout_height="@dimen/y200"
+                android:layout_gravity="center"
                 android:layout_marginTop="@dimen/y40"
-                android:src="@drawable/new_input_idcard_onhand" />
+                android:adjustViewBounds="true"
+                android:background="@drawable/send_school_card"
+                android:contentDescription="@string/app_name"
+                android:scaleType="fitXY" />
 
             <TextView
                 android:id="@+id/realname_confirm"
@@ -93,22 +108,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/space_60"></LinearLayout>
         </LinearLayout>
+        <!--</com.mcxtzhang.swipemenulib.customview.MyScrollView>-->
 
-    </com.mcxtzhang.swipemenulib.customview.MyScrollView>
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/space_70"
+        android:layout_height="@dimen/y100"
         android:layout_alignParentBottom="true"
         android:background="@drawable/new_realname_title_bg"
+        android:gravity="center_vertical"
         android:orientation="vertical"
         android:paddingLeft="@dimen/space_20"
-        android:paddingRight="@dimen/space_20"
-        android:paddingTop="@dimen/space_10">
+        android:paddingRight="@dimen/space_20">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/hind_img"
+            android:drawablePadding="@dimen/x20"
             android:text="@string/realname_introduction1"
             android:textColor="@color/white"
             android:textSize="@dimen/font_size_12" />
@@ -118,6 +136,7 @@
             android:layout_height="wrap_content"
             android:text="@string/realname_introduction2"
             android:textColor="@color/white"
-            android:textSize="@dimen/font_size_12" />
+            android:textSize="@dimen/font_size_12"
+            android:visibility="gone" />
     </LinearLayout>
-</RelativeLayout>
+</LinearLayout>

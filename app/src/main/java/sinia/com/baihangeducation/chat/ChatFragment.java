@@ -119,10 +119,7 @@ public class ChatFragment extends ChatBaseFragment implements GetRequestListener
         }
 
         if (!AppConfig.CHAT) return;
-
-
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -140,7 +137,6 @@ public class ChatFragment extends ChatBaseFragment implements GetRequestListener
         mRootView.findViewById(R.id.create_group_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("点击率");
                 systemMsg();
             }
         });

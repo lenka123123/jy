@@ -35,7 +35,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="@dimen/y60"
-        android:layout_marginLeft="@dimen/x30"
+        android:paddingLeft="@dimen/x30"
         android:background="#F9F9FF"
         android:gravity="center_vertical"
         android:text="全部消息"

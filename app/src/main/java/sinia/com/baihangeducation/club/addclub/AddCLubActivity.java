@@ -203,9 +203,10 @@ public class AddCLubActivity extends BaseActivity implements GetAddOptionRequest
 
                 hideEditTextInput();
                 clickType = "type";
+                System.out.println("typelength===" + club_list.length);
                 mClubType = new AlertViewContorller(club_type_text,
                         "社团类别", null, "取消", null, club_list,
-                        context, AlertViewContorller.Style.ActionSheet, this);
+                        AddCLubActivity.this, AlertViewContorller.Style.ActionSheet, this);
                 mClubType.setCancelable(true).show();
                 break;
             case R.id.bellow_school:
@@ -404,7 +405,7 @@ public class AddCLubActivity extends BaseActivity implements GetAddOptionRequest
     }
 
     public void setPhoto(String avatar) {
-        Glide.with(context).load(avatar).asBitmap().error(R.drawable.new_eorrlogo).centerCrop().into(new BitmapImageViewTarget(logo) {
+        Glide.with(AddCLubActivity.this).load(avatar).asBitmap().error(R.drawable.new_eorrlogo).centerCrop().into(new BitmapImageViewTarget(logo) {
             @Override
             protected void setResource(Bitmap resource) {
                 RoundedBitmapDrawable circularBitmapDrawable =
@@ -421,7 +422,7 @@ public class AddCLubActivity extends BaseActivity implements GetAddOptionRequest
      */
     protected void hideEditTextInput() {
         //隐藏键盘
-        ((InputMethodManager) context.getSystemService(INPUT_METHOD_SERVICE))
+        ((InputMethodManager) AddCLubActivity.this.getSystemService(INPUT_METHOD_SERVICE))
                 .hideSoftInputFromWindow((AddCLubActivity.this).getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
     }
@@ -447,8 +448,9 @@ public class AddCLubActivity extends BaseActivity implements GetAddOptionRequest
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         AppConfig.SCHOOLNAME = "";
+        super.onDestroy();
+
     }
 
     public void getCenterCancelDialogShow() {
@@ -460,6 +462,12 @@ public class AddCLubActivity extends BaseActivity implements GetAddOptionRequest
             @Override
             public void onClick(View v) {
                 toCreate("1");
+                dialog.cancel();
+            }
+        });
+        dialogWindow.findViewById(R.id.club_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 dialog.cancel();
             }
         });

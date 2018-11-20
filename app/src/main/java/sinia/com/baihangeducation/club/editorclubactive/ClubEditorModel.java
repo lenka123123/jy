@@ -211,7 +211,7 @@ public class ClubEditorModel extends BasePresenter {
             @Override
             public void requestFailed(String error) {
                 Toast.getInstance().showErrorToast(activity, error);
-
+                activeActivity.requestFailed();
             }
 
             @Override

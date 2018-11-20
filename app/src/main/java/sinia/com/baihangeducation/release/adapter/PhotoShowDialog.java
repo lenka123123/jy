@@ -134,6 +134,8 @@ public class PhotoShowDialog extends Dialog {
                         @Override
                         public boolean onLongClick(View view) {
 
+
+
                             saveImageToGallery(context, resource);
 
 

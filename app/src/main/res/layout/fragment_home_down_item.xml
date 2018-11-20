@@ -32,6 +32,7 @@
             android:id="@+id/fragment_home_down_item_img"
             android:layout_width="@dimen/x68"
             android:layout_height="@dimen/y68"
+
             android:layout_marginTop="@dimen/y20" />
 
         <LinearLayout
@@ -148,7 +149,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/x2"
                     android:background="#F7F7F7"
-                    android:text="申请人数"
                     android:textColor="@color/position_select"
                     android:textSize="12sp" />
 

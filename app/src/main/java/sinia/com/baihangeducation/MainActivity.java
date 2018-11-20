@@ -153,11 +153,11 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
     private HomeFragment homeFragment;
     private MyBroadCastRecevir recevir;
     private PartTimeFragment partTimeFragment;
+    private String phone;
 
 
     public void loginIm() {
-        String phone = (String) SpCommonUtils.get(activity, AppConfig.USERPHOTO, "");
-
+        System.out.println("登录的手机号" + phone);
         JMessageClient.login(phone, "123456", new BasicCallback() {
             @Override
             public void gotResult(int i, String s) {
@@ -353,13 +353,14 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
     };
 
     public void initView() {
+        phone = (String) SpCommonUtils.get(activity, AppConfig.USERPHOTO, "");
         recevir = new MyBroadCastRecevir();
         IntentFilter intentFiltet = new IntentFilter();
         //设置广播的名字（设置Action，可以添加多个要监听的动作）
         intentFiltet.addAction("myBroadCastAction");
         // 注册广播,传入两个参数， 实例化的广播接受者对象，
         registerReceiver(recevir, intentFiltet);
-
+        loginIm();
 
         homeFragment = (HomeFragment) TabFragment.home.fragment();
         mineFragment = (MineFragment) TabFragment.me.fragment();
@@ -501,7 +502,7 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
 
     public void initData() {
 
-        loginIm();
+
     }
 
     @Override

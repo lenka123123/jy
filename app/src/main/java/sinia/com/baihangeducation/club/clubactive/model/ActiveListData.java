@@ -19,6 +19,7 @@ public class ActiveListData {
         public String expenditure;
         public String join_num;
         public String club_name;
+        public int status;
 
     }
 }

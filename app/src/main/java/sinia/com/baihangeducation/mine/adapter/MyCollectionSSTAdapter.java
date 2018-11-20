@@ -38,7 +38,7 @@ public class MyCollectionSSTAdapter extends SuperBaseAdapter<MyCollectionListInf
         holder.setOnClickListener(R.id.fragment_mine_collection_sstitem, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Goto.toJobBangDetailActivity(context, item.raiders_id, "考研试卷", 5, 3);
+                Goto.toJobBangDetailActivity(context, item.raiders_id, "", 5, 3);
 
 //               Goto.toShareEveryDayDetailActivity(context, item.raiders_id);
             }

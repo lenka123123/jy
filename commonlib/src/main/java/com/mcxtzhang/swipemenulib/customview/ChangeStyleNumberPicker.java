@@ -54,10 +54,10 @@ public class ChangeStyleNumberPicker {
     public AlertOnClickListener alertOnClickListener;
 
     public void showAlertDialog() {
-        final AlertDialog dlg = new AlertDialog.Builder(activity,R.style.dialog_fs).create();
+        final AlertDialog dlg = new AlertDialog.Builder(activity, R.style.dialog_fs).create();
         dlg.show();
 
-        WindowManager m = (WindowManager) activity.getSystemService(Context.WINDOW_SERVICE);
+        final WindowManager m = (WindowManager) activity.getSystemService(Context.WINDOW_SERVICE);
         Display d = m.getDefaultDisplay();  //为获取屏幕宽、高
         android.view.WindowManager.LayoutParams p = dlg.getWindow().getAttributes();  //获取对话框当前的参数值
 
@@ -90,7 +90,13 @@ public class ChangeStyleNumberPicker {
             @Override
             public void onClick(View view) {
                 if (maxPrice == 0 || minPrice == 0 || minPrice == maxPrice) {
-                    alertOnClickListener.alertClick("不限");
+                    if (maxPrice == 0 && minPrice == 0) {
+                        alertOnClickListener.alertClick("不限");
+
+                    } else {
+                        alertOnClickListener.alertClick(15 + minPrice + "-" + (15 + minPrice));
+                    }
+
                 } else {
                     if (minPrice > maxPrice) {
                         Toast.makeText(activity, "年龄限制有误，请重新选择", Toast.LENGTH_LONG).show();

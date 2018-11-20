@@ -3,6 +3,7 @@ package sinia.com.baihangeducation.club.applyclublist.view;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.daimajia.swipe.SwipeLayout;
@@ -26,6 +27,7 @@ public class GetPersonListHolder extends RecyclerView.ViewHolder {
     public TextView delete;
     public TextView ok;
     public SwipeLayout srl_item;
+    public LinearLayout club_item_view;
 
     //实现的方法
     public GetPersonListHolder(View itemView) {
@@ -39,6 +41,8 @@ public class GetPersonListHolder extends RecyclerView.ViewHolder {
         srl_item = (SwipeLayout) itemView.findViewById(R.id.srl_item);
         delete = (TextView) itemView.findViewById(R.id.delete);
         ok = (TextView) itemView.findViewById(R.id.ok);
+
+        club_item_view = (LinearLayout) itemView.findViewById(R.id.club_item_view);
 
 
     }

@@ -53,13 +53,16 @@ public class ThirdLoginPresenter extends BasePresenter {
     private SHARE_MEDIA platform;
     private UMShareAPI mShareAPI;
     private UMAuthListener listener;
-    private   GetBaseInfoPresenter getBaseInfoPresenter;
 
     public ThirdLoginPresenter(Activity activity, IThirdLoginView view) {
         super(activity);
         this.activity = activity;
         this.view = view;
-        getBaseInfoPresenter = new GetBaseInfoPresenter(activity);
+    }
+
+    public ThirdLoginPresenter(Activity activity) {
+        super(activity);
+        this.activity = activity;
     }
 
     public ThirdLoginPresenter(Activity activity, IThirdLoginView thirdBindView, ThirdLoginInfo info) {
@@ -172,8 +175,7 @@ public class ThirdLoginPresenter extends BasePresenter {
 
         SpCommonUtils.put(activity, AppConfig.USERTOKEN, userInfo.token);
         SpCommonUtils.put(activity, AppConfig.FINALUSERID, userInfo.user_id);
-        SpCommonUtils.put(activity, AppConfig.USERPHOTO, view.getPhoneNum());
-
+        SpCommonUtils.put(activity, AppConfig.USERPHOTO, userInfo.mobile);
 
         SpCommonUtils.put(activity, AppConfig.FINALUAVATAR, userInfo.avatar);
         SpCommonUtils.put(activity, AppConfig.FINALNICKNAME, userInfo.nickname);
@@ -202,7 +204,6 @@ public class ThirdLoginPresenter extends BasePresenter {
 
         MyAsyncTask myAsyncTask = new MyAsyncTask();
         myAsyncTask.execute(userInfo.avatar);
-
 
 
 //        SPUtils.getInstance().saveObject(activity, Constants.USER_INFO, bean.parseObject(UserInfo.class));
@@ -253,6 +254,53 @@ public class ThirdLoginPresenter extends BasePresenter {
         }
 
 
+    }
+
+
+    /**
+     * 第三方登录
+     */
+    public void bindWeixinLogin(String union_id) {
+        AppConfig.WEICHATCODE = "";
+        Log.i("bindWeixinLogin==", "绑定" + union_id);
+        HashMap info = BaseRequestInfo.getInstance().getRequestInfo(activity, "thirdAccountLogin", "default", false);
+        info.put("type", "2");
+        info.put("union_id", union_id);
+        info.put("device", "2");
+        info.put("device_id", CommonUtil.getAndroidId(activity));
+        Log.i("bindWeixinLogin==", "绑定wwwwww" + union_id);
+        post(info, new OnRequestListener() {
+            @Override
+            public void requestSuccess(BaseResponseBean bean) {
+                if (bean == null) {
+                    return;
+                }
+                UserInfo info = bean.parseObject(UserInfo.class);
+                if (bean.isSuccess()) {
+                    if (info.is_bind == 1) {
+                        Log.i("是否已经绑定", "绑定");
+
+                        loginSuccessBack(bean);
+                        Goto.toMainActivity(activity);
+                    } else {
+                        Log.i("是否已经绑定", "未绑定");
+                        Goto.toThirdBind(activity, union_id, "2");
+                    }
+                } else {
+                    Toast.getInstance().showToastView(activity, bean.getMessage());
+                }
+            }
+
+            @Override
+            public void requestFailed(String error) {
+                Toast.getInstance().showToastView(activity, error);
+            }
+
+            @Override
+            public void requestFinish() {
+
+            }
+        });
     }
 
 }

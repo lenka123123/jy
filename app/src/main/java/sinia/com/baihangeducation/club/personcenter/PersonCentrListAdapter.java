@@ -26,6 +26,7 @@ public class PersonCentrListAdapter extends SuperBaseAdapter<ClubHomeInfo.School
 
     public PersonCentrListAdapter(PersonCenterActivity activity, List<ClubHomeInfo.School> data) {
         super(activity, data);
+        this.activity = activity;
         this.context = activity;
     }
 
@@ -71,7 +72,7 @@ public class PersonCentrListAdapter extends SuperBaseAdapter<ClubHomeInfo.School
         holder.setOnClickListener(R.id.ranking_money, new View.OnClickListener() {
             @Override
             public void onClick(View view) { //点击加入
-                if (mInviteListInfo.is_apply.equals("1"))
+                if (mInviteListInfo.is_apply.equals("1")) {
                     activity.applyClub(mInviteListInfo.id, "", new GetRequestListener() {
                         @Override
                         public void setRequestSuccess(String msg) {
@@ -83,6 +84,7 @@ public class PersonCentrListAdapter extends SuperBaseAdapter<ClubHomeInfo.School
 
                         }
                     });
+                }
             }
         });
 

@@ -34,8 +34,10 @@ import sinia.com.baihangeducation.R;
 import sinia.com.baihangeducation.supplement.base.BaseActivity;
 import sinia.com.baihangeducation.MyApplication;
 import sinia.com.baihangeducation.home.adapter.HomeAndFindHelpEachOtherDetailAdapter;
+
 import com.mcxtzhang.swipemenulib.info.HomeAndFindHelpEachOtherDetailAllInfo;
 import com.mcxtzhang.swipemenulib.info.bean.CommentInfo;
+
 import sinia.com.baihangeducation.home.present.HomeAndFindHelpEachOtherDetailPresenter;
 import sinia.com.baihangeducation.home.view.HomeAndFindHelpEachOtherDetailView;
 import sinia.com.baihangeducation.supplement.tool.BaseUtil;
@@ -167,7 +169,7 @@ public class HomeAndFindHelpEachOtherDetailActivity extends BaseActivity impleme
                         if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
                             //隐藏键盘
                             ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE))
-                                    .hideSoftInputFromWindow(context.getCurrentFocus()
+                                    .hideSoftInputFromWindow(HomeAndFindHelpEachOtherDetailActivity.this.getCurrentFocus()
                                             .getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                             //发送
                             mWriteMessage.setOnEditorActionListener(new TextView.OnEditorActionListener() {

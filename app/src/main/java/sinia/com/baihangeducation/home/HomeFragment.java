@@ -326,7 +326,8 @@ public class HomeFragment extends BaseFragment implements HomeView, SuperRecycle
         }
 
         header = null;
-        sibTopAd.pauseScroll();
+        if (sibTopAd != null)
+            sibTopAd.pauseScroll();
 //        getActivity().finish();
     }
 

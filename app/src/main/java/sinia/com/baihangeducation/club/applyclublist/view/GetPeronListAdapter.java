@@ -58,11 +58,8 @@ public class GetPeronListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         view = LayoutInflater.from(parent.getContext()).inflate(R.layout.club_item_swipe_menu, null);
         viewHolder = new GetPersonListHolder(view);
         view.setOnClickListener(this);
-
-
 //            View view = inflater.inflate(R.layout.ranking_item, parent, false);
 //           RankingRecentHolder holder = new RankingRecentHolder(view);
-
         return viewHolder;
     }
 
@@ -151,6 +148,17 @@ public class GetPeronListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             }
         });
 
+        vh.club_item_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Goto.toPersonScenter(context,
+                        mInviteListInfo.get(position).mobile, mInviteListInfo.get(position).nickname, mInviteListInfo.get(position).avatar);
+
+
+            }
+        });
+
+
 //            GlideLoadUtils.getInstance().glideLoad(context, mInviteListInfo.get(position).avatar, vh.logo, R.drawable.logo);
 
 
@@ -197,8 +205,7 @@ public class GetPeronListAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public void onClick(View v) {
         int potion = (Integer) v.getTag();
-        Goto.toPersonScenter(context,
-                mInviteListInfo.get(potion).mobile,mInviteListInfo.get(potion).nickname ,mInviteListInfo.get(potion).avatar );
+
     }
 }
 

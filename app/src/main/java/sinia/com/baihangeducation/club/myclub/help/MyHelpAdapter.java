@@ -50,7 +50,10 @@ public class MyHelpAdapter extends SuperBaseAdapter<MyHelplList.Help> {
         holder.setOnClickListener(R.id.club_item_view, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Goto.toApplyHelpShow(context, item.support_id);
+                if (!item.status.equals("审核中")) {
+                    Goto.toApplyHelpShow(context, item.support_id);
+                }
+
             }
         });
     }

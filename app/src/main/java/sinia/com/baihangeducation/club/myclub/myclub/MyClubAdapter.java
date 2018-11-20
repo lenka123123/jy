@@ -35,13 +35,25 @@ public class MyClubAdapter extends SuperBaseAdapter<MyClubSchoolList.School> {
 
         holder.setRoundImageUrl(R.id.ranking_logo, item.logo, R.drawable.new_eorrlogo);
         holder.setText(R.id.ranking_school_name, item.name);
-        holder.setText(R.id.ranking_school_number, item.member_num + "人");
-        holder.setText(R.id.ranking_money, item.role_name);
+        if (!item.member_num.equals("0"))
+            holder.setText(R.id.ranking_school_number, item.member_num + "人");
+
+        //  ( 1：待审核 2：审核通过 3：审核失败（2018/11/6迭代） )
+        if (item.status.equals("1")) {
+            holder.setText(R.id.ranking_money, "待审核");
+        } else if (item.status.equals("2")) {
+            holder.setText(R.id.ranking_money, item.role_name);
+        } else if (item.status.equals("3")) {
+            holder.setText(R.id.ranking_money, "审核失败");
+        }
 
         holder.setOnClickListener(R.id.club_item_view, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Goto.toClubDetailActivity(context, item.id);
+                if (item.status.equals("2")) {
+                    Goto.toClubDetailActivity(context, item.id);
+                }
+
 //                Goto.toPartTimeJobDetailActivityForClub(context, Integer.valueOf(item.id), item.member_num);
             }
         });

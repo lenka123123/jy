@@ -54,7 +54,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y90" />
+        android:layout_height="@dimen/y80" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -181,6 +181,18 @@
                 android:background="@drawable/logo_img"
                 android:gravity="center"
                 android:textSize="@dimen/font_size_18" />
+
+            <TextView
+                android:id="@+id/phone_logo"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y60"
+                android:layout_marginLeft="@dimen/y200"
+                android:layout_marginRight="@dimen/y200"
+                android:layout_marginTop="@dimen/y40"
+                android:gravity="center_horizontal"
+                android:text="手机登录" />
+
+
         </LinearLayout>
 
 
@@ -211,6 +223,15 @@
 
         </LinearLayout>
 
+        <Button
+            android:id="@+id/testweixin"
+            android:layout_width="@dimen/x200"
+            android:layout_height="@dimen/y100"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/y30"
+            android:text="测试微信"
+            android:visibility="gone" />
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -225,12 +246,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/space_1"
                 android:layout_weight="1"
-                android:background="@color/gray"
-                android:visibility="gone" />
+                android:background="#ccc" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/x20"
+                android:layout_marginRight="@dimen/x20"
                 android:gravity="center"
                 android:text="其他登录方式"
                 android:textColor="#ccc"
@@ -240,8 +262,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/space_1"
                 android:layout_weight="1"
-                android:background="@color/gray"
-                android:visibility="gone" />
+                android:background="#ccc" />
         </LinearLayout>
 
         <LinearLayout
@@ -262,7 +283,8 @@
                 android:layout_width="@dimen/x75"
                 android:layout_height="@dimen/y75"
                 android:layout_marginLeft="@dimen/space_50"
-                android:background="@drawable/new_login_qq" />
+                android:background="@drawable/new_login_qq"
+                android:visibility="gone" />
         </LinearLayout>
     </LinearLayout>
 

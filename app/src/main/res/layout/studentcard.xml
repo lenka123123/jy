@@ -26,10 +26,10 @@
                 android:layout_marginLeft="@dimen/space_20"
                 android:layout_marginRight="@dimen/space_20"
                 android:layout_marginTop="@dimen/space_20"
-                android:singleLine="true"
                 android:background="@drawable/new_input_line"
                 android:hint="@string/myreumeinputstudentnum"
                 android:paddingLeft="@dimen/space_20"
+                android:singleLine="true"
                 android:textColorHint="@color/color_afafaf_gray"
                 android:textSize="@dimen/font_size_14" />
 
@@ -40,9 +40,8 @@
                 android:layout_height="@dimen/space_200"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/space_20"
-                android:background="@drawable/new_input_studentcard"
                 android:scaleType="fitXY" />
-
+            <!--         android:background="@drawable/new_input_studentcard"-->
             <TextView
                 android:id="@+id/studentcard_confirm"
                 android:layout_width="match_parent"

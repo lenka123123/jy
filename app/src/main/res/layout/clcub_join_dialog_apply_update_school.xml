@@ -17,6 +17,8 @@
             android:layout_height="@dimen/y120"
             android:background="@color/white"
             android:gravity="center"
+            android:paddingLeft="@dimen/x20"
+            android:paddingRight="@dimen/x20"
             android:text="当前学校与您社团的所属学校冲突，是否需要自动退出社团，并再次提交申请？" />
 
         <View
@@ -29,6 +31,14 @@
             android:layout_height="@dimen/y90"
             android:background="@color/white"
             android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/club_cancel"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="取消" />
 
 
             <TextView

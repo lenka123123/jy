@@ -53,6 +53,7 @@ import sinia.com.baihangeducation.release.adapter.PhotoShowDialog;
 import sinia.com.baihangeducation.supplement.base.CommonModel;
 import sinia.com.baihangeducation.supplement.base.Goto;
 import sinia.com.baihangeducation.supplement.tool.AdapterUtils;
+import sinia.com.baihangeducation.supplement.tool.OkHttpUtils;
 
 public class NewCampusFunAdapter extends SuperBaseAdapter<FunContantInfo> {
     private Context context;
@@ -90,7 +91,7 @@ public class NewCampusFunAdapter extends SuperBaseAdapter<FunContantInfo> {
 
     @Override
     protected void convert(final BaseViewHolder holder, FunContantInfo item, int position) {
-        if (item == null) return;
+//        if (item == null) return;
         holder.setOnClickListener(R.id.newcampayfunitem, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,6 +113,7 @@ public class NewCampusFunAdapter extends SuperBaseAdapter<FunContantInfo> {
         holder.setText(R.id.newcampayfunitem_uesername, item.publish_user_nickname);
         //内容
         final TextView addFollow = holder.getView(R.id.addfollow);
+        addFollow.setVisibility(View.GONE);
         final ImageView comment_flog = holder.getView(R.id.comment_flog);
 
 
@@ -264,8 +266,11 @@ public class NewCampusFunAdapter extends SuperBaseAdapter<FunContantInfo> {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (view.getId() == R.id.newcampayfunitem_uesericon)
-                    Goto.toHomePage(item, context);
+                if (view.getId() == R.id.newcampayfunitem_uesericon) {
+                    //  Goto.toHomePage(item, context);
+                    Goto.toPersonScenter(context, item.publish_user_mobile, item.publish_user_nickname, item.publish_user_avatar);
+                }
+
 
                 AppConfig.mFunContantInfo = item;
 

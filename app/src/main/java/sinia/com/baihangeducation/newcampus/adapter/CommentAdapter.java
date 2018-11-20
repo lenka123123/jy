@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 
@@ -70,7 +71,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 }
             }
         });
-        changeAres(vh.commentList, mInviteListInfo.list, position);
+        changeAres(vh.commentList, vh.digCommentBody, mInviteListInfo.list, position);
         holder.itemView.setTag(position);
     }
 
@@ -99,11 +100,11 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
 
-    private void changeAres(AppNoScrollerListView answer_ares, List<CommentListBean.CommentList> list, int position) {
+    private void changeAres(AppNoScrollerListView answer_ares, LinearLayout digCommentBody, List<CommentListBean.CommentList> list, int position) {
 
         commentsDatas = new ArrayList<>();
         // for (int i = 0; i < list.size(); i++) {  //主评
-
+        digCommentBody.setVisibility(View.VISIBLE);
         if (list != null && list.size() >= 1 && list.get(position).comment_child_list.size() >= 1) {   // //主评列表下的comment_child_list
 
             UpdateCommetAdapter updateCommetAdapter = new UpdateCommetAdapter(context);
@@ -116,16 +117,16 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             updateCommetAdapter.setCommentClickListener(new sinia.com.baihangeducation.newcampus.tabs.answer.CommentAdapter.ICommentItemClickListener() {
                 @Override
                 public void onItemClick(int position) {
-
                     comment.setFocusable(true);
                     comment.setFocusableInTouchMode(true);
                     comment.requestFocus();
                     if (mItemClickListener != null) {
                         mItemClickListener.onItemClick(yaoid.get(position).id);//parent_id  comment_parent_id
                     }
-
                 }
             });
+        } else {
+            digCommentBody.setVisibility(View.INVISIBLE);
         }
 
     }

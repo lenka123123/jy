@@ -72,7 +72,7 @@ public class SearchActivity extends BaseActivity implements GetKeyWorldView {
                 if (!(v.getText().toString().trim()).isEmpty()) {
                     mACache = ACache.get(context);
                     //去除缓存中的搜索历史对象
-                    Object searchdata = mACache.getAsObject("SEARCHDATA");
+                    Object searchdata = mACache.getAsObject("SEARCHDATAHOME");
                     //将对象转成需要的数据类型
                     if (searchdata != null) {
                         mCacheList = (List<String>) JSONObject.parse(searchdata.toString());
@@ -88,7 +88,7 @@ public class SearchActivity extends BaseActivity implements GetKeyWorldView {
                                 //将list转成jsonarry
                                 JSONArray array = JSONArray.parseArray(JSON.toJSONString(mCacheList));
                                 //将数据存入缓存中
-                                mACache.put("SEARCHDATA", array);
+                                mACache.put("SEARCHDATAHOME", array);
                             }
 
                         } else {
@@ -97,7 +97,7 @@ public class SearchActivity extends BaseActivity implements GetKeyWorldView {
                                 //将list转成jsonarry
                                 JSONArray array = JSONArray.parseArray(JSON.toJSONString(mCacheList));
                                 //将数据存入缓存中
-                                mACache.put("SEARCHDATA", array);
+                                mACache.put("SEARCHDATAHOME", array);
                             }
                         }
                     } else {
@@ -106,7 +106,7 @@ public class SearchActivity extends BaseActivity implements GetKeyWorldView {
                         //将list转成jsonarry
                         JSONArray array = JSONArray.parseArray(JSON.toJSONString(mCacheList));
                         //将数据存入缓存中
-                        mACache.put("SEARCHDATA", array);
+                        mACache.put("SEARCHDATAHOME", array);
                     }
                     Goto.toSearchReasultActivity(context, v.getText().toString().trim());
 
@@ -143,7 +143,7 @@ public class SearchActivity extends BaseActivity implements GetKeyWorldView {
         mGetKeyWorldPresenter.getKeyWorld();
 
         //去除缓存中的搜索历史对象
-        Object searchdata = mACache.getAsObject("SEARCHDATA");
+        Object searchdata = mACache.getAsObject("SEARCHDATAHOME");
         //判断是否为空
         if (searchdata != null) {
             //若数据不为空，则显示历史搜索
@@ -173,7 +173,7 @@ public class SearchActivity extends BaseActivity implements GetKeyWorldView {
 
                 mACache = ACache.get(context);
                 //去除缓存中的搜索历史对象
-                Object searchdata = mACache.getAsObject("SEARCHDATA");
+                Object searchdata = mACache.getAsObject("SEARCHDATAHOME");
                 //将对象转成需要的数据类型
                 mCacheList = null;
                 if (searchdata != null) {
@@ -195,7 +195,7 @@ public class SearchActivity extends BaseActivity implements GetKeyWorldView {
             public boolean onTagClick(View view, int position, FlowLayout parent) {
                 mACache = ACache.get(context);
                 //去除缓存中的搜索历史对象
-                Object searchdata = mACache.getAsObject("SEARCHDATA");
+                Object searchdata = mACache.getAsObject("SEARCHDATAHOME");
                 //将对象转成需要的数据类型
                 if (searchdata != null) {
                     mCacheList = (List<String>) JSONObject.parse(searchdata.toString());
@@ -211,7 +211,7 @@ public class SearchActivity extends BaseActivity implements GetKeyWorldView {
                             //将list转成jsonarry
                             JSONArray array = JSONArray.parseArray(JSON.toJSONString(mCacheList));
                             //将数据存入缓存中
-                            mACache.put("SEARCHDATA", array);
+                            mACache.put("SEARCHDATAHOME", array);
                         }
                     } else {
                         if (!mCacheList.contains(mList.get(position).key_name)) {
@@ -219,7 +219,7 @@ public class SearchActivity extends BaseActivity implements GetKeyWorldView {
                             //将list转成jsonarry
                             JSONArray array = JSONArray.parseArray(JSON.toJSONString(mCacheList));
                             //将数据存入缓存中
-                            mACache.put("SEARCHDATA", array);
+                            mACache.put("SEARCHDATAHOME", array);
                         }
                     }
                 } else {
@@ -227,7 +227,7 @@ public class SearchActivity extends BaseActivity implements GetKeyWorldView {
                     //将list转成jsonarry
                     JSONArray array = JSONArray.parseArray(JSON.toJSONString(mCacheList));
                     //将数据存入缓存中
-                    mACache.put("SEARCHDATA", array);
+                    mACache.put("SEARCHDATAHOME", array);
                 }
                 Goto.toSearchReasultActivity(context, mList.get(position).key_name);
                 return true;

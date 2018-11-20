@@ -179,13 +179,12 @@ public class MyApplication extends BaseApplictaion {
         context = getApplicationContext();
         StorageUtil.init(context, null);
         JMessageClient.init(context, true);// 是否启用消息漫游，true - 启用，false - 关闭。
-        JMessageClient.setDebugMode(true);
+        JMessageClient.setDebugMode(false);
         SharePreferenceManager.init(getApplicationContext(), JCHAT_CONFIGS);
         //设置Notification的模式
         JMessageClient.setNotificationFlag(JMessageClient.FLAG_NOTIFY_WITH_SOUND | JMessageClient.FLAG_NOTIFY_WITH_LED | JMessageClient.FLAG_NOTIFY_WITH_VIBRATE);
         //注册Notification点击的接收器
         new NotificationClickEventReceiver(getApplicationContext());
-
 
         if (isMainProcess()) {
             OpenInstall.init(this);
@@ -238,6 +237,7 @@ public class MyApplication extends BaseApplictaion {
         initUM();
         initShare();
         StatService.autoTrace(this, true, false);//开启自动埋点    https://mtj.baidu.com/static/userguide/book/android/adconfig/circle/circle.html
+        SpCommonUtils.init(context);
     }
 
 

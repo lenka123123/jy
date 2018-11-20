@@ -44,10 +44,6 @@ public class SearchSchoolAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
 
-    public void setChangeText(String text) {
-
-    }
-
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = null;
@@ -103,9 +99,12 @@ public class SearchSchoolAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 ForegroundColorSpan span = new ForegroundColorSpan(Color.rgb(254, 58, 54));
                 spanString.setSpan(span, index, index + text.length(), Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
                 vh.ranking_school_name.setText(spanString);
+            } else {
+                vh.ranking_school_name.setText(mInviteListInfo.get(position).name);
             }
         }
-        vh.ranking_school_number.setText(mInviteListInfo.get(position).member_num);
+        if (!mInviteListInfo.get(position).member_num.equals("0"))
+            vh.ranking_school_number.setText(mInviteListInfo.get(position).member_num + "人");
 //        vh.ranking_money.setText(mInviteListInfo.get(position).income);
 
         //   ( 0：已申请 1：未申请 2：社员 )

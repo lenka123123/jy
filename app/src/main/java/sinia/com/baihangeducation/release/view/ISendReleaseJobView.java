@@ -163,6 +163,7 @@ public interface ISendReleaseJobView extends BaseView {
      * 发布成功
      */
     void getReleaseSuccess();
+    void getReleaseFail();
 
 
     String getAgeLower();

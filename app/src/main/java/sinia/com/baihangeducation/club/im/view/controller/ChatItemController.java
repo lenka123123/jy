@@ -71,6 +71,7 @@ import sinia.com.baihangeducation.club.im.chat.SimpleCommonUtils;
 import sinia.com.baihangeducation.club.im.utils.FileHelper;
 import sinia.com.baihangeducation.club.im.utils.FileUtils;
 import sinia.com.baihangeducation.club.im.utils.HandleResponseCode;
+import sinia.com.baihangeducation.club.im.utils.IdHelper;
 import sinia.com.baihangeducation.club.im.utils.ToastUtil;
 import sinia.com.baihangeducation.club.im.view.adapter.ChattingListAdapter;
 import sinia.com.baihangeducation.club.im.view.adapter.ChattingListAdapter.ViewHolder;
@@ -87,7 +88,7 @@ public class ChatItemController {
     public Animation mSendingAnim;
     private boolean mSetData = false;
     private final MediaPlayer mp = new MediaPlayer();
-    private AnimationDrawable mVoiceAnimation;
+    //    private AnimationDrawable mVoiceAnimation;
     private int mPosition = -1;// 和mSetData一起组成判断播放哪条录音的依据
     private List<Integer> mIndexList = new ArrayList<Integer>();//语音索引
     private FileInputStream mFIS;
@@ -133,7 +134,7 @@ public class ChatItemController {
         });
     }
 
-    public void handleBusinessCard(final Message msg, final  ViewHolder holder, int position) {
+    public void handleBusinessCard(final Message msg, final ViewHolder holder, int position) {
         final TextContent[] textContent = {(TextContent) msg.getContent()};
         final String[] mUserName = {textContent[0].getStringExtra("userName")};
         final String mAppKey = textContent[0].getStringExtra("appKey");
@@ -265,7 +266,7 @@ public class ChatItemController {
                             intent.putExtra(MyApplication.TARGET_ID, userName);
                             intent.putExtra("fromSearch", true);
                             mContext.startActivity(intent);
-                        }else {
+                        } else {
                             ToastUtil.shortToast(mContext, "获取信息失败,稍后重试");
                         }
                     }
@@ -543,7 +544,7 @@ public class ChatItemController {
         holder.txtContent.setTag(position);
         holder.txtContent.setOnLongClickListener(mLongClickListener);
         if (msgDirect == MessageDirect.send) {
-            holder.voice.setImageResource(R.drawable.send_3);
+//            holder.voice.setImageResource(R.drawable.send_3);
             switch (msg.getStatus()) {
                 case created:
                     holder.sendingIv.setVisibility(View.VISIBLE);
@@ -577,7 +578,7 @@ public class ChatItemController {
                         holder.displayName.setText(msg.getFromUser().getNickname());
                     }
                 }
-                holder.voice.setImageResource(R.drawable.jmui_receive_3);
+//                holder.voice.setImageResource(R.drawable.jmui_receive_3);
                 // 收到语音，设置未读
                 if (msg.getContent().getBooleanExtra("isRead") == null
                         || !msg.getContent().getBooleanExtra("isRead")) {
@@ -598,7 +599,7 @@ public class ChatItemController {
                 }
                 break;
             case receive_fail:
-                holder.voice.setImageResource(R.drawable.jmui_receive_3);
+//                holder.voice.setImageResource(R.drawable.jmui_receive_3);
                 // 接收失败，从服务器上下载
                 content.downloadVoiceFile(msg,
                         new DownloadCompletionCallback() {
@@ -1059,6 +1060,7 @@ public class ChatItemController {
 
     public void handleGroupChangeMsg(Message msg, ViewHolder holder) {
         String content = ((EventNotificationContent) msg.getContent()).getEventText();
+        System.out.println("group_member_exit22==" + content);
         EventNotificationContent.EventNotificationType type = ((EventNotificationContent) msg
                 .getContent()).getEventNotificationType();
         switch (type) {
@@ -1066,6 +1068,9 @@ public class ChatItemController {
             case group_member_exit:
             case group_member_removed:
             case group_info_updated:
+            case group_dissolved:
+                System.out.println("group_member_exit==" + content);
+
                 holder.groupChange.setText(content);
                 holder.groupChange.setVisibility(View.VISIBLE);
                 holder.msgTime.setVisibility(View.GONE);
@@ -1122,26 +1127,26 @@ public class ChatItemController {
                         return;
                     }
                     // 如果之前存在播放动画，无论这次点击触发的是暂停还是播放，停止上次播放的动画
-                    if (mVoiceAnimation != null) {
-                        mVoiceAnimation.stop();
-                    }
+//                    if (mVoiceAnimation != null) {
+//                        mVoiceAnimation.stop();
+//                    }
                     // 播放中点击了正在播放的Item 则暂停播放
                     if (mp.isPlaying() && mPosition == position) {
                         if (msgDirect == MessageDirect.send) {
-                            holder.voice.setImageResource(R.drawable.jmui_voice_send);
+//                            holder.voice.setImageResource(R.drawable.jmui_voice_send);
                         } else {
-                            holder.voice.setImageResource(R.drawable.jmui_voice_receive);
+//                            holder.voice.setImageResource(R.drawable.jmui_voice_receive);
                         }
-                        mVoiceAnimation = (AnimationDrawable) holder.voice.getDrawable();
+//                        mVoiceAnimation = (AnimationDrawable) holder.voice.getDrawable();
                         pauseVoice(msgDirect, holder.voice);
                         // 开始播放录音
                     } else if (msgDirect == MessageDirect.send) {
-                        holder.voice.setImageResource(R.drawable.jmui_voice_send);
-                        mVoiceAnimation = (AnimationDrawable) holder.voice.getDrawable();
+//                        holder.voice.setImageResource(R.drawable.jmui_voice_send);
+//                        mVoiceAnimation = (AnimationDrawable) holder.voice.getDrawable();
 
                         // 继续播放之前暂停的录音
                         if (mSetData && mPosition == position) {
-                            mVoiceAnimation.start();
+//                            mVoiceAnimation.start();
                             mp.start();
                             // 否则重新播放该录音或者其他录音
                         } else {
@@ -1152,9 +1157,9 @@ public class ChatItemController {
                         try {
                             // 继续播放之前暂停的录音
                             if (mSetData && mPosition == position) {
-                                if (mVoiceAnimation != null) {
-                                    mVoiceAnimation.start();
-                                }
+//                                if (mVoiceAnimation != null) {
+//                                    mVoiceAnimation.start();
+//                                }
                                 mp.start();
                                 // 否则开始播放另一条录音
                             } else {
@@ -1165,8 +1170,8 @@ public class ChatItemController {
                                     playVoice(position, holder, false);
                                     // 否则直接播放选中的语音
                                 } else {
-                                    holder.voice.setImageResource(R.drawable.jmui_voice_receive);
-                                    mVoiceAnimation = (AnimationDrawable) holder.voice.getDrawable();
+//                                    holder.voice.setImageResource(R.drawable.jmui_voice_receive);
+//                                    mVoiceAnimation = (AnimationDrawable) holder.voice.getDrawable();
                                     playVoice(position, holder, false);
                                 }
                             }
@@ -1249,12 +1254,12 @@ public class ChatItemController {
         if (autoPlay) {
             mConv.updateMessageExtra(msg, "isRead", true);
             holder.readStatus.setVisibility(View.GONE);
-            if (mVoiceAnimation != null) {
-                mVoiceAnimation.stop();
-                mVoiceAnimation = null;
-            }
-            holder.voice.setImageResource(R.drawable.jmui_voice_receive);
-            mVoiceAnimation = (AnimationDrawable) holder.voice.getDrawable();
+//            if (mVoiceAnimation != null) {
+//                mVoiceAnimation.stop();
+//                mVoiceAnimation = null;
+//            }
+//            holder.voice.setImageResource(R.drawable.jmui_voice_receive);
+//            mVoiceAnimation = (AnimationDrawable) holder.voice.getDrawable();
         }
         try {
             mp.reset();
@@ -1271,20 +1276,20 @@ public class ChatItemController {
             mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mp) {
-                    mVoiceAnimation.start();
+//                    mVoiceAnimation.start();
                     mp.start();
                 }
             });
             mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
-                    mVoiceAnimation.stop();
+//                    mVoiceAnimation.stop();
                     mp.reset();
                     mSetData = false;
                     if (isSender) {
-                        holder.voice.setImageResource(R.drawable.send_3);
+//                        holder.voice.setImageResource(R.drawable.send_3);
                     } else {
-                        holder.voice.setImageResource(R.drawable.jmui_receive_3);
+//                        holder.voice.setImageResource(R.drawable.jmui_receive_3);
                     }
                     if (autoPlay) {
                         int curCount = mIndexList.indexOf(position);
@@ -1370,8 +1375,8 @@ public class ChatItemController {
         }
 
         ViewGroup.LayoutParams params = imageView.getLayoutParams();
-        params.width = (int) imageWidth;
-        params.height = (int) imageHeight;
+//        params.width = (int) imageWidth;
+//        params.height = (int) imageHeight;
         imageView.setLayoutParams(params);
 
         return imageView;
@@ -1425,9 +1430,9 @@ public class ChatItemController {
 
     private void pauseVoice(MessageDirect msgDirect, ImageView voice) {
         if (msgDirect == MessageDirect.send) {
-            voice.setImageResource(R.drawable.send_3);
+//            voice.setImageResource(R.drawable.send_3);
         } else {
-            voice.setImageResource(R.drawable.jmui_receive_3);
+//            voice.setImageResource(R.drawable.jmui_receive_3);
         }
         mp.pause();
         mSetData = true;

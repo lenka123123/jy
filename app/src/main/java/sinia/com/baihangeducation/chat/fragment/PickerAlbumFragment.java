@@ -116,6 +116,7 @@ public class PickerAlbumFragment extends BaseFragment implements OnItemClickList
         }
     }
 
+
     private void getAllMediaThumbnails() {
         ThumbnailsUtil.clear();
         Cursor cursorThumb = null;
@@ -180,8 +181,13 @@ public class PickerAlbumFragment extends BaseFragment implements OnItemClickList
                         photoInfo.setAbsolutePath(path);
                         photoInfo.setSize(size);
                         albumInfo.getList().add(photoInfo);
-                        albumInfolist.set(index, albumInfo);
-                        hash.put(album, albumInfo);
+
+                        if (!album.equals("temp")) {
+                            if (!album.equals("origins")) {
+                                hash.put(album, albumInfo);
+                                albumInfolist.set(index, albumInfo);
+                            }
+                        }
                     } else {
                         albumInfo = new AlbumInfo();
                         photoList.clear();
@@ -195,8 +201,14 @@ public class PickerAlbumFragment extends BaseFragment implements OnItemClickList
                         albumInfo.setAbsolutePath(path);
                         albumInfo.setAlbumName(album);
                         albumInfo.setList(photoList);
-                        albumInfolist.add(albumInfo);
-                        hash.put(album, albumInfo);
+
+                        if (!album.equals("temp")) {
+                            if (!album.equals("origins")) {
+                                hash.put(album, albumInfo);
+                                albumInfolist.add(albumInfo);
+                            }
+                        }
+
                     }
                 } while (cursorPhotos.moveToNext());
             }

@@ -25,6 +25,7 @@ public class MyClubSchoolList {
         public String jmessage_owner;
         public String school_name;
         public String role_name;
+        public String status ;
 
     }
 

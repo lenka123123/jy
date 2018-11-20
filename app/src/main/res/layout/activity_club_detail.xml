@@ -84,7 +84,6 @@
                     android:layout_gravity="center"
                     android:background="@drawable/kuang"
                     android:gravity="center"
-                    android:text="已加入"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
@@ -219,6 +218,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/y220"
         android:background="@color/white"
+        android:scrollbars="vertical"
         android:paddingLeft="@dimen/x20"
         android:paddingRight="@dimen/x20"
         android:paddingTop="@dimen/y20"

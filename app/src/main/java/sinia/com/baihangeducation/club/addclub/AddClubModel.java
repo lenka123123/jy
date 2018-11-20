@@ -91,7 +91,7 @@ public class AddClubModel extends BasePresenter {
                 if (error.equals("9108")) {
                     getRequestListener.setRequestFail("9108");
                 } else {
-                    Toast.getInstance().showSuccessToast(activity, error);
+                    Toast.getInstance().showErrorToast(activity, error);
                     getRequestListener.setRequestFail(error);
                 }
 

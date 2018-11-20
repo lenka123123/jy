@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout style="@style/jmui_chat_item_send_layout"
-              xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/jmui_chat_item_send_layout">
 
     <TextView
         android:id="@+id/jmui_send_time_txt"
-        style="@style/jmui_chat_text_date_style"/>
+        style="@style/jmui_chat_text_date_style" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
 
         <ImageView
             android:id="@+id/jmui_avatar_iv"
-            style="@style/jmui_chat_item_sender_avatar_style"/>
+            style="@style/jmui_chat_item_sender_avatar_style" />
 
         <FrameLayout
             android:id="@+id/jmui_msg_fl"
@@ -24,6 +24,7 @@
             android:background="@drawable/jmui_msg_send_bg"
             android:maxWidth="200.0dip">
 
+
             <ImageView
                 android:id="@+id/jmui_picture_iv"
                 android:layout_width="match_parent"
@@ -33,7 +34,9 @@
                 android:layout_marginLeft="2dp"
                 android:layout_marginRight="2dp"
                 android:layout_marginTop="2dp"
-                android:scaleType="centerCrop"/>
+                android:minHeight="@dimen/y300"
+                android:minWidth="@dimen/x160"
+                android:scaleType="fitXY" />
 
 
             <TextView
@@ -44,18 +47,18 @@
                 android:text="0%"
                 android:textColor="@color/white"
                 android:textSize="24sp"
-                android:visibility="gone"/>
+                android:visibility="gone" />
         </FrameLayout>
 
         <TextView
-            android:text="未读消息"
-            android:layout_centerVertical="true"
             android:id="@+id/text_receipt"
-            android:layout_marginRight="7dp"
-            android:textSize="12sp"
-            android:layout_toLeftOf="@id/jmui_msg_fl"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="7dp"
+            android:layout_toLeftOf="@id/jmui_msg_fl"
+            android:text="未读消息"
+            android:textSize="12sp" />
 
         <ImageView
             android:id="@+id/jmui_sending_iv"
@@ -65,7 +68,7 @@
             android:layout_marginRight="3dp"
             android:layout_toLeftOf="@id/jmui_msg_fl"
             android:src="@drawable/jmui_sending_img"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <ImageButton
             android:id="@+id/jmui_fail_resend_ib"
@@ -77,7 +80,7 @@
             android:background="@drawable/send_message_failed"
             android:clickable="true"
             android:scaleType="fitCenter"
-            android:visibility="gone"/>
+            android:visibility="gone" />
     </RelativeLayout>
 
 </LinearLayout>

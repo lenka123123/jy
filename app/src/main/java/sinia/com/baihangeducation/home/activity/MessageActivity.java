@@ -134,7 +134,7 @@ public class MessageActivity extends BaseActivity implements MessageView ,SuperR
                         if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
                             //隐藏键盘
                             ((InputMethodManager) getSystemService(INPUT_METHOD_SERVICE))
-                                    .hideSoftInputFromWindow(context.getCurrentFocus()
+                                    .hideSoftInputFromWindow(MessageActivity.this.getCurrentFocus()
                                             .getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                             //发送
                             mWriteMessage.setOnEditorActionListener(new TextView.OnEditorActionListener() {

@@ -76,13 +76,13 @@ public class HomePartTimeAdapter extends SuperBaseAdapter<HomePartTimeInfo> {
         }
         holder.setText(R.id.fragment_home_down_item_salary, item.job_money);
 
-        holder.setVisible(R.id.show_club_job, false);
+        holder.setVisible(R.id.show_club_job, item.job_type == 3);
 
         Log.i("兼职的type", item.job_type + "");
         holder.setOnClickListener(R.id.fragment_home_down_item, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Goto.toPartTimeJobDetailActivityForHome(context, item.job_id, item.job_type);
+                Goto.toPartTimeJobDetailActivityForHome(context, item.job_id, item.job_type,item.jmessage_phone);
 //                switch (item.job_type) {
 //                    case 1:
 //                        Goto.toAllJobDetailActivity(context, item.job_id);

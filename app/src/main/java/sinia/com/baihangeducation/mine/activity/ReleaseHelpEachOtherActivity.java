@@ -104,7 +104,7 @@ public class ReleaseHelpEachOtherActivity extends BaseActivity implements OnItem
     public void onClick(View v) {
         super.onClick(v);
         //隐藏键盘
-        ((InputMethodManager) context.getSystemService(INPUT_METHOD_SERVICE))
+        ((InputMethodManager) ReleaseHelpEachOtherActivity.this.getSystemService(INPUT_METHOD_SERVICE))
                 .hideSoftInputFromWindow((ReleaseHelpEachOtherActivity.this).getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
         switch (v.getId()) {

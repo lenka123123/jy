@@ -293,14 +293,17 @@ public class PartTimeJobDetailActivity extends BaseActivity implements JobInfoVi
                 break;
             case R.id.fragment_home_parttimejobinfo_sendresume:
                 //投递简历
-                if (club.equals("club")) {
-                    if (jobInfo != null) {
-                        addShareMeun();
-                        System.out.println(" clu==2====");
-                    }
-                } else {
-                    mJobInfoPresenter.sendResume();
-                }
+                mJobInfoPresenter.sendResume();
+
+
+//                if (club.equals("club")) {
+//                    if (jobInfo != null) {
+//                        addShareMeun();
+//                        System.out.println(" clu==2====");
+//                    }
+//                } else {
+//                    mJobInfoPresenter.sendResume();
+//                }
 
                 break;
             case R.id.sharemeun_qqfriend:
@@ -490,7 +493,7 @@ public class PartTimeJobDetailActivity extends BaseActivity implements JobInfoVi
             jobInfo = mJobInfo;
             jobInfo_is_collect = mJobInfo.is_collect;
             collectionId = mJobInfo.collect_id;
-            phone = mJobInfo.job_link_phone;
+//            phone = mJobInfo.job_link_phone;
             mTitle.setText(mJobInfo.job_title);
             mPrice.setText(mJobInfo.job_money);
             mAdressAndDare.setText(mJobInfo.job_city_name);//+ " " + mJobInfo.job_add_date

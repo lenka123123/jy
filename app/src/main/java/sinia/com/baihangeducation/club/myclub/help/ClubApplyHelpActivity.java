@@ -146,7 +146,7 @@ public class ClubApplyHelpActivity extends BaseActivity implements GetActiveOpti
      */
     protected void hideEditTextInput() {
         //隐藏键盘
-        ((InputMethodManager) context.getSystemService(INPUT_METHOD_SERVICE))
+        ((InputMethodManager) ClubApplyHelpActivity.this.getSystemService(INPUT_METHOD_SERVICE))
                 .hideSoftInputFromWindow((ClubApplyHelpActivity.this).getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
     }

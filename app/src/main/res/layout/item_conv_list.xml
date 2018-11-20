@@ -53,7 +53,11 @@
                     <ImageView
                         android:id="@+id/msg_item_head_icon"
                         android:layout_width="@dimen/x101"
-                        android:layout_height="@dimen/y101" />
+                        android:layout_height="@dimen/y101"
+                        android:layout_gravity="center"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/app_name"
+                        android:scaleType="fitXY" />
                 </LinearLayout>
 
             </FrameLayout>

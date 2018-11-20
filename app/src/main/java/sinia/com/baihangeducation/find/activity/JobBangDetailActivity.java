@@ -238,7 +238,7 @@ public class JobBangDetailActivity extends BaseActivity
 
         mCommonTitle.setBackgroundColor(Color.WHITE);
         if (typename.equals("")) {
-            mCommonTitle.setCenterText(R.string.jobbangclassdetail);
+            mCommonTitle.setCenterText(typename + "详情");
         } else {
             mCommonTitle.setCenterText(typename + "详情");
         }

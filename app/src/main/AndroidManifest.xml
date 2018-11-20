@@ -430,6 +430,11 @@
             android:name=".mine.activity.ForgetPasswordActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.imgFullScreen" />
+        <!--验证码登录-->
+        <activity
+            android:name=".mine.activity.VerificationCodeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.imgFullScreen" />
         <!--忘记密码 第二页-->
         <activity
             android:name=".mine.activity.ForgetPassword2Activity"
@@ -660,6 +665,12 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
 
+        <!-- club 我创建的兼职申请列表-->
+        <activity
+            android:name=".club.myparttimeapplylist.ClubMyCreatePartTimeActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+
         <!-- club 社团我的社团-->
         <activity
             android:name=".club.myclub.myclub.ClubMyClubActivity"
@@ -735,6 +746,7 @@
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
+            android:launchMode="standard"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 

@@ -90,7 +90,7 @@ public class CommentPageActivity extends BaseActivity {
 
     protected void initView() {
         StatService.start(this);
-        mCommonTitle.setCenterText("校内圈");
+        mCommonTitle.setCenterText("详情");
 
         mSmartRefreshLayout = findViewById(R.id.refreshLayout);
         send = findViewById(R.id.send);
@@ -173,9 +173,7 @@ public class CommentPageActivity extends BaseActivity {
             userTime.setText(AppConfig.mFunContantInfo.add_time);
 
 
-
-
-            String content =AppConfig.mFunContantInfo.content;
+            String content = AppConfig.mFunContantInfo.content;
             String topic_title = AppConfig.mFunContantInfo.topic_title;
             int index = content.indexOf(topic_title);
             //文本内容
@@ -290,6 +288,7 @@ public class CommentPageActivity extends BaseActivity {
         userName = layout.findViewById(R.id.newcampayfunitem_uesername);
         userTime = layout.findViewById(R.id.newcampayfunitem_time);
         addfollow = layout.findViewById(R.id.addfollow);
+        addfollow.setVisibility(View.GONE);
         userCaontant = layout.findViewById(R.id.newcampayfunitem_caontant);
         tv_show = layout.findViewById(R.id.tv_show);
         tv_chat_number = layout.findViewById(R.id.tv_chat_number);

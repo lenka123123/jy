@@ -23,12 +23,14 @@ public class HomeJobInfo {
     public String job_look_num;
     public String job_industry_id;
     public String job_industry_name;
+    public String job_industry_icon;
     public String job_time_shaft;
     public String job_money_name;
     public String job_distance;
 
     public int job_is_platform;
     public String job_time_group;
+    public String jmessage_phone;
 
 
 }

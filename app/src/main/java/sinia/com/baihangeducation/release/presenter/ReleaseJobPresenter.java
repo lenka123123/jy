@@ -132,6 +132,7 @@ public class ReleaseJobPresenter extends BasePresenter {
                 @Override
                 public void requestFailed(String error) {
                     Toast.getInstance().showErrorToast(activity, error);
+                    view.getReleaseFail();
                 }
 
                 @Override

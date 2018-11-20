@@ -62,6 +62,7 @@
 
             <TextView
                 android:id="@+id/addfollow"
+                android:visibility="gone"
                 android:layout_width="@dimen/x101"
                 android:layout_height="@dimen/y53"
                 android:layout_alignParentRight="true"

@@ -30,6 +30,8 @@ public class ClubPartTimeListInfo {
         public String industry_name;
         public String client_look_num;
         public String jmessage_phone;
+        public String money_type_name;
+        public String time_group;
 
 
 

@@ -64,8 +64,8 @@ public class ClubMyClubActivity extends BaseActivity implements
         left = $(R.id.left);
         right = $(R.id.right);
 
-        tab_first.setText("创建的");
-        tab_two.setText("加入的");
+        tab_first.setText("我创建的");
+        tab_two.setText("我加入的");
 
         tab_first.setOnClickListener(this);
         tab_two.setOnClickListener(this);
