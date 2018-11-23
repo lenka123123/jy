@@ -251,9 +251,9 @@ public class PartTimeJobDetailActivity extends BaseActivity implements JobInfoVi
             online_contact.setVisibility(View.VISIBLE);
         }
 
-        if (club.equals("club")) {
-            mSendResume.setText("分享");
-        }
+//        if (club.equals("club")) {
+//            mSendResume.setText("分享");
+//        }
     }
 
     MapView mapView = null;//地图视图

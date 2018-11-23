@@ -154,6 +154,7 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
     private MyBroadCastRecevir recevir;
     private PartTimeFragment partTimeFragment;
     private String phone;
+    private LinearLayout all_unread_number;
 
 
     public void loginIm() {
@@ -294,6 +295,8 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
 
     @Override
     protected void onResume() {
+        int num = JMessageClient.getAllUnReadMsgCount();
+        changeMsgCountView(num, 0);
         JCoreInterface.onResume(this);
         // TODO: 2018/10/20 0020      chatFragment.sortConvList();
         super.onResume();
@@ -387,6 +390,7 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
         mFine = (RadioButton) findViewById(R.id.main_tab_find);
         mCampus = (RadioButton) findViewById(R.id.main_tab_campus);
         mMine = (RadioButton) findViewById(R.id.main_tab_mine);
+        all_unread_number = (LinearLayout) findViewById(R.id.all_unread_number);
         mAdd = (RadioButton) findViewById(R.id.main_tab_add);
         mLinearLayout = (LinearLayout) findViewById(R.id.linearLayout);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -501,7 +505,41 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
     }
 
     public void initData() {
+        int num = JMessageClient.getAllUnReadMsgCount();
+        changeMsgCountView(num, 0);
+    }
 
+    public void changeMsgCountView(int num, int isSystem) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("changeMsgCountView==" + num + "系统" + isSystem);
+                if (all_unread_number == null) return;
+
+
+                if (isSystem == 1) {  //系统
+                    if (num >= 1) {
+                        all_unread_number.setVisibility(View.VISIBLE);
+                    } else {
+                        int num = JMessageClient.getAllUnReadMsgCount();
+                        if (num >= 1) {
+                            all_unread_number.setVisibility(View.VISIBLE);
+                        } else {
+                            all_unread_number.setVisibility(View.GONE);
+                        }
+
+                    }
+                } else if (isSystem == 0) {
+                    if (num >= 1) {
+                        all_unread_number.setVisibility(View.VISIBLE);
+                    } else {
+                        all_unread_number.setVisibility(View.GONE);
+                    }
+                }
+
+
+            }
+        });
 
     }
 

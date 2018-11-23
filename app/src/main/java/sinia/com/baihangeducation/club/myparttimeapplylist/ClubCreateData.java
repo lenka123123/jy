@@ -17,5 +17,6 @@ public class ClubCreateData {
         public String gender;//": "女",
         public String nickname;//": "smileforme",
         public String school_name;//": "南京大学"
+        public String jmessage_phone;//": 手机号
     }
 }

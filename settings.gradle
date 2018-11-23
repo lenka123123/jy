@@ -1,1 +1,1 @@
-include ':app', ':lib:framwork', ':lib:jpush', ':commonlib',':imageselector'
+include ':app', ':lib:framwork', ':lib:jpush', ':commonlib',':imagepicker'

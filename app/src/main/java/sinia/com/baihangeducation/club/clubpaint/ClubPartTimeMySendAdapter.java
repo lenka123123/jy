@@ -36,7 +36,7 @@ public class ClubPartTimeMySendAdapter extends SuperBaseAdapter<ClubPartTimeList
         holder.setText(R.id.fragment_home_down_item_title, item.title);
         holder.setText(R.id.job_time_type, item.money_type_name);
         holder.setText(R.id.job_time, item.time_group);
-        holder.setText(R.id.ago, item.add_time);
+        holder.setText(R.id.ago, item.add_date);
 
         holder.setOnClickListener(R.id.fragment_home_down_item, new View.OnClickListener() {
             @Override

@@ -4,11 +4,14 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 
+import com.applikeysolutions.cosmocalendar.model.Day;
 import com.example.framwork.baseapp.BaseAppConfig;
 import com.example.framwork.utils.CommonUtil;
 
 import com.example.framwork.utils.UserInfo;
 import com.mcxtzhang.swipemenulib.utils.BuildConfig;
+
+import java.util.List;
 
 import sinia.com.baihangeducation.newcampus.info.FunContantInfo;
 
@@ -98,6 +101,7 @@ public class AppConfig extends BaseAppConfig {
     public static boolean CTYLENAMESELECT = false;
     public static Boolean SHOWCLUBJOB = false;
     public static FunContantInfo mFunContantInfo = null;
+    public static List<Day> selectDay;
 
 
     public static boolean ISlOGINED = true;

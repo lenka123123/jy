@@ -407,7 +407,7 @@
         <!--登录-->
         <activity
             android:name=".mine.activity.LoginActivity"
-            android:launchMode="singleTask"
+            android:launchMode="standard"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.imgFullScreen">
             <intent-filter>
@@ -745,10 +745,7 @@
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:exported="true"
-            android:launchMode="standard"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:exported="true" />
 
         <!--微信-->
         <!--<activity android:name="com.zzti.fengyongge.imagepicker.PhotoSelectorActivity" />-->

@@ -94,7 +94,7 @@ public class MySettingActivity extends BaseActivity implements IMySettingView {
                     .getPackageInfo(context.getPackageName(), 0);
             localVersion = packageInfo.versionName;
 
-            version.setText("Jiuyebang " + localVersion);
+            version.setText("就业邦App " + localVersion);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }

@@ -184,12 +184,9 @@ public class HotCommentPageActivity extends BaseActivity implements IGetFunView,
                 } else {
                     mAddData = false;
                 }
-                mList.addAll(homePager.dynamic_list.list);
+                if (homePager.dynamic_list.list.size() > 1)
+                    mList.addAll(homePager.dynamic_list.list);
                 mNewCampusFunAdapter.notifyDataSetChanged();
-
-
-                System.out.println("ddddddddd" + homePager.dynamic_list.list.size());
-
 
 //                Glide.with(HomePageActivity.this).load(homePager.info.publish_user_avatar).skipMemoryCache(false).thumbnail(0.3f)
 //                        .error(R.drawable.logo).crossFade().into(iconImageView);

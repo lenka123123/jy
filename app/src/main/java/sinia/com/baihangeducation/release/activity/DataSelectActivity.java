@@ -27,13 +27,14 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.R;
 import sinia.com.baihangeducation.release.info.bean.SelectedDay;
 import sinia.com.baihangeducation.supplement.base.BaseActivity;
 
 public class DataSelectActivity extends BaseActivity {
 
-    private CalendarView calendarView;
+    private MyCalendarView calendarView;
     private List<BaseCriteria> threeMonthsCriteriaList;
     private WeekDayCriteria fridayCriteria;
 
@@ -54,6 +55,12 @@ public class DataSelectActivity extends BaseActivity {
     @Override
     protected void initData() {
         createCriterias();
+
+        if (calendarView != null && AppConfig.selectDay != null && AppConfig.selectDay.size() > 1) {
+            System.out.println("已经选择的天数" + AppConfig.selectDay.size());
+            if (AppConfig.selectDay != null && AppConfig.selectDay.size() > 1)
+                calendarView.setSelectData(AppConfig.selectDay);
+        }
     }
 
     public int initLayoutResID() {
@@ -61,7 +68,7 @@ public class DataSelectActivity extends BaseActivity {
     }
 
     private void initViews() {
-        calendarView = (CalendarView) findViewById(R.id.calendar_view);
+        calendarView = (MyCalendarView) findViewById(R.id.calendar_view);
         calendarView.setCalendarOrientation(OrientationHelper.VERTICAL);//是垂直的
         calendarView.setSelectionType(SelectionType.MULTIPLE);//点选
 
@@ -73,6 +80,7 @@ public class DataSelectActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 List<Day> day = calendarView.getSelectedDays();
+                AppConfig.selectDay = day;
                 if (day == null || day.size() < 1) {
                     DataSelectActivity.this.finish();
                     return;
@@ -90,6 +98,7 @@ public class DataSelectActivity extends BaseActivity {
                 // 获取启动该Activity之前的Activity对应的Intent
                 Intent intent = getIntent();
                 intent.putExtra("daylist", (Serializable) selectedDayes);
+
 
                 // 设置该SelectCityActivity的结果码，并设置结束之后退回的Activity
                 if (selectedDayes.size() < 1) {

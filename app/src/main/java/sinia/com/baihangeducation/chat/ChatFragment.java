@@ -44,6 +44,7 @@ import cn.jpush.im.android.api.model.UserInfo;
 import cn.jpush.im.android.eventbus.EventBus;
 import cn.jpush.im.api.BasicCallback;
 import sinia.com.baihangeducation.AppConfig;
+import sinia.com.baihangeducation.MainActivity;
 import sinia.com.baihangeducation.MyApplication;
 import sinia.com.baihangeducation.R;
 import sinia.com.baihangeducation.chat.view.ConversationListView;
@@ -81,6 +82,7 @@ public class ChatFragment extends ChatBaseFragment implements GetRequestListener
         Gson gson = new Gson();
         ChatData chatData = gson.fromJson(msg, ChatData.class);
         AppConfig.CHATMESSAGE = chatData.content;
+        ((MainActivity) getActivity()).changeMsgCountView(chatData.unread, 1);
         AppConfig.CHATMESSAGENUM = chatData.unread + "";
         sortConvList();
     }
@@ -266,6 +268,9 @@ public class ChatFragment extends ChatBaseFragment implements GetRequestListener
      */
     public void onEvent(MessageEvent event) {
         mConvListView.setUnReadMsg(JMessageClient.getAllUnReadMsgCount());
+        if (JMessageClient.getAllUnReadMsgCount() >= 1) {
+            ((MainActivity) getActivity()).changeMsgCountView(JMessageClient.getAllUnReadMsgCount(), 0);
+        }
         Message msg = event.getMessage();
         if (msg.getTargetType() == ConversationType.group) {
             long groupId = ((GroupInfo) msg.getTargetInfo()).getGroupID();

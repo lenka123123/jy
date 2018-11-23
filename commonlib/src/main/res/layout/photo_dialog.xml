@@ -2,19 +2,43 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
     <com.mcxtzhang.swipemenulib.customview.ViewPagerFix
         android:id="@+id/vp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
     <TextView
         android:id="@+id/tv"
-        android:textColor="#424242"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="25dp"
-        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:textColor="#424242" />
+
+
+    <LinearLayout
+        android:id="@+id/sava_phone"
+        android:layout_width="@dimen/y500"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x125"
+        android:layout_marginTop="@dimen/y600"
+        android:background="@color/white"
+        android:gravity="center"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/pass"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y90"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/x20"
+            android:text="保存到手机"
+            android:textSize="16sp" />
+    </LinearLayout>
 
 </RelativeLayout>

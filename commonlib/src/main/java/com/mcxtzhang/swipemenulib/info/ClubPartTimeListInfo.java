@@ -23,6 +23,7 @@ public class ClubPartTimeListInfo {
         public String money_name;
         public String look_num;
         public String add_time;
+        public String add_date;
         public String city_name;
         public String industry_icon;
 

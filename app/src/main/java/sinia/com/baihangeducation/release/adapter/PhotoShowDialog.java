@@ -4,7 +4,9 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -12,10 +14,16 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.DisplayMetrics;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +44,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 
+import sinia.com.baihangeducation.club.clubdetail.ClubDetailActivity;
+import sinia.com.baihangeducation.supplement.alertview.AlertViewContorller;
+import sinia.com.baihangeducation.supplement.alertview.OnItemClickListener;
+
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
+
 /**
  * @Author cuiChenBo
  * Created by zz on 2018/2/27 15:28.
@@ -49,6 +63,8 @@ public class PhotoShowDialog extends Dialog {
     private int mPosition;
     private ViewPagerFix vp;
     private TextView tv;
+    private TextView pass;
+    private LinearLayout sava_phone;
 
     public PhotoShowDialog(@NonNull Context context) {
         super(context);
@@ -78,8 +94,16 @@ public class PhotoShowDialog extends Dialog {
         getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         vp = findViewById(R.id.vp);
         tv = findViewById(R.id.tv);
+        sava_phone = findViewById(R.id.sava_phone);
+        pass = findViewById(R.id.pass);
         vp.setAdapter(new VpAdapter(mContext));
         vp.setCurrentItem(mPosition);
+        pass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                savePhone();
+            }
+        });
         tv.setText(vp.getCurrentItem() + 1 + "/" + photoLists.size());
         tv.setVisibility(photoLists.size() == 1 ? View.INVISIBLE : View.VISIBLE);
         vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -90,6 +114,7 @@ public class PhotoShowDialog extends Dialog {
 
             @Override
             public void onPageSelected(int position) {
+                sava_phone.setVisibility(View.GONE);
                 tv.setText(position + 1 + "/" + photoLists.size());
             }
 
@@ -99,6 +124,18 @@ public class PhotoShowDialog extends Dialog {
             }
         });
     }
+
+    public void getCenterCancelDialogApply(Bitmap resource) {
+        phoneResource = resource;
+
+    }
+
+    private void savePhone() {
+        sava_phone.setVisibility(View.GONE);
+        if (phoneResource != null)
+            saveImageToGallery(mContext, phoneResource);
+    }
+
 
     class VpAdapter extends PagerAdapter {
         Context context;
@@ -133,10 +170,9 @@ public class PhotoShowDialog extends Dialog {
                     photoView.setOnLongClickListener(new View.OnLongClickListener() {
                         @Override
                         public boolean onLongClick(View view) {
+                            sava_phone.setVisibility(View.VISIBLE);
 
-
-
-                            saveImageToGallery(context, resource);
+                            getCenterCancelDialogApply(resource);
 
 
                             return false;
@@ -144,12 +180,8 @@ public class PhotoShowDialog extends Dialog {
                     });
 
 
-
-
                 }
             }); //方法中设置asBitmap可以设置回调类型
-
-
 
 
             photoView.setOnPhotoTapListener(new OnPhotoTapListener() {
@@ -167,6 +199,7 @@ public class PhotoShowDialog extends Dialog {
             ((ViewPager) container).removeView((View) object);
         }
     }
+
 
     public static void saveImageToGallery(Context context, Bitmap bmp) {
         // 首先保存图片
@@ -202,4 +235,8 @@ public class PhotoShowDialog extends Dialog {
         intent.setData(uri);
         context.sendBroadcast(intent);
     }
+
+    private Bitmap phoneResource;
+
+
 }

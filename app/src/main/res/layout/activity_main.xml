@@ -55,8 +55,8 @@
                         android:id="@+id/main_tab_home"
                         style="@style/MTabStyle"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:checked="true"
                         android:drawableTop="@drawable/maintab_home_icon_selector"
                         android:text="@string/main_tab_home"
@@ -67,8 +67,8 @@
                         android:id="@+id/main_tab_find"
                         style="@style/MTabStyle"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:drawableTop="@drawable/maintab_find_icon_selector"
                         android:text="兼职"
                         android:textColor="@drawable/maintextcolorselector"
@@ -78,8 +78,8 @@
                         android:id="@+id/main_tab_add"
                         style="@style/MTabStyle"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:drawableTop="@drawable/maintab_club_icon_selector"
                         android:text="社团"
                         android:textColor="@drawable/maintextcolorselector"
@@ -89,8 +89,8 @@
                         android:id="@+id/main_tab_campus"
                         style="@style/MTabStyle"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:drawableTop="@drawable/maintab_campus_icon_selector"
                         android:text="消息"
                         android:textColor="@drawable/maintextcolorselector"
@@ -100,23 +100,46 @@
                         android:id="@+id/main_tab_mine"
                         style="@style/MTabStyle"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:drawableTop="@drawable/maintab_mine_icon_selector"
                         android:text="我的"
                         android:textColor="@drawable/maintextcolorselector"
                         android:textSize="@dimen/font_size_12" />
                 </RadioGroup>
 
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
                     android:layout_alignParentBottom="true"
-                    android:layout_centerInParent="true"
-                    android:button="@null"
-                    android:drawableTop="@drawable/new_main_add"
-                    android:paddingTop="@dimen/space_20"
+                    android:layout_marginLeft="@dimen/x550"
+                    android:button="@drawable/new_main_add"
+                    android:text="财务室"
                     android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/all_unread_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="47dp"
+                    android:layout_alignParentBottom="true"
+                    android:visibility="gone"
+                    android:layout_marginLeft="@dimen/x540"
+                    android:layout_marginTop="@dimen/y20"
+                    android:paddingBottom="30dp">
+
+                    <TextView
+                        android:layout_width="@dimen/x18"
+                        android:layout_height="@dimen/y20"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/unread_msg_red"
+                        android:elevation="7dp"
+                        android:gravity="center"
+                        android:textColor="@android:color/white"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+
+
             </RelativeLayout>
 
 

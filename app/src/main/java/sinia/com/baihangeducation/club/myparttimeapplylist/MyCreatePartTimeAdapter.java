@@ -1,6 +1,7 @@
 package sinia.com.baihangeducation.club.myparttimeapplylist;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
@@ -14,10 +15,14 @@ import com.example.framwork.adapter.SuperBaseAdapter;
 
 import java.util.List;
 
+import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.callback.GetUserInfoCallback;
 import sinia.com.baihangeducation.AppConfig;
+import sinia.com.baihangeducation.MyApplication;
 import sinia.com.baihangeducation.R;
 import sinia.com.baihangeducation.club.club.interfaces.GetRequestListener;
 import sinia.com.baihangeducation.club.clubactive.model.ActiveListData;
+import sinia.com.baihangeducation.club.im.ChatActivity;
 import sinia.com.baihangeducation.supplement.base.Goto;
 
 /**
@@ -117,6 +122,22 @@ public class MyCreatePartTimeAdapter extends SuperBaseAdapter<ClubCreateData.App
 
             }
         });
+        //tiem 点击
+        holder.setOnClickListener(R.id.active_item_view, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (type.equals("2")) {
+                    JMessageClient.getUserInfo(item.jmessage_phone, new GetUserInfoCallback() {
+                        @Override
+                        public void gotResult(int i, String s, cn.jpush.im.android.api.model.UserInfo userInfo) {
+                            System.out.println("JMessageClient dong1" + i + "===" + s + "===" + userInfo.getAppKey());
+                            chat(userInfo);
+                        }
+                    });
+                }
+
+            }
+        });
         //是否通过 1：同意 2：拒绝    ( 必传 )
         holder.setOnClickListener(R.id.cancel, new View.OnClickListener() {
             @Override
@@ -141,6 +162,17 @@ public class MyCreatePartTimeAdapter extends SuperBaseAdapter<ClubCreateData.App
     @Override
     protected int getItemViewLayoutId(int position, ClubCreateData.ApplyPerson item) {
         return R.layout.activity_my_club_my_create_parttime;
+    }
+
+    public void chat(cn.jpush.im.android.api.model.UserInfo userInfo) {
+        Intent intent = new Intent();
+        intent.putExtra(MyApplication.CONV_TITLE, userInfo.getNickname());
+        String targetId = userInfo.getUserName();
+        intent.putExtra(MyApplication.TARGET_ID, targetId);
+        intent.putExtra(MyApplication.TARGET_APP_KEY, userInfo.getAppKey());
+
+        intent.setClass(activity, ChatActivity.class);
+        activity.startActivity(intent);
     }
 
 

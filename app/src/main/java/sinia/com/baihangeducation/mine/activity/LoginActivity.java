@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
+import com.bumptech.glide.Glide;
 import com.example.framwork.baseapp.BaseAppConfig;
 import com.example.framwork.utils.CommonUtil;
 import com.example.framwork.utils.SpCommonUtils;
@@ -73,7 +74,6 @@ import sinia.com.baihangeducation.supplement.base.Goto;
 import sinia.com.baihangeducation.supplement.tool.OkHttpUtils;
 import sinia.com.baihangeducation.supplement.tool.WxShareAndLoginUtils;
 
-
 public class LoginActivity extends AppCompatActivity implements ILoginView, IThirdLoginView, View.OnClickListener, GetRequestListener, IWXAPIEventHandler {
     private LoginPresenter mLoginPresenter;
     private UMShareAPI umShareAPI = null;
@@ -110,13 +110,11 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, IThi
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         setContentView(R.layout.activity_login);
 
         Intent intent = getIntent();
         unionid = intent.getStringExtra("type");
-
+        System.out.println("onCreate" + unionid);
 
         AppConfig.WEICHATCODE = "";
         context = this;
@@ -127,7 +125,8 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, IThi
         SpCommonUtils.put(LoginActivity.this, AppConfig.USERTOKEN, "USERID");
         SpCommonUtils.put(LoginActivity.this, AppConfig.FINALUSERID, "USERID");
         weichatCode = (String) SpCommonUtils.get(LoginActivity.this, AppConfig.WEICHAT_CODE, "");
-        api = WXAPIFactory.createWXAPI(this, BaseAppConfig.WX_APP_ID);
+        api = WXAPIFactory.createWXAPI(this, Constants.APP_ID, true);
+        api.registerApp(Constants.APP_ID);
         /*注册微信广播*/
 //        IntentFilter filter = new IntentFilter(WXEntryActivity.ACTION_GETWX);
 //        LocalBroadcastManager.getInstance(this).registerReceiver(wxReceiver, filter);
@@ -147,6 +146,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, IThi
     @Override
     protected void onRestart() {
         super.onRestart();
+        System.out.println("onRestart");
         if (thirdLoginPresenter != null && !AppConfig.WEICHATCODE.equals(""))
             thirdLoginPresenter.bindWeixinLogin(AppConfig.WEICHATCODE);
         AppConfig.WEICHATCODE = "";
@@ -220,6 +220,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, IThi
 
     }
 
+
     @Override
     public void finish() {
         super.finish();
@@ -229,15 +230,15 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, IThi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.testweixin:
-                //验证码登录
-//                Goto.toVerificationCodeLogin(LoginActivity.this);
-                System.out.println("weichatCode===" + weichatCode);
-                WxShareAndLoginUtils.WxLogin(LoginActivity.this);
-
+//                SendAuth.Req req = new SendAuth.Req();
+//                req.scope = "snsapi_userinfo";
+////                req.scope = "snsapi_login";//提示 scope参数错误，或者没有scope权限
+//                req.state = "wechat_sdk_微信登录";
+//                api.sendReq(req);
                 break;
 
             case R.id.phone_logo:
-                Goto.toForgetPassword(context,"login");
+                Goto.toForgetPassword(context, "login");
                 break;
             case R.id.back:
                 Goto.toMainActivity(context);
@@ -269,7 +270,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, IThi
                 break;
             case R.id.tv_forget_password:
                 //忘记密码
-                Goto.toForgetPassword(context,"");
+                Goto.toForgetPassword(context, "");
                 break;
             case R.id.bt_login_delete:
                 mPhoneNum.setText("");
@@ -332,12 +333,14 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, IThi
         @Override
         public void onComplete(SHARE_MEDIA platform, int action, Map<String, String> data) {
             Log.i("第三方登录", data.toString());
-//            {ret=0, unionid=, pay_token=ED7669916FA04A53E41F60B5363771F5, page_type=, openid=208C17991B9446A6FA32C1371401191C, accessToken=5FF087981C134D3B7F9A0072EEC1469E, access_token=5FF087981C134D3B7F9A0072EEC1469E, uid=208C17991B9446A6FA32C1371401191C, sendinstall=, as=LTTiT2YjagGdp0bl, pfkey=352d67886f9ad449c9ada9140908205d, pf=desktop_m_qq-10000144-android-2002-, appid=, auth_time=, expires_in=7776000, aid=1105546121}
+//  {access_token=15_1YARnEhnnd4HFmC6oK_JXH3mibvTa_QFK98BWDJovryx294mE57_jTJ1vrM9oWkd5-zYWBbOm1sIi-xvVNXNzFczsyTHML6YIWHV2pHzal8, refresh_token=15_1YARnEhnnd4HFmC6oK_JXILcM74ajVEebDuR7fF348z5TS29IIyEaBgan_cdYQBIJsj_FrV598OOl07XqpTH_5OymT5iSz9tYk5_o-XVizU, unionid=null, openid=oa9icwOrdMI7FjQJjPovNkWa7_Tw, scope=snsapi_base,snsapi_userinfo,, expires_in=7200}
 
+            if (data.get("unionid") == null) return;
             accessToken = data.get("access_token").toString();
             if (platform.equals(SHARE_MEDIA.WEIXIN)) {
                 third_type = 2;
-                uuid = data.get("openid").toString();
+
+                uuid = data.get("unionid").toString();
             } else if (platform.equals(SHARE_MEDIA.QQ)) {
                 third_type = 1;
                 uuid = data.get("uid").toString();
@@ -497,6 +500,12 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, IThi
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        System.out.println("得到12Unionid" + requestCode + "HHH" + requestCode + "HHH" + data.toString());
+        if (resultCode == 0) {
+            String unionid = data.getStringExtra("Unionid");
+            Log.d("", "UnionidUnionid" + unionid);
+        }
+
         super.onActivityResult(requestCode, resultCode, data);
         UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
     }
@@ -505,12 +514,15 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, IThi
     protected void onStart() {
         super.onStart();
         Log.i("生命周期", "onStart");
+
+
     }
 
 
     @Override
     protected void onPause() {
         super.onPause();
+
         Log.i("生命周期", "onPause");
     }
 
@@ -644,68 +656,6 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, IThi
 //        };
 //        OkHttpUtils.get(http, resultCallback);
 //    }
-
-
-    private void getAccessToken(String code) {
-        //获取授权
-        String http = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="
-                + Constants.APP_ID + "&secret=" + Constants.APP_SECRET + "&code=" +
-                code + "&grant_type=authorization_code";
-        OkHttpUtils.ResultCallback<String> resultCallback = new OkHttpUtils.ResultCallback<String>() {
-            @Override
-            public void onSuccess(String response) {
-                String access = null;
-                String openId = null;
-
-//                     ===response=={
-// "access_token":"15_fSq7RGugDQLBBxHAT1IqK8odApi-QUBfvwgWz1nHT2EXrp4_FclFqNuAthFPcuxU55VUQQLKUoH3AnzX1CO5dAJIsVNTKiGWlMEMC6GP37w",
-// "expires_in":7200,
-// "refresh_token":"15_eVsG_NRRuunPgbp_1B_CD6-QvYUle6lMVcHAV3pzkQAB9Uvqe96R8U0P-Vgv3zgc12tft5RQBNZmkPt1eXicMyPq6urOaq49csLB7PplP7Q",
-// "openid":"oa9icwBIXUWSsKwUHyPOI0pNtXQU",
-// "scope":"snsapi_userinfo",
-// "unionid":"oZ7F3wyMgU-5COwsUTqbzR_7Nzkg"}
-
-
-// {"errcode":40163,"errmsg":"code been used, hints: [ req_id: CWu0.A05242026 ]"}
-                System.out.println("===response== you" + response);
-//                JSONObject job = JSONObject.parseObject(response);
-//                if (job.get("unionid") != null) {
-//                    System.out.println(job.get("unionid"));
-//                    SpCommonUtils.put(LoginActivity.this, AppConfig.WEICHAT_CODE, job.get("unionid").toString());
-//                    thirdLoginPresenter.bindWeixinLogin(job.get("unionid").toString());
-//                    getAccessTokenaaa(job.get("refresh_token").toString());
-//                } else {
-////                        thirdLoginPresenter.bindWeixinLogin("");
-//                    SpCommonUtils.put(LoginActivity.this, AppConfig.WEICHAT_CODE, "");
-//                }
-
-
-                //获取个人信息
-//                String getUserInfo = "https://api.weixin.qq.com/sns/userinfo?access_token=" + access + "&openid=" + openId + "";
-//                OkHttpUtils.ResultCallback<WeChatInfo> resultCallback = new OkHttpUtils.ResultCallback<WeChatInfo>() {
-//                    @Override
-//                    public void onSuccess(WeChatInfo response) {
-//                        response.setErrCode(resp.errCode);
-//                        Log.i("TAG获取个人信息", new Gson().toJson(response));
-////                        Toast.makeText(WXEntryActivity.this, new Gson().toJson(response), Toast.LENGTH_LONG).show();
-//                        finish();
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Exception e) {
-//                        Toast.makeText(WXEntryActivity.this, "登录失败", Toast.LENGTH_SHORT).show();
-//                    }
-//                };
-//                OkHttpUtils.get(getUserInfo, resultCallback);
-            }
-
-            @Override
-            public void onFailure(Exception e) {
-                android.widget.Toast.makeText(LoginActivity.this, "登录失败", android.widget.Toast.LENGTH_SHORT).show();
-            }
-        };
-        OkHttpUtils.get(http, resultCallback);
-    }
 
 
 }
