@@ -263,7 +263,7 @@ public class BCPayTest {
                         Assert.assertEquals(BCPayResult.FAIL_EXCEPTION,
                                 payResult.getErrMsg());
                         Assert.assertTrue(payResult.getDetailInfo().startsWith("Error: 微信API为空"));
-                        System.out.println(payResult.getDetailInfo());
+                //        System.out.println(payResult.getDetailInfo());
 
                         Assert.assertEquals("ff5fef0c-93bd-46d2-8500-5ed53502d344",
                                 BCCache.getInstance().billID);

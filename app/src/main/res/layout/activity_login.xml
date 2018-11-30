@@ -190,7 +190,7 @@
                 android:layout_marginRight="@dimen/y200"
                 android:layout_marginTop="@dimen/y40"
                 android:gravity="center_horizontal"
-                android:text="手机登录" />
+                android:text="手机验证码登录" />
 
 
         </LinearLayout>

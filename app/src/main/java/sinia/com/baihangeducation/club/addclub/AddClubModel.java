@@ -81,7 +81,7 @@ public class AddClubModel extends BasePresenter {
         post(info, new OnRequestListener() {
             @Override
             public void requestSuccess(BaseResponseBean bean) {
-                System.out.println("BaseResponseBean==" + bean.getCode());
+          //      System.out.println("BaseResponseBean==" + bean.getCode());
                 Toast.getInstance().showSuccessToast(activity, "创建社团成功");
                 getRequestListener.setRequestSuccess("");
             }

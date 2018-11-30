@@ -86,7 +86,7 @@ public class CustomDialogAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 //            pDatas.add(discount);
 //        }
 
-        System.out.println("后台数据" + pDatas.size());
+     //   System.out.println("后台数据" + pDatas.size());
         if (currentPage == 1) {
             mInviteListInfo.clear();
         }

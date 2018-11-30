@@ -146,7 +146,6 @@
     <orderEntry type="library" name="Gradle: com.jakewharton:butterknife-8.4.0" level="project" />
     <orderEntry type="library" name="Gradle: __local_aars__:F.\jyb\jobbang\app\libs\AMap2DMap_5.2.0_AMapSearch_5.7.0_AMapLocation_3.7.0_20171229.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.flyco.tablayout:FlycoTabLayout_Lib-2.1.2" level="project" />
-    <orderEntry type="library" name="Gradle: com.baidu.mobstat:mtj-sdk-circle:3.9.3.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-vector-drawable-27.1.1" level="project" />
     <orderEntry type="library" name="Gradle: com.flyco.banner:FlycoBanner_Lib-2.0.2" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-core-utils-27.1.1" level="project" />
@@ -194,13 +193,13 @@
     <orderEntry type="library" name="Gradle: com.android.support:support-annotations:27.1.1@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.databinding:baseLibrary:2.2.3@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:animated-vector-drawable-27.1.1" level="project" />
-    <orderEntry type="library" name="Gradle: com.tencent.mm.opensdk:wechat-sdk-android-without-mta:5.1.6@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.okio:okio:1.13.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.androidkun:XTabLayout-1.1.3" level="project" />
     <orderEntry type="library" name="Gradle: com.facebook.fresco:imagepipeline-okhttp3-0.10.0" level="project" />
     <orderEntry type="library" name="Gradle: com.github.mcxtzhang:all-base-adapter-V1.5.2" level="project" />
     <orderEntry type="library" name="Gradle: com.sdsmdg.tastytoast:tastytoast-0.1.0" level="project" />
     <orderEntry type="library" name="Gradle: __local_aars__:F.\jyb\jobbang\app\libs\SocialSDK_WeChat_Simplify.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" name="Gradle: com.baidu.mobstat:mtj-sdk-circle:3.9.3.1@jar" level="project" />
     <orderEntry type="library" name="Gradle: __local_aars__:F.\jyb\jobbang\app\libs\umeng_social_shareview.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:exifinterface-27.1.0" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.picasso:picasso:2.5.2@jar" level="project" />

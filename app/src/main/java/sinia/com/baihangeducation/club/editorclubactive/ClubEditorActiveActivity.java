@@ -600,7 +600,7 @@ public class ClubEditorActiveActivity extends BaseActivity implements GetRequest
             inputNum = man_num.getText().toString().trim() + "," + woman_num.getText().toString().trim();
         }
 
-        System.out.println("human_num== " + inputNum);
+      //  System.out.println("human_num== " + inputNum);
 
         clubEditorModel.sendActive(
                 active_name.getText().toString().trim(),

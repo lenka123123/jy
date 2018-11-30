@@ -77,7 +77,7 @@ public class VerificationCodeActivity extends AppCompatActivity implements IAuth
                 break;
             case R.id.forget_get_verification_code:
 
-                System.out.println("=====getPhone=========" + getPhone().length());
+             //   System.out.println("=====getPhone=========" + getPhone().length());
                 if (getPhone().length() != 11) {
                     mTimeButton.setLenght(0);
                     Toast.getInstance().showErrorToast(context, "请输入手机号");

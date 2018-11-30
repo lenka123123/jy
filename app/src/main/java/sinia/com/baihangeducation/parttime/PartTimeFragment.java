@@ -268,7 +268,7 @@ public class PartTimeFragment extends MyBaseFragment implements HomePartTimeView
         mIndustryList.clear();
         if (mHomePartTimeSearchListInfo.industry_list != null && mHomePartTimeSearchListInfo.industry_list.size() > 0) {
             mIndustryList.addAll(mHomePartTimeSearchListInfo.industry_list);
-            System.out.println(mHomePartTimeSearchListInfo.industry_list.size() + "=industry_list==2" + mHomePartTimeSearchListInfo.industry_list.get(0).industry_name);
+         //   System.out.println(mHomePartTimeSearchListInfo.industry_list.size() + "=industry_list==2" + mHomePartTimeSearchListInfo.industry_list.get(0).industry_name);
 
         }
         mSalaryList.clear();
@@ -278,7 +278,7 @@ public class PartTimeFragment extends MyBaseFragment implements HomePartTimeView
         mDistList.clear();
         if (mHomePartTimeSearchListInfo.dist_list != null && mHomePartTimeSearchListInfo.dist_list.size() > 0) {
             mDistList.addAll(mHomePartTimeSearchListInfo.dist_list);
-            System.out.println(mDistList.size() + "调用意向" + AppConfig.CTYLEID + "" + AppConfig.CTYLENAME);
+          //  System.out.println(mDistList.size() + "调用意向" + AppConfig.CTYLEID + "" + AppConfig.CTYLENAME);
 
         }
         mOrderList.clear();
@@ -299,13 +299,13 @@ public class PartTimeFragment extends MyBaseFragment implements HomePartTimeView
                 filterTabToggleT(isChecked, mOrder, mIndustryList, new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        System.out.println("indutryIdindutryId333rrr" + isChecked);
+                   //     System.out.println("indutryIdindutryId333rrr" + isChecked);
                         hidePopListView();
                         mList.clear();
                         countpage = 1;
                         mHomePartTimeAdapter.notifyDataSetChanged();
                         indutryId = mIndustryList.get(position).industry_id + "";
-                        System.out.println("indutryIdindutryId" + indutryId);
+                   //     System.out.println("indutryIdindutryId" + indutryId);
                         mHomePartTimePresenter.getPartTimeData(indutryId, "0", "0", "0", "0", "0", "0");
                         onRefresh();
                         //  Toast.makeText(context, mIndustryList.get(position).industry_name, Toast.LENGTH_SHORT).show();

@@ -631,7 +631,7 @@ public class ChattingListAdapter extends BaseAdapter {
 
                         intent.putExtra("other_id", userInfo.getUserName());
                         intent.putExtra("name", userInfo.getDisplayName());
-                        if (userInfo.getAvatarFile().getAbsolutePath() == null && userInfo.getAvatarFile().getAbsolutePath().length() < 1) {
+                        if (userInfo.getAvatarFile() == null || userInfo.getAvatarFile().getAbsolutePath() == null || userInfo.getAvatarFile().getAbsolutePath().length() < 1) {
                             intent.putExtra("phone", "");
                         } else {
                             intent.putExtra("phone", userInfo.getAvatarFile().getAbsolutePath());

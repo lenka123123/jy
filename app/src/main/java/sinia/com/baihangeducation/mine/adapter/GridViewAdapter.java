@@ -25,7 +25,7 @@ import sinia.com.baihangeducation.R;
 public class GridViewAdapter extends android.widget.BaseAdapter {
 
     private Context mContext;
-    private List<String> mList = new ArrayList<>();
+    private List<String> mList;
     private LayoutInflater inflater;
 
     public GridViewAdapter(Context mContext, List<String> mList) {
@@ -35,6 +35,7 @@ public class GridViewAdapter extends android.widget.BaseAdapter {
     }
 
     public void setData(List<String> imgurl) {
+        if (imgurl.size() > 9) return;
         mList.clear();
         mList.addAll(imgurl);
         notifyDataSetChanged();

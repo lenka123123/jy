@@ -158,7 +158,7 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
 
 
     public void loginIm() {
-        System.out.println("登录的手机号" + phone);
+      //  System.out.println("登录的手机号" + phone);
         JMessageClient.login(phone, "123456", new BasicCallback() {
             @Override
             public void gotResult(int i, String s) {
@@ -169,11 +169,11 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
                     public void gotResult(int i, String s) {
                         List<Conversation> list = JMessageClient.getConversationList();
 
-                        if (list != null)
-                            System.out.println("JMessageClient dong" + i + "===" + s + "====" + list.size());
+                       // if (list != null)
+                         //   System.out.println("JMessageClient dong" + i + "===" + s + "====" + list.size());
                     }
                 });
-                System.out.println("JMessageClient dong" + i + "===" + s);
+              //  System.out.println("JMessageClient dong" + i + "===" + s);
 //                JMessageClient.getUserInfo("18851032658", new GetUserInfoCallback() {
 //                    @Override
 //                    public void gotResult(int i, String s, cn.jpush.im.android.api.model.UserInfo userInfo) {
@@ -237,7 +237,7 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
         }
         TabFragment.onDestroy();
 
-        System.out.println("Mian delete");
+      //  System.out.println("Mian delete");
         Log.i("", "onDestroy:      Mian delete");
 
         if (mLocationClient != null) {
@@ -306,7 +306,7 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
     private class MyBroadCastRecevir extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            System.out.println("MainActivity.this.finish======");
+          //  System.out.println("MainActivity.this.finish======");
             MainActivity.this.finish();
         }
     }
@@ -335,7 +335,7 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
             String channelCode = appData.getChannel();
             //获取绑定数据
             String bindData = appData.getData();
-            System.out.println("getWakeUp : wakeupData = " + appData.toString());
+        //    System.out.println("getWakeUp : wakeupData = " + appData.toString());
             Log.d("OpenInstallww", "getInstall : installData = " + appData.toString());
             // getWakeUp : wakeupData = AppData : channelCode= , bindData={"app":"share","act":"job","id":"452"}
             try {
@@ -428,7 +428,7 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
         mMyCoffers = findViewById(R.id.my_coffers);
         mMyPay = findViewById(R.id.my_pay);
         int type = AppConfig.USERIDTYPE;
-        System.out.println("userInfouserInfouserIns试试33fo.type" + type);
+      //  System.out.println("userInfouserInfouserIns试试33fo.type" + type);
 
 
         if (type == 1) { //1个人/2企业/3培训机构
@@ -513,10 +513,8 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                System.out.println("changeMsgCountView==" + num + "系统" + isSystem);
+          //      System.out.println("changeMsgCountView==" + num + "系统" + isSystem);
                 if (all_unread_number == null) return;
-
-
                 if (isSystem == 1) {  //系统
                     if (num >= 1) {
                         all_unread_number.setVisibility(View.VISIBLE);
@@ -793,7 +791,7 @@ public class MainActivity extends BaseRequestActivity implements IUpdateVersionV
         delete_train.setVisibility(View.VISIBLE);
         huzhu.setVisibility(View.VISIBLE);
         type = AppConfig.USERIDTYPE;
-        System.out.println("userInfouserInfouserIns试试fo.type" + type);
+      //  System.out.println("userInfouserInfouserIns试试fo.type" + type);
         if (type == 1) { //1个人/2企业/3培训机构
             delete_train.setVisibility(View.GONE); //培训
             mMyCoffers.setVisibility(View.VISIBLE);//金 库

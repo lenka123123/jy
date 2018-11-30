@@ -122,14 +122,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="47dp"
                     android:layout_alignParentBottom="true"
-                    android:visibility="gone"
                     android:layout_marginLeft="@dimen/x540"
                     android:layout_marginTop="@dimen/y20"
-                    android:paddingBottom="30dp">
+                    android:paddingBottom="30dp"
+                    android:visibility="gone">
 
                     <TextView
-                        android:layout_width="@dimen/x18"
-                        android:layout_height="@dimen/y20"
+                        android:layout_width="@dimen/x20"
+                        android:layout_height="@dimen/x20"
                         android:layout_gravity="center_horizontal"
                         android:background="@drawable/unread_msg_red"
                         android:elevation="7dp"

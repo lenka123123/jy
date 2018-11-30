@@ -286,7 +286,7 @@ public class HomePartTimeActivity extends BaseActivity implements HomePartTimeVi
                         countpage = 1;
                         mHomePartTimeAdapter.notifyDataSetChanged();
                         indutryId = mIndustryList.get(position).industry_id + "";
-                        System.out.println("indutryIdindutryId" + indutryId);
+                     //   System.out.println("indutryIdindutryId" + indutryId);
                         mHomePartTimePresenter.getPartTimeData(indutryId, "0", "0", "0", "0", "0", "0");
                         onRefresh();
                         //  Toast.makeText(context, mIndustryList.get(position).industry_name, Toast.LENGTH_SHORT).show();
@@ -339,7 +339,7 @@ public class HomePartTimeActivity extends BaseActivity implements HomePartTimeVi
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 partTimeDialog.closeWindow();
 
-                System.out.println("=======打开几次=====");
+             //   System.out.println("=======打开几次=====");
                 partTimeDialog.showAlertPop(HomePartTimeActivity.this, mOrderLayout, new PartTimeDialog.OnClickParameterListener() {
                     @Override
                     public void getParameter(String money_id, String worktime_id, String distance_id, String sex_id, String pubtime_id) {
@@ -347,7 +347,7 @@ public class HomePartTimeActivity extends BaseActivity implements HomePartTimeVi
                         countpage = 1;
                         partTimeDialog.closeWindow();
                         mHomePartTimeAdapter.notifyDataSetChanged();
-                        System.out.println(indutryId + "rter" + areaId + "" + money_id + "rrrrrrrr" + worktime_id + "" + distance_id + "" + sex_id + "" + money_id + "" + pubtime_id + "");
+                     //   System.out.println(indutryId + "rter" + areaId + "" + money_id + "rrrrrrrr" + worktime_id + "" + distance_id + "" + sex_id + "" + money_id + "" + pubtime_id + "");
                         mHomePartTimePresenter.getPartTimeData(indutryId, money_id, areaId, worktime_id, distance_id, sex_id, pubtime_id);
                     }
                 });

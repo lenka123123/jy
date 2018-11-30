@@ -41,7 +41,7 @@ public class ClubHomeModel extends BasePresenter {
         if (!other_id.equals(""))
             info.put("other_id", other_id);
 
-        System.out.println("other_id==" + other_id);
+    //    System.out.println("other_id==" + other_id);
 
         post(info, new OnRequestListener() {
             @Override
@@ -75,7 +75,7 @@ public class ClubHomeModel extends BasePresenter {
         post(info, new OnRequestListener() {
             @Override
             public void requestSuccess(BaseResponseBean bean) {
-                System.out.println("设置选择学校===" + bean.getData());
+              //  System.out.println("设置选择学校===" + bean.getData());
                 getRequestListener.setRequestSuccess("");
 //                ClubHomeInfo clubSchoolList = bean.parseObject(ClubHomeInfo.class);
 //                clubHomeListener.setClubHomeSuccess(clubSchoolList);
@@ -107,7 +107,7 @@ public class ClubHomeModel extends BasePresenter {
         post(info, new OnRequestListener() {
             @Override
             public void requestSuccess(BaseResponseBean bean) {
-                System.out.println("getDatagetData===" + bean.getData());
+             //   System.out.println("getDatagetData===" + bean.getData());
                 getRequestListener.setRequestSuccess(bean.getData().toString());
 
 //                ClubHomeInfo clubSchoolList = bean.parseObject(ClubHomeInfo.class);
@@ -142,7 +142,7 @@ public class ClubHomeModel extends BasePresenter {
         post(info, new OnRequestListener() {
             @Override
             public void requestSuccess(BaseResponseBean bean) {
-                System.out.println("getDatagetData===" + bean.getData());
+            //    System.out.println("getDatagetData===" + bean.getData());
                 Toast.getInstance().showSuccessToast(activity, "申请成功，等待审核");
                 listener.setRequestSuccess("");
 //                ClubHomeInfo clubSchoolList = bean.parseObject(ClubHomeInfo.class);

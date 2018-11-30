@@ -71,7 +71,7 @@ public class MangerPowerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         int a = 0;
         for (int i = 0; i < myDate.size(); i++) {
             a += myDate.get(i).list.size();
-            System.out.println(position + "===看看======" + a);
+          //  System.out.println(position + "===看看======" + a);
 
             vh.title.setVisibility(View.VISIBLE);
             if (position == 0 || position == a) {
@@ -96,7 +96,7 @@ public class MangerPowerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 //当按钮被按下时会触发此listener
                 if (!compoundButton.isPressed()) return;
 
-                System.out.println(position + "===看看w=====" + b);
+               // System.out.println(position + "===看看w=====" + b);
                 activity.changPermiss(lists.get(position).permission_id, b ? "1" : "0");
             }
         });
@@ -112,7 +112,7 @@ public class MangerPowerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private MangerPowerActivity activity;
 
     public void setData(List<MangerPowerList> pDatas, MangerPowerActivity activity) {
-        System.out.println("后台数据" + pDatas.size());
+        //System.out.println("后台数据" + pDatas.size());
         this.activity = activity;
         lists.clear();
         myDate.clear();

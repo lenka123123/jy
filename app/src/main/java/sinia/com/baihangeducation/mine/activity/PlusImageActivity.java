@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
@@ -42,7 +43,7 @@ public class PlusImageActivity extends Activity implements ViewPager.OnPageChang
 
         imgList = getIntent().getStringArrayListExtra(Constants.IMG_LIST);
         for (int i = 0; i<imgList.size();i++){
-            // TODO: 2018/7/3 0003    Log.i("图片的地址=",imgList.get(i));
+              Log.i("图片的地址=",imgList.get(i));
         }
         mPosition = getIntent().getIntExtra(Constants.POSITION, 0);
         isShowDetel = getIntent().getBooleanExtra(Constants.ISDETEL,true);

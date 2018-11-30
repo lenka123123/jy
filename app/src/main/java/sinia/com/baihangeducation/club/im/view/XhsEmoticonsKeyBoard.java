@@ -267,7 +267,7 @@ public class XhsEmoticonsKeyBoard extends AutoHeightLayout implements View.OnCli
         }
 
         if (i == R.id.btn_send_img) {
-            System.out.println("========0========000");
+        //    System.out.println("========0========000");
             EventBus.getDefault().post(new ImageEvent(MyApplication.IMAGE_MESSAGE));
         }
     }

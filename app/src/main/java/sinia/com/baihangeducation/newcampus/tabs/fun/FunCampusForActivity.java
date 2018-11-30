@@ -248,20 +248,26 @@ public class FunCampusForActivity extends BaseActivity implements IGetFunView, I
                     if (hotFunListBean.list.size() >= 4) {
                         linearLayout_four.setVisibility(View.VISIBLE);
                     }
+                    if (hotFunListBean.list.size() >= 1) {
+                        GlideLoadUtils.getInstance().glideLoad(context, hotFunListBean.list.get(0).topic_logo, imageViewOne, R.drawable.logo);
+                        textViewOne.setText(hotFunListBean.list.get(0).topic_title);
+                    }
 
-                    GlideLoadUtils.getInstance().glideLoad(context, hotFunListBean.list.get(0).topic_logo, imageViewOne, R.drawable.logo);
-                    GlideLoadUtils.getInstance().glideLoad(context, hotFunListBean.list.get(1).topic_logo, imageViewTwo, R.drawable.logo);
-                    GlideLoadUtils.getInstance().glideLoad(context, hotFunListBean.list.get(2).topic_logo, imageViewThree, R.drawable.logo);
-                    GlideLoadUtils.getInstance().glideLoad(context, hotFunListBean.list.get(3).topic_logo, imageViewFour, R.drawable.logo);
+                    if (hotFunListBean.list.size() >= 2) {
+                        GlideLoadUtils.getInstance().glideLoad(context, hotFunListBean.list.get(1).topic_logo, imageViewTwo, R.drawable.logo);
+                        textViewTwo.setText(hotFunListBean.list.get(1).topic_title);
+                    }
 
-//                    Glide.with(context).load(hotFunListBean.list.get(0).topic_logo).error(R.drawable.logo).into(imageViewOne);
-//                    Glide.with(context).load(hotFunListBean.list.get(1).topic_logo).error(R.drawable.logo).into(imageViewTwo);
-//                    Glide.with(context).load(hotFunListBean.list.get(2).topic_logo).error(R.drawable.logo).into(imageViewThree);
-//                    Glide.with(context).load(hotFunListBean.list.get(3).topic_logo).error(R.drawable.logo).into(imageViewFour);
-                    textViewOne.setText(hotFunListBean.list.get(0).topic_introduce);
-                    textViewTwo.setText(hotFunListBean.list.get(1).topic_introduce);
-                    textViewThree.setText(hotFunListBean.list.get(2).topic_introduce);
-                    textViewFour.setText(hotFunListBean.list.get(3).topic_introduce);
+                    if (hotFunListBean.list.size() >= 3) {
+                        GlideLoadUtils.getInstance().glideLoad(context, hotFunListBean.list.get(2).topic_logo, imageViewThree, R.drawable.logo);
+                        textViewThree.setText(hotFunListBean.list.get(2).topic_title);
+                    }
+
+                    if (hotFunListBean.list.size() >= 4) {
+                        GlideLoadUtils.getInstance().glideLoad(context, hotFunListBean.list.get(3).topic_logo, imageViewFour, R.drawable.logo);
+                        textViewFour.setText(hotFunListBean.list.get(3).topic_title);
+                    }
+
 
                 } else {
                     mHeadLinearLayout.setVisibility(View.GONE);
@@ -400,7 +406,6 @@ public class FunCampusForActivity extends BaseActivity implements IGetFunView, I
         mInputMethodManager
                 .hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
-
 
 
 }

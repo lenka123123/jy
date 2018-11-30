@@ -166,7 +166,7 @@ public class PersonCenterForFirendActivity extends BaseActivity implements Super
                 JMessageClient.getUserInfo(other_id, new GetUserInfoCallback() {
                     @Override
                     public void gotResult(int i, String s, cn.jpush.im.android.api.model.UserInfo userInfo) {
-                        System.out.println("JMessageClient dong1" + i + "===" + s + "===" + userInfo.getAppKey());
+                      //  System.out.println("JMessageClient dong1" + i + "===" + s + "===" + userInfo.getAppKey());
                         chat(userInfo);
                     }
                 });
@@ -213,7 +213,7 @@ public class PersonCenterForFirendActivity extends BaseActivity implements Super
 
     @Override
     public void setClubHomeSuccess(ClubHomeInfo clubSchoolList) {
-        System.out.println(" =====jav===" + clubSchoolList.user_info.club_num);
+      //  System.out.println(" =====jav===" + clubSchoolList.user_info.club_num);
         ClubHomeInfo.UserInfo userInfo = clubSchoolList.user_info;
         if (userInfo != null) {
             school_name.setText(userInfo.school_name);

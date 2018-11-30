@@ -51,7 +51,7 @@ public class PersonCenterActivity extends BaseActivity implements SuperRecyclerV
     private ClubHomeModel clubHomeModel;
     private String other_id;
     private String name1;
-    private String phoneImg;
+    private String phoneImg = "";
     private TextView my_apply_help_num;
     private LinearLayout my_apply_help_layout;
     private String phone;
@@ -87,7 +87,19 @@ public class PersonCenterActivity extends BaseActivity implements SuperRecyclerV
         if (!name1.equals(""))
             name.setText(name1);
 
-        if (!phoneImg.equals("")) {
+        if (phoneImg.equals("club")) {
+            if (!phone.equals("") && AppConfig.ISlOGINED)
+                Glide.with(context).load(AppConfig.LOGINPHOTOTPATH).asBitmap().error(R.drawable.new_eorrlogo).centerCrop()
+                        .into(new BitmapImageViewTarget(logo) {
+                            @Override
+                            protected void setResource(Bitmap resource) {
+                                RoundedBitmapDrawable circularBitmapDrawable =
+                                        RoundedBitmapDrawableFactory.create(context.getResources(), resource);
+                                circularBitmapDrawable.setCircular(true);
+                                logo.setImageDrawable(circularBitmapDrawable);
+                            }
+                        });
+        } else {
             Glide.with(context).load(phoneImg).asBitmap().error(R.drawable.new_eorrlogo).centerCrop()
                     .into(new BitmapImageViewTarget(logo) {
                         @Override
@@ -98,22 +110,6 @@ public class PersonCenterActivity extends BaseActivity implements SuperRecyclerV
                             logo.setImageDrawable(circularBitmapDrawable);
                         }
                     });
-            return;
-        }
-
-        if (!phone.equals("") && AppConfig.ISlOGINED) {
-
-            Glide.with(context).load(AppConfig.LOGINPHOTOTPATH).asBitmap().error(R.drawable.new_eorrlogo).centerCrop()
-                    .into(new BitmapImageViewTarget(logo) {
-                        @Override
-                        protected void setResource(Bitmap resource) {
-                            RoundedBitmapDrawable circularBitmapDrawable =
-                                    RoundedBitmapDrawableFactory.create(context.getResources(), resource);
-                            circularBitmapDrawable.setCircular(true);
-                            logo.setImageDrawable(circularBitmapDrawable);
-                        }
-                    });
-
         }
     }
 

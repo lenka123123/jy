@@ -189,7 +189,7 @@ public class NewCampusFunAdapter extends SuperBaseAdapter<FunContantInfo> {
         String content = item.content;
         String topic_title = item.topic_title;
         int index = content.indexOf(topic_title);
-        System.out.println(content.length() + "==add_time==" + topic_title.length() + "==add_time==" + index);
+      //  System.out.println(content.length() + "==add_time==" + topic_title.length() + "==add_time==" + index);
         //  12==add_time==14==add_time==-1
 
         //发布时间
@@ -209,10 +209,10 @@ public class NewCampusFunAdapter extends SuperBaseAdapter<FunContantInfo> {
         if (item.thumbnail_list != null && item.thumbnail_list.get(0) != null && item.thumbnail_list.get(0).url != null && item.thumbnail_list.get(0).url.length() > 1) {
             holder.setVisible(R.id.nine_grid_view, true);
             ((NineGridView) holder.getView(R.id.nine_grid_view)).setVisibility(View.VISIBLE);
-            System.out.println(item.thumbnail_list.size() + "隐藏w " + position);
+         //   System.out.println(item.thumbnail_list.size() + "隐藏w " + position);
             clickNineGridView((NineGridView) holder.getView(R.id.nine_grid_view), item.thumbnail_list, item.images_list, position);
         } else {
-            System.out.println(item.thumbnail_list.size() + "隐藏ee" + position);
+         //   System.out.println(item.thumbnail_list.size() + "隐藏ee" + position);
             holder.setVisible(R.id.nine_grid_view, false);
             ((NineGridView) holder.getView(R.id.nine_grid_view)).setVisibility(View.GONE);
         }

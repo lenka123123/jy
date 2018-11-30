@@ -194,7 +194,7 @@ public class ChatActivity extends ImBaseActivity implements
         if (!TextUtils.isEmpty(mTargetId)) {
             //单聊
             mChatView.dismissRightBtn();
-            System.out.println(" 打开的是  单聊");
+         //   System.out.println(" 打开的是  单聊");
             mIsSingle = true;
             mChatView.setChatTitle(mTitle);
             mConv = JMessageClient.getSingleConversation(mTargetId, mTargetAppKey);
@@ -204,21 +204,21 @@ public class ChatActivity extends ImBaseActivity implements
             mChatAdapter = new ChattingListAdapter(mContext, mConv, longClickListener);
         } else {
             //群聊
-            System.out.println(" 打开的是  群聊");
+          //  System.out.println(" 打开的是  群聊");
             mIsSingle = false;
             mGroupId = intent.getLongExtra(GROUP_ID, 0);
             final boolean fromGroup = intent.getBooleanExtra("fromGroup", false);
             if (fromGroup) {
-                System.out.println(" 打开的是  群聊1");
+            //    System.out.println(" 打开的是  群聊1");
                 mChatView.setChatTitle(mTitle, intent.getIntExtra(MEMBERS_COUNT, 0));
                 mConv = JMessageClient.getGroupConversation(mGroupId);
                 mChatAdapter = new ChattingListAdapter(mContext, mConv, longClickListener);//长按聊天内容监听
             } else {
-                System.out.println(" 打开的是  群聊2");
+             //   System.out.println(" 打开的是  群聊2");
                 mAtMsgId = intent.getIntExtra("atMsgId", -1);
                 mAtAllMsgId = intent.getIntExtra("atAllMsgId", -1);
 
-                System.out.println(" 打开的是  群聊2== " + mAtMsgId);
+              //  System.out.println(" 打开的是  群聊2== " + mAtMsgId);
 
 
                 mConv = JMessageClient.getGroupConversation(mGroupId);
@@ -325,7 +325,7 @@ public class ChatActivity extends ImBaseActivity implements
 
             @Override
             public void onTextChanged(CharSequence s, int start, int count, int after) {
-                System.out.println("CharSequence===" + s.toString() + "after==" + after);
+             //   System.out.println("CharSequence===" + s.toString() + "after==" + after);
                 temp = s;
                 if (s.length() > 0 && after >= 1 && s.subSequence(start, start + 1).charAt(0) == '@' && !mLongClick) {
                     if (null != mConv && mConv.getType() == ConversationType.group) {
@@ -371,7 +371,7 @@ public class ChatActivity extends ImBaseActivity implements
                 MessageSendingOptions options = new MessageSendingOptions();
                 options.setNeedReadReceipt(true);
 
-                System.out.println("vmcgContent===" + mcgContent);
+            //    System.out.println("vmcgContent===" + mcgContent);
                 checkText(mcgContent, msg, options, ekBar);
 
 
@@ -1013,7 +1013,7 @@ public class ChatActivity extends ImBaseActivity implements
 
     public void onEventMainThread(ImageEvent event) {
         Intent intent;
-        System.out.println("=getFuncName===event" + event.getFlag());
+     //   System.out.println("=getFuncName===event" + event.getFlag());
         switch (event.getFlag()) {
             case MyApplication.IMAGE_MESSAGE:
                 int from = PickImageActivity.FROM_LOCAL;
@@ -1089,7 +1089,7 @@ public class ChatActivity extends ImBaseActivity implements
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        System.out.println("onActivityResult--===" + requestCode + "==" + resultCode);
+      //  System.out.println("onActivityResult--===" + requestCode + "==" + resultCode);
         //  onActivityResult--===4==-1
         switch (requestCode) {
             case RequestCode.PICK_IMAGE://4

@@ -247,7 +247,7 @@ public class ClubFragment extends MyBaseFragment implements SuperRecyclerView.Lo
                 Goto.toMyHelpActivity(context, "");
                 break;
             case R.id.drawable:
-                Goto.toPersonScenter(context, "", "", "");
+                Goto.toPersonScenter(context, "", "", "club");
                 break;
             case R.id.club_add:
                 Goto.addClub(context);

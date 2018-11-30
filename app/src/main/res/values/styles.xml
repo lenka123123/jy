@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="AppTheme.Main" parent="AppTheme" />
@@ -221,8 +222,7 @@
         <item name="android:singleLine">true</item>
     </style>
 
-    <style name="default_check_box_style"
-        parent="@android:style/Widget.CompoundButton.CheckBox">
+    <style name="default_check_box_style" parent="@android:style/Widget.CompoundButton.CheckBox">
         <item name="android:background">@drawable/default_check_box_style</item>
         <item name="android:button">@null</item>
     </style>
@@ -236,8 +236,8 @@
         <item name="android:scrollbarThumbVertical">@drawable/scrollbar_handle_holo_dark</item>
         <item name="android:scrollbarThumbHorizontal">@drawable/scrollbar_handle_holo_dark</item>
     </style>
-    <style name="grid_view" parent="@android:style/Widget.GridView">
-    </style>
+
+    <style name="grid_view" parent="@android:style/Widget.GridView"></style>
 
     <style name="ChatDetailItem">
         <item name="android:layout_width">match_parent</item>
@@ -248,6 +248,7 @@
         <item name="android:background">#fff</item>
         <item name="android:clickable">true</item>
     </style>
+
     <style name="ChatDetailItemHit">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

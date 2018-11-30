@@ -203,7 +203,7 @@ public class AddCLubActivity extends BaseActivity implements GetAddOptionRequest
 
                 hideEditTextInput();
                 clickType = "type";
-                System.out.println("typelength===" + club_list.length);
+             //   System.out.println("typelength===" + club_list.length);
                 mClubType = new AlertViewContorller(club_type_text,
                         "社团类别", null, "取消", null, club_list,
                         AddCLubActivity.this, AlertViewContorller.Style.ActionSheet, this);
@@ -389,7 +389,7 @@ public class AddCLubActivity extends BaseActivity implements GetAddOptionRequest
             ArrayList<String> pathList = data.getStringArrayListExtra(PhotoPickerActivity.EXTRA_RESULT_SELECTION);
             if (pathList != null && pathList.size() != 0) {
                 img = pathList.get(0);
-                System.out.println("更新的图片地址" + img);
+           //     System.out.println("更新的图片地址" + img);
                 upPhone();
 
                 setPhoto(img);

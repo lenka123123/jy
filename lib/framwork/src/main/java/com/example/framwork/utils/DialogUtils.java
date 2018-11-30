@@ -65,6 +65,7 @@ public class DialogUtils {
 
     /**
      * 点击对话框外可取消
+     * todo
      *
      * @param context
      * @param id
@@ -75,12 +76,12 @@ public class DialogUtils {
         dialog.setContentView(id);
 
         Window dialogWindow = dialog.getWindow();
-        dialogWindow.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.cancel();
-            }
-        });
+//        dialogWindow.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                dialog.cancel();
+//            }
+//        });
         //dialogWindow.setWindowAnimations(R.style.mystyle);
         WindowManager.LayoutParams lp = dialogWindow.getAttributes();
         lp.width = context.getResources().getDisplayMetrics().widthPixels;

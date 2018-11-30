@@ -130,7 +130,7 @@ public class MyCreatePartTimeAdapter extends SuperBaseAdapter<ClubCreateData.App
                     JMessageClient.getUserInfo(item.jmessage_phone, new GetUserInfoCallback() {
                         @Override
                         public void gotResult(int i, String s, cn.jpush.im.android.api.model.UserInfo userInfo) {
-                            System.out.println("JMessageClient dong1" + i + "===" + s + "===" + userInfo.getAppKey());
+                          //  System.out.println("JMessageClient dong1" + i + "===" + s + "===" + userInfo.getAppKey());
                             chat(userInfo);
                         }
                     });

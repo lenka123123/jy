@@ -434,7 +434,7 @@ public class ReleaseJobInfoActivity extends BaseActivity implements IReleaseJobI
         //当requestCode,resultCode同时为0时,也就是处理特定的结果
 
         stringBuffer = new StringBuffer();
-        System.out.println("上班时间====" + requestCode + "resultCode" + resultCode);
+       // System.out.println("上班时间====" + requestCode + "resultCode" + resultCode);
         if (requestCode == 0 && resultCode == 200) {
 
             ArrayList<SelectedDay> selectedDayList = (ArrayList<SelectedDay>) intent.getSerializableExtra("daylist");
@@ -450,7 +450,7 @@ public class ReleaseJobInfoActivity extends BaseActivity implements IReleaseJobI
                 stringBuffer.append(",");
             }
             stringBuffer.deleteCharAt(stringBuffer.length() - 1);
-            System.out.println("上班时间" + stringBuffer.toString());
+        //    System.out.println("上班时间" + stringBuffer.toString());
             mWorkTimeMaxTextView.setText("已设置");
         }
     }
@@ -475,7 +475,7 @@ public class ReleaseJobInfoActivity extends BaseActivity implements IReleaseJobI
      */
     private void addAlerView(TextView textView, String title, String[] data) {
 
-        System.out.println("是否连做11new");
+     //   System.out.println("是否连做11new");
         AlertViewContorller alertViewContorller = new AlertViewContorller(textView, title, null, "取消", null, data, context, AlertViewContorller.Style.ActionSheet, this);
         alertViewContorller.setCancelable(true).show();
     }

@@ -110,7 +110,7 @@ public class ClubDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     public void setData(List<ClubDetailBean> pDatas, int currentPage) {
-        System.out.println("后台数据" + pDatas.size());
+    //    System.out.println("后台数据" + pDatas.size());
         if (currentPage == 1) {
             mInviteListInfo.clear();
         }

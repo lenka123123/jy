@@ -170,7 +170,7 @@ public class ThirdLoginPresenter extends BasePresenter {
         AppConfig.TOKEN = userInfo.token;
         AppConfig.USERID = userInfo.user_id;
         AppConfig.USERIDTYPE = userInfo.type;
-        System.out.println("userInfouserInfouserIns试试fo.type" + userInfo.type);
+     //   System.out.println("userInfouserInfouserIns试试fo.type" + userInfo.type);
 //        getBaseInfoPresenter.getBaseInfoLoginAfter(AppConfig.TOKEN, AppConfig.USERID);
 
         SpCommonUtils.put(activity, AppConfig.USERTOKEN, userInfo.token);

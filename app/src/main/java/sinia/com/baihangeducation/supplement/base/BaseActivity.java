@@ -73,7 +73,7 @@ public abstract class BaseActivity extends CheckPermissionsActivity implements V
     private CommonFilterPop mPopupWindow;
     protected FragmentManager mFragmentManager;
     protected int layoutResID;
-    protected static   Activity context;
+    protected static Activity context;
     protected KProgressHUD progressHUD;
     protected static CommonTitle mCommonTitle;   //头部布局
     protected String lng;
@@ -112,6 +112,7 @@ public abstract class BaseActivity extends CheckPermissionsActivity implements V
         this.savedInstanceState = savedInstanceState;
         context = this;
         StatusBarCompat.setStatusBarColor(this, Color.WHITE, true);
+        forSplashActivity();
         setContentView(initLayoutResID());
         StatService.start(this);//埋点二个
 
@@ -235,6 +236,10 @@ public abstract class BaseActivity extends CheckPermissionsActivity implements V
             statusBarHeight = res.getDimensionPixelSize(resourceId);
         }
         return statusBarHeight;
+    }
+
+    protected void forSplashActivity() {
+
     }
 
     /**

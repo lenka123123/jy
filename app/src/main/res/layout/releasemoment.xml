@@ -130,7 +130,7 @@
         <ImageView
             android:id="@+id/send_img"
             android:layout_width="@dimen/x91"
-            android:layout_height="@dimen/y45"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/x40"
             android:src="@drawable/send_img" />

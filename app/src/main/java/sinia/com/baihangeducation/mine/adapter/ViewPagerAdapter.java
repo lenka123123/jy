@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.imnjh.imagepicker.widget.ClipZoomImageView;
 
 import java.util.List;
 
@@ -51,10 +52,10 @@ public class ViewPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         View itemView = getItemView(R.layout.view_pager_img);
-//        ZoomImageView imageView = itemView.findViewById(R.id.img_iv);
+        ClipZoomImageView imageView = itemView.findViewById(R.id.img_iv);
 //
-//        Glide.with(context).load(imgList.get(position)).placeholder(R.drawable.ic_de_list)
-//                .diskCacheStrategy(DiskCacheStrategy.NONE).into(imageView);
+        Glide.with(context).load(imgList.get(position)).placeholder(R.drawable.ic_de_list)
+                .diskCacheStrategy(DiskCacheStrategy.NONE).into(imageView);
 
 //        Glide.with(context).load(imgList.get(position)).into(imageView);
         container.addView(itemView);

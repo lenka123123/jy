@@ -134,7 +134,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemCount() {
-        System.out.println("1111111eeee" + mInviteListInfo.list.size());
+     //   System.out.println("1111111eeee" + mInviteListInfo.list.size());
         return mInviteListInfo.list.size();
     }
 

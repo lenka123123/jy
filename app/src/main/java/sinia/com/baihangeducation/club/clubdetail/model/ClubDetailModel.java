@@ -140,7 +140,7 @@ public class ClubDetailModel extends BasePresenter {
         post(info, new OnRequestListener() {
             @Override
             public void requestSuccess(BaseResponseBean bean) {
-                System.out.println("getDatagetData===" + bean.getData());
+            //    System.out.println("getDatagetData===" + bean.getData());
                 getRequestListener.setRequestSuccess(bean.getData().toString());
 
 //                ClubHomeInfo clubSchoolList = bean.parseObject(ClubHomeInfo.class);

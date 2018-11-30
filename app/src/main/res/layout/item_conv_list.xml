@@ -118,7 +118,7 @@
                     <TextView
                         android:id="@+id/new_msg_number"
                         android:layout_width="@dimen/x40"
-                        android:layout_height="@dimen/y40"
+                        android:layout_height="@dimen/x40"
                         android:layout_marginRight="@dimen/x45"
                         android:layout_marginTop="@dimen/y2"
                         android:background="@drawable/unread_msg_red"
@@ -130,7 +130,7 @@
                     <TextView
                         android:id="@+id/new_group_msg_number"
                         android:layout_width="@dimen/x40"
-                        android:layout_height="@dimen/y40"
+                        android:layout_height="@dimen/x40"
                         android:layout_marginRight="@dimen/x45"
                         android:layout_marginTop="@dimen/y2"
                         android:background="@drawable/unread_msg_red"

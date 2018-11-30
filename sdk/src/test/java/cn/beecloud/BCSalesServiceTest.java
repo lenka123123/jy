@@ -46,8 +46,8 @@ public class BCSalesServiceTest {
         BCCouponResult couponResult = couponService.queryCoupon("79578fba-7330-4f4f-a063-3e97de28783a");
         Assert.assertTrue(couponResult.getResultCode() == 0);
         BCCoupon coupon = couponResult.getCoupon();
-        System.out.println(coupon.getAppId());
-        System.out.println(coupon.getTemplate().getName());
+      //  System.out.println(coupon.getAppId());
+    //    System.out.println(coupon.getTemplate().getName());
     }
 
     @Test
@@ -57,12 +57,12 @@ public class BCSalesServiceTest {
         BCCouponsResult couponsResult = couponService.queryCoupons(couponCriteria);
         Assert.assertTrue(couponsResult.getResultCode() == 0);
         List<BCCoupon> coupons = couponsResult.getCoupons();
-        System.out.println(coupons.size());
+       // System.out.println(coupons.size());
 
         if (coupons.size() > 0) {
             BCCoupon coupon = coupons.get(0);
-            System.out.println(coupon.getAppId());
-            System.out.println(coupon.getTemplate().getName());
+         //   System.out.println(coupon.getAppId());
+         //   System.out.println(coupon.getTemplate().getName());
         }
     }
 
@@ -71,8 +71,8 @@ public class BCSalesServiceTest {
         BCCouponTemplateResult templateResult = couponService.queryCouponTemplate("b7bf7c8e-321b-4451-8b3a-6fd630836641");
         Assert.assertTrue(templateResult.getResultCode() == 0);
         BCCouponTemplate template = templateResult.getCouponTemplate();
-        System.out.println(template.getAppId());
-        System.out.println(template.getName());
+     //   System.out.println(template.getAppId());
+     //   System.out.println(template.getName());
     }
 
     @Test
@@ -82,7 +82,7 @@ public class BCSalesServiceTest {
         BCCouponTemplatesResult templatesResult = couponService.queryCouponTemplates(templateCriteria);
         Assert.assertTrue(templatesResult.getResultCode() == 0);
         List<BCCouponTemplate> couponTemplates = templatesResult.getCouponTemplates();
-        System.out.println(couponTemplates.size());
+       // System.out.println(couponTemplates.size());
 
         if (couponTemplates.size() > 0) {
             BCCouponTemplate couponTemplate = couponTemplates.get(0);

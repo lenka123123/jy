@@ -183,7 +183,7 @@ public class RealNameActivity extends BaseActivity implements IRealNameView {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        System.out.println("requestCode==" + requestCode + "resultCode==" + resultCode);
+    //    System.out.println("requestCode==" + requestCode + "resultCode==" + resultCode);
 // requestCode==1000resultCode==1004
         if (requestCode == REQUEST_CODE_PICK && ImagePicker.RESULT_CODE_BACK_CLICK == 0) {
             if (data != null) {

@@ -48,9 +48,7 @@ public class SearchListActivity extends BaseActivity implements SearchSchoolCont
     private String text = "";
     private RefreshLayout mSmartRefreshLayout;
     private RecyclerView mAutoLoadRecyclerView;
-
     private SearchSchoolAdapter paiedListAdapter;
-
     private boolean addData = false;
     private int currentPage = 1;
     private int perpage = 20;
@@ -61,9 +59,7 @@ public class SearchListActivity extends BaseActivity implements SearchSchoolCont
     private EditText searchEditText;
     private TextView contact_me;
     private LinearLayout contact_admin;
-
     private ACache mACache;
-
     private TagFlowLayout mSearchHistrory;      //搜索历史
     private TagFlowLayout mHotTalk;             //热门话题
     private LinearLayout mSearchHistroyLayout;        //搜索历史layout

@@ -2,6 +2,7 @@ package sinia.com.baihangeducation.release.presenter;
 
 import android.app.Activity;
 import android.util.Log;
+import android.view.View;
 
 import com.example.framwork.base.BasePresenter;
 import com.example.framwork.noHttp.Bean.BaseResponseBean;
@@ -13,6 +14,7 @@ import java.util.HashMap;
 
 import sinia.com.baihangeducation.AppConfig;
 import sinia.com.baihangeducation.MyApplication;
+import sinia.com.baihangeducation.club.clubdetail.interfaces.ClubDetailContract;
 import sinia.com.baihangeducation.release.view.ISendReleaseJobView;
 import sinia.com.baihangeducation.mine.model.AccountManger;
 import sinia.com.baihangeducation.supplement.tool.BaseRequestInfo;
@@ -29,27 +31,27 @@ public class ReleaseJobPresenter extends BasePresenter {
     }
 
     public void releaseJob(String job_id) {
-        System.out.println(view.getMoneyLower() + "是否返回" + AccountManger.checkReleaseJobInfo(activity,
-                view.getReleaseType(),
-                view.getReleaseTitle(),
-                view.getProvId(),
-                view.getAddress(),
-                view.getNumUpper(),
-                view.getAgeLower(),
-                view.getGender(),
-                view.getExp(),
-                view.getSalaryType(),
-                view.getMoneyUpper(),
-                view.getJobType(),
-                view.getJobTag(),
-                view.getTimeEnd(),
-                view.getIsContinue(),
-                view.getIsInterview(),
-                view.getLinkPerson(),
-                view.getLinkType(),  //联系方式
-                view.getReleaseContent(),
-                view.getJobTime()
-        ));
+//     System.out.println(view.getMoneyLower() + "是否返回" + AccountManger.checkReleaseJobInfo(activity,
+//                view.getReleaseType(),
+//                view.getReleaseTitle(),
+//                view.getProvId(),
+//                view.getAddress(),
+//                view.getNumUpper(),
+//                view.getAgeLower(),
+//                view.getGender(),
+//                view.getExp(),
+//                view.getSalaryType(),
+//                view.getMoneyUpper(),
+//                view.getJobType(),
+//                view.getJobTag(),
+//                view.getTimeEnd(),
+//                view.getIsContinue(),
+//                view.getIsInterview(),
+//                view.getLinkPerson(),
+//                view.getLinkType(),  //联系方式
+//                view.getReleaseContent(),
+//                view.getJobTime()
+//        ));
 
 
         if (!AccountManger.checkReleaseJobInfo(activity,
@@ -80,7 +82,7 @@ public class ReleaseJobPresenter extends BasePresenter {
             if (!job_id.equals(""))
                 info.put("job_id", job_id);
 
-            System.out.println(view.getMoneyLower() + "job_ideeee" + job_id);
+         //   System.out.println(view.getMoneyLower() + "job_ideeee" + job_id);
             if (view.getReleaseType().equals("1")) {//仅全职传递
 //
 //            info.put("time_end", view.getTimeEnd());
@@ -141,7 +143,7 @@ public class ReleaseJobPresenter extends BasePresenter {
                 }
             });
         } else {
-            System.out.println(view.getMoneyLower() + "job_ideeee去去第三方士大夫去");
+        //    System.out.println(view.getMoneyLower() + "job_ideeee去去第三方士大夫去");
         }
     }
 //    public void editJob() {

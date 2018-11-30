@@ -96,7 +96,7 @@ public class ClubHorizontalAdapter extends RecyclerView.Adapter<ClubHorizontalAd
             if (data.get(i).member_num != null)
                 viewHolder.mSchoolPerson.setText(data.get(i).member_num + "人");
             ImageView img = viewHolder.mImg;
-            System.out.println(" ddddddddddddddd  " + data.get(i).logo);
+        //    System.out.println(" ddddddddddddddd  " + data.get(i).logo);
 //        GlideLoadUtils.getInstance().glideLoad(context, data.get(i).logo, img, R.drawable.logo);
             if (data.get(i).logo != null)
                 Glide.with(context).load(data.get(i).logo).asBitmap().error(R.drawable.new_eorrlogo).centerCrop().into(new BitmapImageViewTarget(img) {

@@ -192,7 +192,7 @@ public class ClubEditorModel extends BasePresenter {
         info.put("city_id", mCityId);
         info.put("dist_id", mDistrictId);
         info.put("addr", addr);
-        System.out.println(human_num + "expenditure == " + expenditure);
+      //  System.out.println(human_num + "expenditure == " + expenditure);
         info.put("expenditure", expenditure);
         info.put("human_type", human_type);
         info.put("human_num", human_num);

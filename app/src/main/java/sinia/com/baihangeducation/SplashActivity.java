@@ -44,6 +44,13 @@ public class SplashActivity extends BaseActivity implements IGetCommonInfoView {
     Timer timer = new Timer();
     private GetCommonInfoPresenter presenter;
 
+    @Override
+    protected void forSplashActivity() {
+        if ((getIntent().getFlags() & Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) != 0) {
+            finish();
+            return;
+        }
+    }
 
     @Override
     public int initLayoutResID() {
@@ -73,7 +80,7 @@ public class SplashActivity extends BaseActivity implements IGetCommonInfoView {
             AppConfig.USERID = userId;
             AppConfig.ISlOGINED = true;
         }
-        System.out.println("tokentoken  " + token + "==" + userId);
+        //    System.out.println("tokentoken  " + token + "==" + userId);
         if (PermissUtil.checkPermissions(this, PermissUtil.appNeedPermissions)) {
             initSplash();
         }

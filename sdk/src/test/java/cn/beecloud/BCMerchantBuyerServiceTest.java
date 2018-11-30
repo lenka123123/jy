@@ -28,9 +28,9 @@ public class BCMerchantBuyerServiceTest {
     @Test
     public void testAddMerchantUser() {
         String userId = UUID.randomUUID().toString().replace("-", "");
-        System.out.println(userId);
+      //  System.out.println(userId);
         BCRestfulCommonResult commonResult = userService.addMerchantBuyer(userId);
-        System.out.println(commonResult.getResultMsg());
+      //  System.out.println(commonResult.getResultMsg());
         Assert.assertTrue(commonResult.getResultCode() == 0);
     }
 
@@ -43,7 +43,7 @@ public class BCMerchantBuyerServiceTest {
 
         BCRestfulCommonResult commonResult = userService.batchAddMerchantBuyers("test@beecloud.cn",
                 userIdList);
-        System.out.println(commonResult.getResultMsg());
+     //   System.out.println(commonResult.getResultMsg());
         Assert.assertTrue(commonResult.getResultCode() == 0);
     }
 
@@ -52,7 +52,7 @@ public class BCMerchantBuyerServiceTest {
         BCQueryMerchantBuyerResult result = userService.getMerchantBuyers("test@beecloud.cn", null, null);
         Assert.assertTrue(result.getResultCode() == 0);
         if (result.getUsers() != null && result.getUsers().size() != 0) {
-            System.out.println(result.getUsers().get(0).getBuyerId());
+       //     System.out.println(result.getUsers().get(0).getBuyerId());
         }
     }
 }
